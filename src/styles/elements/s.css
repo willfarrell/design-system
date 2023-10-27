@@ -1,0 +1,9 @@
+s {
+  /* text-decoration-color: #c62828; */
+}
+
+@media (prefers-contrast: custom), (forced-colors: active) {
+  s {
+    text-decoration-color: Highlight;
+  }
+}

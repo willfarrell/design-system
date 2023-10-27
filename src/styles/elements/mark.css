@@ -1,0 +1,19 @@
+/* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark#accessibility_concerns */
+
+mark {
+  padding: 0.125rem 0.25rem;
+  background-color: #d1c284;
+}
+
+@media (prefers-contrast: custom), (forced-colors: active) {
+  mark {
+    color: HighlightText;
+    background-color: Highlight;
+  }
+}
+
+@media print {
+  mark {
+    border: 1pt dotted #000;
+  }
+}

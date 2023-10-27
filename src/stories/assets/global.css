@@ -1,0 +1,24 @@
+@import '../../styles/config/default.css';
+@import '../../styles/config/print.css';
+@import '../../styles/groups/prefers.css';
+
+/* elements */
+@import '../../styles/groups/elements.css';
+
+/* @import '../../styles/classes/footnote.css'; */
+
+/* classes */
+@import '../../styles/groups/classes.css';
+
+/* @import '../../styles/classes/chevron.css';
+@import '../../styles/classes/check.css';
+@import '../../styles/classes/hamburger.css'; */
+
+/* theme */
+@import '../../styles/themes/override.css';
+/* @import "../styles/print.css"; */
+
+/* fonts */
+@import './font/Atkinson Hyperlegible/stylesheet.css';
+@import './font/Lexend/stylesheet.css';
+@import './font/Poppins/stylesheet.css';

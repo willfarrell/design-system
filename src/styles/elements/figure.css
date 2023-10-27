@@ -1,0 +1,7 @@
+figure {
+  overflow-x: auto;
+  & figcaption {
+    max-inline-size: 60ch;
+    margin: auto;
+  }
+}

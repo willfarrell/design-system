@@ -1,0 +1,10 @@
+.circle::before {
+  --border-radius: 50%;
+  --background-color: #000;
+  content: '';
+  position: absolute;
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  background-color: var(--background-color);
+}

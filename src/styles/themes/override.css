@@ -1,0 +1,60 @@
+:root {
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-l0: #ffffff;
+    --color-l1: #fafafa;
+    --color-l2: #f6f6f6;
+    --color-l3: #f3f3f3;
+    --color-l4: #f1f1f1;
+    --color-l5: #efefef;
+    --color-text: #1f1f1f;
+
+    --color-focus: #e5def2;
+    --color-error: #c6312e;
+
+    --color-primary: #014a6e;
+    --color-primary-pseudo: #c2e7f9;
+    --color-primary-bold: #0271a6;
+    --color-primary-bold-pseudo: #85cef2;
+    --color-primary-text: #fafafa;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-l0: #1f1f1f;
+    --color-l1: #292929;
+    --color-l2: #2f2f2f;
+    --color-l3: #343434;
+    --color-l4: #363636;
+    --color-l5: #3a3a3a;
+    --color-text: #fafafa;
+
+    --color-focus: #522e9a;
+    --color-error: #f5b5b3;
+
+    --color-primary: #c2e7f9;
+    --color-primary-pseudo: #014a6e;
+    --color-primary-bold: #85cef2;
+    --color-primary-bold-pseudo: #0271a6;
+    --color-primary-text: #1f1f1f;
+  }
+}
+
+/* border radius */
+button,
+input,
+select,
+textarea,
+[type='file']::before {
+  border-radius: 0.125rem;
+}
+
+/* icons */
+[data-icon='search'] {
+  --icon: url('/img/icons.svg#search');
+}
+
+[data-icon='location'] {
+  --icon: url('/img/icons.svg#location');
+}

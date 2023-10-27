@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -e
+
+destDir=./src/stories/assets/img
+
+function build {
+  
+  "${destDir}"
+}
+
+function buildDir {
+
+buildFile ${srcDir}/en-CA.ftl ${destDir}/en-CA.js
+#buildFile ${srcDir}/en.ftl ${destDir}/en-US.js
+buildFile ${srcDir}/fr-CA.ftl ${destDir}/fr-CA.js

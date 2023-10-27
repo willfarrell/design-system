@@ -1,0 +1,6 @@
+/* WCAG 1.4.12 */
+.text-spacing {
+  line-height: 2;
+  word-spacing: calc(var(--font-height) * 0.18);
+  letter-spacing: calc(var(--font-height) * 0.12);
+}

@@ -1,0 +1,3 @@
+<address {...$$props}>
+  <slot />
+</address>

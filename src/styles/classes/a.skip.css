@@ -1,0 +1,8 @@
+/* <a href="#main" class="skip">Skip to main content</a> ... <main id="main">...</main> */
+.skip {
+  position: relative;
+  top: -9em;
+}
+.skip:focus {
+  top: 0;
+}

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+set -e
+
+# https://en.wikipedia.org/wiki/Aspect_ratio_(image)
+
+destDir=./src/stories/assets/img
+
+function build {
+  text=${1:-"1:1"}
+  size=${2:-"1x1"}
+  ffmpeg -f lavfi -i color=gray:size=${size} -frames:v 1 -vf "drawbox=width=iw-20:height=ih-20:x=10:y=10:color=white,drawtext=fontsize=50:fontcolor=white:text='${text/:/\:}':x=(w-text_w)/2:y=(h-text_h)/2-25,drawtext=fontsize=50:fontcolor=white:text='${size}':x=(w-text_w)/2:y=(h-text_h)/2+25" -y "${destDir}/${text/:/_}.${size}.png"
+}
+
+aspectRatios=(    1     0.66666667  1.5   0.66666667  1.33333333  1.77777778  0.5625)
+aspectRatioText=("1:1" "2:3"       "3:2" "3:4"       "4:3"       "16:9"      "9:16")
+widths=(320 640 1280 1920)
+
+for aspectRatioKey in "${!aspectRatios[@]}"; do
+  for width in "${widths[@]}"; do
+    height=$(echo "scale=0;${width}/${aspectRatios[aspectRatioKey]}" | bc -l)
+    echo "${aspectRatios[aspectRatioKey]}:1 ${aspectRatioText[aspectRatioKey]} ${width}x${height}"
+    build "${aspectRatioText[aspectRatioKey]}" "${width}x${height}"
+  done
+done

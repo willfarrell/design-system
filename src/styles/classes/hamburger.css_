@@ -1,0 +1,32 @@
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+  display: block;
+  background-color: currentColor;
+  position: absolute;
+  height: 0.25em;
+  width: 1.875em;
+  border-radius: 0.125em;
+}
+
+.hamburger::before {
+  content: '';
+  margin-top: -0.5em;
+}
+.hamburger[aria-expanded='true']::before {
+  margin-top: 0px;
+  transform: rotate(45deg);
+}
+
+.hamburger[aria-expanded='true'] {
+  background: rgba(255, 255, 255, 0);
+}
+
+.hamburger::after {
+  content: '';
+  margin-top: 0.5em;
+}
+.hamburger[aria-expanded='true']::after {
+  margin-top: 0px;
+  transform: rotate(-45deg);
+}

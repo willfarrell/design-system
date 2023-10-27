@@ -1,1 +1,45 @@
-# design-system
+# NorthUI (nui)
+
+- Styles
+  - reset
+  - default (:root number vars)
+  - a11y
+  - media
+- Themes
+  - default (:root number values)
+  - Light
+  - Dark
+  - Contrast
+  - Forced Colours
+  - Print
+- Classes
+  - accordions (+/-), (arrow down/up)
+  - ol (Word default)
+  - Flex ramp
+- Progressive Enhancements (CustomElements)
+- Bootstrap.js
+  - Trusted Types
+  - CustomElements
+- Patterns
+  - <head>
+  - <header>
+    - Skip link
+    - Locales
+    - Nav button
+  - <main>
+    - Back to top w/ hotkey trigger
+    - Search form w/ hotkey focus
+    - Fluid Side padding
+    - Fluid top padding
+    - Fluid font-size
+  - <section>
+  - <footer>
+  - page (header, main, footer)
+  - page w/ aside (header, main, aside, footer )
+  - page w/ form (header, back, main, footer )
+    - Head
+    - Header
+    - Footer
+    -
+  - <address> w/ tel:, mailto:
+  - <svg> sprite maps

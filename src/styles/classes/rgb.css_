@@ -1,0 +1,19 @@
+.rgb {
+  /* smart color: https://css-tricks.com/switch-font-color-for-different-backgrounds-with-css/ */
+  /* sRGB Luma: red, green, blue */
+  --r: 0;
+  --g: 0;
+  --b: 0;
+  --rgb-threshold: 0.5;
+  --rgb-color: hsl(
+    0,
+    0%,
+    calc(
+      (
+          (var(--r) * 0.2126 + var(--g) * 0.7152 + var(--b) * 0.0722) / 255 -
+            var(--rgb-threshold)
+        ) * -10000000%
+    )
+  );
+  --rgb-background-color: rgb(var(--r), var(--g), var(--b));
+}

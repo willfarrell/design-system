@@ -1,0 +1,6 @@
+/* reset */
+
+/* Safari 16.6 Missing */
+abbr[title] {
+  text-decoration: underline dotted;
+}

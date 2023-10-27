@@ -1,0 +1,46 @@
+dialog {
+  display: none;
+  border: none;
+  padding: 0;
+
+  &[open] {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: transparent;
+    overflow-y: scroll;
+  }
+
+  &::backdrop {
+    /* position: fixed;
+    top: 0; */
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+  }
+
+  & form {
+    width: clamp(16rem, 50vw, 40rem);
+    height: auto;
+    margin: auto;
+    background: var(--color-l0);
+  }
+
+  & header {
+    position: sticky;
+    padding: var(--padding-fixed);
+  }
+  & main {
+    padding: var(--padding-fixed);
+  }
+  & footer {
+    padding: var(--padding-fixed);
+  }
+}
+
+/* prevent scroll when dialog open */
+body:has(dialog[open]) {
+  /*position: fixed;*/ /* for iOS, but causes jump to top */
+  overflow: hidden;
+}

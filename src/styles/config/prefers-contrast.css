@@ -1,0 +1,25 @@
+@media (prefers-contrast: more) {
+  /* 
+	TODO 
+	- increase body font size 
+	- add in borders
+	
+	*/
+}
+
+@media (prefers-contrast: custom), (forced-colors: active) {
+  /* .... */
+}
+
+@media (inverted-colors: inverted) {
+  img {
+    filter: invert(1);
+  }
+
+  /* match forced-colors */
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    background-image: none !important;
+  }
+}

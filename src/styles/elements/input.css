@@ -1,0 +1,32 @@
+input {
+  border: var(--border-width) solid var(--border-color, currentColor);
+  background: transparent;
+  font: inherit;
+}
+
+input:where(
+    [type='text'],
+    /*[type='search'],*/
+    [type='email'],
+    [type='url'],
+    [type='password']
+  ) {
+  padding: calc(var(--padding-fixed) * 0.5) var(--padding-fixed);
+}
+
+/* Correct the outline style in Safari */
+/*input[type='search'] {
+  outline-offset: -2px;
+  -webkit-appearance: none;
+}
+
+::-webkit-search-results-button {
+  -webkit-appearance: none;
+}*/
+
+[role='group']:has(input) {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--gap);
+}

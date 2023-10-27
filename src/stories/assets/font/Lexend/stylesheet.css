@@ -1,0 +1,7 @@
+@font-face {
+  font-family: 'Lexend';
+  src: url('/font/Lexend/Variable.woff2') format('woff2'),
+    url('/font/Lexend/Variable.woff') format('woff'),
+    url('/font/Lexend/Variable.ttf') format('ttf');
+  font-display: swap;
+}

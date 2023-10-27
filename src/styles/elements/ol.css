@@ -1,0 +1,10 @@
+ol {
+  list-style-type: decimal;
+  padding-inline-start: 2em;
+  & ol {
+    list-style-type: lower-alpha;
+    & ol {
+      list-style-type: lower-roman;
+    }
+  }
+}

@@ -1,0 +1,3 @@
+<aside {...$$props}>
+  <slot />
+</aside>

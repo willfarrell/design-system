@@ -1,0 +1,3 @@
+<del {...$$props}>
+  <slot />
+</del>

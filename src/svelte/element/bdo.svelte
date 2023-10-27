@@ -1,0 +1,3 @@
+<bdo {...$$props}>
+  <slot />
+</bdo>

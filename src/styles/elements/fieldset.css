@@ -1,0 +1,41 @@
+fieldset {
+  padding-inline: 0;
+  padding-block: 0;
+  margin-inline: 0;
+  border: none;
+}
+
+legend {
+  display: contents; /* TODO */
+  margin-block-end: var(--padding-fixed);
+  font-weight: 700;
+  padding-inline: 0;
+}
+
+legend ~ :where(:has(input)) {
+  margin-block-start: calc(var(--padding-fixed) * 0.5);
+}
+
+/* hint */
+legend ~ [id$='-hint'] {
+  display: block;
+}
+
+/* error */
+fieldset:has([id$='-error']) {
+  border-inline-start: calc(var(--padding-fixed) * 0.25) solid
+    var(--color-error);
+  padding-inline-start: var(--padding-fixed);
+}
+
+legend ~ [id$='-error'] {
+  display: block;
+  color: var(--color-error);
+  font-weight: 700;
+
+  &::before {
+    content: '\26A0';
+    /* warning */
+    padding-inline-end: 0.5em;
+  }
+}

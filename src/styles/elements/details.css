@@ -1,0 +1,19 @@
+/* reset */
+
+/* Safari 16.6 Extra */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Safari 16.6 Missing */
+details[open] > summary:first-of-type {
+  list-style-type: disclosure-open;
+}
+/* Safari 16.6 Missing */
+details > summary:first-of-type {
+  list-style: inside disclosure-closed;
+}
+
+summary {
+  cursor: pointer;
+}

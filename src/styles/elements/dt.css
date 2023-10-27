@@ -1,0 +1,6 @@
+dt {
+  font-weight: 700;
+}
+dt::after {
+  content: ':';
+}

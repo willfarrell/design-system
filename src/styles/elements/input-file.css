@@ -1,0 +1,49 @@
+[type='file'] {
+  border: 0;
+}
+
+[type='file']::-webkit-file-upload-button {
+  visibility: hidden;
+  width: var(--padding-fixed);
+
+  /* Not used because :hover is not supported */
+  /*
+  font-weight: 700;
+  cursor: pointer;
+  border: var(--border-width) solid
+    var(--border-color, var(--color-primary-bold));
+  background-color: var(--color-primary-bold);
+  padding: calc(var(--padding-fixed) * 0.78) var(--padding-fixed);
+  color: var(--color-primary-text);
+  margin-inline-end: var(--padding-fixed);
+
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--color-primary-bold-pseudo) 8%,
+      var(--color-primary-bold)
+    );
+  }
+  */
+}
+
+[type='file']::before {
+  content: attr(data-button);
+  display: inline-block;
+
+  font-weight: 700;
+  cursor: pointer;
+  border: var(--border-width) solid
+    var(--border-color, var(--color-primary-bold));
+  background-color: var(--color-primary-bold);
+  padding: calc(var(--padding-fixed) * 0.5) var(--padding-fixed);
+  color: var(--color-primary-text);
+
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--color-primary-bold-pseudo) 8%,
+      var(--color-primary-bold)
+    );
+  }
+}

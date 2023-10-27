@@ -1,0 +1,11 @@
+/* reset */
+
+img,
+picture {
+  max-width: 100%;
+  height: auto;
+}
+
+picture img {
+  max-height: 100%;
+}

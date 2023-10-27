@@ -1,0 +1,30 @@
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion */
+
+/* Source: https://github.com/csstools/sanitize.css/blob/main/reduce-motion.css */
+/*
+ * 1. Remove animations when motion is reduced (opinionated).
+ * 2. Remove fixed background attachments when motion is reduced (opinionated).
+ * 3. Remove timed scrolling behaviors when motion is reduced (opinionated).
+ * 4. Remove transitions when motion is reduced (opinionated).
+ */
+
+@media (prefers-reduced-motion) {
+  *,
+  ::after,
+  ::before {
+    /*
+    animation: none !important;
+    background-attachment: initial !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+    */
+
+    animation-delay: -1ms !important; /* 1 */
+    animation-duration: 0.01ms !important; /* 1 */
+    animation-iteration-count: 1 !important; /* 1 */
+    background-attachment: initial !important; /* 2 */
+    scroll-behavior: auto !important; /* 3 */
+    transition-delay: -1s !important; /* 4 */
+    transition-duration: 0.01ms !important; /* 4 */
+  }
+}

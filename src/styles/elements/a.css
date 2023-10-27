@@ -1,0 +1,60 @@
+a {
+  color: var(--color-primary);
+}
+
+a:hover {
+  color: color-mix(
+    in srgb,
+    var(--color-primary-pseudo) 8%,
+    var(--color-primary)
+  );
+  text-decoration: underline solid 0.125rem
+    color-mix(in srgb, var(--color-primary-pseudo) 8%, var(--color-primary));
+  text-decoration-skip-ink: all;
+  text-underline-position: under;
+}
+
+a:active,
+a[aria-current='page'] {
+  color: color-mix(
+    in srgb,
+    var(--color-primary-pseudo) 12%,
+    var(--color-primary)
+  );
+  text-decoration: underline solid 0.125rem
+    color-mix(in srgb, var(--color-primary-pseudo) 12%, var(--color-primary));
+  text-decoration-skip-ink: all;
+  text-underline-position: under;
+  text-underline-offset: 0.125rem;
+}
+
+a:visited {
+}
+
+/* :where(h1, h2, h3, h4, h5, h6) a {
+  text-decoration: none;
+} */
+
+/* 1F517 link symbol */
+/* 1F5D7 overlap */
+/* 1F855 NE arrow */
+/* div, .button for cms pages linking to hubs - deprecate when hubs share same domain */
+[href^='https://']:not(:has(img)):after
+{
+  content: '';
+
+  -webkit-mask: var(--icon-external) no-repeat;
+  mask: var(--icon-external) no-repeat;
+  background-color: currentColor;
+  padding: 0 0.4em;
+  margin: 0.25rem;
+}
+
+/* back button should be before <main> */
+.back:before {
+  content: '\2039'; /* left chevron */
+  position: relative;
+  left: -0.125rem;
+  display: inline-block;
+  height: 0px; /* fixes :focus-visible when using display: inline-block */
+}

@@ -1,0 +1,10 @@
+form {
+  display: flex;
+  gap: var(--gap);
+  flex-direction: column;
+  max-inline-size: 60ch;
+
+  & button {
+    width: fit-content;
+  }
+}

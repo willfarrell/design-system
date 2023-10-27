@@ -1,0 +1,17 @@
+ins {
+  color: #388e3c;
+  text-decoration: none;
+  border-block-end: 0.2em double #388e3c;
+}
+
+@media (prefers-contrast: custom), (forced-colors: active) {
+  ins {
+    border-bottom-color: Highlight;
+  }
+}
+
+@media print {
+  ins {
+    border-block-end-width: 3pt;
+  }
+}

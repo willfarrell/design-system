@@ -1,0 +1,37 @@
+label {
+  display: block;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+label ~ :where(input, select, textarea) {
+  margin-block-start: calc(var(--padding-fixed) * 0.5);
+}
+
+/* hint */
+label ~ [id$='-hint'] {
+  display: block;
+}
+
+/* error */
+div:has(> [id$='-error']) {
+  border-inline-start: calc(var(--padding-fixed) * 0.25) solid
+    var(--color-error);
+  padding-inline-start: var(--padding-fixed);
+}
+
+label ~ [id$='-error'] {
+  display: block;
+  color: var(--color-error);
+  font-weight: 700;
+
+  &::before {
+    content: '\26A0';
+    /* warning */
+    padding-inline-end: 0.5em;
+  }
+}
+
+input[aria-invalid] {
+  border-color: var(--color-error);
+}

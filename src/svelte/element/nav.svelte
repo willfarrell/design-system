@@ -1,0 +1,3 @@
+<nav {...$$props}>
+  <slot />
+</nav>

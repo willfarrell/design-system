@@ -1,0 +1,6 @@
+pre {
+  display: flex;
+  padding: 1.5rem;
+
+  background-color: var(--color-l1);
+}

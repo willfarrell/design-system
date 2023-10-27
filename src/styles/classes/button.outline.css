@@ -1,0 +1,24 @@
+/* TODO */
+
+button.outline {
+  background-color: var(--color-l0);
+  border: var(--border-width) solid var(--color-primary-bold);
+  color: var(--color-primary-bold);
+
+  &:hover {
+    background-color: color-mix(
+      in srgb,
+      var(--color-primary-bold-pseudo) 8%,
+      var(--color-l0)
+    );
+  }
+}
+
+button.outline:active,
+button.outline:focus {
+  background-color: color-mix(
+    in srgb,
+    var(--color-primary-bold-pseudo) 12%,
+    var(--color-l0)
+  );
+}

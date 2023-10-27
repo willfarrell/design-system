@@ -1,0 +1,72 @@
+@import './input.css';
+
+div:has([type='checkbox']) {
+  min-height: calc(var(--border-width) * 2 + var(--padding-fixed) * 2 + 1em);
+}
+
+[type='checkbox'] {
+  cursor: pointer;
+  position: absolute;
+  padding: calc(var(--padding-fixed) + 0.5em);
+  margin: 0;
+  appearance: none;
+}
+
+[type='checkbox']:after {
+  content: '';
+  position: absolute;
+  /* Good old trig, use height and border-width as hypotenuses to calc y side offset */
+  top: calc(50% - 0.53033em * 0.5 + 0.220971em * 0.5);
+  left: 50%;
+
+  transform: translate(-50%, -50%) rotate(-45deg);
+
+  height: 0.75em;
+  width: 1.4375em;
+
+  /* inset-block-start: calc(var(--padding-fixed) * 0.5 + 0.4em); */
+  /* inset-block-start: 0.6875em; */
+  /* inset-inline-start: calc(var(--padding-fixed) * 0.5 + 0.3em); */
+  /* inset-inline-start: 0.5625em; */
+  border: solid;
+  border-width: 0 0 0.3125em 0.3125em;
+
+  visibility: hidden;
+}
+[type='checkbox']:checked:after {
+  visibility: visible;
+}
+
+[type='checkbox'] + label {
+  margin-inline-start: calc(
+    var(--padding-fixed) * 2 + 1em + var(--border-width) * 2
+  );
+  padding: calc(var(--border-width) + var(--padding-fixed) * 0.5)
+    var(--padding-fixed) 0;
+  touch-action: manipulation;
+}
+
+/* hint */
+[type='checkbox'] ~ [id$='-hint'] {
+  margin-inline-start: calc(
+    var(--padding-fixed) * 2 + 1em + var(--border-width) * 2
+  );
+  padding: 0 var(--padding-fixed);
+}
+
+/* conditional */
+[type='checkbox'] ~ div:first-of-type {
+  display: block;
+  border-inline-start: 0.4rem solid currentColor;
+  margin-inline-start: calc(
+    var(--border-width) + var(--padding-fixed) + 1em * 0.5 - 0.4rem * 0.5
+  );
+  padding: 0 var(--padding-fixed);
+  padding-inline-start: calc(
+    var(--border-width) + var(--padding-fixed) * 2 + 1em * 0.5 - 0.4rem * 0.5
+  );
+}
+
+[type='checkbox']:not(:checked) ~ div:first-of-type {
+  display: none;
+}

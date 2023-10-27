@@ -1,0 +1,28 @@
+select {
+  border: var(--border-width) solid var(--border-color, currentColor);
+  font: inherit;
+  background-color: transparent;
+
+  text-transform: none;
+  cursor: pointer;
+  padding-block: calc(var(--padding-fixed) * 0.5);
+
+  appearance: none;
+  padding-inline: var(--padding-fixed) calc(var(--padding-fixed) + 0.5em);
+  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
+    linear-gradient(135deg, currentColor 50%, transparent 50%);
+  background-position:
+    right calc(var(--padding-fixed) * 0.5 + 0.25em) center,
+    right calc(var(--padding-fixed) * 0.5) center;
+  background-size:
+    0.25em 0.25em,
+    0.25em 0.25em;
+  background-repeat: no-repeat;
+}
+
+@media (prefers-contrast: custom), (forced-colors: active) {
+  select {
+    background: none;
+    appearance: revert;
+  }
+}

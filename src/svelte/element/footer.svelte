@@ -1,0 +1,3 @@
+<footer {...$$props}>
+  <slot />
+</footer>

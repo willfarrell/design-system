@@ -1,0 +1,62 @@
+@import './input.css';
+
+div:has([type='radio']) {
+  min-height: calc(var(--border-width) * 2 + var(--padding-fixed) * 2 + 1em);
+}
+
+[type='radio'] {
+  cursor: pointer;
+  position: absolute;
+  padding: calc(var(--padding-fixed) + 0.5em);
+  margin: 0;
+  appearance: none;
+  border-radius: 50%;
+}
+
+[type='radio']:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 0.625em solid;
+  border-radius: 50%;
+  visibility: hidden;
+}
+[type='radio']:checked:after {
+  visibility: visible;
+}
+
+[type='radio'] + label {
+  margin-inline-start: calc(
+    var(--padding-fixed) * 2 + 1em + var(--border-width) * 2
+  );
+  padding: calc(var(--border-width) + var(--padding-fixed) * 0.5)
+    var(--padding-fixed) 0;
+  touch-action: manipulation;
+}
+
+/* hint */
+[type='radio'] ~ [id$='-hint'] {
+  margin-inline-start: calc(
+    var(--padding-fixed) * 2 + 1em + var(--border-width) * 2
+  );
+  padding: 0 var(--padding-fixed);
+}
+
+/* conditional */
+[type='radio'] ~ div:first-of-type {
+  display: block;
+  border-inline-start: 0.4rem solid currentColor;
+  margin-inline-start: calc(
+    var(--border-width) + var(--padding-fixed) + 1em * 0.5 - 0.4rem * 0.5
+  );
+  padding: 0 var(--padding-fixed);
+  padding-inline-start: calc(
+    var(--border-width) + var(--padding-fixed) * 2 + 1em * 0.5 - 0.4rem * 0.5
+  );
+}
+
+[type='radio']:not(:checked) ~ div:first-of-type {
+  display: none;
+}

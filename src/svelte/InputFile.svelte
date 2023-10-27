@@ -1,0 +1,25 @@
+<script>
+  import FieldInput from './FieldInput.svelte'
+  import Input from './element/input.svelte';
+</script>
+
+<FieldInput {...$$props} type="file" />
+
+  
+  <!--
+  <script>
+    import FieldLabel from "./FieldLabel.svelte";
+    import FieldHint from "./FieldHint.svelte";
+    import FieldError from "./FieldError.svelte";
+    import Input from './element/input.svelte';
+    export let id, label, hint, error;
+  </script>
+  
+  <div>
+    <FieldLabel {id} {label} />
+    <FieldHint {id} {hint} />
+    <FieldError {id} {error} />
+    <Input {...$$props}/>
+  </div>
+-->
+

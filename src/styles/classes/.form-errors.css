@@ -1,0 +1,25 @@
+.form-errors {
+  border: calc(var(--border-width) * 2) solid var(--color-error);
+  padding: var(--padding-fixed);
+  margin-block-end: var(--padding-fixed);
+
+  /* TODO refactor */
+  & h2 {
+    line-height: 0.8;
+  }
+
+  & ul {
+    color: var(--color-error);
+    list-style-position: inside;
+    padding-inline-start: var(--padding-fixed);
+  }
+
+  & a {
+    color: var(--color-error);
+    font-weight: 700;
+    &:hover {
+      text-decoration: underline solid 0.125rem
+        color-mix(in srgb, var(--color-error-pseudo) 8%, var(--color-error));
+    }
+  }
+}

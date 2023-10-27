@@ -1,0 +1,21 @@
+.close::before,
+.close::after {
+  display: block;
+  background-color: currentColor;
+  position: absolute;
+  height: 0.25em;
+  width: 1.875em;
+  border-radius: 0.125em;
+}
+
+.close::before {
+  content: '';
+  margin-top: 0px;
+  transform: rotate(45deg);
+}
+
+.close::after {
+  content: '';
+  margin-top: 0px;
+  transform: rotate(-45deg);
+}

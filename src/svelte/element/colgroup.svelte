@@ -1,0 +1,3 @@
+<colgroup {...$$props}>
+  <slot />
+</colgroup>

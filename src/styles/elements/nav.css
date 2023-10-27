@@ -1,0 +1,7 @@
+nav ul {
+  all: unset;
+
+  & li {
+    list-style: none;
+  }
+}

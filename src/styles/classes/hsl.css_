@@ -1,0 +1,16 @@
+/* smart color: https://css-tricks.com/switch-font-color-for-different-backgrounds-with-css/ */
+.hsl {
+  /* hue, saturation, lightness */
+  --h: 0;
+  --s: 0;
+  --l: 0;
+  --hsl-threshold: 65;
+  --hsl-switch: calc((var(--hsl-light) - var(--hsl-threshold)) * -100%);
+
+  --hsl-color: hsl(0, 0%, var(--hsl-switch));
+  --hsl-background-color: hsl(
+    var(--h),
+    calc(var(--s) * 1%),
+    calc(var(--l) * 1%)
+  );
+}

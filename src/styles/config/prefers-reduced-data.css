@@ -1,0 +1,11 @@
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-data */
+@media (prefers-reduced-data) {
+  * {
+    background-image: none !important;
+  }
+
+  [role='presentation'],
+  img[alt=''] {
+    display: none;
+  }
+}

@@ -1,0 +1,44 @@
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+
+:where(a, button):has(.icon) {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* padding: 0.5em 0.75em;
+  min-height: 3rem;
+  min-width: 3rem; */
+  /* for when there is only an icon */
+  height: calc(
+    var(--padding-fixed) + var(--border-width) * 2 + var(--line-height, 1.5) *
+      1em
+  ); /* TODO refactor, make cleaner */
+}
+
+/* icon follow by text */
+.icon + span {
+  margin-inline-start: 0.5em;
+}
+
+[data-icon] {
+  -webkit-mask: var(--icon) no-repeat;
+  mask: var(--icon) no-repeat;
+  background-color: currentColor;
+}
+
+/*
+Example use:
+[data-icon='search'] {
+  --icon: url('/img/icons.svg#search');
+}*/
+
+/* https://developer.mozilla.org/en-US/docs/Web/CSS/attr#browser_compatibility */
+/*
+[data-src] {
+  -webkit-mask: attr(data-src url) no-repeat;
+  mask: attr(data-src url) no-repeat;
+  background-color: currentColor;
+}*/

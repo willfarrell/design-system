@@ -1,0 +1,59 @@
+/* https://github.com/picocss/pico/blob/master/scss/content/_table.scss */
+/*
+
+https://www.joshwcomeau.com/css/custom-css-reset/
+https://elad2412.github.io/the-new-css-reset/
+
+*/
+
+/* container around <table> to allow x scrolling */
+.table-overflow {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  overflow: auto;
+}
+table {
+  table-layout: fixed;
+  border-spacing: 0;
+}
+
+/* BUG: Safari, small vw */
+caption {
+  max-inline-size: 60ch;
+  margin: auto;
+}
+
+tr {
+  background: var(--color-l0);
+}
+
+th,
+td {
+  padding: calc(var(--padding-fixed) / 2) var(--padding-fixed);
+  text-align: start;
+  vertical-align: top;
+  overflow-wrap: break-word;
+}
+
+thead {
+  /* sticky cannot be used with .table-overflow because a parent has overflow */
+  z-index: 1;
+  position: sticky;
+  inset-block-start: 0;
+  & :where(th, td) {
+    border-block-end: var(--border-width) solid var(--color-text);
+  }
+}
+
+tbody {
+  & tr + tr :where(th, td) {
+    border-block-start: calc(var(--border-width) * 0.5) solid var(--color-text);
+  }
+}
+
+tfoot {
+  border-block-end: 0;
+  & :where(th, td) {
+    border-block-start: var(--border-width) solid var(--color-text);
+  }
+}

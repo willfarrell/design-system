@@ -1,0 +1,3 @@
+<dfn {...$$props}>
+  <slot />
+</dfn>

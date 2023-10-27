@@ -1,0 +1,3 @@
+<kbd {...$$props}>
+  <slot />
+</kbd>

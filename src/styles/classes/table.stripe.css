@@ -1,0 +1,5 @@
+table.stripe {
+  & tbody tr:nth-child(odd) {
+    background-color: var(--color-l3);
+  }
+}

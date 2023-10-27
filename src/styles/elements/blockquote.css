@@ -1,0 +1,13 @@
+blockquote {
+  max-inline-size: 60ch;
+  border-inline-start: var(--border-width, 0.5rem) solid var(--color-primary);
+  background-color: var(--color-l5);
+  padding: calc(2 * var(--padding-fixed));
+
+  margin-block: 0;
+  margin-inline: 0;
+  /*& footer {
+    & cite {
+    }
+  }*/
+}
