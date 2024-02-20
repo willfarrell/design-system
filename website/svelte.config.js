@@ -4,8 +4,6 @@ import { markdown } from 'svelte-preprocess-markdown'
 import preprocess from 'svelte-preprocess'
 import preprocessPEWC from '@design-system/svelte-preprocess-pewc'
 
-const dev = process.argv.includes('dev')
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
@@ -13,13 +11,26 @@ const config = {
     alias: {
       '@components': resolve('./src/components'),
       '@examples': resolve('./src/examples')
-      // "@design-system/style":resolve("../packages/style"),
-      // "@design-system/svelte":resolve("../packages/svelte"),
     },
     appDir: 'app',
+    csp: {
+      mode: 'auto'
+    },
+    csrf: {
+      checkOrigin: true
+    },
     paths: {
-      base: dev ? '' : process.env.BASE_PATH
-    }
+      relative: false
+    },
+    prerender: {
+      concurrency: 5,
+      crawl: true,
+      entries: ['/'],
+      handleHttpError: 'warn', // 'fail'
+      handleMissingId: 'warn', // 'fail'
+      handleEntryGeneratorMismatch: 'warn', // 'fail'
+      origin: process.env.ORIGIN ?? 'https://datastream.org'
+    },
   },
   compilerOptions: {
     cssHash: ({ hash, css }) => `s-${hash(css)}`
@@ -27,21 +38,15 @@ const config = {
   extensions: ['.svelte', '.md'],
   preprocess: [
     markdown(),
-    preprocessPEWC(),
+    preprocessPEWC({
+      css:{path:'src/styles/app.css'}
+    }),
     preprocess({
       postcss: true,
       preserve: ['ld+json']
     })
   ],
-  prerender: {
-    concurrency: 5,
-    crawl: true,
-    entries: ['/'],
-    handleHttpError: 'warn', // 'fail'
-    handleMissingId: 'warn', // 'fail'
-    handleEntryGeneratorMismatch: 'warn', // 'fail'
-    origin: process.env.ORIGIN ?? 'https://datastream.org'
-  },
+  
   onwarn (warning, defaultHandler) {
     // warning: {code:'a11y-', message, frame, start:{line, column, character}, end:{line, column, character}, pos, filename}
     // polyfill for `is` included, allow

@@ -1,1 +1,0 @@
-var n="ds-card";customElements.define(n,class extends HTMLLIElement{constructor(){super();let e,s,t=this.querySelector("a:first-of-type");this.onmousedown=()=>e=+new Date,this.onmouseup=()=>{s=+new Date,s-e<200&&t.click()}}},{extends:"li"});

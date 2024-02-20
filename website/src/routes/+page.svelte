@@ -1,4 +1,5 @@
 <script>
+	import Head from '@components/Head.svelte';
 	import Header from '@design-system/svelte/element/header.svelte';
 	import Nav from '@design-system/svelte/element/nav.svelte';
 	import Main from '@design-system/svelte/element/main.svelte';
@@ -59,7 +60,9 @@
 </script>
 
 <svelte:head>
-	<title>title</title>
+	<Head>
+		<title>Design System</title>
+	</Head>
 </svelte:head>
 
 <Main class="container">
@@ -74,7 +77,7 @@
 			<Ul>
 				<Li>Sematic HTML</Li>
 				<Li>classless first</Li>
-				<Li>Start at as little as 0.5 kB, up to 5 kB</Li>
+				<Li>Start with as little as 0.5 KB, up to 5 KB</Li>
 				<Li>Framework agnostic</Li>
 				<Li>Built to meet WCAG 2.2 AAA, WCAG 3 for colors</Li>
 				<Li>Right to left support</Li>

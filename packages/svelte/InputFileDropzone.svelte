@@ -2,7 +2,7 @@
   export let id;
 </script>
 
-<div {id} is="input-dropzone">
+<div {id} is="ds-input-dropzone">
   <slot />
 </div>
 

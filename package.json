@@ -9,6 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd website && npm start",
     "build": "cd website && npm run build",
+    "preview": "cd website && npm run preview",
     "_start": "rm -rf node_modules/.cache/storybook && storybook dev -p 6006",
     "_upgrade": "npx storybook@latest upgrade",
     "_build-storybook": "storybook build",
@@ -19,7 +20,7 @@
     "url": "git+https://willfarrell@github.com/willfarrell/design-system.git"
   },
   "author": "willfarrell",
-  "license": "MIT",
+  "license": "NULL",
   "bugs": {
     "url": "https://github.com/willfarrell/design-system/issues"
   },

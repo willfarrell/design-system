@@ -18,10 +18,10 @@
 	"dependencies": {
 		"@design-system/core": "file:../packages/core",
 		"@design-system/style": "file:../packages/style",
-		"@design-system/svelte": "file:../packages/svelte",
-		"@design-system/svelte-preprocess-pewc": "file:../packages/svelte-preprocess-pewc"
+		"@design-system/svelte": "file:../packages/svelte"
 	},
 	"devDependencies": {
+		"@design-system/svelte-preprocess-pewc": "file:../packages/svelte-preprocess-pewc",
 		"@sveltejs/adapter-static": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",

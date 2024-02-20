@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["ds-dialog.js"],
-  "sourcesContent": ["/* eslint-env browser */\n// const d = document\n// const body = d.querySelector('body')\n\n/* <dialog id=\"dialog\" is=\"ds-dialog\" inert /> */\ncustomElements.define(\n  'ds-dialog',\n  class extends HTMLDialogElement {\n    // constructor() {\n    //   super()\n    // }\n\n    handleClose(event) {\n      this.open = false\n      this.inert = true\n      // this.loading = true\n    }\n\n    handleClick(e) {\n      if (e.target.nodeName === 'DIALOG' && e.target.hasAttribute('open')) {\n        this.close()\n      }\n    }\n\n    connectedCallback() {\n      this.addEventListener('close', this.handleClose)\n      this.addEventListener('click', this.handleClick)\n    }\n\n    disconnectedCallback() {\n      this.removeEventListener('close', this.handleClose)\n      this.removeEventListener('click', this.handleClick)\n    }\n  },\n  { extends: 'dialog' }\n)\n"],
-  "mappings": "AAKA,eAAe,OACb,YACA,cAAc,iBAAkB,CAK9B,YAAYA,EAAO,CACjB,KAAK,KAAO,GACZ,KAAK,MAAQ,EAEf,CAEA,YAAY,EAAG,CACT,EAAE,OAAO,WAAa,UAAY,EAAE,OAAO,aAAa,MAAM,GAChE,KAAK,MAAM,CAEf,CAEA,mBAAoB,CAClB,KAAK,iBAAiB,QAAS,KAAK,WAAW,EAC/C,KAAK,iBAAiB,QAAS,KAAK,WAAW,CACjD,CAEA,sBAAuB,CACrB,KAAK,oBAAoB,QAAS,KAAK,WAAW,EAClD,KAAK,oBAAoB,QAAS,KAAK,WAAW,CACpD,CACF,EACA,CAAE,QAAS,QAAS,CACtB",
-  "names": ["event"]
-}

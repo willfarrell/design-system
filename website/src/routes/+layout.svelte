@@ -6,11 +6,6 @@
 	
 </script>
 
-<svelte:head>
-	<title>title</title>
-	<link rel="preload" as="image" href="/img/icons.svg" />
-</svelte:head>
-
 <Header>
 	<Nav>
 		<A href="#main" class="skip">Skip to main content</A>

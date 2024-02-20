@@ -1,9 +1,16 @@
 {
-  "name": "@design-system/svelte-precompiled",
+  "name": "@design-system/svelte-preprocessed-pewc",
   "version": "0.0.0",
   "description": "",
   "type": "module",
   "module": "./index.js",
+  "exports": {
+    ".": {
+      "import": {
+        "default": "./index.js"
+      }
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
