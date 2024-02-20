@@ -1,0 +1,5 @@
+Bundled license information:
+
+@ungap/custom-elements/index.js:
+  /*! (c) Andrea Giammarchi @webreflection ISC */
+  /*! (c) Andrea Giammarchi - ISC */

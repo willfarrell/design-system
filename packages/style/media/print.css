@@ -1,0 +1,14 @@
+@media print {
+  * {
+    background-image: none !important;
+  }
+
+  .noprint,
+  body > header,
+  body > aside,
+  body > footer,
+  img[alt=''],
+  [role='presentation'] {
+    display: none !important;
+  }
+}

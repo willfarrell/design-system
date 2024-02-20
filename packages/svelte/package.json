@@ -1,0 +1,22 @@
+{
+  "name": "@design-system/svelte",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://willfarrell@github.com/willfarrell/design-system.git"
+  },
+  "author": "willfarrell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/willfarrell/design-system/issues"
+  },
+  "homepage": "https://github.com/willfarrell/design-system#readme",
+  "dependencies": {
+    "pretty": "2.0.0",
+    "prismjs": "1.29.0"
+  }
+}

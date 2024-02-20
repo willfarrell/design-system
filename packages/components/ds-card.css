@@ -1,0 +1,37 @@
+/* .cards {
+  display: grid;
+  grid-template-columns: repeate(auto-fit, minmax(var(--width-min), 1fr));
+  gap: var(--gap);
+  list-style: none;
+} */
+
+ul:has([is='ds-card']) {
+  list-style: none;
+  padding-inline: 0;
+}
+[is='ds-card'] {
+  border: var(--border-width) solid var(--border-color, currentColor);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:defined {
+    cursor: pointer;
+    & a {
+      text-decoration: none;
+    }
+  }
+
+  & a {
+    outline: none;
+  }
+
+  & .text {
+    order: 1;
+    padding: var(--padding-fixed);
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+  }
+}

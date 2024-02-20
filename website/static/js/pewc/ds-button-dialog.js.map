@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["ds-button-dialog.js"],
+  "sourcesContent": ["/* eslint-env browser */\nconst d = document\n// const body = d.querySelector('body')\n\n/* <button is=\"ds-button-dialog\" data-dialog=\"dialog\">Open</button> */\ncustomElements.define(\n  'ds-button-dialog',\n  class extends HTMLButtonElement {\n    constructor() {\n      super()\n      // const attr = (attr) => this.getAttribute(`data-${attr}`)\n      this.$dialog = d.getElementById(this.getAttribute('data-dialog'))\n    }\n\n    async handleClick(event) {\n      // body.firstElementChild.inert = true\n      this.$dialog.showModal()\n      this.$dialog.open = true\n      this.$dialog.querySelector('button').focus()\n      // this.$dialog.removeAttribute('inert')\n      // this.$dialog.removeAttribute('loading')\n      this.$dialog.inert = false\n      // this.$dialog.loading = false\n    }\n\n    connectedCallback() {\n      this.addEventListener('click', this.handleClick)\n    }\n\n    disconnectedCallback() {\n      this.removeEventListener('click', this.handleClick)\n    }\n  },\n  { extends: 'button' }\n)\n"],
+  "mappings": "AACA,IAAMA,EAAI,SAIV,eAAe,OACb,mBACA,cAAc,iBAAkB,CAC9B,aAAc,CACZ,MAAM,EAEN,KAAK,QAAUA,EAAE,eAAe,KAAK,aAAa,aAAa,CAAC,CAClE,CAEA,MAAM,YAAYC,EAAO,CAEvB,KAAK,QAAQ,UAAU,EACvB,KAAK,QAAQ,KAAO,GACpB,KAAK,QAAQ,cAAc,QAAQ,EAAE,MAAM,EAG3C,KAAK,QAAQ,MAAQ,EAEvB,CAEA,mBAAoB,CAClB,KAAK,iBAAiB,QAAS,KAAK,WAAW,CACjD,CAEA,sBAAuB,CACrB,KAAK,oBAAoB,QAAS,KAAK,WAAW,CACpD,CACF,EACA,CAAE,QAAS,QAAS,CACtB",
+  "names": ["d", "event"]
+}

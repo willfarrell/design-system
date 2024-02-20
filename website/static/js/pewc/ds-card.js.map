@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["ds-card.js"],
+  "sourcesContent": ["/* eslint-env browser */\n\nconst is = 'ds-card'\ncustomElements.define(\n  is,\n  class extends HTMLLIElement {\n    constructor() {\n      super()\n      let down,\n        up,\n        link = this.querySelector('a:first-of-type')\n\n      this.onmousedown = () => (down = +new Date())\n      this.onmouseup = () => {\n        up = +new Date()\n        if (up - down < 200) {\n          link.click()\n        }\n      }\n    }\n  },\n  { extends: 'li' }\n)\n"],
+  "mappings": "AAEA,IAAMA,EAAK,UACX,eAAe,OACbA,EACA,cAAc,aAAc,CAC1B,aAAc,CACZ,MAAM,EACN,IAAIC,EACFC,EACAC,EAAO,KAAK,cAAc,iBAAiB,EAE7C,KAAK,YAAc,IAAOF,EAAO,CAAC,IAAI,KACtC,KAAK,UAAY,IAAM,CACrBC,EAAK,CAAC,IAAI,KACNA,EAAKD,EAAO,KACdE,EAAK,MAAM,CAEf,CACF,CACF,EACA,CAAE,QAAS,IAAK,CAClB",
+  "names": ["is", "down", "up", "link"]
+}

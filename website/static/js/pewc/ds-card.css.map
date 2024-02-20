@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["ds-card.css"],
+  "sourcesContent": ["/* .cards {\n  display: grid;\n  grid-template-columns: repeate(auto-fit, minmax(var(--width-min), 1fr));\n  gap: var(--gap);\n  list-style: none;\n} */\n\nul:has([is='ds-card']) {\n  list-style: none;\n  padding-inline: 0;\n}\n[is='ds-card'] {\n  border: var(--border-width) solid var(--border-color, currentColor);\n  border-radius: var(--border-radius);\n  display: flex;\n  flex-direction: column;\n  position: relative;\n\n  &:defined {\n    cursor: pointer;\n    & a {\n      text-decoration: none;\n    }\n  }\n\n  & a {\n    outline: none;\n  }\n\n  & .text {\n    order: 1;\n    padding: var(--padding-fixed);\n    flex: 1 0 auto;\n    display: flex;\n    flex-direction: column;\n  }\n}\n"],
+  "mappings": "AAOA,EAAE,KAAK,CAAC,aACN,WAAY,KACZ,eAAgB,CAClB,CACA,CAAC,YACC,OAAQ,IAAI,gBAAgB,MAAM,IAAI,cAAc,EAAE,cACtD,cAAe,IAAI,iBACnB,QAAS,KACT,eAAgB,OAChB,SAAU,SAEV,CAAC,SACC,OAAQ,QACR,EAAE,EACA,gBAAiB,IACnB,CACF,CAEA,EAAE,EACA,QAAS,IACX,CAEE,CAAC,KACD,MAAO,EACP,QAAS,IAAI,iBACb,KAAM,EAAE,EAAE,KACV,QAAS,KACT,eAAgB,MAClB,CACF",
+  "names": []
+}
