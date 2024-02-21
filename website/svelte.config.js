@@ -5,11 +5,15 @@ import preprocess from 'svelte-preprocess'
 import preprocessPEWC from '@design-system/svelte-preprocess-pewc'
 
 const dev = process.argv.includes('dev');
+const base = dev ? '' : process.env.BASE_PATH
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
-    adapter: adapter(),
+    adapter: adapter({
+      pages: base,
+      assets: base
+    }),
     alias: {
       '@components': resolve('./src/components'),
       '@examples': resolve('./src/examples')
@@ -23,7 +27,7 @@ const config = {
     },
     paths: {
       relative: false,
-      base: dev ? '' : process.env.BASE_PATH,
+      base: base,
     },
     prerender: {
       concurrency: 5,
