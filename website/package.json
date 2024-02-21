@@ -9,7 +9,7 @@
 		"build:styles": "postcss src/styles/*.css -d static/css/ --no-map",
 		"build:scripts": "npm run build:scripts:bootstrap && npm run build:scripts:components",
 		"build:scripts:bootstrap": "esbuild src/scripts/* --platform=browser --format=esm  --bundle --minify '--external:/js/*' --legal-comments=external --sourcemap=external --log-level=error --allow-overwrite --outdir=static/js/",
-		"build:scripts:components": "rm -r static/js/pewc && mkdir static/js/pewc && cp ../packages/components/ds-* static/js/pewc/ && esbuild static/js/pewc/* --platform=browser --format=esm  --bundle --minify '--external:/js/*' --legal-comments=external --sourcemap=external --log-level=error --allow-overwrite --outdir=static/js/pewc/",
+		"build:scripts:components": "rm -rf static/js/pewc && mkdir -p static/js/pewc && cp ../packages/components/ds-* static/js/pewc/ && esbuild static/js/pewc/* --platform=browser --format=esm  --bundle --minify '--external:/js/*' --legal-comments=external --sourcemap=external --log-level=error --allow-overwrite --outdir=static/js/pewc/",
 		"build:svelte": "vite build",
 		"preview": "vite preview",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",

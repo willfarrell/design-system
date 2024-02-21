@@ -144,6 +144,16 @@ export const storeLocalStorage = (id, value = {}) => {
   }
 }
 
+// https://developer.chrome.com/blog/new-in-chrome-122/#storage-buckets-api
+// connects into indexedDB and cache storages
+// export const storeStorageBuckets = (id, value = {}) => {
+//const persisted = await navigator.storage.persist()
+//   navigator.storageBuckets.open('pewc', {
+//     durability: 'strict',
+//     persisted: true
+//   })
+// }
+
 // Must send in defaults
 export const storeSearchParams = (id, value = {}) => {
   const valueKeys = Object.keys(value)

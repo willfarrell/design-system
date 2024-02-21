@@ -39,7 +39,9 @@ const config = {
   preprocess: [
     markdown(),
     preprocessPEWC({
-      css:{path:'src/styles/app.css'}
+      statsPath: false,
+      css:{path:'src/styles/app.css'},
+      pewc: false
     }),
     preprocess({
       postcss: true,
