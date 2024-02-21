@@ -63,8 +63,7 @@
 </svelte:head>
 
 <PageHeader />
-
-<Main class="container-asides">
+<div class="container">
 	<Aside id="grid-menu">
 		<Nav>
 			<A href="/layout/documentation">link</A>
@@ -79,88 +78,90 @@
 			</Details>
 		</Nav>
 	</Aside>
-	<Hgroup id="grid-header">
-		<H1>fluid design</H1>
-		<HSub>Subheading</HSub>
-		<HSub><Small>Published on <Time datetime="2000-01-01">January 1st, 2000</Time></Small></HSub>
-	</Hgroup>
-	<Aside id="grid-table-of-content">
-		<Nav>
-			<Ul><Li>Link</Li></Ul>
-		</Nav>
-	</Aside>
-	<div role="document" id="grid-body">
-		<Section>
-			<H2>Paragraphs</H2>
-			<P>{paragraph}</P>
-			<P>{paragraph}</P>
-			<Blockquote>
-				“The Semantic Web is not a separate Web but an extension of the current one, in which
-				information is given well-defined meaning, better enabling computers and people to work in
-				cooperation.”
-				<Footer>
-					— <Cite>Tim Berners-Lee</Cite>
-				</Footer>
-			</Blockquote>
-			<P>{paragraph}</P>
-			<P>{paragraph}</P>
-			image
-			<P>{paragraph}</P>
-			<P>{paragraph}</P>
-			<Table class="stripe">
-				<Caption
-					>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-					ut labore et dolore magna aliqua.</Caption
-				>
-				<thead>
-					<tr>
-						<Th scope="col">#</Th>
-						<Th scope="col">Heading</Th>
-						<Th scope="col">Heading</Th>
-						<Th scope="col">Heading</Th>
-						<Th scope="col">Heading</Th>
-						<Th scope="col">Heading</Th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<Th scope="row">1</Th>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-					</tr>
-					<tr>
-						<Th scope="row">1</Th>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-					</tr>
-					<tr>
-						<Th scope="row">1</Th>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-						<Td>Cell</Td>
-					</tr>
-				</tbody>
-			</Table>
-			<P>{paragraph}</P>
-			<P>{paragraph}</P>
-		</Section>
-		<Section>
-			<H2>Glossary</H2>
-		</Section>
-		<Section>
-			<H2>Footnotes</H2>
-		</Section>
-	</div>
-	<!-- TODO nav prev/next -->
-</Main>
+	<Main class="container-asides">
+		<Hgroup id="grid-header">
+			<H1>fluid design</H1>
+			<HSub>Subheading</HSub>
+			<HSub><Small>Published on <Time datetime="2000-01-01">January 1st, 2000</Time></Small></HSub>
+		</Hgroup>
+		<Aside id="grid-table-of-content">
+			<Nav>
+				<Ul><Li>Link</Li></Ul>
+			</Nav>
+		</Aside>
+		<div role="document" id="grid-body">
+			<Section>
+				<H2>Paragraphs</H2>
+				<P>{paragraph}</P>
+				<P>{paragraph}</P>
+				<Blockquote>
+					“The Semantic Web is not a separate Web but an extension of the current one, in which
+					information is given well-defined meaning, better enabling computers and people to work in
+					cooperation.”
+					<Footer>
+						— <Cite>Tim Berners-Lee</Cite>
+					</Footer>
+				</Blockquote>
+				<P>{paragraph}</P>
+				<P>{paragraph}</P>
+				image
+				<P>{paragraph}</P>
+				<P>{paragraph}</P>
+				<Table class="stripe">
+					<Caption
+						>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+						ut labore et dolore magna aliqua.</Caption
+					>
+					<thead>
+						<tr>
+							<Th scope="col">#</Th>
+							<Th scope="col">Heading</Th>
+							<Th scope="col">Heading</Th>
+							<Th scope="col">Heading</Th>
+							<Th scope="col">Heading</Th>
+							<Th scope="col">Heading</Th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<Th scope="row">1</Th>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+						</tr>
+						<tr>
+							<Th scope="row">1</Th>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+						</tr>
+						<tr>
+							<Th scope="row">1</Th>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+							<Td>Cell</Td>
+						</tr>
+					</tbody>
+				</Table>
+				<P>{paragraph}</P>
+				<P>{paragraph}</P>
+			</Section>
+			<Section>
+				<H2>Glossary</H2>
+			</Section>
+			<Section>
+				<H2>Footnotes</H2>
+			</Section>
+		</div>
+		<!-- TODO nav prev/next -->
+	</Main>
+</div>
 <PageFooter />
 
 <style>

@@ -1,7 +1,7 @@
 <script>
 	import FormErrors from '@design-system/svelte/FormErrors.svelte';
-	import Form from '@design-system/svelte/element/Form.svelte';
-	import Search from '@design-system/svelte/element/Search.svelte';
+	import Form from '@design-system/svelte/element/form.svelte';
+	import Search from '@design-system/svelte/element/search.svelte';
 	import Fieldset from '@design-system/svelte/Fieldset.svelte';
 	import FieldOptgroup from '@design-system/svelte/FieldOptgroup.svelte';
 	import FieldOption from '@design-system/svelte/FieldOption.svelte';

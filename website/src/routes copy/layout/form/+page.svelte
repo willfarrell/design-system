@@ -1,7 +1,7 @@
 <script>
 	import A from '@design-system/svelte/element/a.svelte';
 	import FormErrors from '@design-system/svelte/FormErrors.svelte';
-	import Form from '@design-system/svelte/element/Form.svelte';
+	import Form from '@design-system/svelte/element/form.svelte';
 	import InputText from '@design-system/svelte/InputText.svelte';
 
 	import Nav from '@design-system/svelte/element/nav.svelte';

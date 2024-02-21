@@ -1,7 +1,7 @@
 <script>
 	import Aside from '@design-system/svelte/element/aside.svelte';
 	import Search from '@design-system/svelte/element/search.svelte';
-	import Form from '@design-system/svelte/element/Form.svelte';
+	import Form from '@design-system/svelte/element/form.svelte';
 	import InputSearch from '@design-system/svelte/InputSearch.svelte';
 	import Fieldset from '@design-system/svelte/Fieldset.svelte';
 	import FieldLegend from '@design-system/svelte/FieldLegend.svelte';
