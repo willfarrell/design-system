@@ -1,5 +1,5 @@
 <script>
-  import Fieldset from "./element/Fieldset.svelte";
+  import Fieldset from "./element/fieldset.svelte";
   import InputHidden from "./InputHidden.svelte";
 
   export let id, legend, label, hint, error;

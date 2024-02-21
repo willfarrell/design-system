@@ -9,8 +9,8 @@
 	// import format from "html-format"; // supports mac char format(html, " ".repeat(2), 55)
 	import format from "pretty"; // format(html, {ocd: true})
 	
-	import Pre from './element/Pre.svelte'
-	import Code from './element/Code.svelte'
+	import Pre from './element/pre.svelte'
+	import Code from './element/code.svelte'
 	
 	export let language = 'js'
 	export let code

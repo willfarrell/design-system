@@ -1,5 +1,5 @@
 <script>
-  import Label from "./element/Label.svelte";
+  import Label from "./element/label.svelte";
   export let id, label;
 </script>
 

@@ -2,7 +2,7 @@
   import FieldLabel from "./FieldLabel.svelte";
   import FieldHint from "./FieldHint.svelte";
   import FieldError from "./FieldError.svelte";
-  import Textarea from "./element/Textarea.svelte";
+  import Textarea from "./element/textarea.svelte";
   export let id, name, label, hint, error, value;
 </script>
 

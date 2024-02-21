@@ -1,5 +1,5 @@
 <script>
-	import H2 from './element/H2.svelte'
+	import H2 from './element/h2.svelte'
 	import HeadingAnchor from './HeadingAnchor.svelte'
 	
 	export let id

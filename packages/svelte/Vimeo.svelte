@@ -1,7 +1,7 @@
 <script>
   import { getContext } from "svelte";
-  // import Picture from '@components/element/Picture.svelte'
-  import Image from "@components/element/Image.svelte";
+  // import Picture from '@components/element/picture.svelte'
+  import Img from "@components/element/img.svelte";
   let { locale } = getContext("page");
   export let videoId, title, width, height;
   export let item;
@@ -27,7 +27,7 @@
     class="light-vimeo-wrapper"
   >
     <button>
-      <Image src="/img/icons.media.svg#play" width="64" height="64" />
+      <Img src="/img/icons.media.svg#play" width="64" height="64" />
     </button>
     <!--<Picture src="{baseUrl}/img/yt/{videoId}.jpg" {width} {height} />-->
   </div>

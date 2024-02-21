@@ -1,5 +1,5 @@
 <script>
-  import Option from "./element/Option.svelte";
+  import Option from "./element/option.svelte";
 </script>
 
 <Option {...$$props}>

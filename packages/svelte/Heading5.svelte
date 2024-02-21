@@ -1,5 +1,5 @@
 <script>
-	import H5 from './element/H5.svelte'
+	import H5 from './element/h5.svelte'
 	import A from './element/a.svelte'
 	
 	export let id

@@ -1,5 +1,5 @@
 <script>
-  import Optgroup from "./element/Optgroup.svelte";
+  import Optgroup from "./element/optgroup.svelte";
 </script>
 
 <Optgroup {...$$props}>
