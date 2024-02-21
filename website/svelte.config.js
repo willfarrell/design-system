@@ -10,10 +10,7 @@ const base = dev ? '' : process.env.BASE_PATH
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
-    adapter: adapter({
-      pages: base,
-      assets: base
-    }),
+    adapter: adapter(),
     alias: {
       '@components': resolve('./src/components'),
       '@examples': resolve('./src/examples')
