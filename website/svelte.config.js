@@ -4,6 +4,8 @@ import { markdown } from 'svelte-preprocess-markdown'
 import preprocess from 'svelte-preprocess'
 import preprocessPEWC from '@design-system/svelte-preprocess-pewc'
 
+const dev = process.argv.includes('dev');
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   kit: {
@@ -20,7 +22,8 @@ const config = {
       checkOrigin: true
     },
     paths: {
-      relative: false
+      relative: false,
+      base: dev ? "" : "/design-system",
     },
     prerender: {
       concurrency: 5,
