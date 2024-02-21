@@ -23,7 +23,7 @@ const config = {
     },
     paths: {
       relative: false,
-      base: dev ? "" : "/design-system",
+      base: dev ? '' : process.env.BASE_PATH,
     },
     prerender: {
       concurrency: 5,
