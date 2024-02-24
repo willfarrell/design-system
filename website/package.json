@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "vite dev",
 		"build": "npm run build:scripts && npm run build:svelte && npm run build:styles && npm run build:svelte",
-		"build:styles": "npm run build:styles:ds && build:styles:postcss",
+		"build:styles": "npm run build:styles:ds && npm run build:styles:postcss",
 		"build:styles:ds":"npx ds extract build --css-path src/styles/app.css --debug",
 		"build:styles:postcss":"postcss src/styles/*.css -d static/css/ --no-map",
 		"build:styles:copy":"cp static/css/* build/css/",
