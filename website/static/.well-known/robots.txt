@@ -1,0 +1,3 @@
+sitemap: https://design-system.willfarrell.ca/sitemap.xml
+
+user-agent: *

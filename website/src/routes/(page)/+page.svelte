@@ -26,6 +26,7 @@
 <svelte:head>
 	<Head>
 		<title>Design System</title>
+		<meta name="description" content="A sematic fluid design system" />
 	</Head>
 </svelte:head>
 <PageHeader/>

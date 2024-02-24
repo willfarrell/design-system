@@ -1,0 +1,14 @@
+[upstream]
+providers = [
+	# https://www.thegreenwebfoundation.org/directory/
+	{ domain = 'aws.amazon.com', service = 'cdn' },
+	{ domain = 'aws.amazon.com', service = 'vps' },
+	{ domain = 'aws.amazon.com', service = 'block-storage' },
+	{ domain = 'aws.amazon.com', service = 'object-storage' }
+	# { domain = 'plausible.io', service = 'saas' },
+]
+
+#[org]
+#credentials = [
+#	{ domain='design-system.willfarrell.ca/', doctype = 'webpage', url = 'https://design-system.willfarrell.ca/sustainability'}
+#]

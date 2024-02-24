@@ -1,0 +1,6 @@
+Contact: mailto:willfarrell@proton.me
+Encryption: https://datastream.org/.well-known/publickey.willfarrell@protonmail.com-99a71f4a06572a3db440f5133e0ab4428062ca09.ecc.asc
+Encryption: https://datastream.org/.well-known/publickey.willfarrell@protonmail.com-600629664aa4446c24d041f4843cae6b469406c6.rsa.asc
+Preferred-Languages: en
+Canonical: https://design-system.willfarrell.ca/security.txt
+#Policy: https://design-system.willfarrell.ca/security

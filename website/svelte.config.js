@@ -54,7 +54,7 @@ const config = {
     prerender: {
       concurrency: 5,
       crawl: true,
-      entries: ['/'],
+      entries: ['/','/sitemap.xml'],
       handleHttpError: 'warn', // 'fail'
       handleMissingId: 'warn', // 'fail'
       handleEntryGeneratorMismatch: 'warn', // 'fail'
