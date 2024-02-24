@@ -21,7 +21,7 @@
 
 <link rel="stylesheet" media="print" href="/css/print.css?v=" />
 
-<link rel="icon" href="data:;base64,iVBORw0KGgo=" /> <!-- empty ico -->
+<!-- <link rel="icon" href="data:;base64,iVBORw0KGgo=" /> <!-- empty ico -->
 <!-- <link rel="icon" href="/favicon.svg" /> -->
 <!-- <link rel="manifest" href="/.well-known/site.webmanifest" /> -->
 
