@@ -39,9 +39,9 @@
 @import './element/fieldset.css';
 @import './element/label.css';
 @import './element/input.css';
-@import './element/input-checkbox.css';
-@import './element/input-radio.css';
-@import './element/input-file.css';
+@import './element/input[type=checkbox].css';
+@import './element/input[type=radio].css';
+@import './element/input[type=file].css';
 @import './element/select.css';
 @import './element/textarea.css';
 @import './element/button.css';

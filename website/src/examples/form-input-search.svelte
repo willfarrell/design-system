@@ -22,11 +22,12 @@
 	import InputTextarea from '@design-system/svelte/InputTextarea.svelte';
 	import Button from '@design-system/svelte/element/button.svelte';
 	import Icon from '@design-system/svelte/Icon.svelte';
+	import Span from '@design-system/svelte/element/span.svelte';
 </script>
 
 <Search>
 	<Form method="GET" role="group">
 		<InputSearch id="q" label="search" />
-		<Button><Icon src="search" /><span>Search</span></Button>
+		<Button><Icon src="search" /><Span>Search</Span></Button>
 	</Form>
 </Search>

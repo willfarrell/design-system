@@ -1,4 +1,5 @@
 <script>
+	import Div from '@design-system/svelte/element/div.svelte';
 	import FormErrors from '@design-system/svelte/FormErrors.svelte';
 	import Form from '@design-system/svelte/element/form.svelte';
 	import Search from '@design-system/svelte/element/search.svelte';
@@ -37,11 +38,11 @@ Expected: width of M, when inputmode="numeric" uses with of 0
 <Form method="POST">
 	<InputDate id="date" label="Date" />
 	<Fieldset id="dob" label="Date of your last adventure" hint="For example 2022 5 30" {error}>
-		<div role="group">
+		<Div role="group">
 			<InputNumber id="year" label="Year" size="4" />
 			<InputText id="month" label="Month" size="4" /><!-- width of 3 M when based on 0 -->
 			<InputNumber id="day" label="Day" size="2" />
-		</div>
+		</Div>
 	</Fieldset>
 	<Button>Submit</Button>
 </Form>

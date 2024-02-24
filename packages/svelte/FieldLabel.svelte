@@ -3,4 +3,4 @@
   export let id, label;
 </script>
 
-<Label {id} {label} class="{$$props.class}" />
+<Label for={id} class="{$$props.class}">{label}</Label>

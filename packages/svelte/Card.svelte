@@ -1,4 +1,6 @@
 <script>	
+	import Div from '@design-system/svelte/element/div.svelte';
+	import Li from '@design-system/svelte/element/li.svelte';
 	export let id
 	
 	const slugify = (id) => {
@@ -14,11 +16,11 @@
 	
 <!-- src: https://inclusive-components.design/cards/ -->
 
-<li class="card" is="ds-card">
-	<div class="text">
+<Li class="card" is="ds-card">
+	<Div class="text">
 		<slot id="card-{slugify(id)}" />
-	</div>
+	</Div>
 	{#if $$slots.img}
-		<div class="img"><slot name="img"/></div>
+		<Div class="img"><slot name="img"/></Div>
 	{/if}
-</li>
+</Li>

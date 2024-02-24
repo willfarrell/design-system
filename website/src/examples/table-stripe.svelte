@@ -1,65 +1,69 @@
 <script>
+	import {paragraph} from '@examples/index.js'
 	import Table from '@design-system/svelte/Table.svelte';
 	import Caption from '@design-system/svelte/element/caption.svelte';
 	import Colgroup from '@design-system/svelte/element/colgroup.svelte';
+	import Col from '@design-system/svelte/element/col.svelte';
+	import Thead from '@design-system/svelte/element/thead.svelte';
+	import Tbody from '@design-system/svelte/element/tbody.svelte';
+	import Tfoot from '@design-system/svelte/element/tfoot.svelte';
+	import Tr from '@design-system/svelte/element/tr.svelte';
 	import Th from '@design-system/svelte/element/th.svelte';
 	import Td from '@design-system/svelte/element/td.svelte';
 
-	const caption =
-		'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
 </script>
 
 <Table class="stripe">
-	<Caption>{caption}</Caption>
+	<Caption>{paragraph}</Caption>
 	<Colgroup>
-		<col />
-		<col span="2" />
-		<col span="3" />
+		<Col />
+		<Col span="2" />
+		<Col span="3" />
 	</Colgroup>
-	<thead>
-		<tr>
+	<Thead>
+		<Tr>
 			<Th scope="col">#</Th>
 			<Th scope="col">Heading</Th>
 			<Th scope="col">Heading</Th>
 			<Th scope="col">Heading</Th>
 			<Th scope="col">Heading</Th>
 			<Th scope="col">Heading</Th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
+		</Tr>
+	</Thead>
+	<Tbody>
+		<Tr>
 			<Th scope="row">1</Th>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
-		</tr>
-		<tr>
+		</Tr>
+		<Tr>
 			<Th scope="row">1</Th>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
-		</tr>
-		<tr>
+		</Tr>
+		<Tr>
 			<Th scope="row">1</Th>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
 			<Td>Cell</Td>
-		</tr>
-	</tbody>
-	<tfoot>
-		<tr>
+		</Tr>
+	</Tbody>
+	<Tfoot>
+		<Tr>
 			<Th scope="col">#</Th>
 			<Th scope="col">Footer</Th>
 			<Th scope="col">Footer</Th>
 			<Th scope="col">Footer</Th>
 			<Th scope="col">Footer</Th>
 			<Th scope="col">Footer</Th>
-		</tr>
-	</tfoot>
+		</Tr>
+	</Tfoot>
 </Table>

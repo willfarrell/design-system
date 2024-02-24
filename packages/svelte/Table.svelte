@@ -1,4 +1,7 @@
+<script>
+  import Div from './element/div.svelte';
+</script>
 <!-- div container needed to allow overflow-x on oversized tables -->
-<div class="table-overflow"><table {...$$props}>
+<Div class="table-overflow"><table {...$$props}>
   <slot />
-</table></div>
+</table></Div>

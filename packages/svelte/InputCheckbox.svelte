@@ -17,8 +17,8 @@
   >
 
   <!--{#if $$slots.default}
-    <div>
+    <Div>
       <slot />
-    </div>
+    </Div>
   {/if}-->
 </FieldsetInput>

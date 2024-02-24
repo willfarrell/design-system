@@ -1,10 +1,10 @@
 /* https://web.dev/one-line-layouts/ */
 
 /*
-11rem chosen to ensure only 1 element shows on 320px device (320/16)/2 = 10
+320px is the smallest device size supported
 */
 .grid {
   display: grid;
   gap: var(--gap);
-  grid-template-columns: repeat(auto-fit, minmax(var(--min-width, 11rem), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(var(--min-width, 320px), 1fr));
 }

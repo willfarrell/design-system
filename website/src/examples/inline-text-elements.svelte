@@ -1,4 +1,5 @@
 <script>
+	import Div from '@design-system/svelte/element/div.svelte';
 	import P from '@design-system/svelte/element/p.svelte';
 	import A from '@design-system/svelte/element/a.svelte';
 	import Abbr from '@design-system/svelte/element/abbr.svelte';
@@ -17,13 +18,14 @@
 	import Q from '@design-system/svelte/element/q.svelte';
 	import S from '@design-system/svelte/element/s.svelte';
 	import Small from '@design-system/svelte/element/small.svelte';
+	import Span from '@design-system/svelte/element/span.svelte';
 	import Sub from '@design-system/svelte/element/sub.svelte';
 	import Sup from '@design-system/svelte/element/sup.svelte';
 	import U from '@design-system/svelte/element/u.svelte';
 	import Var from '@design-system/svelte/element/var.svelte';
 </script>
 
-<div style="column-width:20ch">
+<Div style="column-width:20ch">
 	<P
 		><A href="#">link</A>
 		<A href="/">active link</A>
@@ -50,9 +52,9 @@
 		</math></P
 	>
 	<P
-		><span lang="en"><Q>english quote</Q></span>
-		<span lang="fr"><Q>french quote</Q></span>
-		<span lang="de"><Q>german quote</Q></span></P
+		><Span lang="en"><Q>english quote</Q></Span>
+		<Span lang="fr"><Q>french quote</Q></Span>
+		<Span lang="de"><Q>german quote</Q></Span></P
 	>
 	<P><S>strikthrough</S></P>
 	<P><Small>small</Small></P>
@@ -60,4 +62,4 @@
 	<P><Sup>sup</Sup></P>
 	<P><U>underline</U></P>
 	<P><Var>variable</Var></P>
-</div>
+</Div>

@@ -1,5 +1,6 @@
 <script>
   import { getContext } from "svelte";
+  import Div from '@design-system/svelte/element/div.svelte';
   import Picture from "@components/element/picture.svelte";
   import Img from "@components/element/img.svelte";
   let { locale } = getContext("page");
@@ -14,8 +15,8 @@
       : "";
 </script>
 
-<div class="aspect-wrapper">
-  <div
+<Div class="aspect-wrapper">
+  <Div
     is="youtube-ce"
     data-videoId={videoId}
     data-locale={locale}
@@ -28,8 +29,8 @@
       <Img src="/img/icons.social.svg#youtube" width="64" height="64" />
     </button>
     <Picture src="{baseUrl}/img/yt/{videoId}.jpg" {width} {height} />
-  </div>
-</div>
+  </Div>
+</Div>
 
 <style>
   .aspect-wrapper {

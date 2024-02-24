@@ -1,7 +1,7 @@
 <script>
 	import Prism from 'prismjs';
 	import 'prismjs/components/prism-markup.js'; // html
-	import 'prismjs/components/prism-css.js';
+	import 'prismjs/components/prism-css.js'; // css
 	import 'prismjs/components/prism-javascript.js'; // js
 	import 'prismjs/components/prism-bash.js'; // sh
 	
@@ -20,6 +20,8 @@
 	if (typeof code === 'object') {
 		const {html} = code.render();
 		componentCode = format(html, {ocd: true})
+	} else if (typeof code === 'string') {
+		componentCode = format(code, {ocd: true})
 	} else if (typeof code !== 'string') {
 		componentCode = 'error'
 	}

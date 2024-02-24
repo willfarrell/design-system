@@ -1,4 +1,5 @@
 <script>
+  import Div from './element/div.svelte';
   import FieldLabel from "./FieldLabel.svelte";
   import FieldHint from "./FieldHint.svelte";
   import FieldError from "./FieldError.svelte";
@@ -6,9 +7,9 @@
   export let id, label, hint, error;
 </script>
 
-<div>
+<Div>
   <FieldLabel {id} {label} />
   <FieldHint {id} {hint} />
   <FieldError {id} {error} />
   <Input {...$$props}/>
-</div>
+</Div>

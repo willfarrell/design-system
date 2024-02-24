@@ -1,7 +1,9 @@
 <script>
   import { getContext } from "svelte";
+  import Div from '@design-system/svelte/element/div.svelte';
   // import Picture from '@components/element/picture.svelte'
   import Img from "@components/element/img.svelte";
+  import Button from '@design-system/svelte/element/button.svelte';
   let { locale } = getContext("page");
   export let videoId, title, width, height;
   export let item;
@@ -16,8 +18,8 @@
       : "";
 </script>
 
-<div class="aspect-wrapper">
-  <div
+<Div class="aspect-wrapper">
+  <Div
     is="vimeo-ce"
     data-videoId={videoId}
     data-locale={locale}
@@ -26,12 +28,12 @@
     data-title={title}
     class="light-vimeo-wrapper"
   >
-    <button>
+    <Button>
       <Img src="/img/icons.media.svg#play" width="64" height="64" />
-    </button>
+    </Button>
     <!--<Picture src="{baseUrl}/img/yt/{videoId}.jpg" {width} {height} />-->
-  </div>
-</div>
+  </Div>
+</Div>
 
 <style>
   .aspect-wrapper {

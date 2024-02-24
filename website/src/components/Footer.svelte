@@ -14,4 +14,14 @@
 		<P>Unit A, 1 Address Street, City, Region, Country, Postcode</P>
 	</Address>
 	<!-- social icons -->
+	<A href="/all">See all components on a single page</A>
+	
+	<!-- layouts -->
+	Layouts
+	<A href="/demo/layout-article">Article</A>
+	<A href="/demo/layout-documentation">Documentation</A>
+	<A href="/demo/layout-form">Form</A>
+	<A href="/demo/layout-search">Search</A>
+	TODO - rtl text, vertical text (JA)
+	
 </Footer>

@@ -1,11 +1,7 @@
 import { resolve } from 'node:path'
 import adapter from '@sveltejs/adapter-static'
-import { markdown } from 'svelte-preprocess-markdown'
+//import { markdown } from 'svelte-preprocess-markdown'
 import preprocess from 'svelte-preprocess'
-import preprocessPEWC from '@design-system/svelte-preprocess-pewc'
-
-const dev = process.argv.includes('dev');
-const base = dev ? '' : process.env.BASE_PATH
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -24,7 +20,7 @@ const config = {
     },
     paths: {
       relative: false,
-      base: base,
+      base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
     },
     prerender: {
       concurrency: 5,
@@ -41,12 +37,7 @@ const config = {
   },
   extensions: ['.svelte', '.md'],
   preprocess: [
-    markdown(),
-    preprocessPEWC({
-      statsPath: false,
-      css:{path:'src/styles/app.css'},
-      pewc: false
-    }),
+    //markdown(),
     preprocess({
       postcss: true,
       preserve: ['ld+json']

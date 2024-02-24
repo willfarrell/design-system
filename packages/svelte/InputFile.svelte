@@ -1,13 +1,13 @@
 <script>
   import FieldInput from './FieldInput.svelte'
-  import Input from './element/input.svelte';
+  export let value
 </script>
 
-<FieldInput {...$$props} type="file" />
+<FieldInput {...$$props} value={value ?? null} type="file" />
 
-  
   <!--
   <script>
+    import Div from './element/div.svelte';
     import FieldLabel from "./FieldLabel.svelte";
     import FieldHint from "./FieldHint.svelte";
     import FieldError from "./FieldError.svelte";
@@ -15,11 +15,11 @@
     export let id, label, hint, error;
   </script>
   
-  <div>
+  <Div>
     <FieldLabel {id} {label} />
     <FieldHint {id} {hint} />
     <FieldError {id} {error} />
     <Input {...$$props}/>
-  </div>
+  </Div>
 -->
 

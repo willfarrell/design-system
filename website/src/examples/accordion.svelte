@@ -1,9 +1,10 @@
 <script>
+	import Div from '@design-system/svelte/element/div.svelte';
 	import Details from '@design-system/svelte/element/details.svelte';
 	import Summary from '@design-system/svelte/element/summary.svelte';
 </script>
 
-<div role="group">
+<Div role="group">
 	<Details name="group">
 		<Summary>Summary A</Summary>
 		details
@@ -16,4 +17,4 @@
 		<Summary>Summary C</Summary>
 		details
 	</Details>
-</div>
+</Div>

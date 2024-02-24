@@ -5,11 +5,15 @@
 	"type": "module",
 	"scripts": {
 		"start": "vite dev",
-		"build": "npm run build:styles && npm run build:scripts && npm run build:svelte",
-		"build:styles": "postcss src/styles/*.css -d static/css/ --no-map",
+		"build": "npm run build:scripts && npm run build:svelte && npm run build:styles",
+		"build:styles": "npm run build:styles:ds && npm run build:styles:postcss && npm run build:styles:copy && npm run build:styles:inline",
+		"build:styles:ds":"npx ds extract build --css-path src/styles/app.css --debug",
+		"build:styles:postcss":"postcss src/styles/*.css -d static/css/ --no-map",
+		"build:styles:copy":"cp static/css/* build/css/",
+		"build:styles:inline":"npx ds inline build/css/app.css build --debug",
 		"build:scripts": "npm run build:scripts:bootstrap && npm run build:scripts:components",
 		"build:scripts:bootstrap": "esbuild src/scripts/* --platform=browser --format=esm  --bundle --minify '--external:/js/*' --legal-comments=external --sourcemap=external --log-level=error --allow-overwrite --outdir=static/js/",
-		"build:scripts:components": "rm -rf static/js/pewc && mkdir -p static/js/pewc && cp ../packages/components/ds-* static/js/pewc/ && esbuild static/js/pewc/* --platform=browser --format=esm  --bundle --minify '--external:/js/*' --legal-comments=external --sourcemap=external --log-level=error --allow-overwrite --outdir=static/js/pewc/",
+		"build:scripts:components": "rm -rf static/js/pewc && mkdir -p static/js/pewc && cp ../packages/component/ds-* static/js/pewc/ && esbuild static/js/pewc/* --platform=browser --format=esm  --bundle --minify '--external:/js/*' --legal-comments=external --sourcemap=external --log-level=error --allow-overwrite --outdir=static/js/pewc/",
 		"build:svelte": "vite build",
 		"preview": "vite preview",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
@@ -17,11 +21,13 @@
 	},
 	"dependencies": {
 		"@design-system/core": "file:../packages/core",
+		"@design-system/component": "file:../packages/component",
 		"@design-system/style": "file:../packages/style",
-		"@design-system/svelte": "file:../packages/svelte"
+		"@design-system/svelte": "file:../packages/svelte",
+		"change-case": "5.4.3"
 	},
 	"devDependencies": {
-		"@design-system/svelte-preprocess-pewc": "file:../packages/svelte-preprocess-pewc",
+		"@design-system/cli": "file:../packages/cli",
 		"@sveltejs/adapter-static": "^3.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
