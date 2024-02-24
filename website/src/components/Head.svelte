@@ -12,7 +12,7 @@
 <!-- web worker Link: </sw.js>; rel="modulepreload"; as="worker"; nopush   -->
 <!--<link rel="modulepreload" href="/sw.js" />-->
 
-<link rel="stylesheet" href="/css/app.css?v=" />
+<!-- <link rel="stylesheet" href="/css/app.css?v=" /> -->
 <!-- <link rel="stylesheet" href="/css/above.css?v=" />
 <link rel="preload stylesheet" as="style" href="/css/below.css?v=" /> -->
 

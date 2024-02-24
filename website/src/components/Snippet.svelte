@@ -27,7 +27,7 @@
 </Div>
 
 <style>
-	.snippet {
+	:global(.snippet) {
 		/* border: var(--border-width) solid currentColor; */
 		padding: var(--padding-fixed);
 	}

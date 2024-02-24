@@ -1,0 +1,10 @@
+.container-aside {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 3rem;
+  justify-content: center;
+  & aside {
+    width: 18rem;
+    /* max-inline-size: 20ch; */
+  }
+}

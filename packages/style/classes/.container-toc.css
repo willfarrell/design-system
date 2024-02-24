@@ -1,0 +1,31 @@
+.container-toc {
+  display: grid;
+  grid-template-areas:
+    'top'
+    'toc'
+    'doc';
+}
+#grid-top {
+  grid-area: top;
+}
+#grid-toc {
+  grid-area: toc;
+}
+#grid-doc {
+  grid-area: doc;
+}
+@media (min-width: 80em) {
+  .container-toc {
+    column-gap: 3rem;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'top toc'
+      'doc toc';
+  }
+  #grid-toc nav {
+    width: 18rem;
+    top: 0;
+    position: sticky;
+    overflow-y: scroll;
+  }
+}

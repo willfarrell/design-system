@@ -1,13 +1,14 @@
 <script>
+  import Div from './element/div.svelte';
   export let id;
 </script>
 
-<div {id} is="ds-input-dropzone">
+<Div {id} is="ds-input-dropzone">
   <slot />
-</div>
+</Div>
 
 <style>
-  div {
+  :global(div) {
     border: var(--border-width) dashed currentColor;
     background-color: var(--color-l2);
   }

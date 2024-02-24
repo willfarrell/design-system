@@ -9,11 +9,39 @@ const config = {
     adapter: adapter(),
     alias: {
       '@components': resolve('./src/components'),
-      '@examples': resolve('./src/examples')
+      '@examples': resolve('./src/examples'),
+      '@styles': resolve('./src/styles')
     },
     appDir: 'app',
     csp: {
-      mode: 'auto'
+      mode: 'auto',
+      directives: {
+        'default-src':['none'],
+        'base-uri':['none'],
+        //'child-src':['none'], // fallback: default-src
+        //'connect-src':['none'], // fallback: default-src
+        //'font-src':['none'], // fallback: default-src
+        'form-action': ['self'],
+        'frame-ancestors': ['none'], // X-Frame-Options: deny
+        'frame-src': ['self'], // fallback: child-src, default-src
+        'img-src':['self'], // fallback: default-src
+        'manifest-src':['self'], // fallback: default-src
+        //'media-src':['none'], // fallback: default-src
+        //'prefetch-src':['none'], // fallback: default-src
+        //'object-src':['none'], // fallback: default-src
+        'sandbox':['allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox'],
+        'script-src':['self'], // fallback: default-src
+        //'script-src-attr': ['self'], // fallback: script-src, default-src
+        //'script-src-elem': ['self'], // fallback: script-src, default-src
+        'style-src':['self'], // fallback: default-src
+        //'style-src-attr': ['self'], // fallback: style-src, default-src
+        //'style-src-elem': ['self'], // fallback: style-src, default-src
+        'upgrade-insecure-requests':true,
+        'worker-src': ['self'], // fallback: child-src, script-src, default-src
+        //'report-to': ['csp'], // Not supported when prerendered
+        //'trusted-types': ['ds'], // Experimental
+        
+      }
     },
     csrf: {
       checkOrigin: true
@@ -22,6 +50,7 @@ const config = {
       relative: false,
       base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
     },
+    inlineStyleThreshold: 25 * 1024,
     prerender: {
       concurrency: 5,
       crawl: true,
@@ -31,6 +60,7 @@ const config = {
       handleEntryGeneratorMismatch: 'warn', // 'fail'
       origin: process.env.ORIGIN ?? 'https://datastream.org'
     },
+    serviceWorker: {register:false}
   },
   compilerOptions: {
     cssHash: ({ hash, css }) => `s-${hash(css)}`
