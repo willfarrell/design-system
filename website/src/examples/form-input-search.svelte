@@ -23,11 +23,14 @@
 	import Button from '@design-system/svelte/element/button.svelte';
 	import Icon from '@design-system/svelte/Icon.svelte';
 	import Span from '@design-system/svelte/element/span.svelte';
+	import Div from '@design-system/svelte/element/div.svelte';
 </script>
 
 <Search>
-	<Form method="GET" role="group">
+	<Form method="GET">
+		<Div role="group">
 		<InputSearch id="q" label="search" />
 		<Button><Icon src="search" /><Span>Search</Span></Button>
+	</Div>
 	</Form>
 </Search>

@@ -31,7 +31,8 @@
 	// https://prismjs.com/plugins/show-invisibles/
 	// https://prismjs.com/plugins/match-braces/
 	// wrap indent https://github.com/PrismJS/prism/issues/2202
-	const html = Prism.highlight(componentCode ?? code, Prism.languages[language], language);
+	const html = Prism.highlight(componentCode ?? code, Prism.languages[language], language).replaceAll('class="token ', 'class="')
+	
 </script>
 
 <Pre>

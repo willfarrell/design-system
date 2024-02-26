@@ -1,15 +1,15 @@
 a {
-  color: var(--color-primary);
+  color: var(--color-main);
 }
 
 a:hover {
   color: color-mix(
     in srgb,
-    var(--color-primary-pseudo) 8%,
-    var(--color-primary)
+    var(--color-main-pseudo) 8%,
+    var(--color-main)
   );
   text-decoration: underline solid 0.125rem
-    color-mix(in srgb, var(--color-primary-pseudo) 8%, var(--color-primary));
+    color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
   text-decoration-skip-ink: all;
   text-underline-position: under;
 }
@@ -18,11 +18,11 @@ a:active,
 a[aria-current='page'] {
   color: color-mix(
     in srgb,
-    var(--color-primary-pseudo) 12%,
-    var(--color-primary)
+    var(--color-main-pseudo) 12%,
+    var(--color-main)
   );
   text-decoration: underline solid 0.125rem
-    color-mix(in srgb, var(--color-primary-pseudo) 12%, var(--color-primary));
+    color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
   text-decoration-skip-ink: all;
   text-underline-position: under;
   text-underline-offset: 0.125rem;

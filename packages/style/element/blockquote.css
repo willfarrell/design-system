@@ -1,6 +1,6 @@
 blockquote {
   max-inline-size: 60ch;
-  border-inline-start: var(--border-width, 0.5rem) solid var(--color-primary);
+  border-inline-start: var(--border-width, 0.5rem) solid var(--color-main);
   background-color: var(--color-l5);
   padding: calc(2 * var(--padding-fixed));
 

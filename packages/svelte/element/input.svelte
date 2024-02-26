@@ -11,6 +11,7 @@
 
 
 <!-- <slot name="prefix" aria-hidden="true"/> -->
+<!-- TODO Report aria-invalid="true" marked at invalid by lighthouse - https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-invalid -->
 <input
   {is} {...dataAttributes($$props)}
   id={id ?? name}
@@ -38,6 +39,7 @@
   
   aria-describedby={hint ? (id ?? name) + "-hint" : null}
   aria-errormessage={error?.length ? (id ?? name) + "-error" : null}
+  
   aria-invalid={error?.length ? 'true' : null}
 />
 <!-- button (password show, passcode resend) TODO inline -->

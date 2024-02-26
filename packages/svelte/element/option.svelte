@@ -1,5 +1,5 @@
 <script>
-  export let label, value
+  export let label, value, selected
 </script>
 
-<option {value}>{label}</option>
+<option {value} {selected}>{label}</option>

@@ -15,23 +15,22 @@ label ~ [id$='-hint'] {
 
 /* error */
 div:has(> [id$='-error']) {
-  border-inline-start: calc(var(--padding-fixed) * 0.25) solid
-    var(--color-error);
+  border-inline-start: calc(var(--padding-fixed) * 0.25) solid var(--color-fail);
   padding-inline-start: var(--padding-fixed);
 }
 
 label ~ [id$='-error'] {
   display: block;
-  color: var(--color-error);
+  color: var(--color-fail);
   font-weight: 700;
 
   &::before {
+    /* warning icon */
     content: '\26A0';
-    /* warning */
     padding-inline-end: 0.5em;
   }
 }
 
 input[aria-invalid] {
-  border-color: var(--color-error);
+  border-color: var(--color-fail);
 }

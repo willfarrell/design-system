@@ -22,14 +22,14 @@ const config = {
         //'connect-src':['none'], // fallback: default-src
         //'font-src':['none'], // fallback: default-src
         'form-action': ['self'],
-        'frame-ancestors': ['none'], // X-Frame-Options: deny
+        'frame-ancestors': ['self'], // X-Frame-Options: deny
         'frame-src': ['self'], // fallback: child-src, default-src
         'img-src':['self'], // fallback: default-src
         'manifest-src':['self'], // fallback: default-src
         //'media-src':['none'], // fallback: default-src
         //'prefetch-src':['none'], // fallback: default-src
         //'object-src':['none'], // fallback: default-src
-        'sandbox':['allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox'],
+        'sandbox':['allow-same-origin allow-scripts allow-popups allow-popups-to-escape-sandbox allow-forms'],
         'script-src':['self'], // fallback: default-src
         //'script-src-attr': ['self'], // fallback: script-src, default-src
         //'script-src-elem': ['self'], // fallback: script-src, default-src
@@ -50,7 +50,7 @@ const config = {
       relative: false,
       base: process.argv.includes('dev') ? '' : process.env.BASE_PATH,
     },
-    inlineStyleThreshold: 25 * 1024,
+    //inlineStyleThreshold: 25 * 1024,
     prerender: {
       concurrency: 5,
       crawl: true,

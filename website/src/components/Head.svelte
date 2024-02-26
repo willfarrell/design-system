@@ -8,6 +8,7 @@
 
 <!-- image Link: </img/image.svg>; rel="preload"; as="image"; nopush -->
 <!-- <link rel="preload" as="image" href="/img/image.svg" /> -->
+<link rel="preload" as="image" href="/img/icons.svg" />
 
 <!-- web worker Link: </sw.js>; rel="modulepreload"; as="worker"; nopush   -->
 <!--<link rel="modulepreload" href="/sw.js" />-->
@@ -21,10 +22,9 @@
 
 <link rel="stylesheet" media="print" href="/css/print.css?v=" />
 
+
 <!-- <link rel="icon" href="data:;base64,iVBORw0KGgo=" /> <!-- empty ico -->
 <!-- <link rel="icon" href="/favicon.svg" /> -->
-<!-- <link rel="manifest" href="/.well-known/site.webmanifest" /> -->
-
-<link rel="preload" as="image" href="/img/icons.svg" />
+<link rel="manifest" href="/.well-known/manifest.json" />
 
 <slot />

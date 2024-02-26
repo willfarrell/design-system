@@ -1,25 +1,44 @@
 :root {
+  /*--icon-external: url('data:image/svg+xml,<svg viewBox="0 0 1536 1536" xmlns="http://www.w3.org/2000/svg"><path d="m1536 0v640h-128v-421l-851 850-90-90 850-851h-421v-128zm-512 1007h128v529h-1152v-1152h529v128h-401v896h896z"/></svg>');*/
+  --icon-external: url('/img/icons.svg#a');
+
+  /* default color palette */
+  --color-l0: #ffffff;
+  --color-l1: #fafafa;
+  --color-l2: #f6f6f6;
+  --color-l3: #f3f3f3;
+  --color-l4: #f1f1f1;
+  --color-l5: #efefef;
+  --color-text: #1f1f1f;
+  --color-fill-text: #fafafa;
+  --color-main: #014a6e;
+  --color-main-pseudo: #c2e7f9;
+  --color-main-bold: #0271a6;
+  --color-main-bold-pseudo: #85cef2;
+  --color-focus: #014a6e;
+  --color-ins: #354d1c;
+  --color-del: #84211f;
+  --color-mark: #514511;
+  --color-info: #104879;
+  --color-pass: #454912;
+  --color-warn: #514511;
+  --color-fail: #852016;
+
+  /*
+  --code-comment: #464646;
+  --code-punctuation: #464646;
+  --code-deleted: #852016;
+  --code-inserted: #454912;
+  --code-operator: #522e9a;
+  --code-keyword: #004e57;
+  --code-function: #84211f;
+  --code-variable: #9f5900;
+  */
 }
+
 @media (prefers-color-scheme: light) {
-  :root {
-    --color-l0: #ffffff;
-    --color-l1: #fafafa;
-    --color-l2: #f6f6f6;
-    --color-l3: #f3f3f3;
-    --color-l4: #f1f1f1;
-    --color-l5: #efefef;
-    --color-text: #1f1f1f;
-
-    --color-focus: #e5def2;
-    --color-error: #c6312e;
-
-    --color-primary: #014a6e;
-    --color-primary-pseudo: #c2e7f9;
-    --color-primary-bold: #0271a6;
-    --color-primary-bold-pseudo: #85cef2;
-    --color-primary-text: #fafafa;
-  }
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-l0: #1f1f1f;
@@ -29,15 +48,28 @@
     --color-l4: #363636;
     --color-l5: #3a3a3a;
     --color-text: #fafafa;
+    --color-fill-text: #1f1f1f;
+    --color-main: #c2e7f9;
+    --color-main-pseudo: #014a6e;
+    --color-main-bold: #85cef2;
+    --color-main-bold-pseudo: #0271a6;
+    --color-focus: #c2e7f9;
+    --color-ins: #d6e7c3;
+    --color-del: #fadad9;
+    --color-mark: #fde061;
+    --color-info: #cce4f9;
+    --color-pass: #e2e6a0;
+    --color-warn: #fde061;
+    --color-fail: #f5dbd9;
 
-    --color-focus: #522e9a;
-    --color-error: #f5b5b3;
-
-    --color-primary: #c2e7f9;
-    --color-primary-pseudo: #014a6e;
-    --color-primary-bold: #85cef2;
-    --color-primary-bold-pseudo: #0271a6;
-    --color-primary-text: #1f1f1f;
+    /*--code-comment: #e1e1e1;
+    --code-punctuation: #e1e1e1;
+    --code-deleted: #f5dbd9;
+    --code-inserted: #e2e6a0;
+    --code-operator: #e5def2;
+    --code-keyword: #bce9ef;
+    --code-function: #fadad9;
+    --code-variable: #fdb861;*/
   }
 }
 

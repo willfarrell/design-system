@@ -1,8 +1,14 @@
 <script>
-	import Example from '@components/Example.svelte'
+	import Ul from '@design-system/svelte/element/ul.svelte';
+	import Card from '@design-system/svelte/Card.svelte';
+	import H3 from '@design-system/svelte/element/h3.svelte';
+	import P from '@design-system/svelte/element/p.svelte';
+	import A from '@design-system/svelte/element/a.svelte';
+	import Span from '@design-system/svelte/element/span.svelte';
+	import Img from '@design-system/svelte/element/img.svelte'; // TODO update to picture
 
 	const cards = [{
-		id: '1',
+		id: 'g1',
 		href: '#',
 		title: 'Card title',
 		description: 'Commodo ut laborum fugiat aliqua eiusmod voluptate pariatur',
@@ -10,7 +16,7 @@
 			src: '/img/16_9.320x179.png'
 		}
 	},{
-		id: '2',
+		id: 'g2',
 		href: '#',
 		title: 'Card title',
 		description: 'Commodo ut laborum fugiat aliqua eiusmod voluptate pariatur',
@@ -18,7 +24,7 @@
 			src: '/img/16_9.320x179.png'
 		}
 	},{
-		id: '3',
+		id: 'g3',
 		href: '#',
 		title: 'Card title',
 		description: 'Commodo ut laborum',
@@ -28,8 +34,13 @@
 	}]
 </script>
 
-<ul class="grid">
+<Ul class="grid">
 	{#each cards as card}
-	<Example component="card" card={card} />
+	<Card href={card.href} id={card.id}>
+		<H3><A href={card.href} aria-describedby={card.id}>{card.title}</A></H3>
+		<P>{card.description}</P>
+		<Span aria-hidden="true" id={card.id}>Read more</Span>
+		<Img slot="img" alt={card.img.alt} src={card.img.src} width="320" height="179" />
+	</Card>
 	{/each}
-</ul>
+</Ul>

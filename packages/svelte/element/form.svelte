@@ -14,6 +14,6 @@
   }
 </script>
 
-<form {method} {action} novalidate {is} {role} {...dataAttributes($$props)}>
+<form {method} {action} novalidate {is} {role} class={$$props.class} {...dataAttributes($$props)}>
   <slot />
 </form>

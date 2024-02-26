@@ -81,7 +81,6 @@
     list-style-type: '';
   }
   a {
-    color: #000;
     padding: 1rem;
     text-decoration: none;
   }

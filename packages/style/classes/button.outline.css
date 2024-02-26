@@ -1,14 +1,14 @@
 /* TODO */
 
 button.outline {
-  background-color: var(--color-l0);
-  border: var(--border-width) solid var(--color-primary-bold);
-  color: var(--color-primary-bold);
+  background-color: unset;
+  border: var(--border-width) solid var(--color-main-bold);
+  color: var(--color-main-bold);
 
   &:hover {
     background-color: color-mix(
       in srgb,
-      var(--color-primary-bold-pseudo) 8%,
+      var(--color-main-bold-pseudo) 8%,
       var(--color-l0)
     );
   }
@@ -18,7 +18,7 @@ button.outline:active,
 button.outline:focus {
   background-color: color-mix(
     in srgb,
-    var(--color-primary-bold-pseudo) 12%,
+    var(--color-main-bold-pseudo) 12%,
     var(--color-l0)
   );
 }

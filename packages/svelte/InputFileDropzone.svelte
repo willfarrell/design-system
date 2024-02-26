@@ -8,11 +8,11 @@
 </Div>
 
 <style>
-  :global(div) {
+  :global([is="ds-input-dropzone"]) {
     border: var(--border-width) dashed currentColor;
     background-color: var(--color-l2);
   }
-  :global(.highlight) {
-    border-color: var(--color-primary);
+  :global([is="ds-input-dropzone"].highlight) {
+    border-color: var(--color-main);
   }
 </style>

@@ -1,7 +1,7 @@
 ins {
-  color: #388e3c;
+  color: var(--color-ins);
   text-decoration: none;
-  border-block-end: 0.2em double #388e3c;
+  border-block-end: 0.2em double var(--color-ins);
 }
 
 @media (prefers-contrast: custom), (forced-colors: active) {

@@ -3,8 +3,6 @@
 	import Form from '@design-system/svelte/element/form.svelte';
 	import Search from '@design-system/svelte/element/search.svelte';
 	import Fieldset from '@design-system/svelte/Fieldset.svelte';
-	import FieldOptgroup from '@design-system/svelte/FieldOptgroup.svelte';
-	import FieldOption from '@design-system/svelte/FieldOption.svelte';
 	import InputCheckbox from '@design-system/svelte/InputCheckbox.svelte';
 	import InputEmail from '@design-system/svelte/InputEmail.svelte';
 	import InputFile from '@design-system/svelte/InputFile.svelte';

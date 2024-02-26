@@ -7,20 +7,19 @@ button {
   overflow: visible;
   text-align: center;
   /* flex-grow: 1; */
-  border: var(--border-width) solid
-    var(--border-color, var(--color-primary-bold));
+  border: var(--border-width) solid var(--border-color, var(--color-main-bold));
   padding: calc(var(--padding-fixed) * 0.5) var(--padding-fixed);
 
   white-space: nowrap;
 
-  background-color: var(--color-primary-bold);
-  color: var(--color-primary-text);
+  background-color: var(--color-main-bold);
+  color: var(--color-fill-text);
 
   &:hover {
     background-color: color-mix(
       in srgb,
-      var(--color-primary-bold-pseudo) 8%,
-      var(--color-primary-bold)
+      var(--color-main-bold-pseudo) 8%,
+      var(--color-main-bold)
     );
   }
 }
@@ -29,8 +28,8 @@ button:active,
 button:focus {
   background-color: color-mix(
     in srgb,
-    var(--color-primary-bold-pseudo) 12%,
-    var(--color-primary-bold)
+    var(--color-main-bold-pseudo) 12%,
+    var(--color-main-bold)
   );
 }
 
