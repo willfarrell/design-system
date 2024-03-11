@@ -12,4 +12,5 @@
   <FieldHint {id} {hint} />
   <FieldError {id} {error} />
   <Input {...$$props}/>
+  <slot />
 </Div>

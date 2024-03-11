@@ -10,6 +10,12 @@
   delete props.label
   delete props.hint
   delete props.error
+  // aria-describedby={hint ? id+'-hint' : null}
+  // aria-errormessage={error?.length ? id + "-error" : null} // for aria-live only?
+  let describedby = ''
+  if (hint) describedby+=id+'-hint'
+  if (error?.length) describedby+=id+'-error'
+  describedby||=null
 </script>
 
 <Div>
@@ -21,8 +27,7 @@
     {id}
     name={name ?? id}
     value={value ?? null}
-    aria-describedby={hint ? id + "-hint" : null}
-    aria-errormessage={error?.length ? id + "-error" : null}
+    aria-describedby={describedby}
     aria-invalid={error?.length ? 'true' : null}
   />
 </Div>

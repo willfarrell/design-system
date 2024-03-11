@@ -1,7 +1,7 @@
 <script>
 	import LayoutAside from '@design-system/svelte/LayoutAside.svelte';
-	import Example from '@components/Example.svelte'
-	
+	import Example from '@components/Example.svelte';
+
 	import Aside from '@design-system/svelte/element/aside.svelte';
 	import Search from '@design-system/svelte/element/search.svelte';
 	import Form from '@design-system/svelte/element/form.svelte';
@@ -59,8 +59,8 @@
 
 	import PageHeader from '@components/Header.svelte';
 	import PageFooter from '@components/Footer.svelte';
-	
-	const results = new Array(25).map((x, i)=> {
+
+	const results = new Array(25).map((x, i) => {
 		return {
 			id: i,
 			href: '#',
@@ -69,8 +69,8 @@
 			img: {
 				src: '/img/16_9.320x179.png'
 			}
-		}
-	})
+		};
+	});
 </script>
 
 <LayoutAside>
@@ -79,7 +79,7 @@
 		<Form method="GET">
 			<Div role="group">
 				<InputSearch id="q" label="Search" size="10" />
-				<Button><Icon src="search" /></Button>
+				<Button><Icon src="/img/icons.svg#search" /></Button>
 			</Div>
 			<Button><Span inert>&times;</Span>&nbsp;Clear all</Button>
 			<Fieldset id="a" label="Filter" value="">
@@ -112,7 +112,7 @@
 		  </Details>-->
 		<Ul class="grid">
 			{#each results as card}
-			<Example component="card" card={card} />
+				<Example component="card" {card} />
 			{/each}
 		</Ul>
 	</Main>

@@ -18,17 +18,21 @@
 	import InputTel from '@design-system/svelte/InputTel.svelte';
 	import InputUrl from '@design-system/svelte/InputUrl.svelte';
 	import InputSearch from '@design-system/svelte/InputSearch.svelte';
-	import InputSelectAutocomplete from '@design-system/svelte/InputSelectAutocomplete.svelte';
 	import InputSelect from '@design-system/svelte/InputSelect.svelte';
 	import InputTextarea from '@design-system/svelte/InputTextarea.svelte';
 	import Button from '@design-system/svelte/element/button.svelte';
 </script>
 
 <Form method="POST">
-	<InputFile id="file" label="File" hint="choose file with .ext" />
-	
+	<InputFile id="file" label="File" hint="choose file with .ext" button="Choose file" />
+
 	<InputFileDropzone>
-	<InputFile id="dropzone" label="File" hint="choose file with .ext" />
+		<InputFile
+			id="dropzone"
+			label="File w/ dropzone"
+			hint="choose file with .ext"
+			button="Choose file"
+		/>
 	</InputFileDropzone>
 	<Button>Submit</Button>
 </Form>

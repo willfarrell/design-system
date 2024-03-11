@@ -23,22 +23,6 @@
   margin-inline-start: 0.5em;
 }
 
-[data-icon] {
-  -webkit-mask: var(--icon) no-repeat;
-  mask: var(--icon) no-repeat;
-  background-color: currentColor;
+svg.icon {
+  fill: currentColor;
 }
-
-/*
-Example use:
-[data-icon='search'] {
-  --icon: url('/img/icons.svg#search');
-}*/
-
-/* https://developer.mozilla.org/en-US/docs/Web/CSS/attr#browser_compatibility */
-/*
-[data-src] {
-  -webkit-mask: attr(data-src url) no-repeat;
-  mask: attr(data-src url) no-repeat;
-  background-color: currentColor;
-}*/

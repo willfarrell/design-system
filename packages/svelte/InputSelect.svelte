@@ -12,7 +12,9 @@
   <FieldLabel {id} {label} />
   <FieldHint {id} {hint} />
   <FieldError {id} {error} />
+    <Div>
   <Select {...$$props}>
     <slot />
   </Select>
+    </Div>
 </Div>

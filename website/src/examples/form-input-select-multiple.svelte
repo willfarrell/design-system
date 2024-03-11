@@ -23,7 +23,12 @@
 </script>
 
 <Form method="POST">
-	<InputSelect id="select" label="Select - AVOID" hint="Radios would be a better UX">
+	<InputSelect
+		id="select"
+		label="Select (multiple) - AVOID"
+		hint="Checkboxes will be a better UX"
+		multiple
+	>
 		<FieldOption label="Afghanistan" value="AF" />
 		<FieldOption label="Åland Islands" value="AX" />
 		<FieldOption label="Albania" value="AL" />

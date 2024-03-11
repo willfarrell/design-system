@@ -9,6 +9,7 @@
 	import InputEmail from '@design-system/svelte/InputEmail.svelte';
 	import InputFile from '@design-system/svelte/InputFile.svelte';
 	import InputFileDropzone from '@design-system/svelte/InputFileDropzone.svelte';
+	import InputName from '@design-system/svelte/InputName.svelte';
 	import InputHidden from '@design-system/svelte/InputHidden.svelte';
 	import InputNumber from '@design-system/svelte/InputNumber.svelte';
 	import InputOneTimeCode from '@design-system/svelte/InputOneTimeCode.svelte';
@@ -18,7 +19,6 @@
 	import InputTel from '@design-system/svelte/InputTel.svelte';
 	import InputUrl from '@design-system/svelte/InputUrl.svelte';
 	import InputSearch from '@design-system/svelte/InputSearch.svelte';
-	import InputSelectAutocomplete from '@design-system/svelte/InputSelectAutocomplete.svelte';
 	import InputSelect from '@design-system/svelte/InputSelect.svelte';
 	import InputTextarea from '@design-system/svelte/InputTextarea.svelte';
 	import Button from '@design-system/svelte/element/button.svelte';
@@ -26,6 +26,7 @@
 
 <Form method="POST">
 	<InputText id="text" label="Text" hint="Just some friendly text" />
+	<InputName id="name" label="Name" hint="How we should refer to you" />
 	<InputEmail id="email" label="Email address" hint="Use the format useanme+alias@example.org" />
 	<InputTel id="tel" label="Telephone number" hint="Use the format +1-000-999-1234" />
 	<InputUrl id="url" label="URL" hint="Use the format https://example.org" />

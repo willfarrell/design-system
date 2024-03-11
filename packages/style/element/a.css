@@ -1,34 +1,31 @@
 a {
   color: var(--color-main);
+  text-underline-position: under;
 }
 
-a:hover {
-  color: color-mix(
-    in srgb,
-    var(--color-main-pseudo) 8%,
-    var(--color-main)
-  );
-  text-decoration: underline solid 0.125rem
+a:hover,
+a:focus-visible {
+  color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+  text-decoration: underline solid 0.5em
     color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-  text-decoration-skip-ink: all;
+  text-decoration-thickness: 0.5em;
   text-underline-position: under;
 }
 
 a:active,
 a[aria-current='page'] {
-  color: color-mix(
-    in srgb,
-    var(--color-main-pseudo) 12%,
-    var(--color-main)
-  );
-  text-decoration: underline solid 0.125rem
+  color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
+  text-decoration: underline solid 0.5em
     color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
-  text-decoration-skip-ink: all;
+  text-decoration-thickness: 0.25em;
   text-underline-position: under;
-  text-underline-offset: 0.125rem;
 }
 
 a:visited {
+}
+
+a:focus-visible {
+  outline: unset; /* override default */
 }
 
 /* :where(h1, h2, h3, h4, h5, h6) a {
@@ -48,13 +45,4 @@ a:visited {
   background-color: currentColor;
   padding: 0 0.4em;
   margin: 0.25rem;
-}
-
-/* back button should be before <main> */
-.back:before {
-  content: '\2039'; /* left chevron */
-  position: relative;
-  left: -0.125rem;
-  display: inline-block;
-  height: 0px; /* fixes :focus-visible when using display: inline-block */
 }

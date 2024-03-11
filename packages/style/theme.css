@@ -11,18 +11,18 @@
   --color-l5: #efefef;
   --color-text: #1f1f1f;
   --color-fill-text: #fafafa;
-  --color-main: #014a6e;
-  --color-main-pseudo: #c2e7f9;
-  --color-main-bold: #0271a6;
-  --color-main-bold-pseudo: #85cef2;
-  --color-focus: #014a6e;
+  --color-main: #522e9a;
+  --color-main-pseudo: #e5def2;
+  --color-main-bold: #7956be;
+  --color-main-bold-pseudo: #ccbfe6;
+  --color-focus: #522e9a;
   --color-ins: #354d1c;
   --color-del: #84211f;
   --color-mark: #514511;
-  --color-info: #104879;
-  --color-pass: #454912;
-  --color-warn: #514511;
-  --color-fail: #852016;
+  --color-info: #186db7;
+  --color-pass: #327835;
+  --color-warn: #8d6300;
+  --color-fail: #c63325;
 
   /*
   --code-comment: #464646;
@@ -49,18 +49,18 @@
     --color-l5: #3a3a3a;
     --color-text: #fafafa;
     --color-fill-text: #1f1f1f;
-    --color-main: #c2e7f9;
-    --color-main-pseudo: #014a6e;
-    --color-main-bold: #85cef2;
-    --color-main-bold-pseudo: #0271a6;
-    --color-focus: #c2e7f9;
+    --color-main: #e5def2;
+    --color-main-pseudo: #522e9a;
+    --color-main-bold: #ccbfe6;
+    --color-main-bold-pseudo: #7956be;
+    --color-focus: #e5def2;
     --color-ins: #d6e7c3;
     --color-del: #fadad9;
     --color-mark: #fde061;
-    --color-info: #cce4f9;
-    --color-pass: #e2e6a0;
-    --color-warn: #fde061;
-    --color-fail: #f5dbd9;
+    --color-info: #9bcaf3;
+    --color-pass: #a3d0a5;
+    --color-warn: #ffb812;
+    --color-fail: #f2b4cb;
 
     /*--code-comment: #e1e1e1;
     --code-punctuation: #e1e1e1;
@@ -74,6 +74,7 @@
 }
 
 /* border radius */
+span.badge,
 button,
 input,
 select,

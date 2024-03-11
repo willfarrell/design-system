@@ -1,4 +1,5 @@
 <script>
+	import Div from '@design-system/svelte/element/div.svelte';
 	import FormErrors from '@design-system/svelte/FormErrors.svelte';
 	import Form from '@design-system/svelte/element/form.svelte';
 	import Search from '@design-system/svelte/element/search.svelte';
@@ -15,40 +16,25 @@
 	import InputPassword from '@design-system/svelte/InputPassword.svelte';
 	import InputRadio from '@design-system/svelte/InputRadio.svelte';
 	import InputText from '@design-system/svelte/InputText.svelte';
+	import InputDate from '@design-system/svelte/InputDate.svelte';
+	import InputTel from '@design-system/svelte/InputTel.svelte';
 	import InputUrl from '@design-system/svelte/InputUrl.svelte';
 	import InputSearch from '@design-system/svelte/InputSearch.svelte';
 	import InputSelect from '@design-system/svelte/InputSelect.svelte';
 	import InputTextarea from '@design-system/svelte/InputTextarea.svelte';
 	import Button from '@design-system/svelte/element/button.svelte';
 
-	const error = [
-		{ id: 'text-err', message: 'text error message' },
-		{ id: 'textarea-err', message: 'textarea error message' },
-		{ id: 'select-err', message: 'select error message' },
-		{ id: 'checkbox-err', message: 'checkbox error message' },
-		{ id: 'radio-err', message: 'radio error message' },
-		{ id: 'file-err', message: 'file error message' }
-	];
+	const error = [{ id: 'dob', message: 'error message' }];
 </script>
 
-<FormErrors errors={error}>
-	<h2>Errors</h2>
-</FormErrors>
+<!-- 
+Note: size diff on each browser
+Chrome: width of 0
+Safari: width of 0
+Firefox: width of M
+Expected: width of M, when inputmode="numeric" uses with of 0
+-->
 <Form method="POST">
-	<InputText id="text-err" label="Text" {error} />
-	<InputTextarea id="textarea-err" label="Textarea" {error} />
-	<InputSelect id="select-err" label="Select" {error}>
-		<FieldOption label="A" value="a" />
-		<FieldOption label="B" value="b" />
-	</InputSelect>
-	<Fieldset id="checkbox-err" label="Checkboxes" value={['a']} {error}>
-		<InputCheckbox label="A" hint="hint" value="a" />
-		<InputCheckbox label="B" hint="hint" value="b" />
-	</Fieldset>
-	<Fieldset id="radio-err" label="Radios" value="a" {error}>
-		<InputRadio label="A" hint="hint" value="a" />
-		<InputRadio label="B" hint="hint" value="b" />
-	</Fieldset>
-	<InputFile id="file-err" label="File" {error} button="Choose file" />
+	<InputDate id="date" label="Date" />
 	<Button>Submit</Button>
 </Form>

@@ -1,15 +1,12 @@
 <script>
-	
 	import Head from '@components/Head.svelte';
-	
+
 	import PageHeader from '@components/Header.svelte';
-	
-	import Example from '@components/Example.svelte'
-	
+
+	import Example from '@components/Example.svelte';
+
 	import PageFooter from '@components/Footer.svelte';
-	
-	import Header from '@design-system/svelte/element/header.svelte';
-	import Nav from '@design-system/svelte/element/nav.svelte';
+
 	import Main from '@design-system/svelte/element/main.svelte';
 	import Article from '@design-system/svelte/element/article.svelte';
 	import Section from '@design-system/svelte/element/section.svelte';
@@ -34,10 +31,6 @@
 	import Footer from '@design-system/svelte/element/footer.svelte';
 
 	import Snippet from '@components/Snippet.svelte';
-
-	const fontSize = 16; // px
-	const fontScale = 0.5; // vw
-	const deviceSizes = [360, 480, 768, 1024, 1280, 1920]; // px
 </script>
 
 <svelte:head>
@@ -46,7 +39,6 @@
 		<meta name="description" content="All sematic fluid design system components" />
 	</Head>
 </svelte:head>
-<PageHeader/>
 <Main class="container">
 	<Article>
 		<Example component="heading-group" />
@@ -55,26 +47,22 @@
 		  https://adrianroselli.com/2020/08/be-wary-of-doc-subtitle.html
 		  https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/
 		  -->
-		
+
 		<Section>
 			<H2>Style</H2>
 			<H3>Template</H3>
 			<H3>Layouts</H3>
 			<P>
-			- article (centered, full-width breakouts)
-			- documentation (aside, scrollspy)
-			- faceted search
-			- form input
-		</P>
+				- article (centered, full-width breakouts) - documentation (aside, scrollspy) - faceted
+				search - form input
+			</P>
 			<H3>Horizontal rule</H3>
-			<Example component="horizontal-rule"  />
+			<Example component="horizontal-rule" />
 			<H3>Colour</H3>
 			<H3>Theme override</H3>
-			<P>
-			- CSS Rules
-		</P>
+			<P>- CSS Rules</P>
 		</Section>
-		
+
 		<Section>
 			<H2>Typography</H2>
 			<H3>Typeface</H3>
@@ -87,82 +75,80 @@
 			<H3>Type scale</H3>
 			<P>16px (default) + View port width * 0.05/100</P>
 			<H3>Headings</H3>
-			<Example component="headings"  />
+			<!-- <Example component="heading-group"  /> --><!-- applied above -->
+			<Example component="headings" />
 
 			<H3>Paragraphs</H3>
-			<Example component="paragraphs"  />
+			<Example component="paragraphs" />
 			<!--
 			Source:
 			  - Why 60ch, WCAG needs 80ch: https://meyerweb.com/eric/thoughts/2018/06/28/what-is-the-css-ch-unit/
 			  -->
 			<H3>Inline text elements</H3>
-			<Example component="inline-text-elements"  />
+			<Example component="inline-text-elements" />
 			<H3>Links</H3>
-			<P>
-			- inline (default,hover,active,external) link
-			- back link
-			- tag link
-			- back to top link
-			- skip link
-			- mailto
-			- tel
-		</P>
+			<Example component="link" />
+			<Example component="link-mailto" />
+			<Example component="link-tel" />
+			<!-- <Example component="link-skip"  /> --><!-- Applied above -->
+			<Example component="link-back" />
+			<!-- <Example component="link-back-to-top" /> --><!-- Applied below -->
+			<!--<Example component="link-tag" />--><!-- role invalid, skip -->
+
 			<H3>Lists</H3>
 			<H4>Unordered</H4>
-			<Example component="list-unordered"  />
+			<Example component="list-unordered" />
 			<H4>Ordered</H4>
-			<Example component="list-ordered"  />
+			<Example component="list-ordered" />
 			<H4>Descriptions</H4>
-			<Example component="list-description"  />
+			<Example component="list-description" />
 		</Section>
 		<Section>
 			<H2>Forms</H2>
-			<H2>Buttons</H2>
-			<Example component="button"  />
-				<P>- print
-				- copy</P>
-			<H3>Errors</H3>
-			<Example component="form-errors"  />
+			<H3>Buttons</H3>
+			<Example component="button" />
+			<P>- print - copy</P>
 			<H3>Text inputs</H3>
-			<Example component="form-input-text"  />
-				<P>TODO break into parts
-				- name [Privacy]
-				- email [Privacy]
-				- phone [Privacy]</P>
+			<Example component="form-input-text" />
+			<P>TODO break into parts - name [Privacy] - email [Privacy] - phone [Privacy]</P>
 			<H3>Number inputs</H3>
-			<Example component="form-input-number"  />
-			<H3>Date picker [Avoid]</H3>
+			<Example component="form-input-number" />
 			<H3>Date input</H3>
-			<Example component="form-input-date"  />
+			<Example component="form-input-date" />
+			<H3>Date picker [Avoid]</H3>
+			<Example component="form-input-datepicker" />
 			<H3>Search input</H3>
-			<Example component="form-input-search"  />
-				<P>TODO - Address Input</P>
+			<Example component="form-input-search" />
+			<P>TODO - Address Input</P>
 			<H3>Checkboxes</H3>
-			<Example component="form-input-checkbox"  />
+			<Example component="form-input-checkbox" />
 			<H3>Radios</H3>
-			<Example component="form-input-radio"  />
+			<Example component="form-input-radio" />
 			<H3>Select [Avoid]</H3>
-			<Example component="form-input-select"  />
-				Select Typeahead
+			<Example component="form-input-select" />
+			<Example component="form-input-select-typeahead" />
+			<Example component="form-input-select-multiple" />
+			<!--<H3>Data list</H3>
+			<Example component="form-input-datalist" />-->
 			<H3>Textarea</H3>
-			<Example component="form-input-textarea"  />
+			<Example component="form-input-textarea" />
 			<H3>File input</H3>
-			<Example component="form-input-file"  />
-				<P>Authentication
-				- username
-				- email [Avoid]
-				- password [Avoid]
-				- totp [Avoid]
-				- WebAuthn / PassKey</P>
+			<Example component="form-input-file" />
+			<P
+				>Authentication - username - email [Avoid] - password [Avoid] - totp [Avoid] - WebAuthn /
+				PassKey</P
+			>
+			<H3>Address</H3>
+			<Example component="form-input-address" />
+			<H3>Errors</H3>
+			<Example component="form-errors" />
 		</Section>
 		<Section>
 			<H2>Media elements</H2>
 			<H3>Icons</H3>
 			<H3>Images</H3>
 			<H3>Video</H3>
-			<P>- HTML
-			- Vimeo?
-			- Youtube?</P>
+			<P>- HTML - Vimeo? - Youtube?</P>
 			<H3>Audio</H3>
 			<H3>Chart (Histogram)</H3>
 			<H3>Chart (Scatter)</H3>
@@ -171,31 +157,30 @@
 		<Section>
 			<H2>Components</H2>
 			<H3>Accordion</H3>
-			<Example component="accordion"  />
-				<!--
+			<Example component="accordion" />
+			<!--
 					Ref: https://adrianroselli.com/2023/08/progressively-enhanced-html-accordion.html
 				-->
 			<H3>Address</H3>
-			<Example component="address"  />
+			<Example component="address" />
 			<H3>Banner</H3>
 			<H3>Blockquote</H3>
-			<Example component="blockquote"  />
-				<!--  https://adrianroselli.com/2023/07/blockquotes-in-screen-readers.html -->
+			<Example component="blockquote" />
+			<!--  https://adrianroselli.com/2023/07/blockquotes-in-screen-readers.html -->
 			<H3>Card</H3>
-			<Example component="card"  />
-				<!--
+			<Example component="card" />
+			<!--
 					https://inclusive-components.design/cards/
 				-->
 			<H3>Code block</H3>
 			<H3>Details</H3>
-			<Example component="details"  />
+			<Example component="details" />
 			<H3>Dialog [Avoid]</H3>
-			<Example component="dialog" />
+			<!-- <Example component="dialog" /> --><!-- contains header/footer which need labels -->
 			<H3>Dropdown</H3>
 			<H3>Form Aside (Faceted search)</H3>
 			<H3>Header</H3>
-			<P>- multi-locale
-			- search</P>
+			<P>- multi-locale - search</P>
 			<H3>Footer</H3>
 			<H3>Footnotes</H3>
 			<Example component="footnotes" />
@@ -209,25 +194,24 @@
 			<H3>Pagination (Next/Prev)</H3>
 			<H3>Tabs [Avoid]</H3>
 			<H3>Table</H3>
-			<Example component="table"  />
-			<Example component="table-stripe"  />
-				<!--
+			<Example component="table" />
+			<Example component="table-stripe" />
+			<!--
 				// https://inclusive-components.design/data-tables/
 				-->
+			<H3>Code block</H3>
 		</Section>
 		<Section>
 			<H3>Grid</H3>
-			<Example component="grid-cards"  />
+			<Example component="grid-cards" />
 		</Section>
 		<Section>
 			<H2>Map</H2>
 			<H3>Style</H3>
-			<P>- colours
-			- patterns</P>
+			<P>- colours - patterns</P>
 			<H3>Tiles</H3>
 			<P>- PMTiles + Brotli</P>
 			<H3>Component</H3>
 		</Section>
 	</Article>
 </Main>
-<PageFooter/>

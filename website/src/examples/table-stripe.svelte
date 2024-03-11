@@ -1,5 +1,5 @@
 <script>
-	import {paragraph} from '@examples/index.js'
+	import { paragraph } from '@examples/index.js';
 	import Table from '@design-system/svelte/Table.svelte';
 	import Caption from '@design-system/svelte/element/caption.svelte';
 	import Colgroup from '@design-system/svelte/element/colgroup.svelte';
@@ -10,7 +10,6 @@
 	import Tr from '@design-system/svelte/element/tr.svelte';
 	import Th from '@design-system/svelte/element/th.svelte';
 	import Td from '@design-system/svelte/element/td.svelte';
-
 </script>
 
 <Table class="stripe">
@@ -56,14 +55,14 @@
 			<Td>Cell</Td>
 		</Tr>
 	</Tbody>
-	<Tfoot>
+	<!-- <Tfoot>
 		<Tr>
-			<Th scope="col">#</Th>
-			<Th scope="col">Footer</Th>
-			<Th scope="col">Footer</Th>
-			<Th scope="col">Footer</Th>
-			<Th scope="col">Footer</Th>
-			<Th scope="col">Footer</Th>
+			<Th>#</Th>
+			<Th>Footer</Th>
+			<Th>Footer</Th>
+			<Th>Footer</Th>
+			<Th>Footer</Th>
+			<Th>Footer</Th>
 		</Tr>
-	</Tfoot>
+	</Tfoot> -->
 </Table>

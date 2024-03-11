@@ -1,0 +1,3 @@
+<datalist {...$$props}>
+  <slot />
+</datalist>

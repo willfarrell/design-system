@@ -1,6 +1,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 
-const globalAttributes = [
+const globalAttributes = {}
+;[
   'accesskey',
   'autocapitalize',
   'autofocus',
@@ -31,15 +32,23 @@ const globalAttributes = [
   'title',
   'translate',
   'virtualkeyboardpolicy'
-]
+].forEach((attribute) => {
+  globalAttributes[attribute] = true
+})
 
-const elementAttributes = {
-  input: ['accept']
-}
-export default (props, attributes = []) => {
+// const elementAttributes = {
+//   input: ['accept']
+// }
+
+export default (props, attributes = {}) => {
   const data = {}
   for (const prop in props) {
-    if (!globalAttributes[prop] && prop.substring(0, 5) !== 'data-') continue
+    if (
+      !globalAttributes[prop] &&
+      !attributes[prop] &&
+      prop.substring(0, 5) !== 'data-'
+    )
+      continue
     data[prop] = props[prop]
   }
   return data

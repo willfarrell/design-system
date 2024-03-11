@@ -7,6 +7,14 @@
   
   // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes
   const attributes = ['accept','alt','autocomplete','capture','checked','dirname','disabled','form','formaction','formenctype','formmethod','formnovalidate','formtarget','height','list','max','maxlength','min','minlength','multiple','name','pattern','placeholder','popovertarget','popovertargetaction','readonly','required','size','src','step','type','value','width']
+  //console.log($$props)
+  
+  // aria-describedby={hint ? (id ?? name)+'-hint' : null}
+  // aria-errormessage={error?.length ? (id ?? name) + "-error" : null} // for aria-live only?
+  let describedby = ''
+  if (hint) describedby+=(id ?? name)+'-hint'
+  if (error?.length) describedby+=(id ?? name)+'-error'
+  describedby||=null
 </script>
 
 
@@ -37,8 +45,7 @@
   {capture}
   {multiple}
   
-  aria-describedby={hint ? (id ?? name) + "-hint" : null}
-  aria-errormessage={error?.length ? (id ?? name) + "-error" : null}
+  aria-describedby={describedby}
   
   aria-invalid={error?.length ? 'true' : null}
 />

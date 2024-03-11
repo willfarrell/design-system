@@ -1,8 +1,8 @@
 <script>
-	import PageHeader from '@design-system/svelte/element/header.svelte';
-	import PageFooter from '@design-system/svelte/element/footer.svelte';
+	import PageHeader from '@components/Header.svelte';
+	import PageFooter from '@components/Footer.svelte';
 </script>
 
-<PageHeader/>
+<PageHeader />
 <slot />
-<PageFooter/>
+<PageFooter />

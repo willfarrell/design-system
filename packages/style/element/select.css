@@ -1,28 +1,38 @@
+/* TODO add in chevron */
 select {
   border: var(--border-width) solid var(--border-color, currentColor);
   font: inherit;
+  color: var(--color-text);
   background-color: transparent;
 
-  text-transform: none;
   cursor: pointer;
   padding-block: calc(var(--padding-fixed) * 0.5);
+  padding-inline: var(--padding-fixed) calc(var(--padding-fixed) * 2 + 1em); /* 1em is width of :after */
 
   appearance: none;
-  padding-inline: var(--padding-fixed) calc(var(--padding-fixed) + 0.5em);
-  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%),
-    linear-gradient(135deg, currentColor 50%, transparent 50%);
-  background-position:
-    right calc(var(--padding-fixed) * 0.5 + 0.25em) center,
-    right calc(var(--padding-fixed) * 0.5) center;
-  background-size:
-    0.25em 0.25em,
-    0.25em 0.25em;
-  background-repeat: no-repeat;
+  grid-area: select;
+}
+/*:not([multiple])*/
+div:has(> select:not([multiple])) {
+  display: inline-grid;
+  grid-template-areas: 'select';
+  align-items: center;
+}
+div:has(> select:not([multiple])):after {
+  content: '';
+  width: 1em;
+  height: 1em;
+  background-color: var(--border-color, currentColor);
+  margin-inline: var(--padding-fixed);
+  /* chevron down */
+  clip-path: polygon(10% 20%, 50% 60%, 90% 20%, 100% 30%, 50% 80%, 0 30%);
+  grid-area: select;
+  justify-self: end;
 }
 
 @media (prefers-contrast: custom), (forced-colors: active) {
   select {
     background: none;
-    appearance: revert;
+    appearance: auto;
   }
 }

@@ -26,11 +26,6 @@
 </script>
 
 <Div style="column-width:20ch">
-	<P
-		><A href="#">link</A>
-		<A href="/">active link</A>
-		<A href="https://example.org">external link</A></P
-	>
 	<P><Abbr title="abbreviation">abbr</Abbr></P>
 	<P><Bdo dir="rtl">reverse</Bdo></P>
 	<P><Dfn id="dfn"><Abbr title="definition">dfn</Abbr></Dfn></P>

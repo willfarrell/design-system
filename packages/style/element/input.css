@@ -1,5 +1,6 @@
 input {
   border: var(--border-width) solid var(--border-color, currentColor);
+  color: var(--color-text);
   background: transparent;
   font: inherit;
 }
@@ -7,6 +8,7 @@ input {
 input:where(
     [type='text'],
     /*[type='search'],*/
+    [type='date'],
     [type='email'],
     [type='url'],
     [type='password']

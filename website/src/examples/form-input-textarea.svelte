@@ -17,7 +17,6 @@
 	import InputText from '@design-system/svelte/InputText.svelte';
 	import InputUrl from '@design-system/svelte/InputUrl.svelte';
 	import InputSearch from '@design-system/svelte/InputSearch.svelte';
-	import InputSelectAutocomplete from '@design-system/svelte/InputSelectAutocomplete.svelte';
 	import InputSelect from '@design-system/svelte/InputSelect.svelte';
 	import InputTextarea from '@design-system/svelte/InputTextarea.svelte';
 	import Button from '@design-system/svelte/element/button.svelte';

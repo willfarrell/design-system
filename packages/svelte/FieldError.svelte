@@ -6,5 +6,5 @@
 </script>
 
 {#if errors?.length}
-  <Span id={id + '-error'}>{errors[0].message}</Span>
+  <Span id={id + '-error'} aria-live="off">{errors[0].message}</Span>
 {/if}
