@@ -15,6 +15,7 @@
 	import ExampleBlockquote from '@examples/blockquote.svelte';
 	import ExampleInlineTextElements from '@examples/inline-text-elements.svelte';
 	import ExampleLink from '@examples/link.svelte';
+	import ExampleLinkButton from '@examples/link-button.svelte';
 	import ExampleLinkTel from '@examples/link-tel.svelte';
 	import ExampleLinkMailto from '@examples/link-mailto.svelte';
 	import ExampleLinkSkip from '@examples/link-skip.svelte';
@@ -26,6 +27,7 @@
 	import ExampleListDescription from '@examples/list-description.svelte';
 
 	import ExampleFormErrors from '@examples/form-errors.svelte';
+	import ExampleFormInputFocus from '@examples/form-input-focus.svelte';
 	import ExampleFormInputText from '@examples/form-input-text.svelte';
 	import ExampleFormInputNumber from '@examples/form-input-number.svelte';
 	import ExampleFormInputDate from '@examples/form-input-date.svelte';
@@ -74,6 +76,7 @@
 		ExampleTableStripe,
 		ExampleTable,
 		ExampleFormErrors,
+		ExampleFormInputFocus,
 		ExampleFormInputText,
 		ExampleFormInputNumber,
 		ExampleFormInputDate,
@@ -90,6 +93,7 @@
 		ExampleFormInputAddress,
 
 		ExampleLink,
+		ExampleLinkButton,
 		ExampleLinkTel,
 		ExampleLinkMailto,
 		ExampleLinkSkip,

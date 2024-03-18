@@ -1,0 +1,273 @@
+:root {
+	--icon-external: url('/img/icons.svg#a');
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--color-l0: #ffffff;
+		--color-l1: #fafafa;
+		--color-l2: #f6f6f6;
+		--color-l3: #f3f3f3;
+		--color-l4: #f1f1f1;
+		--color-l5: #efefef;
+		--color-text: #1f1f1f;
+		--color-fill-text: #fafafa;
+		--color-main: #522e9a;
+		--color-main-pseudo: #e5def2;
+		--color-main-bold: #7956be;
+		--color-main-bold-pseudo: #ccbfe6;
+		--color-focus: #522e9a;
+		--color-ins: #354d1c;
+		--color-del: #84211f;
+		--color-mark: #514511;
+		--color-info: #186db7;
+		--color-pass: #327835;
+		--color-warn: #8d6300;
+		--color-fail: #c63325;
+
+		/*
+	--code-comment: #464646;
+	--code-punctuation: #464646;
+	--code-deleted: #852016;
+	--code-inserted: #454912;
+	--code-operator: #522e9a;
+	--code-keyword: #004e57;
+	--code-function: #84211f;
+	--code-variable: #9f5900;
+	*/
+	}
+}
+[data-theme='light'] {
+	--color-l0: #ffffff;
+	--color-l1: #fafafa;
+	--color-l2: #f6f6f6;
+	--color-l3: #f3f3f3;
+	--color-l4: #f1f1f1;
+	--color-l5: #efefef;
+	--color-text: #1f1f1f;
+	--color-fill-text: #fafafa;
+	--color-main: #522e9a;
+	--color-main-pseudo: #e5def2;
+	--color-main-bold: #7956be;
+	--color-main-bold-pseudo: #ccbfe6;
+	--color-focus: #522e9a;
+	--color-ins: #354d1c;
+	--color-del: #84211f;
+	--color-mark: #514511;
+	--color-info: #186db7;
+	--color-pass: #327835;
+	--color-warn: #8d6300;
+	--color-fail: #c63325;
+
+	/*
+  --code-comment: #464646;
+  --code-punctuation: #464646;
+  --code-deleted: #852016;
+  --code-inserted: #454912;
+  --code-operator: #522e9a;
+  --code-keyword: #004e57;
+  --code-function: #84211f;
+  --code-variable: #9f5900;
+  */
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-l0: #1f1f1f;
+		--color-l1: #292929;
+		--color-l2: #2f2f2f;
+		--color-l3: #343434;
+		--color-l4: #363636;
+		--color-l5: #3a3a3a;
+		--color-text: #fafafa;
+		--color-fill-text: #1f1f1f;
+		--color-main: #e5def2;
+		--color-main-pseudo: #522e9a;
+		--color-main-bold: #ccbfe6;
+		--color-main-bold-pseudo: #7956be;
+		--color-focus: #e5def2;
+		--color-ins: #d6e7c3;
+		--color-del: #fadad9;
+		--color-mark: #fde061;
+		--color-info: #9bcaf3;
+		--color-pass: #a3d0a5;
+		--color-warn: #ffb812;
+		--color-fail: #f2b4cb;
+
+		/*--code-comment: #e1e1e1;
+  --code-punctuation: #e1e1e1;
+  --code-deleted: #f5dbd9;
+  --code-inserted: #e2e6a0;
+  --code-operator: #e5def2;
+  --code-keyword: #bce9ef;
+  --code-function: #fadad9;
+  --code-variable: #fdb861;*/
+	}
+}
+
+[data-theme='dark'] {
+	--color-l0: #1f1f1f;
+	--color-l1: #292929;
+	--color-l2: #2f2f2f;
+	--color-l3: #343434;
+	--color-l4: #363636;
+	--color-l5: #3a3a3a;
+	--color-text: #fafafa;
+	--color-fill-text: #1f1f1f;
+	--color-main: #e5def2;
+	--color-main-pseudo: #522e9a;
+	--color-main-bold: #ccbfe6;
+	--color-main-bold-pseudo: #7956be;
+	--color-focus: #e5def2;
+	--color-ins: #d6e7c3;
+	--color-del: #fadad9;
+	--color-mark: #fde061;
+	--color-info: #9bcaf3;
+	--color-pass: #a3d0a5;
+	--color-warn: #ffb812;
+	--color-fail: #f2b4cb;
+
+	/*--code-comment: #e1e1e1;
+--code-punctuation: #e1e1e1;
+--code-deleted: #f5dbd9;
+--code-inserted: #e2e6a0;
+--code-operator: #e5def2;
+--code-keyword: #bce9ef;
+--code-function: #fadad9;
+--code-variable: #fdb861;*/
+}
+
+[data-theme='color'] {
+	--color-l0: #1f1f1f;
+	--color-l1: #292929;
+	--color-l2: #2f2f2f;
+	--color-l3: #343434;
+	--color-l4: #363636;
+	--color-l5: #3a3a3a;
+	--color-text: #fafafa;
+	--color-fill-text: #1f1f1f;
+	--color-main: #e5def2;
+	--color-main-pseudo: #522e9a;
+	--color-main-bold: #ccbfe6;
+	--color-main-bold-pseudo: #7956be;
+	--color-focus: #e5def2;
+}
+
+/* border radius */
+span.badge,
+button,
+a.button,
+input,
+select,
+textarea,
+[type='file']::file-selector-button {
+	border-radius: 0.125rem;
+}
+
+/* address multiple inputs */
+fieldset.address {
+	display: flex;
+	gap: var(--gap);
+	flex-direction: column;
+}
+
+/* Do not use this file, used only for demo to force states */
+
+/* a */
+a:not(.button).force {
+	&.active {
+		color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
+		text-decoration: underline solid 0.5em
+			color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
+		text-decoration-thickness: 0.5em;
+		text-underline-position: under;
+	}
+	&.focus {
+		color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+		text-decoration: underline solid 0.5em
+			color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+		text-decoration-thickness: 0.5em;
+		text-underline-position: under;
+	}
+	&.hover {
+		color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+		text-decoration: underline solid 0.5em
+			color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+		text-decoration-thickness: 0.5em;
+		text-underline-position: under;
+	}
+	& .visited {
+	}
+}
+a.button.force {
+	&.active {
+		background-color: color-mix(in srgb, var(--color-main-bold-pseudo) 12%, var(--color-main-bold));
+	}
+	&.focus {
+		background-color: color-mix(in srgb, var(--color-main-bold-pseudo) 12%, var(--color-main-bold));
+		/* base.css */
+		outline: 0.25rem solid var(--color-focus);
+		outline-offset: 0.25rem;
+		z-index: 1;
+	}
+	&.hover {
+		background-color: color-mix(in srgb, var(--color-main-bold-pseudo) 8%, var(--color-main-bold));
+	}
+}
+
+/* button */
+button.force {
+	&.active {
+		background-color: color-mix(in srgb, var(--color-main-bold-pseudo) 12%, var(--color-main-bold));
+	}
+	&.focus {
+		background-color: color-mix(in srgb, var(--color-main-bold-pseudo) 12%, var(--color-main-bold));
+		/* base.css */
+		outline: 0.25rem solid var(--color-focus);
+		outline-offset: 0.25rem;
+		z-index: 1;
+	}
+	&.hover {
+		background-color: color-mix(in srgb, var(--color-main-bold-pseudo) 8%, var(--color-main-bold));
+	}
+}
+
+/* inputs */
+input.force,
+select.force,
+textarea.force {
+	&.focus {
+		/* base.css */
+		outline: 0.25rem solid var(--color-focus);
+		outline-offset: 0.25rem;
+		z-index: 1;
+	}
+}
+fieldset.force.focus {
+	& input {
+		/* base.css */
+		outline: 0.25rem solid var(--color-focus);
+		outline-offset: 0.25rem;
+		z-index: 1;
+	}
+}
+
+/* size workaround for firefox inconsistency */
+.size-2 {
+	width: 2em;
+}
+.size-4 {
+	width: 4em;
+}
+.size-6 {
+	width: 6em;
+}
+.size-num-2 {
+	width: 2ch;
+}
+.size-num-4 {
+	width: 4ch;
+}
+.size-num-6 {
+	width: 6ch;
+}

@@ -8,7 +8,6 @@
 	import InputCheckbox from '@design-system/svelte/InputCheckbox.svelte';
 	import InputEmail from '@design-system/svelte/InputEmail.svelte';
 	import InputFile from '@design-system/svelte/InputFile.svelte';
-	import InputFileDropzone from '@design-system/svelte/InputFileDropzone.svelte';
 	import InputHidden from '@design-system/svelte/InputHidden.svelte';
 	import InputNumber from '@design-system/svelte/InputNumber.svelte';
 	import InputOneTimeCode from '@design-system/svelte/InputOneTimeCode.svelte';
@@ -24,7 +23,7 @@
 
 <Form method="POST">
 	<InputSelect
-		id="select"
+		id="select-multiple"
 		label="Select (multiple) - AVOID"
 		hint="Checkboxes will be a better UX"
 		multiple

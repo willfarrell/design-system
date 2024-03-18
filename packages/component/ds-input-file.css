@@ -1,0 +1,10 @@
+[is='ds-input-file']:defined {
+  border: var(--border-width) dashed currentColor;
+  padding: var(--padding-fixed);
+  &:hover {
+    background-color: var(--color-l2);
+  }
+  /* &.focus {
+    border-color: var(--color-main);
+  } */
+}

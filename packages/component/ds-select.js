@@ -1,13 +1,13 @@
 /* eslint-env browser */
 
-const is = 'ds-select-autocomplete'
+const is = 'ds-select'
 customElements.define(
   is,
   class extends HTMLSelectElement {
     constructor() {
       super()
     }
-    async initialize() {
+    async connectedCallback() {
       const parentNode = this.parentNode
       const i18n = this.dataI18n
         ? await import(this.dataI18n)

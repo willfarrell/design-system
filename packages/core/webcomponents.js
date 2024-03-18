@@ -11,7 +11,7 @@ const lazyLoad = new IntersectionObserver(async (entries, observer) => {
   for (const { target, isIntersecting } of entries) {
     if (isIntersecting) {
       // don't `await` to ensure non-blocking
-      import(`/js/is/${target.getAttribute('is')}.js?v=${v}`)
+      import(`/js/pewc/${target.getAttribute('is')}.js?v=${v}`)
     }
   }
 })

@@ -53,8 +53,8 @@
 	>
 	<P><S>strikthrough</S></P>
 	<P><Small>small</Small></P>
-	<P><Sub>sub</Sub></P>
-	<P><Sup>sup</Sup></P>
+	<P>X<Sub>sub</Sub></P>
+	<P>X<Sup>sup</Sup></P>
 	<P><U>underline</U></P>
 	<P><Var>variable</Var></P>
 </Div>

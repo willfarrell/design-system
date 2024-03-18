@@ -10,6 +10,7 @@
   {id}
   aria-describedby={hint ? id + "-hint" : null}
   {role}
+  class={$$props.class}
 >
   <slot {id} {value} />
 </fieldset>

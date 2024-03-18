@@ -1,42 +1,15 @@
-[type='file'] {
+input[type='file'] {
   border: 0;
 }
 
-[type='file']::-webkit-file-upload-button {
-  visibility: hidden;
-  width: var(--padding-fixed);
-
-  /* Not used because :hover is not supported */
-  /*
-  font-weight: 700;
-  cursor: pointer;
-  border: var(--border-width) solid
-    var(--border-color, var(--color-main-bold));
-  background-color: var(--color-main-bold);
-  padding: calc(var(--padding-fixed) * 0.78) var(--padding-fixed);
-  color: var(--color-fill-text);
-  margin-inline-end: var(--padding-fixed);
-
-  &:hover {
-    background-color: color-mix(
-      in srgb,
-      var(--color-main-bold-pseudo) 8%,
-      var(--color-main-bold)
-    );
-  }
-  */
-}
-
-[type='file']::before {
-  content: attr(data-button);
-  display: inline-block;
-
+input[type='file']::file-selector-button {
   font-weight: 700;
   cursor: pointer;
   border: var(--border-width) solid var(--border-color, var(--color-main-bold));
   background-color: var(--color-main-bold);
-  padding: calc(var(--padding-fixed) * 0.5) var(--padding-fixed);
+  padding: calc(var(--padding-fixed) * 0.78) var(--padding-fixed);
   color: var(--color-fill-text);
+  margin-inline-end: var(--padding-fixed);
 
   &:hover {
     background-color: color-mix(

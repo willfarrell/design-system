@@ -16,19 +16,19 @@ input:where(
   padding: calc(var(--padding-fixed) * 0.5) var(--padding-fixed);
 }
 
-/* Correct the outline style in Safari */
-/*input[type='search'] {
-  outline-offset: -2px;
-  -webkit-appearance: none;
-}
-
-::-webkit-search-results-button {
-  -webkit-appearance: none;
-}*/
-
 [role='group']:has(input) {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: var(--gap);
 }
+
+/* Fix size attr width in Firefox - requires: https://bugzilla.mozilla.org/show_bug.cgi?id=435426 */
+/*
+[size] {
+  width: attr(size em);
+}
+input[inputmode='numeric'][size] {
+  width: attr(size ch);
+}
+*/

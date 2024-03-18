@@ -1,6 +1,6 @@
 <script>
   import FieldInput from './FieldInput.svelte'
-  export let button, value
+  export let value
 </script>
 
-<FieldInput {...$$props} value={value ?? null} type="file" data-button={button} />
+<FieldInput {...$$props} value={value ?? null} type="file" is="ds-input-file" />

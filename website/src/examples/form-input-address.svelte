@@ -12,7 +12,7 @@
 </script>
 
 <Form method="POST">
-	<Fieldset>
+	<Fieldset class="address">
 		<InputAddressStreet id="street-address" label="Street address" hint="#000, 123 Home Street" />
 		<InputAddressCity id="city" label="City" hint="" />
 		<InputAddressPostalCode id="postal-code" label="Postal code, postcode, or ZIP" hint="A1A 1A1" />

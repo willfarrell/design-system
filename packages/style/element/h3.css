@@ -19,6 +19,6 @@ h3[id] a {
 @media (min-width: 60em) {
   h3[id] a {
     right: auto;
-    left: -1.5em;
+    left: -1.35em;
   }
 }

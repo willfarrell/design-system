@@ -6,18 +6,18 @@ a {
 a:hover,
 a:focus-visible {
   color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-  text-decoration: underline solid 0.5em
+  text-decoration: underline solid 0.4em
     color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-  text-decoration-thickness: 0.5em;
+  text-decoration-thickness: 0.4em;
   text-underline-position: under;
 }
 
 a:active,
 a[aria-current='page'] {
   color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
-  text-decoration: underline solid 0.5em
+  text-decoration: underline solid 0.4em
     color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
-  text-decoration-thickness: 0.25em;
+  text-decoration-thickness: 0.2em;
   text-underline-position: under;
 }
 

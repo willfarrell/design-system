@@ -1,0 +1,5 @@
+span.badge {
+  --color-tag: var(--color-l5);
+  background-color: var(--color-tag);
+  padding: calc(var(--padding-fixed) * 0.25) calc(var(--padding-fixed) * 0.5);
+}

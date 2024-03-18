@@ -8,14 +8,12 @@
 	import InputCheckbox from '@design-system/svelte/InputCheckbox.svelte';
 	import InputEmail from '@design-system/svelte/InputEmail.svelte';
 	import InputFile from '@design-system/svelte/InputFile.svelte';
-	import InputName from '@design-system/svelte/InputName.svelte';
 	import InputHidden from '@design-system/svelte/InputHidden.svelte';
 	import InputNumber from '@design-system/svelte/InputNumber.svelte';
 	import InputOneTimeCode from '@design-system/svelte/InputOneTimeCode.svelte';
 	import InputPassword from '@design-system/svelte/InputPassword.svelte';
 	import InputRadio from '@design-system/svelte/InputRadio.svelte';
 	import InputText from '@design-system/svelte/InputText.svelte';
-	import InputTel from '@design-system/svelte/InputTel.svelte';
 	import InputUrl from '@design-system/svelte/InputUrl.svelte';
 	import InputSearch from '@design-system/svelte/InputSearch.svelte';
 	import InputSelect from '@design-system/svelte/InputSelect.svelte';
@@ -24,11 +22,20 @@
 </script>
 
 <Form method="POST">
-	<InputText id="text" label="Text" hint="Just some friendly text" />
-	<InputName id="name" label="Name" hint="How we should refer to you" />
-	<InputEmail id="email" label="Email address" hint="Use the format useanme+alias@example.org" />
-	<InputTel id="tel" label="Telephone number" hint="Use the format +1-000-999-1234" />
-	<InputUrl id="url" label="URL" hint="Use the format https://example.org" />
-	<InputPassword id="password" label="Password" hint="You should probably use PassKeys instead" />
+	<InputText id="text-focus" label="Text" class="force focus" />
+	<InputTextarea id="textarea-focus" label="Textarea" class="force focus" />
+	<InputSelect id="select-focus" label="Select" class="force focus">
+		<FieldOption label="A" value="a" />
+		<FieldOption label="B" value="b" />
+	</InputSelect>
+	<Fieldset id="checkbox-focus" label="Checkboxes" value={['a']} class="force focus">
+		<InputCheckbox label="A" hint="hint" value="a" />
+		<InputCheckbox label="B" hint="hint" value="b" />
+	</Fieldset>
+	<Fieldset id="radio-focus" label="Radios" value="a" class="force focus">
+		<InputRadio label="A" hint="hint" value="a" />
+		<InputRadio label="B" hint="hint" value="b" />
+	</Fieldset>
+	<InputFile id="file-focus" label="File" button="Choose file" class="force focus" />
 	<Button>Submit</Button>
 </Form>

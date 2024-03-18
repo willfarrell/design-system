@@ -88,6 +88,7 @@
 			<Example component="inline-text-elements" />
 			<H3>Links</H3>
 			<Example component="link" />
+			<Example component="link-button" />
 			<Example component="link-mailto" />
 			<Example component="link-tel" />
 			<!-- <Example component="link-skip"  /> --><!-- Applied above -->
@@ -138,6 +139,9 @@
 				>Authentication - username - email [Avoid] - password [Avoid] - totp [Avoid] - WebAuthn /
 				PassKey</P
 			>
+
+			<H3>Input ficus</H3>
+			<Example component="form-input-focus" />
 			<H3>Address</H3>
 			<Example component="form-input-address" />
 			<H3>Errors</H3>

@@ -4,7 +4,7 @@ label {
   cursor: pointer;
 }
 
-label ~ :where(input, select, textarea) {
+label ~ :where(input, div:has(select), textarea) {
   margin-block-start: calc(var(--padding-fixed) * 0.5);
 }
 

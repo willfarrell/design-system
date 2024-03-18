@@ -14,7 +14,7 @@ program
   .command('extract', { isDefault: true })
   .argument('<dir>', 'Path to the build folder with .html files')
   .addOption(
-    new Option('--theme', 'Where theme.css is located').default(
+    new Option('--theme <theme>', 'Where theme styles are located').default(
       '@design-system/style/theme.css'
     )
   )

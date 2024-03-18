@@ -1,10 +1,10 @@
 @import './input.css';
 
-div:has([type='radio']) {
+div:has(input[type='radio']) {
   min-height: calc(var(--border-width) * 2 + var(--padding-fixed) * 2 + 1em);
 }
 
-[type='radio'] {
+input[type='radio'] {
   cursor: pointer;
   position: absolute;
   padding: calc(var(--padding-fixed) + 0.5em);
@@ -13,7 +13,7 @@ div:has([type='radio']) {
   border-radius: 50%;
 }
 
-[type='radio']:after {
+input[type='radio']:after {
   content: '';
   position: absolute;
   top: 50%;
@@ -23,11 +23,11 @@ div:has([type='radio']) {
   border-radius: 50%;
   visibility: hidden;
 }
-[type='radio']:checked:after {
+input[type='radio']:checked:after {
   visibility: visible;
 }
 
-[type='radio'] + label {
+input[type='radio'] + label {
   margin-inline-start: calc(
     var(--padding-fixed) * 2 + 1em + var(--border-width) * 2
   );
@@ -37,7 +37,7 @@ div:has([type='radio']) {
 }
 
 /* hint */
-[type='radio'] ~ [id$='-hint'] {
+input[type='radio'] ~ [id$='-hint'] {
   margin-inline-start: calc(
     var(--padding-fixed) * 2 + 1em + var(--border-width) * 2
   );
@@ -45,7 +45,7 @@ div:has([type='radio']) {
 }
 
 /* conditional */
-[type='radio'] ~ div:first-of-type {
+input[type='radio'] ~ div:first-of-type {
   display: block;
   border-inline-start: 0.4rem solid currentColor;
   margin-inline-start: calc(
@@ -57,6 +57,6 @@ div:has([type='radio']) {
   );
 }
 
-[type='radio']:not(:checked) ~ div:first-of-type {
+input[type='radio']:not(:checked) ~ div:first-of-type {
   display: none;
 }

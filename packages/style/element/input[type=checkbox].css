@@ -1,10 +1,10 @@
 @import './input.css';
 
-div:has([type='checkbox']) {
+div:has(input[type='checkbox']) {
   min-height: calc(var(--border-width) * 2 + var(--padding-fixed) * 2 + 1em);
 }
 
-[type='checkbox'] {
+input[type='checkbox'] {
   cursor: pointer;
   position: absolute;
   padding: calc(var(--padding-fixed) + 0.5em);
@@ -12,7 +12,7 @@ div:has([type='checkbox']) {
   appearance: none;
 }
 
-[type='checkbox']:after {
+input[type='checkbox']:after {
   content: '';
   position: absolute;
   /* Good old trig, use height and border-width as hypotenuses to calc y side offset */
@@ -33,11 +33,11 @@ div:has([type='checkbox']) {
 
   visibility: hidden;
 }
-[type='checkbox']:checked:after {
+input[type='checkbox']:checked:after {
   visibility: visible;
 }
 
-[type='checkbox'] + label {
+input[type='checkbox'] + label {
   margin-inline-start: calc(
     var(--padding-fixed) * 2 + 1em + var(--border-width) * 2
   );
@@ -47,7 +47,7 @@ div:has([type='checkbox']) {
 }
 
 /* hint */
-[type='checkbox'] ~ [id$='-hint'] {
+input[type='checkbox'] ~ [id$='-hint'] {
   margin-inline-start: calc(
     var(--padding-fixed) * 2 + 1em + var(--border-width) * 2
   );
@@ -55,7 +55,7 @@ div:has([type='checkbox']) {
 }
 
 /* conditional */
-[type='checkbox'] ~ div:first-of-type {
+input[type='checkbox'] ~ div:first-of-type {
   display: block;
   border-inline-start: 0.4rem solid currentColor;
   margin-inline-start: calc(
@@ -67,6 +67,6 @@ div:has([type='checkbox']) {
   );
 }
 
-[type='checkbox']:not(:checked) ~ div:first-of-type {
+input[type='checkbox']:not(:checked) ~ div:first-of-type {
   display: none;
 }
