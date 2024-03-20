@@ -112,9 +112,9 @@
 		ExampleLayoutForm,
 		ExampleLayoutSearch,
 
-		ExampleGridCards,
+		ExampleGridCards
 
-		ExampleTestIcons
+		//ExampleTestIcons
 	};
 
 	const { component, ...attributes } = $$props;
