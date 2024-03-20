@@ -43,7 +43,7 @@
 	<Article>
 		<Example component="heading-group" />
 		<!--
-		Source: 
+		Source:
 		  https://adrianroselli.com/2020/08/be-wary-of-doc-subtitle.html
 		  https://www.tpgi.com/subheadings-subtitles-alternative-titles-and-taglines-in-html/
 		  -->
@@ -140,7 +140,7 @@
 				PassKey</P
 			>
 
-			<H3>Input ficus</H3>
+			<H3>Input focus</H3>
 			<Example component="form-input-focus" />
 			<H3>Address</H3>
 			<Example component="form-input-address" />

@@ -59,7 +59,7 @@
 	// Patterns
 	import ExampleGridCards from '@examples/grid-cards.svelte';
 
-	import ExampleTestIcons from '@examples/test-icons.svelte';
+	//import ExampleTestIcons from '@examples/test-icons.svelte';
 
 	const examples = {
 		ExampleAddress,
