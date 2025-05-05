@@ -52,7 +52,10 @@
 		<FormErrors {errors}>
 			<H2>There's a problem</H2>
 		</FormErrors>
-		<H1>Title</H1>
+		<Hgroup>
+			<HSub>Group</HSub>
+			<H1>Field name</H1>
+		</Hgroup>
 		<P>Description</P>
 		<Form method="GET" is="ds-form-submit">
 			<InputText
