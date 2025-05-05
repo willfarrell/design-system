@@ -51,7 +51,7 @@
 	import Variable from '@components/Variable.svelte';
 
 	const page = {
-		// group: 'Design tokens',
+		// group: 'Design system',
 		title: 'Editor',
 		update: '2025-05-01'
 	};
@@ -74,5 +74,6 @@
 			<InputText id="--padding-fixed" name="--padding-fixed" label="Padding (fixed)" size="10" />
 			<Button type="submit">Save</Button>
 		</Form>
+		<!-- <Codeblock language="css" code={html} /> -->
 	</Section>
 </LayoutCenter>

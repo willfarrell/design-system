@@ -39,10 +39,17 @@
 	import Li from '@design-system/svelte/element/li.svelte';
 	import Button from '@design-system/svelte/element/button.svelte';
 	import Img from '@design-system/svelte/element/img.svelte';
+	import Input from '@design-system/svelte/element/input.svelte';
 
+	import FieldLabel from '@design-system/svelte/FieldLabel.svelte';
+	import FieldHint from '@design-system/svelte/FieldHint.svelte';
+	import FieldError from '@design-system/svelte/FieldError.svelte';
 	import ButtonSubmit from '@design-system/svelte/ButtonSubmit.svelte';
 
 	const errors = [{ id: 'text', message: 'input error message' }];
+	const id = 'text';
+	const label = 'What are the details?';
+	const hint = 'Just a friendly hint';
 </script>
 
 <LayoutCenter class="container form">
@@ -52,16 +59,17 @@
 		<FormErrors {errors}>
 			<H2>There's a problem</H2>
 		</FormErrors>
-		<H1>Title</H1>
-		<P>Description</P>
 		<Form method="GET" is="ds-form-submit">
-			<InputText
-				id="text"
-				name="text"
-				label="Text input"
-				hint="Just a friendly hint"
-				error={errors}
-			/>
+			<Div>
+				<Hgroup>
+					<HSub>Group</HSub>
+					<H1><FieldLabel {id} {label} /></H1>
+				</Hgroup>
+
+				<FieldHint {id} {hint} />
+				<FieldError {id} error={errors} />
+				<Input {id} name={id} type="text" />
+			</Div>
 			<ButtonSubmit>Submit</ButtonSubmit>
 		</Form>
 	</Section>
