@@ -1,15 +1,21 @@
 <script>
 	import Head from '@components/Head.svelte';
 	import Example from '@components/Example.svelte';
-	
-	export let data;
-	const {component} = data
+
+	let { data } = $props();
+	const { component } = data;
 </script>
 
-<svelte:head>
-	<Head>
-		<title>{component} | Demo | Design System</title>
-	</Head>
-</svelte:head>
+<Head>
+	<title>{component} | Demo | Design System</title>
+</Head>
 
-<Example {component} />
+<div>
+	<Example {component} />
+</div>
+
+<style>
+	div {
+		padding: 1rem;
+	}
+</style>

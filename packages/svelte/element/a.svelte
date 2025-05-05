@@ -1,22 +1,39 @@
 <script>
+  import allowedAttributes from '../utils/attributes.js'
   import { page } from '$app/stores'
   
-  const {pathname, hash} = $page.url
+  const elementAttributes = new Set([
+    'download', 
+    'href', 
+    'hreflang',
+    'ping',
+    'referrerpolicy',
+    'rel',
+    'target',
+    'type',
+  ])
   
-  export let href;
+  let {
+    children,
+    ...props
+  } = $props();
 
-  let path = pathname+hash;
+  const { pathname, hash } = $page.url
+  
+  const path = pathname+hash;
   // Prevents prerendering
   // if (search?.substring(0, 2) !== "?/") {
   //   path += search;
   // }
-  const external = href?.substring(0, 8) === "https://";
+  if (props.href?.substring(0, 8) === "https://") {
+    props.rel ??= "noreferrer"
+    props.target ??= "_blank"
+  }
+  if (props.href === path) {
+    props['aria-current'] ??= "page"
+  }
 </script>
 
-<a
-  {...$$props}
-  {href}
-  target={external ? "_blank" : null}
-  rel={external ? "noreferrer" : null}
-  aria-current={href === path ? "page" : null}><slot /></a
->
+<a {...allowedAttributes(props, elementAttributes)}>
+  {@render children?.()}
+</a>

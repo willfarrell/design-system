@@ -1,6 +1,6 @@
 {
-  "name": "design-system",
-  "version": "1.0.0",
+  "name": "@willfarrell/design-system",
+  "version": "0.0.0",
   "description": "",
   "private": true,
   "type": "module",
@@ -26,14 +26,15 @@
   },
   "homepage": "https://github.com/willfarrell/design-system#readme",
   "dependencies": {
-    "apca-w3": "^0.1.9",
-    "chroma-js": "^2.4.2",
-    "colorparsley": "^0.1.8"
+    "apca-w3": "^0.1.0",
+    "chroma-js": "^3.0.0",
+    "colorparsley": "^0.1.0"
   },
   "devDependencies": {
-    "prettier": "^3.0.0",
-    "prettier-plugin-svelte": "3.2.1",
-    "standard": "17.1.0"
+    "@biomejs/biome": "^1.0.0",
+    "@commitlint/cli": "^19.0.0",
+    "@commitlint/config-conventional": "^19.0.0",
+    "husky": "^9.0.0"
   },
   "workspaces": [
     "packages/*",

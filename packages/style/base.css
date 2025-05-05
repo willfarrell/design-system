@@ -5,21 +5,20 @@
   --border-width: 0.125rem;
   --border-radius: 0;
   --gap: 1rem;
+  --grid-gap: 1.5rem;
+  --grid-min-width: 15em;
   --padding-fixed: 1rem;
   /* --padding-fluid: 1em; */
 
-  --width-min: 0%;
-  --width-max: 100%;
+  --grid-col-max-width: 100%; /* .grid-max-col */
 
   /* *** Font *** */
   --font-family: system-ui, sans-serif;
-  --font-scale: 0.5vw;
-
+  --font-size: 100%;
   /* *** icons *** */
   /*--icon-external-round: url('data:image/svg+xml,<svg viewBox="0 0 16 16"><path d="M1.5 3.5V14.5H12.5V10H14V15C14 15.5523 13.5523 16 13 16H1C0.447716 16 0 15.5523 0 15V3C0 2.44772 0.447715 2 1 2H6V3.5H1.5Z"/><path d="M15.9217 1.17828L7.01473 10.0853L5.95407 9.02462L14.8611 0.117624L15.9217 1.17828Z"/><path d="M7.5 0H16V1.5H7.5V0Z"/><path d="M16 0L16 8.5L14.5 8.5L14.5 -6.55671e-08L16 0Z"/></svg>');*/
   /* --icon-external: url('data:image/svg+xml,<svg viewBox="0 0 14 14"><path d="M2 1a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V7.5a.5.5 0 0 0-1 0V12H2V2h4.5a.5.5 0 0 0 0-1H2Z"/><path d="M7.35 7.36 12 2.7v1.8a.5.5 0 0 0 1 0v-3a.5.5 0 0 0-.5-.5h-3a.5.5 0 1 0 0 1h1.8L6.64 6.64a.5.5 0 1 0 .7.7Z"/></svg>') */
   /* --icon-external: url('data:image/svg+xml,<svg viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>'); */
-
   /*--icon-chevron: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>');*/
 }
 
@@ -36,10 +35,11 @@
 
 body {
   cursor: default;
+  margin: 0;
   background-color: var(--color-l0);
   color: var(--color-text);
   font-family: var(--font-family);
-  font-size: calc(var(--font-min-size, 1em) + var(--font-scale));
+  font-size: max(var(--font-size), 18px);
   font-weight: var(--font-weight, 400);
   line-height: var(--line-height, 1.5);
   overflow-wrap: break-word;
@@ -66,4 +66,31 @@ body {
   outline: 0.25rem solid var(--color-focus);
   outline-offset: 0.25rem;
   z-index: 1;
+}
+
+/* *** vertical locales - not using invalid values *** */
+/* Ref: https://www.w3.org/International/articles/vertical-text/ *@-moz-document
+
+/* locales: mn */
+html[dir="vlr"] {
+  writing-mode: vertical-lr;
+  time {
+    text-combine-upright: digits 2;
+    text-transform: full-width;
+  }
+  li::marker {
+    text-combine-upright: all;
+  }
+}
+
+/* locales: ja, ko, zh */
+html[dir="vrl"] {
+  writing-mode: vertical-rl;
+  time {
+    text-combine-upright: digits 2;
+    text-transform: full-width;
+  }
+  li::marker {
+    text-combine-upright: all;
+  }
 }

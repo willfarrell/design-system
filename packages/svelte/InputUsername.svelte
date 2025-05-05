@@ -1,7 +1,9 @@
 <script>
   import InputText from "./InputText.svelte";
-  
-  export let autocomplete = 'username'
+  let { ...props } = $props();
 </script>
 
-<InputText {...$$props} {autocomplete} />
+<InputText 
+  {...props} 
+  autocomplete='username'
+/>

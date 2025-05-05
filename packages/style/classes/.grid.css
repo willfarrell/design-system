@@ -4,7 +4,11 @@
 320px is the smallest device size supported
 */
 .grid {
+  flex-grow: 1;
   display: grid;
-  gap: var(--gap);
-  grid-template-columns: repeat(auto-fit, minmax(var(--min-width, 320px), 1fr));
+  gap: var(--grid-gap);
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(var(--grid-min-width, 100%), 1fr)
+  );
 }

@@ -22,12 +22,6 @@
 </script>
 
 <Form method="POST">
-	<InputNumber id="number" label="Number" hint="Should be prime and greater than 99" />
-	<InputOneTimeCode
-		id="code"
-		label="Number code"
-		hint="Enter 6 digit code from your notification"
-		size="6"
-	/>
+	<InputNumber id="number" label="Number" hint="Should be prime and greater than 99" size="3" />
 	<Button>Submit</Button>
 </Form>

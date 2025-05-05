@@ -13,7 +13,7 @@ a:focus-visible {
 }
 
 a:active,
-a[aria-current='page'] {
+a[aria-current="page"] {
   color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
   text-decoration: underline solid 0.4em
     color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
@@ -32,17 +32,20 @@ a:focus-visible {
   text-decoration: none;
 } */
 
-/* 1F517 link symbol */
-/* 1F5D7 overlap */
-/* 1F855 NE arrow */
+/* \1F517 link symbol */
+/* \1F5D7 overlap */
+/* \1F855 NE arrow */
 /* div, .button for cms pages linking to hubs - deprecate when hubs share same domain */
-[href^='https://']:not(:has(img)):after
+[href^='https://']:not(:has(img))::after
 {
-  content: '';
-
-  -webkit-mask: var(--icon-external) no-repeat;
-  mask: var(--icon-external) no-repeat;
-  background-color: currentColor;
-  padding: 0 0.4em;
-  margin: 0.25rem;
+  content: "↗";
+  position: relative;
+  inset-inline-end: -0.125rem;
+  display: inline-block;
+  height: 0px;
+  /* -webkit-mask: var(--icon-external) no-repeat;
+  mask: var(--icon-external) no-repeat; */
+  /* background-color: currentColor; */
+  /* padding: 0 0.4em;
+  margin: 0.25rem; */
 }

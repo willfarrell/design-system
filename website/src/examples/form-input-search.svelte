@@ -27,7 +27,7 @@
 <Search>
 	<Form method="GET">
 		<Div role="group">
-			<InputSearch id="q" label="search" />
+			<InputSearch id="q" label="Search" />
 			<Button><Icon src="/img/icons.svg#search" /><Span>Search</Span></Button>
 		</Div>
 	</Form>

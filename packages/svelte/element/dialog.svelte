@@ -1,6 +1,14 @@
 <script>
-  export let id
+  import allowedAttributes from '../utils/attributes.js'
+  const elementAttributes = new Set([
+    'open'
+  ])
+  
+  let {
+  children,
+  ...props
+  } = $props();
 </script>
-<dialog is="ds-dialog" {id} inert {...$$props}>
-  <slot />
+<dialog {...allowedAttributes(props, elementAttributes)}>
+  {@render children?.()}
 </dialog>

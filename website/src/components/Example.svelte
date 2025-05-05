@@ -3,17 +3,14 @@
 
 	// Style
 	import ExampleHorizontalRule from '@examples/horizontal-rule.svelte';
-	import ExampleLayoutArticle from '@examples/layout-article.svelte';
-	import ExampleLayoutDocumentation from '@examples/layout-documentation.svelte';
-	import ExampleLayoutForm from '@examples/layout-form.svelte';
-	import ExampleLayoutSearch from '@examples/layout-search.svelte';
 
 	// Typography
 	import ExampleHeadings from '@examples/headings.svelte';
 	import ExampleHeadingGroup from '@examples/heading-group.svelte';
 	import ExampleParagraphs from '@examples/paragraphs.svelte';
 	import ExampleBlockquote from '@examples/blockquote.svelte';
-	import ExampleInlineTextElements from '@examples/inline-text-elements.svelte';
+	import ExampleInlineFormatElements from '@examples/inline-format-elements.svelte';
+	import ExampleInlineStyleElements from '@examples/inline-style-elements.svelte';
 	import ExampleLink from '@examples/link.svelte';
 	import ExampleLinkButton from '@examples/link-button.svelte';
 	import ExampleLinkTel from '@examples/link-tel.svelte';
@@ -29,7 +26,13 @@
 	import ExampleFormErrors from '@examples/form-errors.svelte';
 	import ExampleFormInputFocus from '@examples/form-input-focus.svelte';
 	import ExampleFormInputText from '@examples/form-input-text.svelte';
+	import ExampleFormInputName from '@examples/form-input-name.svelte';
+	import ExampleFormInputEmail from '@examples/form-input-email.svelte';
+	import ExampleFormInputTel from '@examples/form-input-tel.svelte';
+	import ExampleFormInputUrl from '@examples/form-input-url.svelte';
+	import ExampleFormInputPassword from '@examples/form-input-password.svelte';
 	import ExampleFormInputNumber from '@examples/form-input-number.svelte';
+	import ExampleFormInputOneTimeCode from '@examples/form-input-one-time-code.svelte';
 	import ExampleFormInputDate from '@examples/form-input-date.svelte';
 	import ExampleFormInputDatepicker from '@examples/form-input-datepicker.svelte';
 	import ExampleFormInputSearch from '@examples/form-input-search.svelte';
@@ -48,37 +51,46 @@
 
 	import ExampleButton from '@examples/button.svelte';
 	import ExampleFootnotes from '@examples/footnotes.svelte';
-	import ExampleTableStripe from '@examples/table-stripe.svelte';
 	import ExampleTable from '@examples/table.svelte';
+	import ExampleTableStripe from '@examples/table-stripe.svelte';
 
 	import ExampleAccordion from '@examples/accordion.svelte';
+	import ExampleAccordionChevron from '@examples/accordion-chevron.svelte';
 	import ExampleCard from '@examples/card.svelte';
 	import ExampleDetails from '@examples/details.svelte';
+	import ExampleDetailsChevron from '@examples/details-chevron.svelte';
 	import ExampleDialog from '@examples/dialog.svelte';
 
 	// Patterns
 	import ExampleGridCards from '@examples/grid-cards.svelte';
 
-	//import ExampleTestIcons from '@examples/test-icons.svelte';
+	const { component, ...props } = $props();
 
-	const examples = {
+	const componets = {
 		ExampleAddress,
 		ExampleBlockquote,
 		ExampleButton,
 		ExampleHeadings,
 		ExampleHeadingGroup,
 		ExampleHorizontalRule,
-		ExampleInlineTextElements,
+		ExampleInlineFormatElements,
+		ExampleInlineStyleElements,
 		ExampleListOrdered,
 		ExampleListUnordered,
 		ExampleListDescription,
 		ExampleParagraphs,
-		ExampleTableStripe,
 		ExampleTable,
+		ExampleTableStripe,
 		ExampleFormErrors,
 		ExampleFormInputFocus,
 		ExampleFormInputText,
+		ExampleFormInputName,
+		ExampleFormInputEmail,
+		ExampleFormInputTel,
+		ExampleFormInputUrl,
+		ExampleFormInputPassword,
 		ExampleFormInputNumber,
+		ExampleFormInputOneTimeCode,
 		ExampleFormInputDate,
 		ExampleFormInputDatepicker,
 		ExampleFormInputSearch,
@@ -91,7 +103,6 @@
 		ExampleFormInputTextarea,
 		ExampleFormInputFile,
 		ExampleFormInputAddress,
-
 		ExampleLink,
 		ExampleLinkButton,
 		ExampleLinkTel,
@@ -100,31 +111,26 @@
 		ExampleLinkBack,
 		ExampleLinkBackToTop,
 		ExampleLinkTag,
-
-		ExampleAccordion,
 		ExampleCard,
 		ExampleDetails,
+		ExampleDetailsChevron,
+		ExampleAccordion,
+		ExampleAccordionChevron,
 		ExampleDialog,
 		ExampleFootnotes,
-
-		ExampleLayoutArticle,
-		ExampleLayoutDocumentation,
-		ExampleLayoutForm,
-		ExampleLayoutSearch,
-
 		ExampleGridCards
-
-		//ExampleTestIcons
 	};
 
-	const { component, ...attributes } = $$props;
-	const importedComponent = examples[makeExampleComponent(component ?? '')];
+	const componentName = makeExampleComponent(component ?? '');
+	const importedComponent = componets[componentName];
 	if (!importedComponent) {
-		console.error(component, 'aka', makeExampleComponent(component ?? ''), 'missing');
+		console.error(component, 'aka', componentName, 'missing');
 	}
+	const SvelteComponent = $derived(importedComponent);
 </script>
 
-{#if !importedComponent}
-	TODO Need to wire up example {component}
+{#if SvelteComponent}
+	<SvelteComponent {...props} />
+{:else}
+	<p>TODO Need to wire up example {component}</p>
 {/if}
-<svelte:component this={importedComponent} {...attributes} />

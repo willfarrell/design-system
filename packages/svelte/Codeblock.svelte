@@ -12,8 +12,9 @@
 	import Pre from './element/pre.svelte'
 	import Code from './element/code.svelte'
 	
-	export let language = 'js'
-	export let code
+	let { ...props } = $props();
+	
+	let { language = 'js', code } = props
 
 	// for rendering svelte components into html
 	let componentCode
@@ -36,5 +37,5 @@
 </script>
 
 <Pre>
-	<Code {...$$props}>{@html html}</Code>
+	<Code {...props}>{@html html}</Code>
 </Pre>

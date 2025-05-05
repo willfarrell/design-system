@@ -8,4 +8,5 @@ picture {
 
 picture img {
   max-height: 100%;
+  width: 100%;
 }

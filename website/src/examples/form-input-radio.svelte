@@ -22,9 +22,9 @@
 </script>
 
 <Form method="POST">
-	<Fieldset id="radio" label="Radios" value="a">
-		<InputRadio label="A" hint="hint" value="a" />
-		<InputRadio label="B" hint="hint" value="b" />
+	<Fieldset id="radio" label="Radios" value="a" hint="legend hint">
+		<InputRadio label="Option a" hint="label hint" value="a" />
+		<InputRadio label="Option b" hint="label hint" value="b" />
 	</Fieldset>
 	<Button>Submit</Button>
 </Form>

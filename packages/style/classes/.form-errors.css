@@ -1,7 +1,7 @@
 .form-errors {
   border: calc(var(--border-width) * 2) solid var(--color-fail);
   padding: var(--padding-fixed);
-  margin-block-end: var(--padding-fixed);
+  margin-block: var(--padding-fixed);
 
   /* TODO refactor */
   & h2 {

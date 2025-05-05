@@ -1,11 +1,13 @@
 textarea {
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
+  field-sizing: content;
   display: block;
   border: var(--border-width) solid var(--border-color, currentColor);
   padding: calc(var(--padding-fixed) * 0.5) var(--padding-fixed);
-  font: inherit;
   resize: vertical;
   white-space: revert;
   background: transparent;
   width: 100%;
-  /* form-sizing: normal; */
 }

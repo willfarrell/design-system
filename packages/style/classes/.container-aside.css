@@ -5,6 +5,9 @@
   justify-content: center;
   & aside {
     width: 18rem;
+    height: 100vh;
+    /* position: sticky;
+    overflow-y: scroll; */
     /* max-inline-size: 20ch; */
   }
 }

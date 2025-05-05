@@ -1,15 +1,16 @@
 <script>
   import InputText from './InputText.svelte';
-  
-  export let autocapitalize = 'off', autocorrect = 'off', spellcheck = 'false'
+  let { ...props } = $props();
+  let {
+    autocapitalize = 'off', 
+    autocorrect = 'off', 
+    spellcheck = 'false'
+  } = props
   // type="search" not used deliberately, always wrap in <search/>
 </script>
 
 <InputText
-  {...$$props}
+  {...props}
   enterkeyhint="search"
-  {autocapitalize}
-  {autocorrect}
-  {spellcheck}
 />
 

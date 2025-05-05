@@ -10,8 +10,10 @@ const config = {
 		alias: {
 			'@components': resolve('./src/components'),
 			'@examples': resolve('./src/examples'),
+			'@variables': resolve('./src/variables'),
 			'@scripts': resolve('./src/scripts'),
-			'@styles': resolve('./src/styles')
+			'@styles': resolve('./src/styles'),
+			'@utils': resolve('./packages/svelte/utils')
 		},
 		appDir: 'app',
 		csp: {

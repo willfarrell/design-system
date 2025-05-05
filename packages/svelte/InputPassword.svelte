@@ -1,7 +1,10 @@
 <script>
   import FieldInput from "./FieldInput.svelte";
-  
-  export let autocomplete = 'current-password'
+  let { ...props } = $props();
 </script>
 
-<FieldInput {...$$props} type="password" {autocomplete} />
+<FieldInput 
+  {...props} 
+  type="password" 
+  autocomplete = 'current-password'
+/>

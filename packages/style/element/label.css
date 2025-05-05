@@ -9,24 +9,24 @@ label ~ :where(input, div:has(select), textarea) {
 }
 
 /* hint */
-label ~ [id$='-hint'] {
+label ~ [id$="-hint"] {
   display: block;
 }
 
 /* error */
-div:has(> [id$='-error']) {
+div:has(> [id$="-error"]) {
   border-inline-start: calc(var(--padding-fixed) * 0.25) solid var(--color-fail);
   padding-inline-start: var(--padding-fixed);
 }
 
-label ~ [id$='-error'] {
+label ~ [id$="-error"] {
   display: block;
   color: var(--color-fail);
   font-weight: 700;
 
   &::before {
     /* warning icon */
-    content: '\26A0';
+    content: "\26A0";
     padding-inline-end: 0.5em;
   }
 }

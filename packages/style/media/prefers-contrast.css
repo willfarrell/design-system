@@ -8,7 +8,18 @@
 }
 
 @media (prefers-contrast: custom), (forced-colors: active) {
-  /* .... */
+  /* TODO move to elems - or have svg currentColor */
+  /* svg {
+    stroke: CanvasText !important;
+  }
+
+  a svg {
+    stroke: LinkText !important;
+  }
+
+  button svg {
+    stroke: ButtonText !important;
+  } */
 }
 
 @media (inverted-colors: inverted) {

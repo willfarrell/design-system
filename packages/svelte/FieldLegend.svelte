@@ -1,11 +1,11 @@
 <script>
   import Legend from "./element/legend.svelte";
-  export let legend
+  let { ...props } = $props();
+  let { legend } = props;
 </script>
 
 {#if legend}
-  <Legend class="{$$props.class}">
-   {legend}
+  <Legend class={props.class}>
+    {legend}
   </Legend>
 {/if}
-

@@ -1,9 +1,37 @@
 <script>
+  import allowedAttributes from '../utils/attributes.js'
+  const elementAttributes = new Set([
+    'autoplay',
+    'controls',
+    'controlslist',
+    'crossorigin',
+    'disablepictureinpicture',
+    'height',
+    'loop',
+    'muted',
+    'playsinline',
+    'poster',
+    'preload',
+    'src',
+    'width'
+  ])
+  
+  let {
+  children,
+  ...props
+  } = $props();
+</script>
+<video autoplay="false" controls preload="none" {...allowedAttributes(props, elementAttributes)}>
+  {@render children?.()}
+</video>
+<!--
+  TODO move up a level
+  <script>
   import { getContext } from 'svelte'
   import i18n from '@utils/i18n.js'
   let { locale } = getContext('page')
 
-  export let src
+  let { src } = $props();
 
   const baseUrl =
     import.meta.env.VITE_LOCALHOST === 'TRUE'
@@ -29,3 +57,4 @@
     />
   {/each}
 </video>
+-->

@@ -1,0 +1,24 @@
+select.chevron {
+  padding-inline: var(--padding-fixed) calc(var(--padding-fixed) * 2 + 1em); /* 1em is width of :after */
+  ::picker-icon {
+    display: none;
+  }
+}
+
+/*:not([multiple])*/
+div:has(> select.chevron:not([multiple])) {
+  display: inline-grid;
+  grid-template-areas: "select";
+  align-items: center;
+  ::after {
+    content: "";
+    width: 1em;
+    height: 1em;
+    background-color: var(--border-color, currentColor);
+    margin: auto var(--padding-fixed);
+    /* chevron down */
+    clip-path: polygon(10% 20%, 50% 60%, 90% 20%, 100% 30%, 50% 80%, 0 30%);
+    grid-area: select;
+    justify-self: end;
+  }
+}

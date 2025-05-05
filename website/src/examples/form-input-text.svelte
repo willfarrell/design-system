@@ -25,10 +25,5 @@
 
 <Form method="POST">
 	<InputText id="text" label="Text" hint="Just some friendly text" />
-	<InputName id="name" label="Name" hint="How we should refer to you" />
-	<InputEmail id="email" label="Email address" hint="Use the format useanme+alias@example.org" />
-	<InputTel id="tel" label="Telephone number" hint="Use the format +1-000-999-1234" />
-	<InputUrl id="url" label="URL" hint="Use the format https://example.org" />
-	<InputPassword id="password" label="Password" hint="You should probably use PassKeys instead" />
 	<Button>Submit</Button>
 </Form>

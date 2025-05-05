@@ -1,7 +1,23 @@
 <script>
+  import allowedAttributes from '../utils/attributes.js'
+  const elementAttributes = new Set([])
+  
+  let {
+  children,
+  ...props
+  } = $props();
+</script>
+<picture {...allowedAttributes(props, elementAttributes)}>
+  {@render children?.()}
+</picture>
+<!--
+  TODO move logic up
+<script>
   import Img from "./Img.svelte";
   import dataAttributes from "../utils/dataAttributes.js";
-  export let is,
+  let { ...props } = $props();
+  let {
+    is,
     src,
     alt,
     sourceWidths = [320, 640, 1280, 1920],
@@ -10,7 +26,8 @@
     height,
     sizes = "100vw",
     loading,
-    decoding;
+    decoding
+  } = props
   
   const srcset = (format) => {
     return sourceWidths.map(width => {
@@ -22,7 +39,10 @@
   }
 </script>
 
-<picture {is} {...dataAttributes($$props)}>
+<picture
+  {is}
+  {...dataAttributes(props)}
+>
   {#each sourceFormats as format}
     <source
       srcset="{srcset(format)}"
@@ -37,6 +57,7 @@
     {height}
     {loading}
     {decoding}
-    class={$$props.class}
+    class={props.class}
   />
 </picture>
+-->

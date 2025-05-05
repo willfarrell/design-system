@@ -1,30 +1,101 @@
+<script>
+	let {
+		locale,
+		name,
+		title,
+		description,
+		keywords,
+		url,
+		image,
+		imageAlt,
+		usernameTwitter,
+		usernameFacebook,
+		children,
+		...props
+	} = $props();
+	const origin = 'https://example.org'; // TODO pull from url
+	const locales = {};
+</script>
 
+<svelte:head>
+	<!-- https://ogp.me/ -->
+	<!-- https://css-tricks.com/essential-meta-tags-social-media/ -->
+	<!-- https://metatags.io/ -->
 
-<!-- stylesheet Link: </css/style.css>; rel="preload"; as="style"; nopush   -->
-<!-- <link rel="preload stylesheet" as="style" href="/css/style.css?v=" /> -->
+	<!-- <link rel="canonical" href={url}> -->
+	{#each locales as lang}
+		{#if lang.toLowerCase() !== locale}
+			<link
+				rel="alternate"
+				hreflang={lang}
+				href="{origin}{document?.locales?.[lang.toLowerCase()] ??
+					pathname.replace(locale, lang.toLowerCase())}"
+			/>
+		{/if}
+	{/each}
+	<!--<link
+  rel="alternate"
+  hreflang="x-default"
+  href={pathname.replace(locale, "").replace("//", "/")}
+/>-->
 
-<!-- javascript Link: </js/script.js>; rel="modulepreload"; nopush   -->
-<!--<link rel="modulepreload" href="/js/component/ds-.js?v=" />-->
+	{#if name}
+		<!-- <meta property="name" content="{name}" /> -->
+		<meta property="og:site_name" content={name} />
+	{/if}
 
-<!-- image Link: </img/image.svg>; rel="preload"; as="image"; nopush -->
-<!-- <link rel="preload" as="image" href="/img/image.svg" /> -->
-<link rel="preload" as="image" href="/img/icons.svg" />
+	<meta property="og:type" content="website" />
+	<!-- <meta property="og:locale" content="" /> -->
+	<!-- <meta property="og:locale:alternate" content="" /> -->
 
-<!-- web worker Link: </sw.js>; rel="modulepreload"; as="worker"; nopush   -->
-<!--<link rel="modulepreload" href="/sw.js" />-->
+	{#if title}
+		<title>{title}</title>
+		<!-- <meta property="og:title" content={title} /> --><!-- fallback to <title> -->
+		<!--<meta property="twitter:title" content={title} />--><!-- fallback to <title> -->
+	{/if}
 
-<!-- <link rel="stylesheet" href="/css/app.css?v=" /> -->
-<!-- <link rel="stylesheet" href="/css/above.css?v=" />
-<link rel="preload stylesheet" as="style" href="/css/below.css?v=" /> -->
+	{#if description}
+		<meta name="description" content={description} />
+		<!-- <meta property="og:description" content={description} /> -->
+		<!-- <meta property="twitter:description" content={description} /> --><!-- fallback to og:description -->
+	{/if}
 
-<!--<link rel="modulepreload" href="/js/component/ds-.js?v=" />-->
-<script type="module" src="/js/bootstrap.js?v="></script>
+	{#if keywords}
+		<meta name="keywords" content={keywords} />
+	{/if}
 
-<link rel="stylesheet" media="print" href="/css/print.css?v=" />
+	{#if url}
+		<meta property="og:url" content={url} />
+		<!--<meta property="twitter:url" content={url} />--><!-- fallback to og:url -->
+	{/if}
 
+	{#if image}
+		<!-- Facebook: 1200x630 -->
+		<!-- Twitter: 600x315 -->
+		<meta property="og:image" content="{origin}{image}?w=1200&h=630" />
+		<!-- <meta property="twitter:image" content={image + '?w=600&h=315'} /> --><!-- fallback to og:image -->
+		{#if imageAlt}
+			<meta property="og:image:alt" content={imageAlt} />
+			<!-- <meta name="twitter:image:alt" content="{imageAlt}"> --><!-- fallback to og:image:alt -->
+		{/if}
+		{#if usernameTwitter}
+			<meta property="twitter:card" content="summary_large_image" />
+			<!-- <meta name="twitter:image:width" content="1200" /> -->
+			<!-- <meta name="twitter:image:height" content="630" /> -->
+		{/if}
+	{/if}
 
-<!-- <link rel="icon" href="data:;base64,iVBORw0KGgo=" /> <!-- empty ico -->
-<!-- <link rel="icon" href="/favicon.svg" /> -->
-<link rel="manifest" href="/.well-known/manifest.json" />
-
-<slot />
+	{#if usernameTwitter}
+		<meta content="@{usernameTwitter}" name="twitter:site" />
+		<meta content="@{usernameTwitter}" name="twitter:creator" />
+	{/if}
+	{#if usernameFacebook}
+		<meta content={usernameFacebook} property="fb:app_id" />
+	{/if}
+	<!--
+  Testing social share
+  https://developers.facebook.com/tools/debug/
+  https://cards-dev.twitter.com/validator
+  https://www.linkedin.com/post-inspector/inspect/
+-->
+</svelte:head>

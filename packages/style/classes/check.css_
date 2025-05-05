@@ -9,7 +9,7 @@
     display: inline-block;
     transform: rotate(135deg);
     vertical-align: top;
-    top: 0.35em;
+    inset-block-start: 0.35em;
     height: 0.55em;
     width: 0.95em;
   }

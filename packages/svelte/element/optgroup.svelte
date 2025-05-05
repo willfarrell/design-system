@@ -1,5 +1,15 @@
 <script>
-  export let label
+  import allowedAttributes from '../utils/attributes.js'
+  const elementAttributes = new Set([
+    'disabled',
+    'label',
+  ])
+  
+  let {
+  children,
+  ...props
+  } = $props();
 </script>
-
-<optgroup {label}><slot /></optgroup>
+<optgroup {...allowedAttributes(props, elementAttributes)}>
+  {@render children?.()}
+</optgroup>

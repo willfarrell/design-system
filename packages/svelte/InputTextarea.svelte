@@ -4,9 +4,16 @@
   import FieldHint from "./FieldHint.svelte";
   import FieldError from "./FieldError.svelte";
   import Textarea from "./element/textarea.svelte";
-  export let id, name, label, hint, error, value;
+  let { ...props } = $props();
+  let { 
+    id, 
+    name, 
+    label, 
+    hint, 
+    error, 
+    value 
+  } = props
   
-  const props = $$props
   delete props.label
   delete props.hint
   delete props.error
@@ -16,6 +23,7 @@
   if (hint) describedby+=id+'-hint'
   if (error?.length) describedby+=id+'-error'
   describedby||=null
+  // TODO add in spellcheck?
 </script>
 
 <Div>

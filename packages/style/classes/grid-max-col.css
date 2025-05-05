@@ -8,7 +8,7 @@
     auto-fill,
     minmax(
       max(
-        var(--width-max),
+        var(--grid-col-max-width),
         calc((100% - ((var(--col) - 1) * var(--gap))) / var(--col))
       ),
       1fr

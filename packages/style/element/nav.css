@@ -1,4 +1,14 @@
 nav ul {
-  all: unset;
-  list-style-type: '';
+  margin: unset;
+  padding-inline-start: 0;
+  list-style-type: "";
+}
+
+nav a {
+  display: flex;
+}
+
+nav details ul {
+  padding-inline-start: 1em;
+  list-style-type: "";
 }

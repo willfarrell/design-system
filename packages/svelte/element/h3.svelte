@@ -1,3 +1,12 @@
-<h3 {...$$props}>
-  <slot />
+<script>
+  import allowedAttributes from '../utils/attributes.js'
+  const elementAttributes = new Set([])
+  
+  let {
+  children,
+  ...props
+  } = $props();
+</script>
+<h3 {...allowedAttributes(props, elementAttributes)}>
+  {@render children?.()}
 </h3>

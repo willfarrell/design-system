@@ -1,32 +1,48 @@
 <script>
-  import dataAttributes from "../utils/dataAttributes.js";
-  export let is, id, name, type, hint, error, value = '', step, size, checked, list;
-  export let autocomplete , autocapitalize , autocorrect , spellcheck
-  export let enterkeyhint, inputmode, pattern
-  export let accept, capture, multiple
+  import allowedAttributes from '../utils/attributes.js'
+  const elementAttributes = new Set([
+    'accept','alt','autocomplete','capture','checked','dirname','disabled','form','formaction','formenctype','formmethod','formnovalidate','formtarget','height','list','max','maxlength','min','minlength','multiple','name','pattern','placeholder','popovertarget','popovertargetaction','readonly','required','size','src','step','type','value','width'
+  ])
   
-  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes
-  const attributes = ['accept','alt','autocomplete','capture','checked','dirname','disabled','form','formaction','formenctype','formmethod','formnovalidate','formtarget','height','list','max','maxlength','min','minlength','multiple','name','pattern','placeholder','popovertarget','popovertargetaction','readonly','required','size','src','step','type','value','width']
-  //console.log($$props)
+  let {
+    ...props
+  } = $props();
   
-  // aria-describedby={hint ? (id ?? name)+'-hint' : null}
-  // aria-errormessage={error?.length ? (id ?? name) + "-error" : null} // for aria-live only?
-  let describedby = ''
-  if (hint) describedby+=(id ?? name)+'-hint'
-  if (error?.length) describedby+=(id ?? name)+'-error'
-  describedby||=null
+  // TODO move below logic up a level
 </script>
+<input dir="auto" value="" {...allowedAttributes(props, elementAttributes)}/>
+<!-- <script>
+  import dataAttributes from "../utils/dataAttributes.js";
+  let { ...props } = $props();
+  let {
+    is, id, name, type, hint, error, 
+    value = '', 
+    step, size, checked, list,
+    autocomplete , autocapitalize , autocorrect , spellcheck,
+    enterkeyhint, inputmode, pattern,
+    accept, capture, multiple
+  } = props
+   
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#attributes
+//   const attributes = []
+//   
+//   let describedby = ''
+//   if (hint) describedby += (id ?? name) + '-hint'
+//   if (error?.length) describedby += (id ?? name) + '-error'
+//   describedby ||= null
+// </script>-->
 
 
 <!-- <slot name="prefix" aria-hidden="true"/> -->
 <!-- TODO Report aria-invalid="true" marked at invalid by lighthouse - https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-invalid -->
-<input
-  {is} {...dataAttributes($$props)}
+<!-- <input
+  {is}
+  {...dataAttributes(props)}
   id={id ?? name}
   name={name ?? id}
   {type}
   dir="auto"
-  class={$$props.class}
+  class={props.class}
   {value}
   {step}
   {size}
@@ -48,7 +64,6 @@
   aria-describedby={describedby}
   
   aria-invalid={error?.length ? 'true' : null}
-/>
+/> -->
 <!-- button (password show, passcode resend) TODO inline -->
-<!-- <slot name="suffix" aria-hidden="true"/> -->
 

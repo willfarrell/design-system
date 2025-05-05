@@ -1,0 +1,9 @@
+/* Correct the outline style in Safari */
+/*input[type='search'] {
+  outline-offset: -2px;
+  -webkit-appearance: none;
+}
+
+::-webkit-search-results-button {
+  -webkit-appearance: none;
+}*/

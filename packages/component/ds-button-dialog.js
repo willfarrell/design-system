@@ -12,23 +12,27 @@ customElements.define(
       this.$dialog = d.getElementById(this.getAttribute('data-dialog'))
     }
 
-    async handleClick(event) {
-      // body.firstElementChild.inert = true
-      this.$dialog.showModal()
-      this.$dialog.open = true
-      this.$dialog.querySelector('button').focus()
-      // this.$dialog.removeAttribute('inert')
-      // this.$dialog.removeAttribute('loading')
-      this.$dialog.inert = false
-      // this.$dialog.loading = false
+    async handleShow(event) {
+      if (event.type === 'click' || event.key === 'Enter') {
+        // body.firstElementChild.inert = true
+        this.$dialog?.showModal() // Causes it to show centered
+        this.$dialog.open = true
+        this.$dialog.querySelector('button').focus()
+        // this.$dialog.removeAttribute('inert')
+        // this.$dialog.removeAttribute('loading')
+        this.$dialog.inert = false
+        // this.$dialog.loading = false
+      }
     }
 
     connectedCallback() {
-      this.addEventListener('click', this.handleClick)
+      this.addEventListener('click', this.handleShow)
+      this.addEventListener('keypress', this.handleShow)
     }
 
     disconnectedCallback() {
-      this.removeEventListener('click', this.handleClick)
+      this.removeEventListener('click', this.handleShow)
+      this.addEventListener('keypress', this.handleShow)
     }
   },
   { extends: 'button' }

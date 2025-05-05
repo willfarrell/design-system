@@ -4,8 +4,13 @@
   import FieldHint from "./FieldHint.svelte";
   import FieldError from "./FieldError.svelte";
   import Select from "./element/select.svelte";
-
-  export let id, label, hint, error
+  let { children, ...props } = $props();
+  let { 
+    id, 
+    label, 
+    hint, 
+    error
+  } = props
 </script>
 
 <Div>
@@ -13,8 +18,8 @@
   <FieldHint {id} {hint} />
   <FieldError {id} {error} />
     <Div>
-  <Select {...$$props}>
-    <slot />
-  </Select>
+      <Select {...props}>
+        {@render children?.()}
+      </Select>
     </Div>
 </Div>

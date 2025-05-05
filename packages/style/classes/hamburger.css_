@@ -11,10 +11,10 @@
 
 .hamburger::before {
   content: '';
-  margin-top: -0.5em;
+  margin-block-start: -0.5em;
 }
 .hamburger[aria-expanded='true']::before {
-  margin-top: 0px;
+  margin-block-start: 0px;
   transform: rotate(45deg);
 }
 
@@ -24,9 +24,9 @@
 
 .hamburger::after {
   content: '';
-  margin-top: 0.5em;
+  margin-block-start: 0.5em;
 }
 .hamburger[aria-expanded='true']::after {
-  margin-top: 0px;
+  margin-block-start: 0px;
   transform: rotate(-45deg);
 }

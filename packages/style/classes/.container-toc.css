@@ -1,9 +1,9 @@
 .container-toc {
   display: grid;
   grid-template-areas:
-    'top'
-    'toc'
-    'doc';
+    "top"
+    "toc"
+    "doc";
 }
 #grid-top {
   grid-area: top;
@@ -13,18 +13,19 @@
 }
 #grid-doc {
   grid-area: doc;
+  width: 60ch;
 }
 @media (min-width: 80em) {
   .container-toc {
     column-gap: 3rem;
     grid-template-columns: 1fr auto;
     grid-template-areas:
-      'top toc'
-      'doc toc';
+      "top toc"
+      "doc toc";
   }
   #grid-toc nav {
     width: 18rem;
-    top: 0;
+    inset-block-start: 0;
     position: sticky;
     overflow-y: scroll;
   }

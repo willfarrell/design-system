@@ -1,15 +1,16 @@
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 
-const globalAttributes = {}
-;[
+const globalAttributes = new Set([
   'accesskey',
   'autocapitalize',
+  'autocorrect',
   'autofocus',
   'class',
   'contenteditable',
   'dir',
   'draggable',
   'enterkeyhint',
+  'exportparts',
   'hidden',
   'id',
   'inert',
@@ -31,25 +32,24 @@ const globalAttributes = {}
   'tabindex',
   'title',
   'translate',
-  'virtualkeyboardpolicy'
-].forEach((attribute) => {
-  globalAttributes[attribute] = true
-})
+  'virtualkeyboardpolicy',
+  'writingsuggestions'
+])
 
-// const elementAttributes = {
-//   input: ['accept']
-// }
-
-export default (props, attributes = {}) => {
-  const data = {}
+const allowedAttributes = (props = {}, elementAttributes = new Set([])) => {
+  const attributes = {}
   for (const prop in props) {
+    const [prefix] = prop.split('-')
     if (
-      !globalAttributes[prop] &&
-      !attributes[prop] &&
-      prop.substring(0, 5) !== 'data-'
-    )
-      continue
-    data[prop] = props[prop]
+      elementAttributes.has(prop) ||
+      globalAttributes.has(prop) ||
+      prefix === 'data' ||
+      prefix === 'aria'
+    ) {
+      attributes[prop] = props[prop]
+    }
   }
-  return data
+  return attributes
 }
+
+export default allowedAttributes

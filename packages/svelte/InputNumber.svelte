@@ -1,5 +1,9 @@
 <script>
   import InputText from "./InputText.svelte";
+  let { ...props } = $props();
 </script>
 
-<InputText {...$$props} inputmode="numeric" />
+<InputText
+  {...props}
+  inputmode="numeric"
+/>

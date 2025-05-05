@@ -1,70 +1,71 @@
 <script>
   import Fieldset from "./element/fieldset.svelte";
   import InputHidden from "./InputHidden.svelte";
-
-  export let id, legend, label, hint, error;
-  id ??= "browser-up-to-date";
+  import Ul from "./element/ul.svelte";
+  import Li from "./element/li.svelte";
+  import A from "./element/a.svelte";
+  import Icon from "./Incon.svelte";
+  let { ...props } = $props()
+  let {
+    id = "browser-up-to-date"
+  } = props
+  let {
+    is = 'input-' + id,
+    label,
+    legend,
+    hint, 
+    error
+  } = props
   error = error?.filter((v) => v.id === id);
 </script>
 
 {#if error?.length}
   <Fieldset
     {id}
-    is="input-{id}"
+    {is}
     {label}
+    {legend}
     {hint}
     {error}
   >
-    <ul>
-      <li id="chrome">
-        <a
-          target="_blank"
+    <Ul>
+      <Li id="chrome">
+        <A
           href="https://www.google.com/chrome/update"
-          rel="noreferrer"
-          ><img
-            class="icon"
+          ><Icon
             src="/img/icons.browser.svg#chrome"
-            alt={t("browser-chrome")}
-          /></a
+            alt="Chrome"
+          /></A
         >
-      </li>
-      <li id="edge">
-        <a
-          target="_blank"
+      </Li>
+      <Li id="edge">
+        <A
           href="https://support.microsoft.com/en-us/topic/update-to-the-new-microsoft-edge-182d0668-e3f0-49da-b8bb-db5675245dc2"
-          rel="noreferrer"
-          ><img
-            class="icon"
+          ><Icon
             src="/img/icons.browser.svg#edge"
-            alt={t("browser-edge")}
-          /></a
+            alt="Edge"
+          /></A
         >
-      </li>
-      <li id="firefox">
-        <a
-          target="_blank"
+      </Li>
+      <Li id="firefox">
+        <A
           href="https://support.mozilla.org/kb/update-firefox-latest-release"
-          rel="noreferrer"
-          ><img
-            class="icon"
+          ><Icon
             src="/img/icons.browser.svg#firefox"
-            alt={t("browser-firefox")}
-          /></a
+            alt="Firefox"
+          /></A
         >
-      </li>
-      <li id="safari">
-        <a
-          target="_blank"
+      </Li>
+      <Li id="safari">
+        <A
           href="https://support.apple.com/en-us/HT204416"
-          rel="noreferrer"
-          ><img
-            class="icon"
+          ><Icon
             src="/img/icons.browser.svg#safari"
-            alt={t("browser-safari")}
-          /></a
+            alt="Safari"
+          /></A
         >
-      </li>
-    </ul>
+      </Li>
+    </Ul>
     <InputHidden name={id} value="true" />
   </Fieldset>
 {:else}

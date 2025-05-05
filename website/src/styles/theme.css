@@ -2,6 +2,30 @@
 	--icon-external: url('/img/icons.svg#a');
 }
 
+h1 {
+	--font-size: 200%;
+}
+h2 {
+	--font-size: 175%;
+}
+h3 {
+	--font-size: 150%;
+}
+h4 {
+	--font-size: 125%;
+}
+h5 {
+	--font-size: 118.75%;
+}
+h6 {
+	--font-size: 112.5%;
+}
+small,
+sub,
+sup {
+	--font-size: 80%;
+}
+
 @media (prefers-color-scheme: light) {
 	:root {
 		--color-l0: #ffffff;

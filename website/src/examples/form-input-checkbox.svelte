@@ -7,9 +7,9 @@
 </script>
 
 <Form method="POST">
-	<Fieldset id="checkbox" label="Checkboxes" value={['a']}>
-		<InputCheckbox label="A" hint="hint" value="a" />
-		<InputCheckbox label="B" hint="hint" value="b" />
+	<Fieldset id="checkbox" label="Checkboxes" value={['a']} hint="legend hint">
+		<InputCheckbox label="Option a" hint="label hint" value="a" />
+		<InputCheckbox label="Option b" hint="label hint" value="b" />
 	</Fieldset>
 	<Button>Submit</Button>
 </Form>

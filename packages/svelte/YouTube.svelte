@@ -1,6 +1,6 @@
 <script>
   import { getContext } from "svelte";
-  import Div from '@design-system/svelte/element/div.svelte';
+  import Div from "@design-system/svelte/element/div.svelte";
   import Picture from "@components/element/picture.svelte";
   import Img from "@components/element/img.svelte";
   let { locale } = getContext("page");
@@ -42,10 +42,10 @@
   .light-youtube-wrapper {
     background-color: #000;
     position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    inset-block-end: 0;
+    inset-inline-end: 0;
     display: block;
     contain: content;
     max-width: 100%;
@@ -58,8 +58,8 @@
 
   button {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    inset-block-start: 50%;
+    inset-inline-start: 50%;
     z-index: 1;
     filter: grayscale(100%) opacity(65%);
     transform: translate(-50%, -50%);

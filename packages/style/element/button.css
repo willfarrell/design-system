@@ -1,5 +1,7 @@
 button {
   font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
   cursor: pointer;
 
   font-weight: 700;
@@ -8,7 +10,8 @@ button {
   text-align: center;
   /* flex-grow: 1; */
   border: var(--border-width) solid var(--border-color, var(--color-main-bold));
-  padding: calc(var(--padding-fixed) * 0.5) var(--padding-fixed);
+  padding-block: calc(var(--padding-fixed) * 0.54);
+  padding-inline: var(--padding-fixed);
 
   white-space: nowrap;
 
@@ -33,7 +36,7 @@ button:focus {
   );
 }
 
-[role='group']:has(button) {
+[role="group"]:has(button) {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

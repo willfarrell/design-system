@@ -17,6 +17,7 @@
 @import '@design-system/style/element/h4.css';
 @import '@design-system/style/element/h5.css';
 @import '@design-system/style/element/h6.css';
+@import '@design-system/style/element/hgroup.css';
 @import '@design-system/style/element/hr.css';
 @import '@design-system/style/element/input.css';
 @import '@design-system/style/element/input[type=checkbox].css';
@@ -24,13 +25,13 @@
 @import '@design-system/style/element/input[type=file].css';
 @import '@design-system/style/element/input[type=radio].css';
 @import '@design-system/style/element/ins.css';
-@import '@design-system/style/element/kbd.css';
 @import '@design-system/style/element/label.css';
 @import '@design-system/style/element/li.css';
 @import '@design-system/style/element/mark.css';
 @import '@design-system/style/element/nav.css';
 @import '@design-system/style/element/ol.css';
 @import '@design-system/style/element/p.css';
+@import '@design-system/style/element/picture.css';
 @import '@design-system/style/element/pre.css';
 @import '@design-system/style/element/s.css';
 @import '@design-system/style/element/select.css';
@@ -50,7 +51,9 @@
 @import '@design-system/style/classes/a.back.css';
 @import '@design-system/style/classes/a.button.css';
 @import '@design-system/style/classes/a.skip.css';
+@import '@design-system/style/classes/details.chevron.css';
 @import '@design-system/style/classes/table.stripe.css';
 @import '@design-system/component/ds-card.css';
+@import '@design-system/component/ds-form-submit.css';
 @import '@design-system/component/ds-input-file.css';
 @import './theme.css';

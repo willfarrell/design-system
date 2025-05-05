@@ -1,14 +1,19 @@
 <script>
   import { getContext } from "svelte";
   import FieldsetInput from './FieldsetInput.svelte';
-  export let hint, value, checked;
+  let { children, ...props } = $props();
+  let {
+    hint, 
+    value, 
+    checked
+  } = props
   const { name, value: fieldsetValue } = getContext("fieldset");
   const id = name + "-" + value;
 </script>
 
 
 <FieldsetInput
-    {...$$props}
+    {...props}
     {id}
     {name}
     type="radio"
@@ -17,9 +22,9 @@
     aria-describedby={hint || null}
   >
 
-  <!--{#if $$slots.default}
+  <!--{#if children}
     <Div>
-      <slot />
+      {@render children?.()}
     </Div>
   {/if}-->
 </FieldsetInput>

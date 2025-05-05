@@ -1,10 +1,12 @@
 <script>
   import FieldInput from './FieldInput.svelte';
-  
-  export let autocomplete = 'tel'
+  let { ...props } = $props();
+  let {
+    autocomplete = 'tel'
+  } = props
 </script>
 
 <FieldInput
-  {...$$props}
+  {...props}
   type="tel"
   {autocomplete} />

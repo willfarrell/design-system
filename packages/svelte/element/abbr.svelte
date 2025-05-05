@@ -1,6 +1,14 @@
 <script>
-  export let title
+  import allowedAttributes from '../utils/attributes.js'
+  const elementAttributes = new Set([
+    'title',
+  ])
+  
+  let {
+    children,
+    ...props
+  } = $props();
 </script>
-<abbr {...$$props} {title}>
-  <slot />
+<abbr {...allowedAttributes(props, elementAttributes)}>
+  {@render children?.()}
 </abbr>

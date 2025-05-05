@@ -1,6 +1,5 @@
 .container {
-  /* width: 100%; */
-  width: fit-content;
+  width: 60ch;
   margin: 0 auto;
   /* --padding-page: 5vw */
   /* padding: 0 calc(var(--padding-page) + var(--width-scrollbar)) 0

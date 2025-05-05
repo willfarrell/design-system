@@ -1,5 +1,10 @@
 <script>
   import InputText from "./InputText.svelte";
+  let { ...props } = $props();
 </script>
 
-<InputText {...$$props} autocomplete="address-level2" autocapitalize='off' autocorrect='off' spellcheck='false' />
+<InputText
+  {...props}
+  autocomplete="address-level2"
+/>
+

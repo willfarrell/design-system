@@ -1,8 +1,7 @@
 h1 {
   position: relative; /* to make it more compressible w/ other h tags */
-  --font-min-size: 2rem;
   font-family: var(--font-family);
-  font-size: calc(var(--font-min-size) + var(--font-scale));
+  font-size: var(--font-size);
   font-weight: 700;
 
   margin-block: 0;

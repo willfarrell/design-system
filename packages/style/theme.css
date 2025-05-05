@@ -2,6 +2,30 @@
   --icon-external: url('data:image/svg+xml,<svg viewBox="0 0 1536 1536" xmlns="http://www.w3.org/2000/svg"><path d="m1536 0v640h-128v-421l-851 850-90-90 850-851h-421v-128zm-512 1007h128v529h-1152v-1152h529v128h-401v896h896z"/></svg>');
 }
 
+h1 {
+  --font-size: 200%;
+}
+h2 {
+  --font-size: 175%;
+}
+h3 {
+  --font-size: 150%;
+}
+h4 {
+  --font-size: 125%;
+}
+h5 {
+  --font-size: 118.75%;
+}
+h6 {
+  --font-size: 112.5%;
+}
+small,
+sub,
+sup {
+  --font-size: 80%;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     --color-l0: #ffffff;
@@ -37,7 +61,7 @@
     */
   }
 }
-[data-theme='light'] {
+[data-theme="light"] {
   --color-l0: #ffffff;
   --color-l1: #fafafa;
   --color-l2: #f6f6f6;
@@ -105,7 +129,7 @@
   }
 }
 
-[data-theme='dark'] {
+[data-theme="dark"] {
   --color-l0: #1f1f1f;
   --color-l1: #292929;
   --color-l2: #2f2f2f;

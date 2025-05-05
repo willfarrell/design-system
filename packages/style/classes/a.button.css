@@ -13,7 +13,7 @@ a.button {
   text-align: center;
   /* flex-grow: 1; */
   border: var(--border-width) solid var(--border-color, var(--color-main-bold));
-  padding: calc(var(--padding-fixed) * 0.5) var(--padding-fixed);
+  padding: calc(var(--padding-fixed) * 0.54) var(--padding-fixed);
 
   white-space: nowrap;
 
@@ -38,7 +38,7 @@ a.button:focus {
   );
 }
 
-[role='group']:has(a.button) {
+[role="group"]:has(a.button) {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

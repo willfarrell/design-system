@@ -10,12 +10,12 @@
 
 .close::before {
   content: '';
-  margin-top: 0px;
+  margin-block-start: 0px;
   transform: rotate(45deg);
 }
 
 .close::after {
   content: '';
-  margin-top: 0px;
+  margin-block-start: 0px;
   transform: rotate(-45deg);
 }

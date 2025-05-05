@@ -1,12 +1,17 @@
 <script>
   import FieldInput from './FieldInput.svelte';
-  
-  export let autocapitalize = 'off', autocorrect = 'off',  spellcheck = 'false'
+  let { ...props } = $props();
+  let {
+    autocapitalize = 'off', 
+    autocorrect = 'off',  
+    spellcheck = 'false'
+  } = props
 </script>
 
 <FieldInput
-  {...$$props}
+  {...props}
   type="url"
   {autocapitalize}
   {autocorrect}
-  {spellcheck}/>
+  {spellcheck}
+  />

@@ -1,8 +1,10 @@
 input {
+  font: inherit;
+  letter-spacing: inherit;
+  word-spacing: inherit;
   border: var(--border-width) solid var(--border-color, currentColor);
   color: var(--color-text);
   background: transparent;
-  font: inherit;
 }
 
 input:where(
@@ -13,10 +15,11 @@ input:where(
     [type='url'],
     [type='password']
   ) {
-  padding: calc(var(--padding-fixed) * 0.5) var(--padding-fixed);
+  padding-block: calc(var(--padding-fixed) * 0.54);
+  padding-inline: var(--padding-fixed);
 }
 
-[role='group']:has(input) {
+[role="group"]:has(input) {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;

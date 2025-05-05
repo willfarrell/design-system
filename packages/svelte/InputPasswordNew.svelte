@@ -1,8 +1,18 @@
 <script>
   import FieldInput from "./FieldInput.svelte";
-  
-  export let autocapitalize = 'off', autocorrect = 'off', spellcheck = 'false'
-  export let autocomplete = 'new-password'
+  let { ...props } = $props();
+  let {
+    autocapitalize = 'off',
+    autocorrect = 'off',
+    spellcheck = 'false',
+  } = props
 </script>
 
-<FieldInput {...$$props} type="password" {autocomplete} {autocapitalize} {autocorrect} {spellcheck} />
+<FieldInput 
+  {...props} 
+  type="password" 
+  autocomplete='new-password' 
+  {autocapitalize} 
+  {autocorrect} 
+  {spellcheck}
+/>

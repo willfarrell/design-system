@@ -6,7 +6,7 @@ dialog {
   &[open] {
     display: flex;
     position: fixed;
-    top: 0;
+    inset-block-start: 0;
     width: 100vw;
     height: 100vh;
     background: transparent;
@@ -15,7 +15,7 @@ dialog {
 
   &::backdrop {
     /* position: fixed;
-    top: 0; */
+    inset-block-start: 0; */
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(5px);
   }

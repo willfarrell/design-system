@@ -1,0 +1,24 @@
+details.chevron {
+  summary {
+    display: flex;
+    strong {
+      width: 100%;
+    }
+  }
+  summary::after {
+    content: "";
+    width: 1em;
+    height: 1em;
+    background-color: var(--border-color, currentColor);
+    margin: auto var(--padding-fixed);
+    /* chevron down */
+    clip-path: polygon(10% 20%, 50% 60%, 90% 20%, 100% 30%, 50% 80%, 0 30%);
+    vertical-align: baseline;
+    justify-self: end;
+  }
+}
+details[open].chevron {
+  summary::after {
+    transform: rotate(180deg);
+  }
+}

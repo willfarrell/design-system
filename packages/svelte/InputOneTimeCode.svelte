@@ -1,7 +1,13 @@
 <script>
   import InputNumber from "./InputNumber.svelte";
-  
-  export let autocomplete = 'one-time-code'
+  let { ...props } = $props();
+  let {
+    pattern = "^[0-9]*$"
+  } = props
 </script>
 
-<InputNumber {...$$props} {autocomplete} pattern="[0-9]*" />
+<InputNumber
+  {...props}
+  autocomplete='one-time-code'
+  {pattern}
+/>

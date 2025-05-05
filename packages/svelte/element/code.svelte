@@ -1,6 +1,12 @@
 <script>
-  export let lang, dir="ltr"
+  import allowedAttributes from '../utils/attributes.js'
+  const elementAttributes = new Set([])
+  
+  let {
+  children,
+  ...props
+  } = $props();
 </script>
-<code {dir} {lang}>
-  <slot />
+<code {...allowedAttributes(props, elementAttributes)}>
+  {@render children?.()}
 </code>

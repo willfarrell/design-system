@@ -1,0 +1,460 @@
+<script>
+	import chroma from 'chroma-js'
+	import { colorParsley } from 'colorparsley';
+	import {APCAcontrast, sRGBtoY, fontLookupAPCA} from 'apca-w3'
+	
+	import Head from '@components/Head.svelte';
+	
+	import LayoutCenter from '@design-system/svelte/LayoutCenter.svelte'
+	
+	import Hgroup from '@design-system/svelte/element/hgroup.svelte';
+	import H1 from '@design-system/svelte/Heading1.svelte';
+	import HSub from '@design-system/svelte/HeadingSub.svelte';
+	import Time from '@design-system/svelte/element/time.svelte';
+	
+	import Form from '@design-system/svelte/element/form.svelte';
+	import InputSelect from '@design-system/svelte/InputSelect.svelte'
+	import FieldOption from '@design-system/svelte/FieldOption.svelte'
+	import Fieldset from '@design-system/svelte/Fieldset.svelte';
+	import InputCheckbox from '@design-system/svelte/InputCheckbox.svelte';
+	
+	import H2 from '@design-system/svelte/Heading2.svelte';
+	import Div from '@design-system/svelte/element/div.svelte';
+	import P from '@design-system/svelte/element/p.svelte';
+	import A from '@design-system/svelte/element/a.svelte';
+	import Strong from '@design-system/svelte/element/strong.svelte';
+	import Ins from '@design-system/svelte/element/ins.svelte';
+	import Del from '@design-system/svelte/element/del.svelte';
+	import Mark from '@design-system/svelte/element/mark.svelte';
+	import Button from '@design-system/svelte/element/button.svelte';
+	
+	import Ul from '@design-system/svelte/element/ul.svelte';
+	import Li from '@design-system/svelte/element/li.svelte';
+
+	import Codeblock from '@design-system/svelte/Codeblock.svelte';
+	
+	import { page } from '$app/stores'
+
+	// Light: text 30 on 100
+	// Color: text 100 on 40
+	// Color: text 0 on 90
+	// Dark: text 90 on 5
+	
+	// level 0 = 0dp - bg
+	// level 1 = 1dp - card/modal
+	// level 2 = 3dp - navs
+	// level 3 = 6dp - button
+	// level 4 = 8dp
+	// level 5 = 12dp
+	
+	let shadeLinkLight = 89.56
+	let shadeButtonLight = 79.47
+	let shadeButtonDark = 44.91
+	let shadeLinkDark = 29.64
+	let shadeLinkStep = 9/.16
+	let shadeButtonStep = 9/.16
+	
+	const shades = {
+		'light-l0': 100,
+		'light-l1': 98.18,
+		'light-l2': 96.78,
+		'light-l3': 95.69,
+		'light-l4': 95.28,
+		'light-l5': 94.53,
+		
+		'dark-a0': shadeLinkLight,
+		'dark-a8': shadeLinkLight - shadeLinkStep * 0.08,
+		'dark-a12': shadeLinkLight - shadeLinkStep * 0.12,
+		'dark-a16': shadeLinkLight - shadeLinkStep * 0.16,
+		
+		'dark-b0': shadeButtonLight,
+		'dark-b8': shadeButtonLight - shadeButtonStep * 0.08,
+		'dark-b12': shadeButtonLight - shadeButtonStep * 0.12,
+		'dark-b16': shadeButtonLight - shadeButtonStep * 0.16,
+		
+		'light-b16': shadeButtonDark + shadeButtonStep * 0.16, 
+		'light-b12': shadeButtonDark + shadeButtonStep * 0.12, 
+		'light-b8': shadeButtonDark + shadeButtonStep * 0.08,
+		'light-b0': shadeButtonDark,
+		
+		'light-a16': shadeLinkDark + shadeLinkStep * 0.16, 
+		'light-a12': shadeLinkDark + shadeLinkStep * 0.12, 
+		'light-a8': shadeLinkDark + shadeLinkStep * 0.08,
+		'light-a0': shadeLinkDark,
+		
+		'dark-l5': 24.34,
+		'dark-l4': 22.53,
+		'dark-l3': 21.72,
+		'dark-l2': 19.26,
+		'dark-l1': 16.51,
+		'dark-l0': 11.76
+	}
+	
+	
+	const getColorFromScale = (scale, lightness) => {
+		const color = scale(lightness / 100);
+		return chroma(color);
+	  }
+	
+	  const applyHueCorrection = (chromaColor, hueCorrection, index) => {
+		const totalShades = Object.keys(shades).length;
+		const hueAdjustment = (hueCorrection / totalShades) * (index + 1);
+		return chromaColor.set('lch.h', chromaColor.lch()[2] + hueAdjustment);
+	  }
+	  
+	  const hexToRgb = hex =>
+		hex.replace(/^#?([a-f\d])([a-f\d])([a-f\d])$/i
+				   ,(m, r, g, b) => '#' + r + r + g + g + b + b)
+		  .substring(1).match(/.{2}/g)
+		  .map(x => parseInt(x, 16))
+	  
+	const makePalette = (color, hueCorrection = 0, isLab = false, shades) => {
+		const scale = chroma
+			.scale(['black', color, 'white'])
+			  .mode(isLab ? 'lab' : 'rgb')
+			  .correctLightness();
+		
+		const palette = {}
+		Object.keys(shades).forEach((shade, lightnessIndex) => {
+			const lightness = shades[shade]
+			const chromaColorWithLightness = getColorFromScale(scale, lightness);
+			const chromaColorWithCorrectedHue = applyHueCorrection(
+				chromaColorWithLightness,
+				hueCorrection,
+				lightnessIndex
+			);
+			const colorHex = chromaColorWithCorrectedHue.hex();
+			palette[shade] = {color: colorHex}
+		})
+		return palette
+	}
+	
+	const processPalette = (palette) => {
+		for (const shade in palette) {
+			// wcag3Contrast(foreground, background)
+			const color = palette[shade].color
+			const colorRGB = hexToRgb(color).join(', ')
+			// link text on light/dark mode background
+			const colorOnLightLc = Math.abs(wcag3Contrast(color, paletteNeutral['light-l5'].color))
+			const colorOnDarkLc = Math.abs(wcag3Contrast(color, paletteNeutral['dark-l5'].color))
+			// text on shade color
+			const darkOnColorLc = Math.abs(wcag3Contrast(paletteNeutral['dark-l0'].color, color))
+			const lightOnColorLc = Math.abs(wcag3Contrast(paletteNeutral['light-l1'].color, color))
+			const textColorLc = darkOnColorLc < lightOnColorLc ? lightOnColorLc : darkOnColorLc
+			const textColor = darkOnColorLc < lightOnColorLc ? paletteNeutral['light-l1'].color : paletteNeutral['dark-l0'].color
+			palette[shade] = {
+				color,
+				colorRGB,
+				textColor,
+				colorOnLightLc,
+				darkOnColorLc,
+				lightOnColorLc,
+				textColorLc,
+				colorOnDarkLc,
+			}
+		}
+	}
+	
+	const wcag3Contrast = (fg, bg) => {
+		return APCAcontrast(sRGBtoY(colorParsley(fg)), sRGBtoY(colorParsley(bg)))
+	}
+	const wcag3FontWeightSize = (contrast) => {
+		const fontSizeLookup = fontLookupAPCA(contrast)
+		fontSizeLookup.shift()
+		const weights = {}
+		for (let i = 0, l = fontSizeLookup.length; i<l; i++) {
+			const size = fontSizeLookup[i]
+			weights[i*100] = size
+		}
+		return weights
+	}
+	const wcag3Pass = (contrast, size = 16, weight = 400) => {
+		const weightSizes = wcag3FontWeightSize(contrast)
+		return (weightSizes[weight] < size)
+	}
+	const wcag3PassMark = (contrast, size, weight) => {
+		return wcag3Pass(contrast, size, weight) ? '✓' : `${contrast.toFixed(2)}`
+	}
+	const wcagCalculateGrade = (backgroundColor, color, size, weight) => {
+		// console.log({backgroundColor, color, size, weight})
+		const contrast = Math.abs(wcag3Contrast(color, backgroundColor))
+		// console.log({contrast})
+		const weightSizes = wcag3FontWeightSize(contrast)
+		// console.log({weightSizes})
+		const pass = (weightSizes[weight] < size)
+		// console.log({pass})
+		if (!pass) {
+			console.error({pass, backgroundColor, color, size, weight, contrast, weightSizes})
+		}
+		return pass
+		? `✓ ${contrast.toFixed(2)}`
+		: `✗ ${contrast.toFixed(2)}`
+	}
+	
+	const paletteNeutral = makePalette('#000000', 0, false, shades)
+	processPalette(paletteNeutral)
+	
+	const palettes = {
+		neutral:{key: 'neutral', ...paletteNeutral}
+	}
+		const colors = {
+			'red': '#c52f21',
+			'cerise-red': '#D81B60',
+			'cinnabar':'#E53935',
+			'pomegranate':'#F4511E',
+			'pizazz':'#FB8C00',
+			'selective-yellow':'#FFB300',
+			'bright-yellow':'#FDD835',
+			'key-lime-pie':'#C0CA33',
+			'sushi':'#7CB342',
+			'apple':'#43A047',
+			'elf-green':'#00897B',
+			'pelorous':'#00ACC1',
+			'curious-blue':'#039BE5',
+			'cornflower-blue':'#1E88E5',
+			'cobalt':'#3949AB',
+			'daisy-bush':'#5E35B1',
+			'violet-eggplant':'#8E24AA'
+		}
+		for (const key in colors) {
+			const swatch = makePalette(colors[key], 0, false, shades)
+			processPalette(swatch)
+			palettes[key] ={key, ...swatch}
+		}
+		// console.log(palettes)
+		const auditMode = $page.url.searchParams.get('audit') === 'contrast'
+		const userPalette = {
+			bg:$page.url.searchParams.get('bg') ?? 'neutral',
+			text: $page.url.searchParams.get('text') ?? 'neutral',
+			main: $page.url.searchParams.get('main') ?? 'daisy-bush',
+			focus: $page.url.searchParams.get('focus') ?? 'daisy-bush',
+			ins: $page.url.searchParams.get('ins') ?? 'sushi',
+			del: $page.url.searchParams.get('del') ?? 'cinnabar',
+			mark: $page.url.searchParams.get('mark') ?? 'bright-yellow',
+			info: $page.url.searchParams.get('info') ?? 'cornflower-blue',
+			pass: $page.url.searchParams.get('pass') ?? 'apple',
+			warn: $page.url.searchParams.get('warn') ?? 'selective-yellow',
+			//fail: $page.url.searchParams.get('fail') ?? 'red',
+			'fail-light': $page.url.searchParams.get('fail-light') ?? 'red',
+			'fail-dark': $page.url.searchParams.get('fail-dark') ?? 'cerise-red'
+		}
+		
+		
+		const cssVariables = {
+			light: {
+				'l0': palettes[userPalette.bg]['light-l0'].color,
+				'l1': palettes[userPalette.bg]['light-l1'].color,
+				'l2': palettes[userPalette.bg]['light-l2'].color,
+				'l3': palettes[userPalette.bg]['light-l3'].color,
+				'l4': palettes[userPalette.bg]['light-l4'].color,
+				'l5': palettes[userPalette.bg]['light-l5'].color,
+				'text': palettes[userPalette.text]['dark-l0'].color,
+				'fill-text': palettes[userPalette.text]['light-l1'].color,
+				
+				'main': palettes[userPalette.main]['light-a0'].color,
+				'main-pseudo': palettes[userPalette.main]['dark-a0'].color,
+				'main-bold': palettes[userPalette.main]['light-b0'].color,
+				'main-bold-pseudo': palettes[userPalette.main]['dark-b0'].color,
+				//'main-text': palettes[userPalette.main]['light-l1'].color,
+				
+				'focus': palettes[userPalette.focus]['light-a0'].color,
+				'ins': palettes[userPalette.ins]['light-a0'].color,
+				'del': palettes[userPalette.del]['light-a0'].color,
+				'mark': palettes[userPalette.mark]['light-a0'].color,
+				
+				'info': palettes[userPalette.info]['light-b0'].color,
+				'pass': palettes[userPalette.pass]['light-b0'].color,
+				'warn': palettes[userPalette.warn]['light-b0'].color,
+				'fail': palettes[userPalette.fail ?? userPalette['fail-light']]['light-b0'].color,
+			},
+			dark:{
+				'l0': palettes[userPalette.bg]['dark-l0'].color,
+				'l1': palettes[userPalette.bg]['dark-l1'].color,
+				'l2': palettes[userPalette.bg]['dark-l2'].color,
+				'l3': palettes[userPalette.bg]['dark-l3'].color,
+				'l4': palettes[userPalette.bg]['dark-l4'].color,
+				'l5': palettes[userPalette.bg]['dark-l5'].color,
+				'text': palettes[userPalette.text]['light-l1'].color,
+				'fill-text': palettes[userPalette.text]['dark-l0'].color,
+				
+				'main': palettes[userPalette.main]['dark-a0'].color,
+				'main-pseudo': palettes[userPalette.main]['light-a0'].color,
+				'main-bold': palettes[userPalette.main]['dark-b0'].color,
+				'main-bold-pseudo': palettes[userPalette.main]['light-b0'].color,
+				//'main-text': palettes[userPalette.main]['dark-l0'].color,
+				
+				'focus': palettes[userPalette.focus]['dark-a0'].color,
+				'ins': palettes[userPalette.ins]['dark-a0'].color,
+				'del': palettes[userPalette.del]['dark-a0'].color,
+				'mark': palettes[userPalette.mark]['dark-a0'].color,
+				
+				'info': palettes[userPalette.info]['dark-b0'].color,
+				'pass': palettes[userPalette.pass]['dark-b0'].color,
+				'warn': palettes[userPalette.warn]['dark-b0'].color,
+				'fail': palettes[userPalette.fail ?? userPalette['fail-dark']]['dark-b0'].color,
+			}
+		}
+		
+		const makeCSSVariables = (mode) => {
+			let css = ''
+			Object.keys(cssVariables[mode]).forEach((key) => {
+				css += `  --color-${key}: ${cssVariables[mode][key]};\n`
+			})
+			return css
+		}
+</script>
+
+<svelte:head>
+	<Head>
+		<title>Colour | Design System</title>
+		<meta name="description" content="Colour palette builder sematic fluid design system" />
+	</Head>
+</svelte:head>
+	
+	<LayoutCenter>
+		<H2>Colour palette</H2>
+	<Form class="grid">
+		<InputSelect id="main" label="Primary" value={userPalette.main} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.main} />
+			{/each}
+		</InputSelect>
+		
+		<InputSelect id="focus" label="Focus ring" value={userPalette.focus} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.focus} />
+			{/each}
+		</InputSelect>
+		
+		<InputSelect id="bg" label="Background" value={userPalette.bg} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.bg} />
+			{/each}
+		</InputSelect>
+		
+		<InputSelect id="text" label="Text" value={userPalette.text} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.text} />
+			{/each}
+		</InputSelect>
+		
+		<InputSelect id="info" label="Status: Info" value={userPalette.info} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.info} />
+			{/each}
+		</InputSelect>
+	<!--	<InputSelect id="pass" label="Status: Pass/Success" value={userPalette.pass} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.pass} />
+			{/each}
+		</InputSelect>
+		<InputSelect id="warn" label="Status: Warn/Caution" value={userPalette.warn} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.warn} />
+			{/each}
+		</InputSelect>-->
+		<InputSelect id="fail" label="Status: Fail/Danger/Error" value={userPalette.fail} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.fail} />
+			{/each}
+		</InputSelect>
+		
+		<InputSelect id="ins" label="<ins>" value={userPalette.ins} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.ins} />
+			{/each}
+		</InputSelect>
+		<InputSelect id="del" label="<del>" value={userPalette.del} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.del} />
+			{/each}
+		</InputSelect>
+		<InputSelect id="mark" label="<mark>" value={userPalette.mark} >
+			{#each Object.keys(palettes) as key}
+				<FieldOption label="{key}" value="{key}" selected={key === userPalette.mark} />
+			{/each}
+		</InputSelect>
+		<Fieldset id="audit" label="Auditor options" value={[auditMode]}>
+			<InputCheckbox label="Contract values" value="contrast" />
+		</Fieldset>
+		<Div><Button>Submit</Button></Div>
+	</Form>
+	
+	{#each ['light','dark'] as mode}
+	<H2>{mode} mode</H2>
+	<Div class="window" style="
+	{makeCSSVariables(mode)}
+	--color-bg: var(--color-l0);
+	">
+	{#each [0,1,2,3,4,5] as level}
+	<Div class="window" style="--color-bg: var(--color-l{level});">
+		{#if auditMode}
+		<!-- wcag3PassMark(Lc, font-size, font-weight) -->
+		<Ul class="force-text-color">
+			<Li><Strong>text:</Strong> {wcagCalculateGrade(            cssVariables[mode]['l'+level], cssVariables[mode]['text'], 18, 400)}</Li>
+			<Li><Strong>strong:</Strong> {wcagCalculateGrade(          cssVariables[mode]['l'+level], cssVariables[mode]['text'], 18, 700)}</Li>
+			<Li><Strong>link:</Strong> {wcagCalculateGrade(            cssVariables[mode]['l'+level], cssVariables[mode]['main'], 18, 400)}</Li>
+			<Li><Strong>inserted:</Strong> {wcagCalculateGrade(        cssVariables[mode]['l'+level], cssVariables[mode]['ins'], 18, 400)}</Li>
+			<Li><Strong>deleted:</Strong> {wcagCalculateGrade(         cssVariables[mode]['l'+level], cssVariables[mode]['del'], 18, 400)}</Li>
+			<Li><Strong>hilighted (fill):</Strong> {wcagCalculateGrade(cssVariables[mode]['l'+level], cssVariables[mode]['mark'], 96, 700)}</Li>
+			<Li><Strong>hilighted (text):</Strong> {wcagCalculateGrade(cssVariables[mode]['mark'],    cssVariables[mode]['fill-text'], 18, 400)}</Li>
+			<Li><Strong>button (focus):</Strong> {wcagCalculateGrade(  cssVariables[mode]['l'+level], cssVariables[mode]['main'], 18, 700)}</Li>
+			<Li><Strong>button (fill):</Strong> {wcagCalculateGrade(   cssVariables[mode]['l'+level], cssVariables[mode]['main'], 96, 700)}</Li>
+			<Li><Strong>button (text):</Strong> {wcagCalculateGrade(   cssVariables[mode]['main'],    cssVariables[mode]['fill-text'], 18, 700)}</Li>
+			<Li><Strong>info (fill):</Strong> {wcagCalculateGrade(   cssVariables[mode]['l'+level], cssVariables[mode]['info'], 96, 700)}</Li>
+			<Li><Strong>info (text):</Strong> {wcagCalculateGrade(   cssVariables[mode]['info'],    cssVariables[mode]['fill-text'], 18, 700)}</Li>
+			<!--<Li><Strong>pass (fill):</Strong> {wcagCalculateGrade(   cssVariables[mode]['l'+level], cssVariables[mode]['pass'], 96, 700)}</Li>
+			<Li><Strong>pass (text):</Strong> {wcagCalculateGrade(   cssVariables[mode]['pass'],    cssVariables[mode]['fill-text'], 18, 700)}</Li>
+			<Li><Strong>warn (fill):</Strong> {wcagCalculateGrade(   cssVariables[mode]['l'+level], cssVariables[mode]['warn'], 96, 700)}</Li>
+			<Li><Strong>warn (text):</Strong> {wcagCalculateGrade(   cssVariables[mode]['warn'],    cssVariables[mode]['fill-text'], 18, 700)}</Li>-->
+			<Li><Strong>fail (fill):</Strong> {wcagCalculateGrade(   cssVariables[mode]['l'+level], cssVariables[mode]['fail'], 96, 700)}</Li>
+			<Li><Strong>fail (text):</Strong> {wcagCalculateGrade(   cssVariables[mode]['fail'],    cssVariables[mode]['fill-text'], 18, 700)}</Li>
+		</Ul>
+		{/if}
+		
+		<P class="force-text-color">text <A href="#">link</A> <Strong>bold</Strong> <Ins>inserted</Ins> <Del>deleted</Del> <Mark>hilighted</Mark></P>
+		<Div role="group">
+			<Button>button</Button>
+			<Button style="--color-main-bold: var(--color-info)">&#x24D8; info</Button>
+			<!--<Button style="--color-main-bold: var(--color-pass)">pass</Button>
+			<Button style="--color-main-bold: var(--color-warn)">warn</Button>-->
+			<Button style="--color-main-bold: var(--color-fail)">&#x26A0; fail</Button>
+			<Button class="outline">button</Button>
+		</Div>
+	</Div>
+	{/each}
+</Div>
+{/each}
+	
+	<H2>theme.css</H2>
+	<Codeblock language="css" code={`
+:root {
+	${makeCSSVariables('light')}
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		${makeCSSVariables('dark')}
+	}
+}
+`} />
+
+Source:
+https://gka.github.io/palettes/#/12|s|ffffff,0000ee,000000||1|0
+https://accessiblepalette.com/
+https://www.myndex.com/APCA/
+</LayoutCenter>
+<style>
+	:global(main) {
+		max-inline-size: 60ch;
+	}
+	:global(.window) {
+		margin: 0.5rem;
+		padding:1rem;
+		border-radius: 0.5rem;
+		background-color: var(--color-bg);
+	}
+	/* So browser bug when mixing root, theme, and style override */
+	:global(.force-text-color) {
+		color: var(--color-text);
+	}
+</style>

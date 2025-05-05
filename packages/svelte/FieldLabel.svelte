@@ -1,6 +1,7 @@
 <script>
   import Label from "./element/label.svelte";
-  export let id, label;
+  let { ...props } = $props();
+  let { id, label } = props;
 </script>
 
-<Label for={id} class="{$$props.class}">{label}</Label>
+<Label for={id} class={props.class}>{label}</Label>

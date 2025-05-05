@@ -1,7 +1,6 @@
 <script>
   import Span from './element/span.svelte'
-  
-  export let id, error
+  let { id, error } = $props();
   const errors = error?.filter((v) => v.id === id)
 </script>
 

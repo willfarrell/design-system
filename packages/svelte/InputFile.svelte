@@ -1,6 +1,15 @@
 <script>
   import FieldInput from './FieldInput.svelte'
-  export let value
+  let { ...props } = $props();
+  let {
+    is = 'ds-input-file',
+    value = null
+  } = props
 </script>
 
-<FieldInput {...$$props} value={value ?? null} type="file" is="ds-input-file" />
+<FieldInput 
+  {...props} 
+  type="file"
+  {is}
+  {value} 
+/>

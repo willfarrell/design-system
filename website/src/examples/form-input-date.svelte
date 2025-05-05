@@ -7,10 +7,10 @@
 	import InputText from '@design-system/svelte/InputText.svelte';
 	import Button from '@design-system/svelte/element/button.svelte';
 
-	const error = [{ id: 'dob', message: 'error message' }];
+	const error = [];
 </script>
 
-<!-- 
+<!--
 Note: size diff on each browser
 Chrome: width of 0
 Safari: width of 0

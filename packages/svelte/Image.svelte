@@ -1,13 +1,16 @@
 <script>
   import Img from "./element/img.svelte";
   import Picture from "./element/picture.svelte";
-  export let src;
+  let { ...props } = $props();
+  let { src } = props;
   // TODO make src a URL
-  const regExp = new RegExp('\.svg([?#].*)?$', 'i')
+  const regExp = new RegExp("\.svg([?#].*)?$", "i");
 </script>
 
 {#if regExp.test(src)}
-  <Img {...$$props} />
+  <Img {...props} />
 {:else}
-  <Picture {...$$props} />
+  <Picture>
+    <Img {...props} />
+  </Picture>
 {/if}

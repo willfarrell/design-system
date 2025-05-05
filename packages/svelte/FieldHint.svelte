@@ -1,6 +1,6 @@
 <script>
   import Span from './element/span.svelte'
-  export let id, hint;
+  let { id, hint } = $props();
 </script>
 
 {#if hint}

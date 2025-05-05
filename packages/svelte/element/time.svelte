@@ -1,6 +1,10 @@
 <script>
-  export let datatime
+  import allowedAttributes from "../utils/attributes.js";
+  const elementAttributes = new Set(["datetime"]);
+
+  let { children, ...props } = $props();
 </script>
-<time {...$$props} {datatime}>
-  <slot />
+
+<time {...allowedAttributes(props, elementAttributes)}>
+  {@render children?.()}
 </time>

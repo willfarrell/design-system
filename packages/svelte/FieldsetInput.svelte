@@ -4,14 +4,20 @@
   import FieldHint from "./FieldHint.svelte";
   import FieldError from "./FieldError.svelte";
   import Input from './element/input.svelte';
-  export let id, label, hint, error;
+  let { ...props } = $props();
+  let {
+    id, 
+    label, 
+    hint, 
+    error
+  } = props
 </script>
 
 <Div>
-  <Input {...$$props} />
+  <Input {...props} />
   <FieldLabel {id} {label} />
   <FieldHint {id} {hint} />
   <FieldError {id} {error} />
-    <!-- conditional -->
-  <!-- <slot /> -->
+  <!-- conditional -->
+  <!-- {@render children?.()} -->
 </Div>
