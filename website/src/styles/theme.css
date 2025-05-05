@@ -185,7 +185,7 @@ input,
 select,
 textarea,
 [type='file']::file-selector-button {
-	border-radius: 0.125rem;
+	border-radius: var(--border-radius);
 }
 
 /* address multiple inputs */

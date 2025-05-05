@@ -15,25 +15,28 @@ legend {
 legend ~ :where(:has(input)) {
   margin-block-start: calc(var(--padding-fixed) * 0.5);
 }
+summary ~ :where(:has(input)) {
+  margin-block-start: calc(var(--padding-fixed) * 0.5);
+}
 
 /* hint */
-legend ~ [id$='-hint'] {
+legend ~ [id$="-hint"] {
   display: block;
 }
 
 /* error */
-fieldset:has([id$='-error']) {
+fieldset:has([id$="-error"]) {
   border-inline-start: calc(var(--padding-fixed) * 0.25) solid var(--color-fail);
   padding-inline-start: var(--padding-fixed);
 }
 
-legend ~ [id$='-error'] {
+legend ~ [id$="-error"] {
   display: block;
   color: var(--color-fail);
   font-weight: 700;
 
   &::before {
-    content: '\26A0';
+    content: "\26A0";
     /* warning */
     padding-inline-end: 0.5em;
   }

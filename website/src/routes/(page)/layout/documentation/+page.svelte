@@ -56,13 +56,9 @@
 
 	import Image from '@design-system/svelte/Image.svelte';
 
-	import PageHeader from '@components/Header.svelte';
 	import NavDocumentation from '@components/NavDocumentation.svelte';
-	import Card from '@design-system/svelte/Card.svelte';
-	import PageFooter from '@components/Footer.svelte';
 </script>
 
-<PageHeader />
 <LayoutAside>
 	{#snippet nav()}
 		<NavDocumentation />
@@ -133,4 +129,3 @@
 		<!-- TODO nav prev/next-->
 	</LayoutTableOfContents>
 </LayoutAside>
-<PageFooter />

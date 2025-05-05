@@ -35,6 +35,9 @@
 
 		<Ul>
 			<Li>
+				<A href="/edit">edit</A>
+			</Li>
+			<Li>
 				<A href="/full-ltr">LTR</A>
 			</Li>
 		</Ul>

@@ -59,9 +59,6 @@
 	import Image from '@design-system/svelte/Image.svelte';
 	import Card from '@design-system/svelte/Card.svelte';
 
-	import PageHeader from '@components/Header.svelte';
-	import PageFooter from '@components/Footer.svelte';
-
 	const results = new Array(24).fill('x').map((x, i) => {
 		return {
 			id: '' + i,
@@ -76,7 +73,6 @@
 	});
 </script>
 
-<PageHeader />
 <LayoutAside>
 	<!-- TODO collapse for mobile -->
 	{#snippet nav()}
@@ -134,7 +130,6 @@
 		</Ul>
 	</Main>
 </LayoutAside>
-<PageFooter />
 
 <style global>
 	.results {

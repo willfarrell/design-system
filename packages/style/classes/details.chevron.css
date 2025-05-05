@@ -1,7 +1,9 @@
 details.chevron {
   summary {
     display: flex;
+    legend,
     strong {
+      display: flex;
       width: 100%;
     }
   }

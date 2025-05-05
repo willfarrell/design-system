@@ -66,9 +66,7 @@
 	import Footnotes from '@design-system/svelte/Footnotes.svelte';
 	import FootnoteLink from '@design-system/svelte/FootnoteLink.svelte';
 
-	import PageHeader from '@components/Header.svelte';
 	import Card from '@design-system/svelte/Card.svelte';
-	import PageFooter from '@components/Footer.svelte';
 
 	const footnotes = [
 		{ id: 'one', value: 'first footnote' },
@@ -76,8 +74,6 @@
 		{ id: 'three', value: 'third footnote' }
 	];
 </script>
-
-<PageHeader />
 
 <LayoutCenter>
 	<Article>
@@ -161,4 +157,3 @@
 		</Section>
 	{/snippet}
 </LayoutCenter>
-<PageFooter />

@@ -42,13 +42,9 @@
 
 	import ButtonSubmit from '@design-system/svelte/ButtonSubmit.svelte';
 
-	import PageHeader from '@components/Header.svelte';
-	import PageFooter from '@components/Footer.svelte';
-
 	const errors = [{ id: 'text', message: 'error message' }];
 </script>
 
-<PageHeader />
 <LayoutCenter class="container form">
 	<Section>
 		<A href="#" class="back">Back</A>
@@ -70,7 +66,6 @@
 		</Form>
 	</Section>
 </LayoutCenter>
-<PageFooter />
 
 <style global>
 	/* html:has(.form) {
