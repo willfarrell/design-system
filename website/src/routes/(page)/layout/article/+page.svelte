@@ -123,10 +123,9 @@
 		</Section>
 		<Section>
 			<H2>Tags</H2>
-			<A href="/demo/layout-search?tag=tag" rel="tag">tag</A>, <A
-				href="/demo/layout-search?tag=tag"
-				rel="tag">tag</A
-			>, <A href="/demo/layout-search?tag=tag" rel="tag">tag</A>
+			<A href="/layout/search?tag=tag" rel="tag">tag</A>, <A href="/layout/search?tag=tag" rel="tag"
+				>tag</A
+			>, <A href="/layout/search?tag=tag" rel="tag">tag</A>
 		</Section>
 	</Article>
 	{#snippet suffix()}

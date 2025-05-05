@@ -165,7 +165,8 @@
 	</Section>
 	<Section>
 		<H2 id="example">Example</H2>
-		<Snippet example="paragraph" />
+		<Snippet example="headings" />
+		<Snippet example="paragraphs" />
 	</Section>
 	<Section>
 		<H2 id="variables">Variables</H2>

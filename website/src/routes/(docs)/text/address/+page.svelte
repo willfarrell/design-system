@@ -80,7 +80,6 @@
 	</Section>
 	<Section>
 		<H2 id="variables">Variables</H2>
-		<P>Set the size of address</P>
-		<Variable component="address" />
+		<P>none for address</P>
 	</Section>
 </LayoutTableOfContents>

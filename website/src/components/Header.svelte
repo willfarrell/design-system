@@ -15,8 +15,8 @@
 			<A href="#main" class="skip">Skip to main content</A>
 			<Ul>
 				<!-- <Li><A href="/en" lang="en">English</A></Li> -->
-				<Li><A href="/ja" lang="ja">日本語</A></Li>
-				<Li><A href="/ar" lang="ar" dir="rtl">عربي</A></Li>
+				<!-- <Li><A href="/ja" lang="ja">日本語</A></Li>
+				<Li><A href="/ar" lang="ar" dir="rtl">عربي</A></Li> -->
 			</Ul>
 		</Nav>
 	</Aside>

@@ -81,10 +81,10 @@
 	<Section>
 		<H2 id="variables">Variables</H2>
 		<P>Set the size of headings</P>
-		<Variable component="h2" />
+		<!-- <Variable component="h2" />
 		<Variable component="h3" />
 		<Variable component="h4" />
 		<Variable component="h5" />
-		<Variable component="h6" />
+		<Variable component="h6" /> -->
 	</Section>
 </LayoutTableOfContents>

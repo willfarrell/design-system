@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/stores';
 	import Nav from '@design-system/svelte/element/nav.svelte';
 	import Time from '@design-system/svelte/element/time.svelte';
 	import NavScrollspy from '@design-system/svelte/NavScrollspy.svelte';
@@ -34,18 +35,18 @@
 <Nav>
 	<Ul>
 		<Li>
-			<Details class="chevron" open>
+			<Details class="chevron" open={$page.url.pathname.includes('/design-token/')}>
 				<Summary><strong>Design tokens</strong></Summary>
 				<Ul>
 					<Li><A href="/design-token/font-family">Font family</A></Li>
 					<Li><A href="/design-token/font-size">Font size</A></Li>
-					<Li><A href="/design-token/color-palette">Colour palette</A></Li>
-					<Li><A href="/design-token/themes">Themes</A></Li>
+					<!-- <Li><A href="/design-token/color-palette">Colour palette</A></Li> -->
+					<!-- <Li><A href="/design-token/themes">Themes</A></Li> -->
 				</Ul>
 			</Details>
 		</Li>
 		<Li>
-			<Details class="chevron">
+			<Details class="chevron" open={$page.url.pathname.includes('/text/')}>
 				<Summary><strong>Text</strong></Summary>
 				<Ul>
 					<Li><A href="/text/headings">Headings</A></Li>
@@ -62,25 +63,25 @@
 					<Li><A href="/text/accordion">Accordion</A></Li>
 					<Li><A href="/text/blockquote">Blockquote</A></Li>
 					<Li><A href="/text/table">Table</A></Li>
-					<Li><A href="/text/code">Code block</A></Li>
+					<!-- <Li><A href="/text/code">Code block</A></Li> -->
 					<Li><A href="/text/footnotes">Footnotes</A></Li>
 				</Ul>
 			</Details>
 		</Li>
 		<Li>
-			<Details class="chevron">
+			<Details class="chevron" open={$page.url.pathname.includes('/form/')}>
 				<Summary><strong>Form</strong></Summary>
 				<Ul>
 					<Li><A href="/form/errors">Errors</A></Li>
 					<Li><A href="/form/buttons">Button</A></Li>
-					<Li><A href="/form/back-link">Back link</A></Li>
+					<!-- <Li><A href="/form/back-link">Back link</A></Li> -->
 					<Li><A href="/form/input-text">Text</A></Li>
 					<Li><A href="/form/input-name">Name</A></Li>
 					<Li><A href="/form/input-email">Email address</A></Li>
 					<Li><A href="/form/input-tel">Telephone number</A></Li>
 					<Li><A href="/form/input-url">URL</A></Li>
 					<Li><A href="/form/input-password">Password</A></Li>
-					<Li><A href="/form/input-webauthn">WebAuthn</A></Li>
+					<!-- <Li><A href="/form/input-webauthn">WebAuthn</A></Li> -->
 					<Li><A href="/form/input-date">Date</A></Li>
 					<Li><A href="/form/input-address">Address</A></Li>
 					<Li><A href="/form/input-textarea">Textarea</A></Li>
@@ -94,8 +95,8 @@
 				</Ul>
 			</Details>
 		</Li>
-		<Li>
-			<Details class="chevron">
+		<!-- <Li>
+			<Details class="chevron" open={$page.url.pathname.includes('/media/')}>
 				<Summary><strong>Media</strong></Summary>
 				<Ul>
 					<Li><A href="/media/images">Images</A></Li>
@@ -104,25 +105,25 @@
 					<Li><A href="/media/audio">Audio</A></Li>
 				</Ul>
 			</Details>
-		</Li>
-		<Li>
-			<Details class="chevron">
+		</Li> -->
+		<!-- <Li>
+			<Details class="chevron" open={$page.url.pathname.includes('/nav/')}>
 				<Summary><strong>Navigation</strong></Summary>
 				<Ul>
 					<Li><A href="/nav/links">Links</A></Li>
 					<Li><A href="/nav/dropdown">dropdown</A></Li>
 				</Ul>
 			</Details>
-		</Li>
+		</Li> -->
 
-		<Li><Strong>Patterns</Strong></Li>
+		<!-- <Li><Strong>Patterns</Strong></Li>
 		<Li><A href="/pattern/card">card</A></Li>
 		<Li><A href="/pattern/skip-link">Skip link</A></Li>
 		<Li><A href="/pattern/header">header</A></Li>
-		<Li><A href="/pattern/footer">footer</A></Li>
+		<Li><A href="/pattern/footer">footer</A></Li> -->
 
 		<Li>
-			<Details class="chevron">
+			<Details class="chevron" open={$page.url.pathname.includes('/layout/')}>
 				<Summary><strong>Layouts</strong></Summary>
 				<Ul>
 					<Li><A href="/layout/article">Article</A></Li>

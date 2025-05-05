@@ -41,36 +41,16 @@
 	import Blockquote from '@design-system/svelte/element/blockquote.svelte';
 	import Footer from '@design-system/svelte/element/footer.svelte';
 	import Cite from '@design-system/svelte/element/cite.svelte';
-	import Form from '@design-system/svelte/element/form.svelte';
 
 	import Image from '@design-system/svelte/Image.svelte';
-	import InputText from '@design-system/svelte/InputText.svelte';
 	import Time from '@design-system/svelte/Time.svelte';
 
 	import Snippet from '@components/Snippet.svelte';
 	import Variable from '@components/Variable.svelte';
 
-	// const fontSize = 16; // px
-	// const fontScale = 0.5; // vw
-	// const deviceSizes = [360, 480, 768, 1024, 1280, 1920]; // px
-	// const baseScale = 1;
-	// const headerScales = [2, 1.75, 1.5, 1.25, 1.125, 1];
-	// const smallScale = 0.8;
-
-	// const calcHeight = (elemScale, deviceSize) => {
-	// 	return (elemScale * fontSize + (fontScale / 100) * deviceSize).toFixed(2);
-	// };
-
-	//	const max = (
-	// 	headerScales[1] * fontSize +
-	// 	(fontScale / 100) * deviceSizes[deviceSizes.length - 1]
-	// ).toFixed(2);
-	//	const min = (headerScales[0] * fontSize + (fontScale / 100) * deviceSizes[0]).toFixed(2);
-	//console.log(max / min);
-
 	const page = {
-		group: 'Design tokens',
-		title: 'Font family',
+		group: 'Text',
+		title: 'Inline formatted elements',
 		update: '2025-05-01'
 	};
 </script>
@@ -95,21 +75,11 @@
 		</NavScrollspy>
 	{/snippet}
 	<Section>
-		<P
-			>Defaults to `system-ui, sans-serif`. Can be overriden with https://modernfontstacks.com/ Pros
-			- faster load times - prevent CLS from font loading - allow OS override to people with visual
-			disabilities Atkinson Hyperlegible - https://brailleinstitute.org/freefont</P
-		>
-	</Section>
-	<Section>
 		<H2 id="example">Example</H2>
-		<Snippet example="paragraphs" />
+		<Snippet example="inline-format-elements" />
 	</Section>
 	<Section>
 		<H2 id="variables">Variables</H2>
-		<Form method="GET">
-			<InputText id="--font-family" name="--font-family" label="Font family" size="35" />
-			<Button type="submit">Save</Button>
-		</Form>
+		<P>None for inline elements</P>
 	</Section>
 </LayoutTableOfContents>

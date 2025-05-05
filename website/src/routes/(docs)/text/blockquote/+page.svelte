@@ -80,7 +80,6 @@
 	</Section>
 	<Section>
 		<H2 id="variables">Variables</H2>
-		<P>Set the size of blockquote</P>
-		<Variable component="blockquote" />
+		<P>None for blockquote</P>
 	</Section>
 </LayoutTableOfContents>

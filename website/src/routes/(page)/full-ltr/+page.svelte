@@ -1,6 +1,7 @@
 <script>
 	import Head from '@components/Head.svelte';
 
+	import LayoutCenter from '@design-system/svelte/LayoutCenter.svelte';
 	import Example from '@components/Example.svelte';
 
 	import Main from '@design-system/svelte/element/main.svelte';
@@ -34,7 +35,7 @@
 	<meta name="description" content="All sematic fluid design system components" />
 </Head>
 
-<Main class="container">
+<LayoutCenter>
 	<Article>
 		<Example component="heading-group" />
 		<!--
@@ -113,7 +114,7 @@
 			<Example component="form-input-password" />
 			<H3>Number inputs</H3>
 			<Example component="form-input-number" />
-			<Example component="form-input-ont-time-code" />
+			<Example component="form-input-one-time-code" />
 			<H3>Date input</H3>
 			<Example component="form-input-date" />
 			<H3>Date picker [Avoid]</H3>
@@ -218,4 +219,4 @@
 			<H3>Component</H3>
 		</Section>
 	</Article>
-</Main>
+</LayoutCenter>

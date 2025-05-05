@@ -36,17 +36,17 @@
 		<Div>
 			<H3>Design tokens</H3>
 			<Ul>
-				<Li><A href="/design-tokens/font-family">font family</A></Li>
-				<Li><A href="/design-tokens/font-size">font size</A></Li>
+				<Li><A href="/design-token/font-family">font family</A></Li>
+				<Li><A href="/design-token/font-size">font size</A></Li>
 			</Ul>
 		</Div>
 		<Div>
 			<H3>Components</H3>
 			<Ul>
 				<Li><A href="/full-ltr">Left To Right (LTR)</A></Li>
-				<Li><A href="/full-rtl">Right To Left (RTL)</A></Li>
+				<!-- <Li><A href="/full-rtl">Right To Left (RTL)</A></Li>
 				<Li><A href="/full-vrl">Vertical Right to Left (VRL)</A></Li>
-				<Li><A href="/full-vlr">Vertical Left to Right (VLR)</A></Li>
+				<Li><A href="/full-vlr">Vertical Left to Right (VLR)</A></Li> -->
 			</Ul>
 		</Div>
 		<Div>
@@ -68,7 +68,7 @@
 				</Li>
 			</Ul>
 		</Div>
-		<Div>
+		<!-- <Div>
 			<H3>Policies</H3>
 			<Ul>
 				<Li><A href="/policy/privacy">Privacy</A></Li>
@@ -76,7 +76,7 @@
 				<Li><A href="/policy/sustainability">Sustainability</A></Li>
 				<Li><A href="/policy/security">Security</A></Li>
 			</Ul>
-		</Div>
+		</Div> -->
 	</Nav>
 </Footer>
 

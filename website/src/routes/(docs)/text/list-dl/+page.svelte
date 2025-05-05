@@ -80,7 +80,6 @@
 	</Section>
 	<Section>
 		<H2 id="variables">Variables</H2>
-		<P>Set the size of lists</P>
-		<Variable component="dl" />
+		<P>None for lists</P>
 	</Section>
 </LayoutTableOfContents>

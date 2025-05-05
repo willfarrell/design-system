@@ -102,7 +102,7 @@
 			</Form>
 		</Search>
 	{/snippet}
-	<Main class="results">
+	<Main class="results" id="main">
 		<Hgroup>
 			<H1>Results</H1>
 			<HSub>number of results, list filters</HSub>

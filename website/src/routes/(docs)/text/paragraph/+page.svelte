@@ -81,6 +81,6 @@
 	<Section>
 		<H2 id="variables">Variables</H2>
 		<P>Set the size of paragraphs</P>
-		<Variable component="p" />
+		<!-- <Variable component="p" /> -->
 	</Section>
 </LayoutTableOfContents>
