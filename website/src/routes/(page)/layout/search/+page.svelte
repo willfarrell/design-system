@@ -101,7 +101,7 @@
 			</Form>
 		</Search>
 	{/snippet}
-	<Main class="container-results grid" id="main">
+	<Main class="container-results" id="main">
 		<Hgroup>
 			<H1>Results</H1>
 			<HSub>number of results, list filters</HSub>
@@ -132,8 +132,10 @@
 
 <style global>
 	.container-results {
+		max-inline-size: 60em;
+		width: 100%;
+
 		.grid {
-			max-inline-size: 60em;
 			--grid-gap: 1em;
 			--grid-min-width: 15em;
 		}

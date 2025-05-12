@@ -47,6 +47,7 @@
       "content aside";
 
     & > aside {
+      flex-shrink: 0;
       width: 30ch;
       padding: var(--padding-fixed) 0;
       position: relative;
