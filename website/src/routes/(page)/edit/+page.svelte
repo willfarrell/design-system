@@ -43,7 +43,7 @@
 	import Cite from '@design-system/svelte/element/cite.svelte';
 
 	import Form from '@design-system/svelte/element/form.svelte';
-	import Fieldset from '@design-system/svelte/fieldset.svelte';
+	import Fieldset from '@design-system/svelte/Fieldset.svelte';
 	import InputText from '@design-system/svelte/InputText.svelte';
 	import InputRadio from '@design-system/svelte/InputRadio.svelte';
 	import Time from '@design-system/svelte/Time.svelte';

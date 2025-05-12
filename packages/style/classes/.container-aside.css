@@ -12,7 +12,8 @@
     padding: var(--padding-fixed) 0;
     position: relative;
 
-    & > nav {
+    & > nav,
+    > search {
       top: var(--padding-fixed);
       position: sticky;
       overflow-y: scroll;
