@@ -1,6 +1,6 @@
 <script>
 	import '@styles/app.css';
-	let { children } = $props();
+	const { children } = $props();
 	//import '@scripts/bootstrap.js'; /* self is not defined */
 </script>
 

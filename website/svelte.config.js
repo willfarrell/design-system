@@ -19,8 +19,7 @@ const config = {
 		csp: {
 			mode: 'auto',
 			directives: {
-				// self required for svg sprites in FireFox :( (BUG https://bugzilla.mozilla.org/show_bug.cgi?id=1303364)
-				'default-src': ['self'],
+				'default-src': ['none'],
 				'base-uri': ['none'],
 				//'child-src':['none'], // fallback: default-src
 				//'connect-src':['none'], // fallback: default-src
@@ -63,7 +62,7 @@ const config = {
 			handleHttpError: 'warn', // 'fail'
 			handleMissingId: 'warn', // 'fail'
 			handleEntryGeneratorMismatch: 'warn', // 'fail'
-			origin: process.env.ORIGIN ?? 'https://datastream.org'
+			origin: process.env.ORIGIN ?? 'https://design-system.willfarrell.ca'
 		},
 		serviceWorker: { register: false }
 	},
@@ -71,6 +70,7 @@ const config = {
 		cssHash: ({ hash, css }) => `s-${hash(css)}`
 	},
 	extensions: ['.svelte', '.md'],
+	//inlineStyleThreshold: 5 * 1024,
 	preprocess: [
 		//markdown(),
 		preprocess({

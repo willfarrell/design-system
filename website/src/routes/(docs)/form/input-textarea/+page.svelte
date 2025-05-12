@@ -56,14 +56,14 @@
 </script>
 
 <LayoutTableOfContents>
-	{#snippet hgroup()}
+	{#snippet header()}
 		<Hgroup>
 			<HSub>{page.group}</HSub>
 			<H1>{page.title}</H1>
 			<HSub><Small>Published on <Time datetime={page.update} /></Small></HSub>
 		</Hgroup>
 	{/snippet}
-	{#snippet scrollspy()}
+	{#snippet aside()}
 		<NavScrollspy>
 			<Section>
 				<Header><H2>On this page</H2></Header>

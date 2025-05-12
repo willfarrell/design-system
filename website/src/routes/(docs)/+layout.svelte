@@ -3,12 +3,12 @@
 	import LayoutAside from '@design-system/svelte/LayoutAside.svelte';
 	import NavDocumentation from '@components/NavDocumentation.svelte';
 	import PageFooter from '@components/Footer.svelte';
-	let { children, ...props } = $props();
+	const { children, ...props } = $props();
 </script>
 
 <PageHeader />
 <LayoutAside>
-	{#snippet nav()}
+	{#snippet aside()}
 		<NavDocumentation />
 	{/snippet}
 	{@render children?.()}
