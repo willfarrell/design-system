@@ -1,13 +1,13 @@
 <script>
   import Div from "@design-system/svelte/element/div.svelte";
   import Aside from "@design-system/svelte/element/aside.svelte";
-  const { nav, children, ...props } = $props();
+  const { aside, children, ...props } = $props();
 </script>
 
 <Div class="container-aside" {...props}>
-  {#if nav}
+  {#if aside}
     <Aside>
-      {@render nav()}
+      {@render aside()}
     </Aside>
   {/if}
   {@render children?.()}

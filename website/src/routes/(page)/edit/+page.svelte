@@ -41,10 +41,11 @@
 	import Blockquote from '@design-system/svelte/element/blockquote.svelte';
 	import Footer from '@design-system/svelte/element/footer.svelte';
 	import Cite from '@design-system/svelte/element/cite.svelte';
-	import Form from '@design-system/svelte/element/form.svelte';
 
-	import Image from '@design-system/svelte/Image.svelte';
+	import Form from '@design-system/svelte/element/form.svelte';
+	import Fieldset from '@design-system/svelte/fieldset.svelte';
 	import InputText from '@design-system/svelte/InputText.svelte';
+	import InputRadio from '@design-system/svelte/InputRadio.svelte';
 	import Time from '@design-system/svelte/Time.svelte';
 
 	import Snippet from '@components/Snippet.svelte';
@@ -65,13 +66,66 @@
 	<Section>
 		<H2 id="variables">Variables</H2>
 		<Form method="GET">
-			<InputText id="--font-family" name="--font-family" label="Font family" size="35" />
-			<InputText id="--font-size" name="--font-size" label="Font size" size="5" />
-
-			<InputText id="--border-width" name="--border-width" label="Border width" size="10" />
-			<InputText id="--border-radius" name="--border-radius" label="Border radius" size="10" />
-			<InputText id="--gap" name="--gap" label="Gap" size="10" />
-			<InputText id="--padding-fixed" name="--padding-fixed" label="Padding (fixed)" size="10" />
+			<Fieldset label="Body">
+				<InputText id="--font-family" name="--font-family" label="Font family" size="35" />
+				<InputText id="--font-size" name="--font-size" label="Font size" size="5" />
+				<InputText id="--font-weight" name="--font-weight" label="Font weight" size="5" />
+				<InputText id="--line-height" name="--line-height" label="Line height" size="5" />
+				<InputText id="--letter-spacing" name="--letter-spacing" label="Letter spacing" size="5" />
+				<InputText id="--color" name="--color" label="Text color" size="35" />
+				<InputText
+					id="--background-color"
+					name="--background-color"
+					label="Background color"
+					size="35"
+				/>
+			</Fieldset>
+			<Fieldset label="Headings">
+				<InputText
+					id="--heading_font-family"
+					name="--heading_font-family"
+					label="Font family"
+					size="35"
+				/>
+				<Fieldset
+					id="--heading_font-scale"
+					name="--heading_font-scale"
+					label="Font scale"
+					value="1.200"
+				>
+					<InputRadio label="1.067 – Minor Second" value="1.067" />
+					<InputRadio label="1.125 – Major Second" value="1.125" />
+					<InputRadio label="1.200 – Minor Third" value="1.200" />
+					<InputRadio label="1.250 – Major Third" value="1.250" />
+					<InputRadio label="1.333 – Perfect Fourth" value="1.333" />
+					<InputRadio label="1.414 – Augmented Fourth" value="1.414" />
+					<InputRadio label="1.500 – Perfect Fifth" value="1.500" />
+					<InputRadio label="1.618 – Golden Ratio" value="1.618" />
+				</Fieldset>
+				<InputText
+					id="--heading_font-weight"
+					name="--heading-font-weight"
+					label="Font weight"
+					size="5"
+				/>
+				<InputText
+					id="--heading_line-height"
+					name="--heading_line-height"
+					label="Line height"
+					size="5"
+				/>
+				<InputText
+					id="--heading_letter-spacing"
+					name="--heading_letter-spacing"
+					label="Letter spacing"
+					size="5"
+				/>
+				<InputText id="--heading_color" name="--heading_color" label="Text color" size="35" />
+			</Fieldset>
+			<InputText id="--border_width" name="--border_width" label="Border width" size="10" />
+			<InputText id="--border_radius" name="--border_radius" label="Border radius" size="10" />
+			<!-- <InputText id="--gap" name="--gap" label="Gap" size="10" />
+			<InputText id="--padding-fixed" name="--padding-fixed" label="Padding (fixed)" size="10" /> -->
 			<Button type="submit">Save</Button>
 		</Form>
 		<!-- <Codeblock language="css" code={html} /> -->

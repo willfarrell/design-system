@@ -36,8 +36,7 @@
 		<Div>
 			<H3>Design tokens</H3>
 			<Ul>
-				<Li><A href="/design-token/font-family">font family</A></Li>
-				<Li><A href="/design-token/font-size">font size</A></Li>
+				<Li><A href="/design-token/typography">Typography</A></Li>
 			</Ul>
 		</Div>
 		<Div>

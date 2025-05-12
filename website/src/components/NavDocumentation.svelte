@@ -38,8 +38,9 @@
 			<Details class="chevron" open={$page.url.pathname.includes('/design-token/')}>
 				<Summary><strong>Design tokens</strong></Summary>
 				<Ul>
-					<Li><A href="/design-token/font-family">Font family</A></Li>
+					<Li><A href="/design-token/typography">Typography</A></Li>
 					<Li><A href="/design-token/font-size">Font size</A></Li>
+					<Li><A href="/design-token/font-weight">Font weight</A></Li>
 					<!-- <Li><A href="/design-token/color-palette">Colour palette</A></Li> -->
 					<!-- <Li><A href="/design-token/themes">Themes</A></Li> -->
 				</Ul>
@@ -106,15 +107,14 @@
 				</Ul>
 			</Details>
 		</Li> -->
-		<!-- <Li>
-			<Details class="chevron" open={$page.url.pathname.includes('/nav/')}>
-				<Summary><strong>Navigation</strong></Summary>
+		<Li>
+			<Details class="chevron" open={$page.url.pathname.includes('/component/')}>
+				<Summary><strong>component</strong></Summary>
 				<Ul>
-					<Li><A href="/nav/links">Links</A></Li>
-					<Li><A href="/nav/dropdown">dropdown</A></Li>
+					<Li><A href="/component/dialog">Dialog</A></Li>
 				</Ul>
 			</Details>
-		</Li> -->
+		</Li>
 
 		<!-- <Li><Strong>Patterns</Strong></Li>
 		<Li><A href="/pattern/card">card</A></Li>

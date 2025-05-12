@@ -1,6 +1,6 @@
 <script>
   import InputText from "./InputText.svelte";
-  const { ...props } = $props();
+  const { children, ...props } = $props();
 
   // name, given-name, additional-name, family-name, nickname
 </script>

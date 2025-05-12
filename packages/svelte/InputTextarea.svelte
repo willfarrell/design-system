@@ -4,7 +4,7 @@
   import FieldHint from "./FieldHint.svelte";
   import FieldError from "./FieldError.svelte";
   import Textarea from "./element/textarea.svelte";
-  const { children, ...props } = $props();
+  const { ...props } = $props();
   const { id, name = props.id, label, labelSnippet, hint, error } = props;
 
   // aria-describedby={hint ? id+'-hint' : null}

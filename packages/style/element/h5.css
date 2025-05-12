@@ -15,7 +15,7 @@ h5[id] a {
   text-align: end;
 }
 
-@media (min-width: 60em) {
+@media (min-width: 40em) {
   h5[id] a {
     inset-inline-end: auto;
     inset-inline-start: -1.45em;
