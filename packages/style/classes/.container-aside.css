@@ -1,13 +1,28 @@
 .container-aside {
+  container-name: container-aside;
+  container-type: inline-size;
+  flex: 1 1 0%;
   display: flex;
   flex-wrap: wrap;
   column-gap: 3rem;
-  justify-content: center;
-  & aside {
-    width: 18rem;
-    height: 100vh;
-    /* position: sticky;
-    overflow-y: scroll; */
-    /* max-inline-size: 20ch; */
+  margin-inline: var(--padding-fixed);
+
+  & > aside {
+    width: 30ch;
+    padding: var(--padding-fixed) 0;
+    position: relative;
+
+    & > nav {
+      top: var(--padding-fixed);
+      position: sticky;
+      overflow-y: scroll;
+    }
+  }
+  /* 30ch (aside) + 3rem (gap) + 60ch (main) */
+  /* calc(30ch + 3rem + 60ch) not supported */
+  @container (width < 53em) {
+    & > aside {
+      display: none;
+    }
   }
 }

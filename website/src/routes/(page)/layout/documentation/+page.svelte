@@ -64,15 +64,15 @@
 		<NavDocumentation />
 	{/snippet}
 	<LayoutTableOfContents>
-		{#snippet hgroup()}
-			<Hgroup>
+		{#snippet header(id)}
+			<Hgroup {id}>
 				<H1>fluid design</H1>
 				<HSub>Subheading</HSub>
 				<HSub><Small>Published on <Time datetime="2000-01-01">January 1st, 2000</Time></Small></HSub
 				>
 			</Hgroup>
 		{/snippet}
-		{#snippet scrollspy()}
+		{#snippet aside()}
 			<NavScrollspy>
 				<Section>
 					<Header><H2>On this page</H2></Header>

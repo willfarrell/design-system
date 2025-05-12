@@ -28,7 +28,8 @@
   "dependencies": {
     "apca-w3": "^0.1.0",
     "chroma-js": "^3.0.0",
-    "colorparsley": "^0.1.0"
+    "colorparsley": "^0.1.0",
+    "cssnano": "7.0.7"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.0.0",

@@ -3,7 +3,8 @@ module.exports = {
 		'postcss-import': {},
 		'postcss-nesting': {},
 		'postcss-calc': {},
-		'postcss-csso': {},
+		cssnano: {},
+		//'postcss-csso': {}, // doesn't support @container - https://github.com/lahmatiy/postcss-csso/issues/26
 		// Bloats CSS when using color-themes
 		/*'postcss-css-variables': {
 			preserveAtRulesOrder: true
@@ -19,7 +20,8 @@ module.exports = {
 			extractAll: false,
 			config: {
 				plugins: {
-					'postcss-csso': {}
+					// 'postcss-csso': {} // doesn't support @container - https://github.com/lahmatiy/postcss-csso/issues/26
+					cssnano: {}
 				}
 			},
 			stats: false

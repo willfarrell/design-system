@@ -4,12 +4,12 @@ label {
   cursor: pointer;
 }
 
-:where(label, :has(label)) ~ :where(input, div:has(select), textarea) {
+label ~ :where(input, div:has(select), textarea) {
   margin-block-start: calc(var(--padding-fixed) * 0.5);
 }
 
 /* hint */
-:where(label, :has(label)) ~ [id$="-hint"] {
+label ~ [id$="-hint"] {
   display: block;
 }
 
@@ -19,7 +19,7 @@ div:has(> [id$="-error"]) {
   padding-inline-start: var(--padding-fixed);
 }
 
-:where(label, :has(label)) ~ [id$="-error"] {
+label ~ [id$="-error"] {
   display: block;
   color: var(--color-fail);
   font-weight: 700;

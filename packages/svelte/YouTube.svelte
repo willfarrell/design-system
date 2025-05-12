@@ -3,7 +3,7 @@
   import Div from "@design-system/svelte/element/div.svelte";
   import Picture from "@components/element/picture.svelte";
   import Img from "@components/element/img.svelte";
-  let { locale } = getContext("page");
+  const { locale } = getContext("page");
   export let videoId, width, height, title;
   export let item;
 

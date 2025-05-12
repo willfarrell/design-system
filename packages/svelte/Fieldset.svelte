@@ -4,22 +4,22 @@
   import FieldLegend from "./FieldLegend.svelte";
   import FieldHint from "./FieldHint.svelte";
   import FieldError from "./FieldError.svelte";
-  let { ...props } = $props();
-  let {
-    id, 
-    name = props.id, 
+  const { children, ...props } = $props();
+  const {
+    id,
+    name = props.id,
     legend = props.label,
-    hint, 
-    error, 
+    legendSnippet,
+    hint,
+    error,
     value,
-    children
-  } = props
+  } = props;
 
   setContext("fieldset", { name, value });
 </script>
 
 <Fieldset {...props}>
-  <FieldLegend {id} legend={legend} />
+  <FieldLegend {id} {legend} children={legendSnippet} />
   <FieldHint {id} {hint} />
   <FieldError {id} {error} />
   {@render children?.({ id, value })}

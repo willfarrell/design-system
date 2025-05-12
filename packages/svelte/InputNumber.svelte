@@ -1,9 +1,8 @@
 <script>
   import InputText from "./InputText.svelte";
-  let { ...props } = $props();
+  const { children, ...props } = $props();
 </script>
 
-<InputText
-  {...props}
-  inputmode="numeric"
-/>
+<InputText {...props} inputmode="numeric">
+  {@render children?.()}
+</InputText>

@@ -1,7 +1,18 @@
 <script>
+  import { createRawSnippet } from "svelte";
   import Label from "./element/label.svelte";
-  let { ...props } = $props();
-  let { id, label } = props;
+
+  const defaultSnippet = createRawSnippet((label) => ({
+    render: () => label(),
+  }));
+
+  const { children = defaultSnippet, ...props } = $props();
+
+  const { id, label } = props;
 </script>
 
-<Label for={id} class={props.class}>{label}</Label>
+{#if label}
+  <Label for={id} {...props}>
+    {@render children(label)}
+  </Label>
+{/if}

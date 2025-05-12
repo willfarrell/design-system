@@ -1,20 +1,14 @@
 <script>
   import InputSelect from "./InputSelect.svelte";
-  let { children, ...props } = $props();
-  let {
-    autocomplete = 'country',
-    autocapitalize = 'off',
-    autocorrect = 'off',
-    spellcheck = 'false'
-  } = props
+  const { children, ...props } = $props();
 </script>
 
 <InputSelect
-  {...props} 
-  {autocomplete} 
-  {autocapitalize} 
-  {autocorrect} 
-  {spellcheck}
-  >
+  autocapitalize="off"
+  autocomplete="country"
+  autocorrect="off"
+  spellcheck="false"
+  {...props}
+>
   {@render children?.()}
 </InputSelect>

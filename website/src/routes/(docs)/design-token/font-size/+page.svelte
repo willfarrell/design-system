@@ -160,7 +160,9 @@
 		</Table>
 
 		<P
-			>https://adrianroselli.com/2024/03/the-ultimate-ideal-bestest-base-font-size-that-everyone-is-keeping-a-secret-especially-chet.html</P
+			>font-size -
+			https://adrianroselli.com/2024/03/the-ultimate-ideal-bestest-base-font-size-that-everyone-is-keeping-a-secret-especially-chet.html
+			max width - https://meyerweb.com/eric/thoughts/2018/06/28/what-is-the-css-ch-unit/</P
 		>
 	</Section>
 	<Section>

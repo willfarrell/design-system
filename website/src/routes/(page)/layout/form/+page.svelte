@@ -1,10 +1,15 @@
 <script>
+	import { paragraph } from '@examples/index.js';
 	import LayoutCenter from '@design-system/svelte/LayoutCenter.svelte';
 
 	import A from '@design-system/svelte/element/a.svelte';
 	import FormErrors from '@design-system/svelte/FormErrors.svelte';
 	import Form from '@design-system/svelte/element/form.svelte';
+	import Fieldset from '@design-system/svelte/Fieldset.svelte';
 	import InputText from '@design-system/svelte/InputText.svelte';
+	import InputTextarea from '@design-system/svelte/InputTextarea.svelte';
+	import InputSelect from '@design-system/svelte/InputSelect.svelte';
+	import InputCheckbox from '@design-system/svelte/InputCheckbox.svelte';
 
 	import Div from '@design-system/svelte/element/div.svelte';
 	import Nav from '@design-system/svelte/element/nav.svelte';
@@ -42,31 +47,95 @@
 
 	import ButtonSubmit from '@design-system/svelte/ButtonSubmit.svelte';
 
-	const errors = [{ id: 'text', message: 'input error message' }];
+	const errors = [
+		// { id: 'text', message: 'input error message' },
+		// { id: 'textarea', message: 'input error message' }
+		// { id: 'select', message: 'input error message' },
+		// { id: 'checkbox', message: 'input error message' }
+	];
+	const label = 'What are the details?';
+	const hint = paragraph;
 </script>
 
 <LayoutCenter class="container form">
 	<Section>
 		<A href="#" class="back">Back</A>
-
 		<FormErrors {errors}>
 			<H2>There's a problem</H2>
 		</FormErrors>
+
+		{#snippet labelSnippet(label)}
+			<H1>{label}</H1>
+		{/snippet}
+
+		<Form method="GET" is="ds-form-submit">
+			<InputTextarea id="textarea" {label} {labelSnippet} {hint} error={errors} />
+			<ButtonSubmit>Submit</ButtonSubmit>
+		</Form>
+
+		<!-- <br />
+		<br />
+		<br />
 		<Hgroup>
 			<HSub>Group</HSub>
-			<H1>Field name</H1>
+			<H1>Text</H1>
 		</Hgroup>
 		<P>Description</P>
 		<Form method="GET" is="ds-form-submit">
-			<InputText
-				id="text"
-				name="text"
-				label="Text input"
-				hint="Just a friendly hint"
-				error={errors}
-			/>
+			<InputText id="text" {label} {hint} error={errors} />
 			<ButtonSubmit>Submit</ButtonSubmit>
 		</Form>
+
+		<Form method="GET" is="ds-form-submit">
+			<InputText id="text" {label} {labelSnippet} {hint} error={errors} />
+			<ButtonSubmit>Submit</ButtonSubmit>
+		</Form> -->
+
+		<!-- <br />
+		<br />
+		<br />
+		<Hgroup>
+			<HSub>Group</HSub>
+			<H1>Select</H1>
+		</Hgroup>
+		<P>Description</P>
+		<Form method="GET" is="ds-form-submit">
+			<InputSelect id="textarea" {label} {hint} error={errors} />
+			<ButtonSubmit>Submit</ButtonSubmit>
+		</Form>
+		<Form method="GET" is="ds-form-submit">
+			<InputSelect id="text" name="text" {label} {labelSnippet} {hint} error={errors}></InputSelect>
+			<ButtonSubmit>Submit</ButtonSubmit>
+		</Form>
+
+		<br />
+		<br />
+		<br />
+		<Hgroup>
+			<HSub>Group</HSub>
+			<H1>Fieldset</H1>
+		</Hgroup>
+		<P>Description</P>
+		<Form method="GET" is="ds-form-submit">
+			<Fieldset id="checkbox" legend={label} value={['a']} error={errors}>
+				<InputCheckbox label="A" hint="hint" value="a" />
+				<InputCheckbox label="B" hint="hint" value="b" />
+			</Fieldset>
+			<ButtonSubmit>Submit</ButtonSubmit>
+		</Form>
+		<Form method="GET" is="ds-form-submit">
+			<Fieldset
+				id="checkbox"
+				legend={label}
+				legendSnippet={labelSnippet}
+				value={['a']}
+				error={errors}
+			>
+				<InputCheckbox label="A" hint="hint" value="a" />
+				<InputCheckbox label="B" hint="hint" value="b" />
+			</Fieldset>
+			<ButtonSubmit>Submit</ButtonSubmit>
+		</Form> -->
 	</Section>
 </LayoutCenter>
 
@@ -80,6 +149,5 @@
 	} */
 	.form {
 		min-height: 100vh;
-		width: 60ch;
 	}
 </style>

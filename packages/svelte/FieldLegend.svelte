@@ -1,11 +1,18 @@
 <script>
+  import { createRawSnippet } from "svelte";
   import Legend from "./element/legend.svelte";
-  let { ...props } = $props();
-  let { legend } = props;
+
+  const defaultSnippet = createRawSnippet((legend) => ({
+    render: () => legend(),
+  }));
+
+  const { children = defaultSnippet, ...props } = $props();
+
+  const { legend } = props;
 </script>
 
 {#if legend}
-  <Legend class={props.class}>
-    {legend}
+  <Legend {...props}>
+    {@render children(legend)}
   </Legend>
 {/if}

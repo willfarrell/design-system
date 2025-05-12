@@ -1,16 +1,11 @@
 <script>
-  import Div from './element/div.svelte';
+  import Div from "./element/div.svelte";
   import FieldLabel from "./FieldLabel.svelte";
   import FieldHint from "./FieldHint.svelte";
   import FieldError from "./FieldError.svelte";
-  import Input from './element/input.svelte';
-  let { ...props } = $props();
-  let {
-    id, 
-    label, 
-    hint, 
-    error
-  } = props
+  import Input from "./element/input.svelte";
+  const { ...props } = $props();
+  const { id, label, hint, error } = props;
 </script>
 
 <Div>

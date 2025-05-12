@@ -1,17 +1,14 @@
 <script>
-  import FieldInput from './FieldInput.svelte';
-  let { ...props } = $props();
-  let {
-    autocapitalize = 'off', 
-    autocorrect = 'off',  
-    spellcheck = 'false'
-  } = props
+  import FieldInput from "./FieldInput.svelte";
+  const { children, ...props } = $props();
 </script>
 
 <FieldInput
+  autocapitalize="off"
+  autocorrect="off"
+  spellcheck="false"
   {...props}
   type="url"
-  {autocapitalize}
-  {autocorrect}
-  {spellcheck}
-  />
+>
+  {@render children?.()}
+</FieldInput>

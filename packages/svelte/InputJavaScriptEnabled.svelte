@@ -1,28 +1,22 @@
 <script>
   import Fieldset from "./Fieldset.svelte";
   import InputHidden from "./InputHidden.svelte";
-  let { ...props } = $props()
-  let { id } = props
+  const { ...props } = $props();
+  const { id } = props;
   let {
-    is = 'input-' + id,
+    is = "input-" + id,
     name = id,
-    label, 
+    label,
     hint,
     value = false,
-    error
-  } = props
-  
+    error,
+  } = props;
+
   error = error?.filter((v) => v.id === id);
 </script>
 
 {#if error?.length}
-  <Fieldset
-    {id}
-    {is}
-    {label}
-    {hint}
-    {error}
-  >
+  <Fieldset {id} {is} {label} {hint} {error}>
     <InputHidden {name} {value} />
   </Fieldset>
 {:else}

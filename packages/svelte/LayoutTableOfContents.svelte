@@ -1,23 +1,27 @@
 <script>
+  import Main from "@design-system/svelte/element/main.svelte";
   import Div from "@design-system/svelte/element/div.svelte";
   import Aside from "@design-system/svelte/element/aside.svelte";
-  import Main from "@design-system/svelte/element/main.svelte";
 
-  let { hgroup, scrollspy, children, ...props } = $props();
+  const { header, aside, children, ...props } = $props();
 </script>
 
 <Main id="main" class="container-toc" {...props}>
-  {#if hgroup}
-    {@render hgroup({ id: "grid-top" })}
-  {/if}
-  {#if scrollspy}
-    <Aside id="grid-toc">
-      {@render scrollspy()}
-    </Aside>
-  {/if}
-  {#if children}
-    <Div id="grid-doc">
-      {@render children()}
-    </Div>
-  {/if}
+  <Div>
+    {#if header}
+      <Div>
+        {@render header()}
+      </Div>
+    {/if}
+    {#if aside}
+      <Aside>
+        {@render aside()}
+      </Aside>
+    {/if}
+    {#if children}
+      <Div>
+        {@render children()}
+      </Div>
+    {/if}
+  </Div>
 </Main>

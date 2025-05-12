@@ -1,7 +1,7 @@
 <script>
   import Div from "@design-system/svelte/element/div.svelte";
   import Aside from "@design-system/svelte/element/aside.svelte";
-  let { nav, children, ...props } = $props();
+  const { nav, children, ...props } = $props();
 </script>
 
 <Div class="container-aside" {...props}>

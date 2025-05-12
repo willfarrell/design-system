@@ -1,9 +1,8 @@
 <script>
-  import FieldInput from './FieldInput.svelte';
-  let { ...props } = $props();
+  import FieldInput from "./FieldInput.svelte";
+  const { children, ...props } = $props();
 </script>
 
-<FieldInput
-  {...props}
-  type="date"
-/>
+<FieldInput {...props} type="date">
+  {@render children?.()}
+</FieldInput>

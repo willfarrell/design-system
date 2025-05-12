@@ -12,7 +12,7 @@
 	import InputHidden from '@design-system/svelte/InputHidden.svelte';
 	import InputNumber from '@design-system/svelte/InputNumber.svelte';
 	import InputOneTimeCode from '@design-system/svelte/InputOneTimeCode.svelte';
-	import InputPassword from '@design-system/svelte/InputPassword.svelte';
+	import InputPasswordGet from '@design-system/svelte/InputPasswordGet.svelte';
 	import InputRadio from '@design-system/svelte/InputRadio.svelte';
 	import InputText from '@design-system/svelte/InputText.svelte';
 	import InputDate from '@design-system/svelte/InputDate.svelte';
@@ -26,7 +26,7 @@
 	const error = [{ id: 'dob', message: 'error message' }];
 </script>
 
-<!-- 
+<!--
 Note: size diff on each browser
 Chrome: width of 0
 Safari: width of 0

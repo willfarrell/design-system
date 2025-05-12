@@ -12,7 +12,7 @@
     const i = Math.floor(Math.log(value) / Math.log(k));
     return (
       new Intl.NumberFormat(locale).format(
-        parseFloat((value / Math.pow(k, i)).toFixed(dm)),
+        Number.parseFloat((value / Math.pow(k, i)).toFixed(dm)),
       ) +
       " " +
       sizes[i]

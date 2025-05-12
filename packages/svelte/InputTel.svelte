@@ -1,12 +1,8 @@
 <script>
-  import FieldInput from './FieldInput.svelte';
-  let { ...props } = $props();
-  let {
-    autocomplete = 'tel'
-  } = props
+  import FieldInput from "./FieldInput.svelte";
+  const { children, ...props } = $props();
 </script>
 
-<FieldInput
-  {...props}
-  type="tel"
-  {autocomplete} />
+<FieldInput autocomplete="tel" {...props} type="tel">
+  {@render children?.()}
+</FieldInput>

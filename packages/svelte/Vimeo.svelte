@@ -4,7 +4,7 @@
   // import Picture from '@components/element/picture.svelte'
   import Img from "@components/element/img.svelte";
   import Button from "@design-system/svelte/element/button.svelte";
-  let { locale } = getContext("page");
+  const { locale } = getContext("page");
   export let videoId, title, width, height;
   export let item;
 

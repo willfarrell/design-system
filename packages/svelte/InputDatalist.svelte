@@ -1,23 +1,18 @@
 <script>
-  import FieldInput from './FieldInput.svelte';
-  import Datalist from './element/datalist.svelte';
-  let { children, ...props } = $props();
-  let {
-    is = 'ds-datalist', 
-    id,
-    autocapitalize = 'off',
-    autocorrect = 'off',
-    spellcheck = 'false'
-  } = props
+  import FieldInput from "./FieldInput.svelte";
+  import Datalist from "./element/datalist.svelte";
+  const { children, ...props } = $props();
+  const { id } = props;
 </script>
 
 <FieldInput
+  autocapitalize="off"
+  autocorrect="off"
+  spellcheck="false"
+  is="ds-datalist"
   {...props}
-  {is}
   list="{id}-datalist"
-  {autocapitalize}
-  {autocorrect}
-  {spellcheck}>
+>
   <Datalist id="{id}-datalist">
     {@render children?.()}
   </Datalist>

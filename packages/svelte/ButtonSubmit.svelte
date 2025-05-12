@@ -2,7 +2,7 @@
   import Button from "@design-system/svelte/element/button.svelte";
   import Div from "@design-system/svelte/element/div.svelte";
   import Span from "@design-system/svelte/element/span.svelte";
-  let { type = "submit", children, ...props } = $props();
+  const { type = "submit", children, ...props } = $props();
 </script>
 
 <Button {type} {...props} }>

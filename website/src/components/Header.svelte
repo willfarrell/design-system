@@ -48,13 +48,22 @@
 	body > header {
 		nav {
 			display: flex;
-			justify-content: space-between;
-			padding: 0.5em 1em;
-			border-block-end: solid #555 1px;
-		}
-		ul {
-			display: flex;
 			gap: 1em;
+			padding: 0.5em var(--padding-fixed); /* update to be based on layout max width */
+			border-block-end: solid #555 1px;
+
+			ul {
+				container-type: inline-size;
+				display: flex;
+				flex: 1 1 0%;
+				gap: 1em;
+			}
+			@container (inline-size < 80ch) {
+				li {
+					display: none;
+					background: #f00;
+				}
+			}
 		}
 	}
 </style>

@@ -3,6 +3,6 @@
   const { children, ...props } = $props();
 </script>
 
-<FieldInput value={null} is="ds-input-file" {...props} type="file">
+<FieldInput {...props} type="password" autocomplete="current-password">
   {@render children?.()}
 </FieldInput>

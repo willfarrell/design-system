@@ -1,8 +1,8 @@
 <script>
   import Div from "@design-system/svelte/element/div.svelte";
   import Li from "@design-system/svelte/element/li.svelte";
-  let { ...props } = $props();
-  let { id, is = "ds-card", img, children } = props;
+  const { ...props } = $props();
+  const { id, is = "ds-card", img, children } = props;
 
   const slugify = (id) => {
     return id

@@ -1,6 +1,6 @@
 <script>
   import Input from "./element/input.svelte";
-  let { ...props } = $props();
+  const { ...props } = $props();
 </script>
 
 <Input {...props} type="hidden" />

@@ -181,7 +181,7 @@
 			<H3>Disclosure</H3>
 			<Example component="details" />
 			<H3>Dialog [Avoid]</H3>
-			<!-- <Example component="dialog" /> --><!-- contains header/footer which need labels -->
+			<Example component="dialog" /><!-- contains header/footer which need labels -->
 			<H3>Dropdown</H3>
 			<H3>Form Aside (Faceted search)</H3>
 			<H3>Header</H3>

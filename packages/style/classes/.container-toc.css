@@ -1,32 +1,61 @@
 .container-toc {
-  display: grid;
-  grid-template-areas:
-    "top"
-    "toc"
-    "doc";
-}
-#grid-top {
-  grid-area: top;
-}
-#grid-toc {
-  grid-area: toc;
-}
-#grid-doc {
-  grid-area: doc;
-  width: 60ch;
-}
-@media (min-width: 80em) {
-  .container-toc {
+  container-name: container-toc;
+  container-type: inline-size;
+  flex: 1 1 0%;
+
+  & > div {
+    display: grid;
+    grid-template-areas:
+      "header"
+      "aside"
+      "content";
+
+    :first-child {
+      grid-area: header;
+    }
+    & > aside {
+      grid-area: aside;
+    }
+    :last-child {
+      grid-area: content;
+    }
+
+    & > div {
+      width: 60ch;
+    }
+  }
+
+  /* 60ch (main) + 3rem (gap) + 30ch (toc) */
+  /* calc(60ch + 3rem + 30ch) not supported */
+  /* @container (70em < width) {
     column-gap: 3rem;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: min-content auto;
     grid-template-areas:
       "top toc"
       "doc toc";
-  }
-  #grid-toc nav {
-    width: 18rem;
-    inset-block-start: 0;
-    position: sticky;
-    overflow-y: scroll;
+  } */
+}
+
+/* 60ch (main) + 3rem (gap) + 30ch (toc) */
+/* calc(60ch + 3rem + 30ch) not supported */
+@container container-toc (53em < width) {
+  div:not(.\9) {
+    column-gap: 3rem;
+    grid-template-columns: min-content auto;
+    grid-template-areas:
+      "header aside"
+      "content aside";
+
+    & > aside {
+      width: 30ch;
+      padding: var(--padding-fixed) 0;
+      position: relative;
+
+      & > nav {
+        top: var(--padding-fixed);
+        position: sticky;
+        overflow-y: scroll;
+      }
+    }
   }
 }
