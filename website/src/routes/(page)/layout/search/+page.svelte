@@ -61,9 +61,9 @@
 
 	const results = new Array(24).fill('x').map((x, i) => {
 		return {
-			id: '' + i,
+			id: `${i}`,
 			href: '#',
-			title: 'Card title ' + i,
+			title: `Card title ${i}`,
 			description: 'Commodo ut laborum fugiat aliqua eiusmod voluptate pariatur',
 			button: 'Read more',
 			img: {
@@ -74,8 +74,7 @@
 </script>
 
 <LayoutAside>
-	<!-- TODO collapse for mobile -->
-	{#snippet nav()}
+	{#snippet aside()}
 		<Search>
 			<Form method="GET">
 				<Div role="group">
@@ -102,7 +101,7 @@
 			</Form>
 		</Search>
 	{/snippet}
-	<Main class="results" id="main">
+	<Main class="container-results grid" id="main">
 		<Hgroup>
 			<H1>Results</H1>
 			<HSub>number of results, list filters</HSub>
@@ -132,9 +131,9 @@
 </LayoutAside>
 
 <style global>
-	.results {
-		min-inline-size: 50em;
+	.container-results {
 		.grid {
+			max-inline-size: 60em;
 			--grid-gap: 1em;
 			--grid-min-width: 15em;
 		}

@@ -1,7 +1,6 @@
 /* https://css-tricks.com/an-auto-filling-css-grid-with-max-columns/ */
 .grid-max-col {
   display: grid;
-  flex-grow: 1;
   gap: var(--gap);
 
   grid-template-columns: repeat(
