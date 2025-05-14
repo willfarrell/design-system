@@ -51,6 +51,7 @@
 		<Div>
 			<H3>Layouts</H3>
 			<Ul>
+				<Li><A href="/layout/slices">Slices</A></Li>
 				<Li><A href="/layout/article">Article</A></Li>
 				<Li><A href="/layout/documentation">Documentation</A></Li>
 				<Li><A href="/layout/form">Form</A></Li>

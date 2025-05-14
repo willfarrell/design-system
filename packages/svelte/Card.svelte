@@ -1,8 +1,7 @@
 <script>
   import Div from "@design-system/svelte/element/div.svelte";
   import Li from "@design-system/svelte/element/li.svelte";
-  const { ...props } = $props();
-  const { id, is = "ds-card", img, children } = props;
+  const { children, img, id, ...props } = $props();
 
   const slugify = (id) => {
     return id
@@ -16,8 +15,7 @@
 </script>
 
 <!-- src: https://inclusive-components.design/cards/ -->
-
-<Li class="card" is="ds-card">
+<Li is="ds-card" {...props}>
   {#if children}
     <Div class="text">
       {@render children({ id: `card-${slugify(id)}` })}

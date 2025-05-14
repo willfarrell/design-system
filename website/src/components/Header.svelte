@@ -29,7 +29,7 @@
 				width="213"
 				decoding="auto"
 				fetchpriority="high"
-				loading="egar"
+				loading="eager"
 			/>
 		</A>
 

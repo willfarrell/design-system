@@ -25,7 +25,7 @@ const config = {
 				//'connect-src':['none'], // fallback: default-src
 				//'font-src':['none'], // fallback: default-src
 				'form-action': ['self'],
-				'frame-ancestors': ['self'], // X-Frame-Options: deny
+				'frame-ancestors': ['self'], // Examples are shown using iframes
 				'frame-src': ['self'], // fallback: child-src, default-src
 				'img-src': ['self'], // fallback: default-src
 				'manifest-src': ['self'], // fallback: default-src
