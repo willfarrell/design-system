@@ -1,8 +1,9 @@
 <script>
-  import InputText from "./InputText.svelte";
-  const { children, ...props } = $props();
+import InputText from "./InputText.svelte";
 
-  // name, given-name, additional-name, family-name, nickname
+const { children, ...props } = $props();
+
+// name, given-name, additional-name, family-name, nickname
 </script>
 
 <InputText autocomplete="nickname" {...props}>

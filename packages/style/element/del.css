@@ -1,3 +1,6 @@
+/* https://adrianroselli.com/2025/04/tweaking-text-level-styles-reprised.html#Del */
+
 del {
-  color: var(--color-del);
+	color: var(--color-del);
+	text-decoration-thickness: 0.15em;
 }

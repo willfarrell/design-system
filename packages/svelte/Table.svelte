@@ -1,6 +1,7 @@
 <script>
-  import Div from "./element/div.svelte";
-  const { children, ...props } = $props();
+import Div from "./element/div.svelte";
+
+const { children, ...props } = $props();
 </script>
 
 <!-- div container needed to allow overflow-x on oversized tables -->

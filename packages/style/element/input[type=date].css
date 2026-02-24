@@ -1,5 +1,5 @@
 input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
+	cursor: pointer;
 }
 /*input[type='date']::-webkit-calendar-picker-indicator {
   color: transparent;

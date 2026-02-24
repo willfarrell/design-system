@@ -1,18 +1,18 @@
 <script>
-  import { createRawSnippet } from "svelte";
-  import Label from "./element/label.svelte";
+import { createRawSnippet } from "svelte";
+import Label from "./element/label.svelte";
 
-  const defaultSnippet = createRawSnippet((label) => ({
-    render: () => label(),
-  }));
+const defaultSnippet = createRawSnippet((label) => ({
+	render: () => label(),
+}));
 
-  const { children = defaultSnippet, ...props } = $props();
+const { children = defaultSnippet, ...props } = $props();
 
-  const { id, label } = props;
+const { id, label } = props;
 </script>
 
 {#if label}
   <Label for={id} {...props}>
-    {@render children(label)}
+    {@render children(label.toString())}
   </Label>
 {/if}

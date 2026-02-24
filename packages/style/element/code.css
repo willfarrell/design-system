@@ -1,77 +1,14 @@
 code {
-  border-radius: 0.25em;
-  font-family: ui-monospace, monospace;
-  padding: 0.375rem 0.5rem;
-  max-inline-size: 60ch;
+	border-radius: 0.25em;
+	font-family: ui-monospace, monospace;
+	padding: 0.375rem 0.5rem;
+	max-inline-size: 60ch;
 
-  direction: ltr;
+	direction: ltr;
 }
 
 pre > code {
-  padding: 0;
-  word-break: break-all;
-  white-space: pre-wrap;
-}
-
-code {
-  /* prismjs */
-  .comment,
-  .prolog,
-  .doctype,
-  .cdata {
-    color: var(--code-comment, --color-text);
-  }
-  .punctuation {
-    color: var(--code-punctuation, --color-text);
-  }
-  .namespace {
-    opacity: 0.7;
-  }
-  .property,
-  .tag,
-  .boolean,
-  .number,
-  .constant,
-  .symbol,
-  .deleted {
-    color: var(--code-deleted, --color-del, --color-text);
-  }
-  .selector,
-  .attr-name,
-  .string,
-  .char,
-  .builtin,
-  .inserted {
-    color: var(--code-inserted, --color-ins, --color-text);
-  }
-  .operator,
-  .entity,
-  .url,
-  .style .string {
-    color: var(--code-operator, --color-text);
-    background: hsla(0, 0, 100%, 0.5);
-  }
-  .atrule,
-  .attr-value,
-  .keyword {
-    color: var(--code-keyword, --color-text);
-  }
-  .function {
-    color: var(--code-function, --color-text);
-  }
-  .regex,
-  .important,
-  .variable {
-    color: var(--code-variable, --color-text);
-  }
-  .important,
-  .bold {
-    font-weight: bold;
-  }
-  .italic {
-    font-style: italic;
-  }
-  .entity {
-    cursor: help;
-  }
+	padding: 0;
+	word-break: break-all;
+	white-space: pre-wrap;
 }

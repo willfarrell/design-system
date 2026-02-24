@@ -1,44 +1,42 @@
 {
-  "name": "@willfarrell/design-system",
-  "version": "0.0.0",
-  "description": "",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "lint": "prettier --write **/*.{js,json} && standard --fix **/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd website && npm start",
-    "build": "cd website && npm run build",
-    "preview": "cd website && npm run preview",
-    "_start": "rm -rf node_modules/.cache/storybook && storybook dev -p 6006",
-    "_upgrade": "npx storybook@latest upgrade",
-    "_build-storybook": "storybook build",
-    "test:reset": "postcss reset/chrome.raw.css -o reset/chrome.css --no-map && postcss reset/firefox.raw.css -o reset/firefox.css --no-map && postcss reset/safari.raw.css -o reset/safari.css --no-map"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://willfarrell@github.com/willfarrell/design-system.git"
-  },
-  "author": "willfarrell",
-  "license": "NULL",
-  "bugs": {
-    "url": "https://github.com/willfarrell/design-system/issues"
-  },
-  "homepage": "https://github.com/willfarrell/design-system#readme",
-  "dependencies": {
-    "apca-w3": "^0.1.0",
-    "chroma-js": "^3.0.0",
-    "colorparsley": "^0.1.0",
-    "cssnano": "7.0.7"
-  },
-  "devDependencies": {
-    "@biomejs/biome": "^1.0.0",
-    "@commitlint/cli": "^19.0.0",
-    "@commitlint/config-conventional": "^19.0.0",
-    "husky": "^9.0.0"
-  },
-  "workspaces": [
-    "packages/*",
-    "website"
-  ]
+	"name": "@willfarrell/design-system",
+	"version": "0.0.0",
+	"description": "",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint": "biome check --write --no-errors-on-unmatched",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "cd website && npm start",
+		"build": "cd website && npm run build",
+		"preview": "cd website && npm run preview",
+		"test:reset": "postcss reset/chrome.raw.css -o reset/chrome.css --no-map && postcss reset/firefox.raw.css -o reset/firefox.css --no-map && postcss reset/safari.raw.css -o reset/safari.css --no-map"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://willfarrell@github.com/willfarrell/design-system.git"
+	},
+	"author": "willfarrell",
+	"license": "NULL",
+	"bugs": {
+		"url": "https://github.com/willfarrell/design-system/issues"
+	},
+	"homepage": "https://github.com/willfarrell/design-system#readme",
+	"dependencies": {
+		"@simplewebauthn/browser": "13.2.2",
+		"apca-w3": "^0.1.0",
+		"chroma-js": "^3.0.0",
+		"colorparsley": "^0.1.0",
+		"cssnano": "^7.0.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^2.0.0",
+		"@commitlint/cli": "^20.0.0",
+		"@commitlint/config-conventional": "^20.0.0",
+		"husky": "^9.0.0"
+	},
+	"workspaces": [
+		"packages/*",
+		"websites/*"
+	]
 }

@@ -1,6 +1,7 @@
 <script>
-  import InputSelect from "./InputSelect.svelte";
-  const { children, ...props } = $props();
+import InputSelect from "./InputSelect.svelte";
+
+const { children, ...props } = $props();
 </script>
 
 <InputSelect

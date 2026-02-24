@@ -1,21 +1,21 @@
 input[type="file"] {
-  border: 0;
+	border: 0;
 }
 
 input[type="file"]::file-selector-button {
-  font-weight: 700;
-  cursor: pointer;
-  border: var(--border-width) solid var(--border-color, var(--color-main-bold));
-  background-color: var(--color-main-bold);
-  padding: calc(var(--padding-fixed) * 0.78) var(--padding-fixed);
-  color: var(--color-fill-text);
-  margin-inline-end: var(--padding-fixed);
+	font-weight: 700;
+	cursor: pointer;
+	border: var(--border-width) solid var(--border-color, var(--color-main-bold));
+	background-color: var(--color-main-bold);
+	padding: calc(var(--padding-fixed) * 0.78) var(--padding-fixed);
+	color: var(--color-fill-text);
+	margin-inline-end: var(--padding-fixed);
 
-  &:hover {
-    background-color: color-mix(
-      in srgb,
-      var(--color-main-bold-pseudo) 8%,
-      var(--color-main-bold)
-    );
-  }
+	&:hover {
+		background-color: color-mix(
+			in srgb,
+			var(--color-main-bold-pseudo) 8%,
+			var(--color-main-bold)
+		);
+	}
 }

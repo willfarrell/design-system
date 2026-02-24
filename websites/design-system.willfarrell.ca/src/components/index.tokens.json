@@ -1,0 +1,10 @@
+{
+	"class": {
+		"grid": {
+			"gap": {
+				"$type": "dimension",
+				"$value": { "value": 1.5, "unit": "rem" }
+			}
+		}
+	}
+}

@@ -1,26 +1,26 @@
 /* eslint-env browser */
 /* global trustedTypePolicy */
-const d = document
-const w = window
-const n = navigator
+const d = document;
+const w = window;
+const n = navigator;
 
-w.addEventListener('load', async () => {
-  if ('serviceWorker' in n) {
-    const sw = n.serviceWorker
-    const reg = await sw.register(trustedTypePolicy.createScriptURL('/sw.js'), {
-      scope: '/'
-    })
+w.addEventListener("load", async () => {
+	if ("serviceWorker" in n) {
+		const sw = n.serviceWorker;
+		const reg = await sw.register(trustedTypePolicy.createScriptURL("/sw.js"), {
+			scope: "/",
+		});
 
-    const swEvents = {}
+		const swEvents = {};
 
-    sw.addEventListener('message', async (event) => {
-      console.log('message', event)
-      if (!reg.active) return
-      if (event.origin !== location.origin) return
-      await swEvents?.[event.type]?.()
-    })
-    // let swDialog = document.getElementById('sw')
-    /* update: () => {
+		sw.addEventListener("message", async (event) => {
+			console.log("message", event);
+			if (!reg.active) return;
+			if (event.origin !== location.origin) return;
+			await swEvents?.[event.type]?.();
+		});
+		// let swDialog = document.getElementById('sw')
+		/* update: () => {
 // TODO
 if (!swDialog) {
   swDialog = document.createElement('dialog')
@@ -33,14 +33,14 @@ swDialog.innerHTML =
 swDialog.open = true
   } */
 
-    // document.addEventListener('visibilitychange', () => {
-    //   console.log(document.visibilityState) // session duration
-    // })
+		// document.addEventListener('visibilitychange', () => {
+		//   console.log(document.visibilityState) // session duration
+		// })
 
-    d.addEventListener('ononline', () => {
-      sw.controller.postMessage({
-        type: 'online'
-      })
-    })
-  }
-})
+		d.addEventListener("ononline", () => {
+			sw.controller.postMessage({
+				type: "online",
+			});
+		});
+	}
+});

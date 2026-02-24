@@ -1,23 +1,29 @@
 /* eslint-env browser */
 /* global trustedTypes */
 
-// import DOMPurify from 'dompurify'
+// TODO https://caniuse.com/mdn-api_element_sethtml
+import DOMPurify from "dompurify";
 
-let trustedTypePolicy = {
-  createHTML: (string) => string,
-  createScriptURL: (string) => string,
-  createScript: (string) => {
-    const url = new URL(string)
-    // Only allow same-origin
-    return url.pathname + url.hash + url.search
-  }
-}
-if (typeof trustedTypes !== 'undefined') {
-  trustedTypePolicy = trustedTypes.createPolicy('ds', {
-    ...trustedTypePolicy
-    // Disabled, only trusted sources used
-    // createHTML: (string) => DOMPurify.sanitize(string, { RETURN_TRUSTED_TYPE: true }) // 9kb br :(
-  })
+// polyfill
+if (typeof trustedTypes === "undefined") {
+	trustedTypes = { createPolicy: (_n, rules) => rules };
 }
 
-globalThis.trustedTypePolicy = trustedTypePolicy
+const trustedTypePolicy = {
+	createHTML: (string) =>
+		DOMPurify.sanitize(string, { RETURN_TRUSTED_TYPE: false }),
+	createScript: (string) => {
+		const url = new URL(string);
+		// Only allow same-origin
+		return url.pathname + url.hash + url.search;
+	},
+	createScriptURL: (string) => string,
+};
+
+trustedTypePolicy = trustedTypes.createPolicy("ds", {
+	...trustedTypePolicy,
+	// Disabled, only trusted sources used
+	// createHTML: (string) => DOMPurify.sanitize(string, { RETURN_TRUSTED_TYPE: false }) // 9kb br :(
+});
+
+globalThis.trustedTypePolicy = trustedTypePolicy;

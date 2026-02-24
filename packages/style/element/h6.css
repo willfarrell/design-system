@@ -1,23 +1,23 @@
 h6 {
-  position: relative;
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  font-weight: 700;
+	position: relative;
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	font-weight: 700;
 
-  margin-block: 0;
-  max-inline-size: 60ch;
+	margin-block: 0;
+	max-inline-size: 60ch;
 }
 
 h6[id] a {
-  position: absolute;
-  inset-inline-end: 0;
-  width: 1em;
-  text-align: end;
+	position: absolute;
+	inset-inline-end: 0;
+	width: 1em;
+	text-align: end;
 }
 
 @media (min-width: 40em) {
-  h6[id] a {
-    inset-inline-end: auto;
-    inset-inline-start: -1.5em;
-  }
+	h6[id] a {
+		inset-inline-end: auto;
+		inset-inline-start: -1.5em;
+	}
 }

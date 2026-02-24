@@ -1,8 +1,8 @@
 /* <a href="#main" class="skip">Skip to main content</a> ... <main id="main">...</main> */
 .skip {
-  position: relative;
-  inset-block-start: -9em;
+	position: relative;
+	inset-block-start: -9em;
 }
 .skip:focus {
-  inset-block-start: 0;
+	inset-block-start: 0;
 }

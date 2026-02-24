@@ -1,13 +1,14 @@
 <script>
-  import Main from "@design-system/svelte/element/main.svelte";
-  import Div from "@design-system/svelte/element/div.svelte";
-  import Aside from "@design-system/svelte/element/aside.svelte";
+import Article from "@design-system/svelte/element/article.svelte";
+import Aside from "@design-system/svelte/element/aside.svelte";
+import Div from "@design-system/svelte/element/div.svelte";
+import Main from "@design-system/svelte/element/main.svelte";
 
-  const { header, aside, children, ...props } = $props();
+const { header, aside, children, ...props } = $props();
 </script>
 
 <Main id="main" class="container-toc" {...props}>
-  <Div>
+  <Article>
     {#if header}
       <Div>
         {@render header()}
@@ -23,5 +24,5 @@
         {@render children()}
       </Div>
     {/if}
-  </Div>
+  </Article>
 </Main>

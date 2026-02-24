@@ -2,6 +2,7 @@
 @import "./element/nav.css";
 
 /* Text blocks */
+@import "./element/hgroup.css";
 @import "./element/h1.css";
 @import "./element/h2.css";
 @import "./element/h3.css";

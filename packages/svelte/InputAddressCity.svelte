@@ -1,6 +1,7 @@
 <script>
-  import InputText from "./InputText.svelte";
-  const { children, ...props } = $props();
+import InputText from "./InputText.svelte";
+
+const { children, ...props } = $props();
 </script>
 
 <InputText {...props} autocomplete="address-level2">

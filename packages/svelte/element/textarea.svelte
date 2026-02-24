@@ -1,25 +1,26 @@
 <script>
-  import allowedAttributes from "../utils/attributes.js";
-  const elementAttributes = new Set([
-    "autocomplete",
-    "cols",
-    "dirname",
-    "disabled",
-    "form",
-    "maxlength",
-    "minlength",
-    "name",
-    "placeholder",
-    "readonly",
-    "required",
-    "rows",
-    "wrap",
-  ]);
+import allowedAttributes from "../utils/attributes.js";
 
-  let {
-    // children, // {@render ...} tag cannot be inside <textarea>
-    ...props
-  } = $props();
+const elementAttributes = new Set([
+	"autocomplete",
+	"cols",
+	"dirname",
+	"disabled",
+	"form",
+	"maxlength",
+	"minlength",
+	"name",
+	"placeholder",
+	"readonly",
+	"required",
+	"rows",
+	"wrap",
+]);
+
+const {
+	// children, // {@render ...} tag cannot be inside <textarea>
+	...props
+} = $props();
 </script>
 
 <textarea {...allowedAttributes(props, elementAttributes)}

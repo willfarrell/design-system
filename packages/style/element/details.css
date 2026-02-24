@@ -1,23 +1,23 @@
 details {
-  max-inline-size: 60ch;
+	max-inline-size: 60ch;
 }
 
 /* reset */
 
 /* Safari 16.6 Extra */
 summary::-webkit-details-marker {
-  display: none;
+	display: none;
 }
 
 /* Safari 16.6 Missing */
 details[open] > summary:first-of-type {
-  list-style-type: disclosure-open;
+	list-style-type: disclosure-open;
 }
 /* Safari 16.6 Missing */
 details > summary:first-of-type {
-  list-style: inside disclosure-closed;
+	list-style: inside disclosure-closed;
 }
 
 summary {
-  cursor: pointer;
+	cursor: pointer;
 }

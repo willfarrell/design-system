@@ -1,11 +1,18 @@
-@import './base.css';
-@import './media.css';
+@import "./base.css";
+@import "./media.css";
 
 /* elements */
-@import './elements.css';
+@import "./elements.css";
 
 /* classes */
-@import './classes.css';
+@import "./classes.css";
+
+/* components */
+@import "../component/ds-card.css";
+@import "../component/ds-form-submit.css";
+@import "../component/ds-input-file.css";
+@import "../component/ds-input-focus.css";
+@import "../component/ds-task.css";
 
 /* theme */
-@import './theme.css';
+@import "./theme.css";

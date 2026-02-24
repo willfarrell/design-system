@@ -1,6 +1,7 @@
 <script>
-  import A from "./element/a.svelte";
-  const { id } = $props();
+import A from "./element/a.svelte";
+
+const { id } = $props();
 </script>
 
 {#if id}

@@ -1,5 +1,11 @@
 span.badge {
-  --color-tag: var(--color-l5);
-  background-color: var(--color-tag);
-  padding: calc(var(--padding-fixed) * 0.25) calc(var(--padding-fixed) * 0.5);
+	--tag-bg: oklch(
+		from var(--theme-color, --hex-none) var(--lightness-main-pseudo) c h
+	);
+	--tag-text: oklch(
+		from var(--theme-color, --hex-none) var(--lightness-text) c h
+	);
+	background-color: var(--tag-bg);
+	color: var(--tag-text);
+	padding: calc(var(--padding-fixed) * 0.25) calc(var(--padding-fixed) * 0.5);
 }

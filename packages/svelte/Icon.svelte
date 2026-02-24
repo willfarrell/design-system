@@ -1,10 +1,11 @@
 <script>
-  const { src, alt } = $props();
-  // TODO docs: https://css-tricks.com/accessible-svgs/
-  const role = alt ? "img" : null;
+import Svg from "./element/svg.svelte";
+
+const { src, alt, ...props } = $props();
+
+// TODO docs: https://css-tricks.com/accessible-svgs/
 </script>
 
-<svg class="icon" {role}>
-  {#if alt}<title>{alt}</title>{/if}
+<Svg class="icon" aria-hidden="true" focusable="false" {...props}>
   <use href={src} />
-</svg>
+</Svg>

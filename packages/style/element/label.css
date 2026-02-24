@@ -1,36 +1,36 @@
 label {
-  display: block;
-  font-weight: 700;
-  cursor: pointer;
+	display: block;
+	font-weight: 700;
+	cursor: pointer;
 }
 
 label ~ :where(input, div:has(select), textarea) {
-  margin-block-start: calc(var(--padding-fixed) * 0.5);
+	margin-block-start: calc(var(--padding-fixed) * 0.5);
 }
 
 /* hint */
 label ~ [id$="-hint"] {
-  display: block;
+	display: block;
 }
 
 /* error */
 div:has(> [id$="-error"]) {
-  border-inline-start: calc(var(--padding-fixed) * 0.25) solid var(--color-fail);
-  padding-inline-start: var(--padding-fixed);
+	border-inline-start: calc(var(--padding-fixed) * 0.25) solid var(--color-fail);
+	padding-inline-start: var(--padding-fixed);
 }
 
 label ~ [id$="-error"] {
-  display: block;
-  color: var(--color-fail);
-  font-weight: 700;
+	display: block;
+	color: var(--color-fail);
+	font-weight: 700;
 
-  &::before {
-    /* warning icon */
-    content: "\26A0";
-    padding-inline-end: 0.5em;
-  }
+	&::before {
+		/* warning icon */
+		content: "\26A0";
+		padding-inline-end: 0.5em;
+	}
 }
 
 input[aria-invalid] {
-  border-color: var(--color-fail);
+	border-color: var(--color-fail);
 }

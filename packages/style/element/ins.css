@@ -1,17 +1,4 @@
 ins {
-  color: var(--color-ins);
-  text-decoration: none;
-  border-block-end: 0.2em double var(--color-ins);
-}
-
-@media (prefers-contrast: custom), (forced-colors: active) {
-  ins {
-    border-bottom-color: Highlight;
-  }
-}
-
-@media print {
-  ins {
-    border-block-end-width: 3pt;
-  }
+	color: var(--color-ins);
+	text-decoration-style: wavy;
 }

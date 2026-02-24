@@ -1,14 +1,11 @@
 <script>
-  import allowedAttributes from '../utils/attributes.js'
-  const elementAttributes = new Set([
-    'open'
-  ])
-  
-  let {
-  children,
-  ...props
-  } = $props();
+import allowedAttributes from "../utils/attributes.js";
+
+const elementAttributes = new Set(["closedby", "open"]);
+
+const { children, id, ...props } = $props();
 </script>
-<dialog {...allowedAttributes(props, elementAttributes)}>
+
+<dialog closedby="any" {id} {...allowedAttributes(props, elementAttributes)}>
   {@render children?.()}
 </dialog>

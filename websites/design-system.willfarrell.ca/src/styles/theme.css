@@ -1,0 +1,166 @@
+h1 {
+	--font-size: 200%;
+}
+h2 {
+	--font-size: 175%;
+}
+h3 {
+	--font-size: 150%;
+}
+h4 {
+	--font-size: 125%;
+}
+h5 {
+	--font-size: 118.75%;
+}
+h6 {
+	--font-size: 112.5%;
+}
+small,
+sub,
+sup {
+	--font-size: 80%;
+}
+
+/* border radius */
+span.badge,
+button,
+a.button,
+input,
+select,
+textarea,
+[type="file"]::file-selector-button {
+	border-radius: var(--border-radius);
+}
+
+/* address multiple inputs */
+fieldset.address {
+	display: flex;
+	gap: var(--gap);
+	flex-direction: column;
+}
+
+/* Do not use this file, used only for demo to force states */
+
+/* a */
+a:not(.button).force {
+	&.active {
+		color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
+		text-decoration: underline solid 0.5em
+			color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
+		text-decoration-thickness: 0.5em;
+		text-underline-position: under;
+	}
+	&.focus {
+		color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+		text-decoration: underline solid 0.5em
+			color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+		text-decoration-thickness: 0.5em;
+		text-underline-position: under;
+	}
+	&.hover {
+		color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+		text-decoration: underline solid 0.5em
+			color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+		text-decoration-thickness: 0.5em;
+		text-underline-position: under;
+	}
+	/* & .visited {
+	} */
+}
+a.button.force {
+	&.active {
+		background-color: color-mix(
+			in srgb,
+			var(--color-main-bold-pseudo) 12%,
+			var(--color-main-bold)
+		);
+	}
+	&.focus {
+		background-color: color-mix(
+			in srgb,
+			var(--color-main-bold-pseudo) 12%,
+			var(--color-main-bold)
+		);
+		/* base.css */
+		outline: 0.25rem solid var(--color-focus);
+		outline-offset: 0.25rem;
+		z-index: 1;
+	}
+	&.hover {
+		background-color: color-mix(
+			in srgb,
+			var(--color-main-bold-pseudo) 8%,
+			var(--color-main-bold)
+		);
+	}
+}
+
+/* button */
+button.force {
+	&.active {
+		background-color: color-mix(
+			in srgb,
+			var(--color-main-bold-pseudo) 12%,
+			var(--color-main-bold)
+		);
+	}
+	&.focus {
+		background-color: color-mix(
+			in srgb,
+			var(--color-main-bold-pseudo) 12%,
+			var(--color-main-bold)
+		);
+		/* base.css */
+		outline: 0.25rem solid var(--color-focus);
+		outline-offset: 0.25rem;
+		z-index: 1;
+	}
+	&.hover {
+		background-color: color-mix(
+			in srgb,
+			var(--color-main-bold-pseudo) 8%,
+			var(--color-main-bold)
+		);
+	}
+}
+
+/* inputs */
+input.force,
+select.force,
+textarea.force {
+	&.focus {
+		/* base.css */
+		outline: 0.25rem solid var(--color-focus);
+		outline-offset: 0.25rem;
+		z-index: 1;
+	}
+}
+fieldset.force.focus {
+	& input {
+		/* base.css */
+		outline: 0.25rem solid var(--color-focus);
+		outline-offset: 0.25rem;
+		z-index: 1;
+	}
+}
+
+/* size workaround for firefox inconsistency */
+.size-2 {
+	width: 2em;
+}
+.size-4 {
+	width: 4em;
+}
+.size-6 {
+	width: 6em;
+}
+.size-num-2 {
+	width: 2ch;
+}
+.size-num-4 {
+	width: 4ch;
+}
+.size-num-6 {
+	width: 6ch;
+}

@@ -1,20 +1,21 @@
 <script>
-  import allowedAttributes from "../utils/attributes.js";
-  const elementAttributes = new Set([
-    "autocomplete",
-    "disabled",
-    "form",
-    "multiple",
-    "name",
-    "required",
-    "size",
-  ]);
+import allowedAttributes from "../utils/attributes.js";
 
-  let { children, ...props } = $props();
+const elementAttributes = new Set([
+	"autocomplete",
+	"disabled",
+	"form",
+	"multiple",
+	"name",
+	"required",
+	"size",
+]);
+
+const { children, ...props } = $props();
 </script>
 
 <select {...allowedAttributes(props, elementAttributes)}>
-  <!-- <button><selectedoption></selectedoption></button> -->
+  <!-- <button><selectedcontent></selectedcontent></button> -->
   {@render children?.()}
 </select>
 <!--

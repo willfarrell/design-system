@@ -1,5 +1,5 @@
 @media (prefers-reduced-transparency) {
-  * {
-    opacity: 1;
-  }
+	* {
+		opacity: 1;
+	}
 }

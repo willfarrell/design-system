@@ -1,23 +1,35 @@
 /* eslint-env browser */
 
-const is = 'ds-card'
+const is = "ds-card";
+const delayInMiliSeconds = 200;
 customElements.define(
-  is,
-  class extends HTMLLIElement {
-    constructor() {
-      super()
-      let down,
-        up,
-        link = this.querySelector('a:first-of-type')
+	is,
+	class extends HTMLLIElement {
+		constructor() {
+			super();
+			this.link = this.querySelector("a:first-of-type");
+		}
 
-      this.onmousedown = () => (down = +new Date())
-      this.onmouseup = () => {
-        up = +new Date()
-        if (up - down < 200) {
-          link.click()
-        }
-      }
-    }
-  },
-  { extends: 'li' }
-)
+		handleMouseDown() {
+			this.down = +Date.now();
+		}
+
+		handleMouseUp() {
+			this.up = +Date.now();
+			if (this.up - this.down < delayInMiliSeconds) {
+				this.link.click();
+			}
+		}
+
+		connectedCallback() {
+			this.addEventListener("mousedown", this.handleMouseDown);
+			this.addEventListener("mouseup", this.handleMouseUp);
+		}
+
+		disconnectedCallback() {
+			this.removeEventListener("mousedown", this.handleMouseDown);
+			this.removeEventListener("mouseup", this.handleMouseUp);
+		}
+	},
+	{ extends: "li" },
+);

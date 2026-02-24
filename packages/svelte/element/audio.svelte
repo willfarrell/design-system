@@ -1,23 +1,27 @@
 <script>
-  import allowedAttributes from '../utils/attributes.js'
-  const elementAttributes = new Set([
-    'autoplay',
-    'controls',
-    'controlslist',
-    'crossorigin',
-    'disableremoteplayback',
-    'loop',
-    'muted',
-    'preload',
-    'src'
-  ])
-  
-  let {
-    children,
-    ...props
-  } = $props();
+import allowedAttributes from "../utils/attributes.js";
+
+const elementAttributes = new Set([
+	"autoplay",
+	"controls",
+	"controlslist",
+	"crossorigin",
+	"disableremoteplayback",
+	"loop",
+	"muted",
+	"preload",
+	"src",
+]);
+
+const { children, ...props } = $props();
 </script>
-<audio autoplay="false" controls preload="none" {...allowedAttributes(props, elementAttributes)}>
+
+<audio
+  autoplay="false"
+  controls
+  preload="none"
+  {...allowedAttributes(props, elementAttributes)}
+>
   {@render children?.()}
 </audio>
 

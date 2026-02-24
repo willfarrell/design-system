@@ -1,21 +1,15 @@
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/Element/mark#accessibility_concerns */
+/* https://adrianroselli.com/2025/04/tweaking-text-level-styles-reprised.html#Mark */
 
 mark {
-  padding: 0.125rem 0.25rem;
-  background-color: var(--color-mark);
-  color: var(--color-fill-text);
-  box-decoration-break: clone;
-}
-
-@media (prefers-contrast: custom), (forced-colors: active) {
-  mark {
-    color: HighlightText;
-    background-color: Highlight;
-  }
+	padding: 0.125rem 0.25rem;
+	background-color: var(--color-mark);
+	color: var(--color-fill-text);
+	box-decoration-break: clone;
 }
 
 @media print {
-  mark {
-    border: 1pt dotted var(--color-text);
-  }
+	mark {
+		border: 1pt dotted;
+	}
 }

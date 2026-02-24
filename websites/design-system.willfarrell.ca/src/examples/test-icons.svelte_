@@ -1,0 +1,115 @@
+<script>
+	let { ...props } = $props();
+	// Ref: https://pepelsbey.dev/articles/svg-sprites/
+	const src = 'location',
+		alt = '',
+		width = 512,
+		height = 512;
+</script>
+
+<!-- requires filter or mask to color, fails in forced-colors -->
+<button
+	><span class="icon" data-icon-mask={src} aria-hidden="true"></span><span>1. mask w/ view</span
+	></button
+>
+<button
+	><span class="icon" data-icon-filter={src} aria-hidden="true"></span><span>2. filter w/ view</span
+	></button
+>
+<button>
+	<img
+		class="icon"
+		{alt}
+		decoding="async"
+		height="1"
+		width="1"
+		loading="lazy"
+		{...props}
+		src="/test/icons-view.svg#{src}"
+		aria-hidden="true"
+	/>
+	<span>3. img w/ view</span>
+</button>
+<button>
+	<!-- svg sprites must use <symbol id=""> -->
+	<!-- https://discourse.mozilla.org/t/content-security-policy-for-svg-use/95310 -->
+	<svg class="icon" aria-hidden="true">
+		<use href="/test/icons-symbol.svg#{src}" />
+	</svg>
+	<span>4. svg use w/ symbol</span>
+</button>
+<button>
+	<!-- svg sprites must use <symbol id=""> -->
+	<!-- https://discourse.mozilla.org/t/content-security-policy-for-svg-use/95310 -->
+	<svg class="icon" aria-hidden="true">
+		<use href="/test/icons-view.svg#{src}" />
+	</svg>
+	<span>5. svg use w/ view</span>
+</button>
+<button>
+	<!-- svg sprites must use <g id=""> -->
+	<svg class="icon" viewBox="0 0 {width} {height}" width="512" height="512" aria-hidden="true">
+		<path
+			d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"
+		/>
+	</svg>
+	<span>6. svg inline</span>
+</button>
+
+<style>
+	/* 1 */
+	[data-icon-mask='search'] {
+		--icon: url('/test/icons-view.svg#search');
+	}
+	[data-icon-mask='location'] {
+		--icon: url('/test/icons-view.svg#location');
+	}
+	/* forced colors doesn't support mask :( */
+	[data-icon-mask] {
+		/* https://developer.mozilla.org/en-US/docs/Web/CSS/attr#browser_compatibility */
+		/* mask: attr(data-src url) no-repeat; */
+		mask: var(--icon) no-repeat;
+		background-color: currentColor;
+	}
+
+	/* 2 */
+	:root {
+		--color-icon: invert(7%) sepia(6%) saturate(17%) hue-rotate(329deg) brightness(99%)
+			contrast(89%);
+		--color-fill-icon: invert(98%) sepia(83%) saturate(50%) hue-rotate(156deg) brightness(113%)
+			contrast(96%);
+	}
+	@media (prefers-color-scheme: dark) {
+		:root {
+			--color-icon: invert(98%) sepia(83%) saturate(50%) hue-rotate(156deg) brightness(113%)
+				contrast(96%);
+			--color-fill-icon: invert(7%) sepia(6%) saturate(17%) hue-rotate(329deg) brightness(99%)
+				contrast(89%);
+		}
+	}
+	[data-icon-filter='search'] {
+		--icon: url('/test/icons-view.svg#search');
+		--color-icon: var(--color-fill-icon);
+	}
+	[data-icon-filter='location'] {
+		--icon: url('/test/icons-view.svg#location');
+		--color-icon: var(--color-fill-icon);
+	}
+	[data-icon-filter] {
+		background-image: var(--icon);
+		background-repeat: no-repeat;
+		filter: var(--color-icon);
+	}
+
+	/* 3 */
+	img {
+		filter: var(--color-fill-icon);
+	}
+
+	/* 4/5 */
+	svg.icon {
+		fill: currentColor;
+	}
+
+	/* 6 */
+</style>

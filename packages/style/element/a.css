@@ -1,31 +1,33 @@
 a {
-  color: var(--color-main);
-  text-underline-position: under;
+	color: var(--color-main);
+	text-underline-position: under;
 }
 
 a:hover,
 a:focus-visible {
-  color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-  text-decoration: underline solid 0.4em
-    color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-  text-decoration-thickness: 0.4em;
-  text-underline-position: under;
+	color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+	text-decoration: underline solid 0.4em
+		color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+	text-decoration-thickness: 0.4em;
+	text-underline-position: under;
 }
 
+/* target-current for scrollspy */
 a:active,
-a[aria-current="page"] {
-  color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
-  text-decoration: underline solid 0.4em
-    color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
-  text-decoration-thickness: 0.2em;
-  text-underline-position: under;
+a[aria-current="page"],
+a:target-current {
+	color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
+	text-decoration: underline solid 0.4em
+		color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
+	text-decoration-thickness: 0.2em;
+	text-underline-position: under;
 }
 
 a:visited {
 }
 
 a:focus-visible {
-  outline: unset; /* override default */
+	outline: unset; /* override default */
 }
 
 /* :where(h1, h2, h3, h4, h5, h6) a {
@@ -36,16 +38,16 @@ a:focus-visible {
 /* \1F5D7 overlap */
 /* \1F855 NE arrow */
 /* div, .button for cms pages linking to hubs - deprecate when hubs share same domain */
-[href^='https://']:not(:has(img))::after
-{
-  content: "↗";
-  position: relative;
-  inset-inline-end: -0.125rem;
-  display: inline-block;
-  height: 0px;
-  /* -webkit-mask: var(--icon-external) no-repeat;
+[href^="https://"]:not(:has(img), .button)::after {
+	content: "↗";
+	position: relative;
+	inset-inline-end: -0.125rem;
+	display: inline-block;
+	height: 0px;
+
+	/* -webkit-mask: var(--icon-external) no-repeat;
   mask: var(--icon-external) no-repeat; */
-  /* background-color: currentColor; */
-  /* padding: 0 0.4em;
+	/* background-color: currentColor; */
+	/* padding: 0 0.4em;
   margin: 0.25rem; */
 }

@@ -1,7 +1,7 @@
 <script>
-  import Main from "@design-system/svelte/element/main.svelte";
-  import Article from "@design-system/svelte/element/article.svelte";
-  const { children, suffix, ...props } = $props();
+import Main from "@design-system/svelte/element/main.svelte";
+
+const { children, suffix, ...props } = $props();
 </script>
 
 <Main id="main" class="container" {...props}>

@@ -1,10 +1,11 @@
 <script>
-  import Div from "./element/div.svelte";
-  import Ul from "./element/ul.svelte";
-  import Li from "./element/li.svelte";
-  import A from "./element/a.svelte";
-  const { children, ...props } = $props();
-  const { errors = [] } = props;
+import A from "./element/a.svelte";
+import Div from "./element/div.svelte";
+import Li from "./element/li.svelte";
+import Ul from "./element/ul.svelte";
+
+const { children, ...props } = $props();
+const { errors = [] } = props;
 </script>
 
 {#if errors.length}

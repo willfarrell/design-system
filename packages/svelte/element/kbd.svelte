@@ -1,12 +1,11 @@
 <script>
-  import allowedAttributes from '../utils/attributes.js'
-  const elementAttributes = new Set([])
-  
-  let {
-  children,
-  ...props
-  } = $props();
+import allowedAttributes from "../utils/attributes.js";
+
+const elementAttributes = new Set([]);
+
+const { children, ...props } = $props();
 </script>
-<ins {...allowedAttributes(props, elementAttributes)}>
+
+<kbd {...allowedAttributes(props, elementAttributes)}>
   {@render children?.()}
-</ins>
+</kbd>

@@ -1,9 +1,5 @@
-s {
-  /* text-decoration-color: #c62828; */
-}
+/* https://adrianroselli.com/2025/04/tweaking-text-level-styles-reprised.html#S */
 
-@media (prefers-contrast: custom), (forced-colors: active) {
-  s {
-    text-decoration-color: Highlight;
-  }
+s {
+	text-decoration-thickness: 0.15em;
 }

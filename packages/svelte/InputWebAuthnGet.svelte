@@ -1,12 +1,8 @@
 <script>
-  import InputHidden from "./InputHidden.svelte";
-  const { ...props } = $props();
-  const { options } = props;
+import InputHidden from "./InputHidden.svelte";
+
+const { ...props } = $props();
+// data-options required
 </script>
 
-<InputHidden
-  is="ds-webauthn-get"
-  {...props}
-  autocomplete="webauthn"
-  data-options={options}
-/>
+<InputHidden {...props} autocomplete="webauthn" />

@@ -9,22 +9,22 @@
  */
 
 @media (prefers-reduced-motion) {
-  *,
-  ::after,
-  ::before {
-    /*
+	*,
+	::after,
+	::before {
+		/*
     animation: none !important;
     background-attachment: initial !important;
     scroll-behavior: auto !important;
     transition: none !important;
     */
 
-    animation-delay: -1ms !important; /* 1 */
-    animation-duration: 0.01ms !important; /* 1 */
-    animation-iteration-count: 1 !important; /* 1 */
-    background-attachment: initial !important; /* 2 */
-    scroll-behavior: auto !important; /* 3 */
-    transition-delay: -1s !important; /* 4 */
-    transition-duration: 0.01ms !important; /* 4 */
-  }
+		animation-delay: -1ms !important; /* 1 */
+		animation-duration: 0.01ms !important; /* 1 */
+		animation-iteration-count: 1 !important; /* 1 */
+		background-attachment: initial !important; /* 2 */
+		scroll-behavior: auto !important; /* 3 */
+		transition-delay: -1s !important; /* 4 */
+		transition-duration: 0.01ms !important; /* 4 */
+	}
 }

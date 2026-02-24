@@ -1,9 +1,9 @@
 h1 {
-  position: relative; /* to make it more compressible w/ other h tags */
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  font-weight: 700;
+	position: relative; /* to make it more compressible w/ other h tags */
+	font-family: var(--font-family);
+	font-size: var(--font-size);
+	font-weight: 700;
 
-  margin-block: 0;
-  max-inline-size: 60ch;
+	margin-block: 0;
+	max-inline-size: 60ch;
 }

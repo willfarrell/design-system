@@ -1,15 +1,12 @@
 <script>
-  import FieldInput from "./FieldInput.svelte";
-  const { children, ...props } = $props();
+import InputPassword from "./InputPassword.svelte";
+
+const { children, ...props } = $props();
 </script>
 
-<FieldInput
-  autocapitalize="off"
-  autocorrect="off"
-  spellcheck="false"
+<InputPassword
   {...props}
-  type="password"
   autocomplete="new-password"
 >
   {@render children?.()}
-</FieldInput>
+</InputPassword>

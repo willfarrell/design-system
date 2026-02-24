@@ -1,0 +1,11 @@
+/**
+ * Hide keybinding until ready
+ */
+div:has([is="ds-input-focus"]) ~ code {
+	display: none;
+	position: relative;
+	left: -25%;
+}
+div:has([is="ds-input-focus"]:defined) ~ code {
+	display: block;
+}

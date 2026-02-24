@@ -1,7 +1,8 @@
 <script>
-  import A from "@design-system/svelte/element/a.svelte";
-  const { children, ...props } = $props();
-  const { id } = props;
+import A from "@design-system/svelte/element/a.svelte";
+
+const { children, ...props } = $props();
+const { id } = props;
 </script>
 
 <A

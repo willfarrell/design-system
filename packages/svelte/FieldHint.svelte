@@ -1,6 +1,7 @@
 <script>
-  import Span from "./element/span.svelte";
-  const { id, hint } = $props();
+import Span from "./element/span.svelte";
+
+const { id, hint } = $props();
 </script>
 
 {#if hint}

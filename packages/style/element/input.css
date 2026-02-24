@@ -1,29 +1,29 @@
 input {
-  font: inherit;
-  letter-spacing: inherit;
-  word-spacing: inherit;
-  border: var(--border-width) solid var(--border-color, currentColor);
-  color: var(--color-text);
-  background: transparent;
+	font: inherit;
+	letter-spacing: inherit;
+	word-spacing: inherit;
+	border: var(--border-width) solid var(--border-color, currentColor);
+	color: var(--color-text);
+	background: transparent;
 }
 
 input:where(
-    [type='text'],
-    /*[type='search'],*/
-    [type='date'],
-    [type='email'],
-    [type='url'],
-    [type='password']
-  ) {
-  padding-block: calc(var(--padding-fixed) * 0.54);
-  padding-inline: var(--padding-fixed);
+		[type="text"],
+		/*[type='search'],*/
+			[type="date"],
+		[type="email"],
+		[type="url"],
+		[type="password"]
+	) {
+	padding-block: calc(var(--padding-fixed) * 0.54);
+	padding-inline: var(--padding-fixed);
 }
 
 [role="group"]:has(input) {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: var(--gap);
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--gap);
 }
 
 /* Fix size attr width in Firefox - requires: https://bugzilla.mozilla.org/show_bug.cgi?id=435426 */

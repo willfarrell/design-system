@@ -1,28 +1,36 @@
 .icon {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
+	display: inline-block;
+	width: 1em;
+	height: 1em;
 }
 
 :where(a, button):has(.icon) {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  /* padding: 0.5em 0.75em;
-  min-height: 3rem;
-  min-width: 3rem; */
-  /* for when there is only an icon */
-  height: calc(
-    var(--padding-fixed) + var(--border-width) * 2 + var(--line-height, 1.5) *
-      1em
-  ); /* TODO refactor, make cleaner */
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	/* padding: 0.5em 0.75em;
+  min-height: 3em;
+  min-width: 3em; */
+	/* for when there is only an icon */
+	height: calc(
+		var(--padding-fixed) +
+		var(--border-width) *
+		2 +
+		var(--line-height, 1.5) *
+		1em
+	); /* TODO refactor, make cleaner */
 }
 
 /* icon follow by text */
 .icon + span {
-  margin-inline-start: 0.5em;
+	margin-inline-start: 0.5em;
+}
+
+/* icon follow by text */
+span + .icon {
+	margin-inline-start: 0.5em;
 }
 
 svg.icon {
-  fill: currentColor;
+	fill: currentColor;
 }

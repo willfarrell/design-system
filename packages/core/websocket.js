@@ -1,6 +1,6 @@
 /* eslint-env browser */
 /* global v */
-const webSocketWorker = new SharedWorker(`/js/worker/websocket.js?v=${v}`)
+const webSocketWorker = new SharedWorker(`/js/worker/websocket.js?v=${v}`);
 
 /**
  * Sends a message to the worker and passes that to the Web Socket.
@@ -11,14 +11,14 @@ const webSocketWorker = new SharedWorker(`/js/worker/websocket.js?v=${v}`)
 } */
 
 // Event to listen for incoming data from the worker and update the DOM.
-webSocketWorker.port.addEventListener('message', ({ data }) => {
-  requestAnimationFrame(() => {
-    // action
-  })
-})
+webSocketWorker.port.addEventListener("message", ({ data }) => {
+	requestAnimationFrame(() => {
+		// action
+	});
+});
 
 // Initialize the port connection.
-webSocketWorker.port.start()
+webSocketWorker.port.start();
 
 // Remove the current worker port from the connected ports list.
 // This way your connectedPorts list stays true to the actual connected ports,

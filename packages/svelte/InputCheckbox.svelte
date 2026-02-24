@@ -1,10 +1,11 @@
 <script>
-  import { getContext } from "svelte";
-  import FieldsetInput from "./FieldsetInput.svelte";
-  const { ...props } = $props();
-  const { hint, value, checked } = props;
-  const { name, value: fieldsetValue } = getContext("fieldset");
-  const id = `${name}-${value}`;
+import { getContext } from "svelte";
+import FieldsetInput from "./FieldsetInput.svelte";
+
+const { ...props } = $props();
+const { hint, value, checked } = props;
+const { name, value: fieldsetValue } = getContext("fieldset");
+const id = `${name}-${value}`;
 </script>
 
 <FieldsetInput

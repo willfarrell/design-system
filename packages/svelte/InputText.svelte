@@ -1,9 +1,11 @@
 <script>
-  import FieldInput from "./FieldInput.svelte";
-  const { children, ...props } = $props();
+import FieldInput from "./FieldInput.svelte";
+
+const { children, ...props } = $props();
 </script>
 
 <FieldInput
+  dir="auto"
   autocapitalize="off"
   autocomplete="off"
   autocorrect="off"

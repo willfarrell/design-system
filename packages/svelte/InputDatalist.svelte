@@ -1,8 +1,9 @@
 <script>
-  import FieldInput from "./FieldInput.svelte";
-  import Datalist from "./element/datalist.svelte";
-  const { children, ...props } = $props();
-  const { id } = props;
+import Datalist from "./element/datalist.svelte";
+import FieldInput from "./FieldInput.svelte";
+
+const { children, ...props } = $props();
+const { id } = props;
 </script>
 
 <FieldInput

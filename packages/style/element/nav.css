@@ -1,14 +1,25 @@
-nav ul {
-  margin: unset;
-  padding-inline-start: 0;
-  list-style-type: "";
-}
+nav {
+	ul {
+		margin: unset;
+		padding-inline-start: 0;
+		list-style-type: "";
+	}
+	details ul {
+		padding-inline-start: 1em;
+		list-style-type: "";
+	}
+	a {
+		display: flex;
+		text-decoration: none;
+	}
 
-nav a {
-  display: flex;
-}
-
-nav details ul {
-  padding-inline-start: 1em;
-  list-style-type: "";
+	/* scrollspy */
+	:has(ol) {
+		scroll-target-group: auto;
+	}
+	ol {
+		margin: unset;
+		padding-inline-start: 0;
+		list-style-type: "";
+	}
 }

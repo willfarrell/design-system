@@ -1,18 +1,15 @@
 <script>
-  import allowedAttributes from '../utils/attributes.js'
-  const elementAttributes = new Set([
-	  'default',
-	  'kind',
-	  'label',
-	  'src',
-	  'srclang'
-  ])
-  
-  let {
-  children,
-  ...props
-  } = $props();
+import allowedAttributes from "../utils/attributes.js";
+
+const elementAttributes = new Set([
+	"default",
+	"kind",
+	"label",
+	"src",
+	"srclang",
+]);
+
+const { children, ...props } = $props();
 </script>
-<track {...allowedAttributes(props, elementAttributes)}>
-  {@render children?.()}
-</track>
+
+<track {...allowedAttributes(props, elementAttributes)} />

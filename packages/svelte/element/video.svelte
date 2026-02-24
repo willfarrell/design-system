@@ -1,27 +1,31 @@
 <script>
-  import allowedAttributes from '../utils/attributes.js'
-  const elementAttributes = new Set([
-    'autoplay',
-    'controls',
-    'controlslist',
-    'crossorigin',
-    'disablepictureinpicture',
-    'height',
-    'loop',
-    'muted',
-    'playsinline',
-    'poster',
-    'preload',
-    'src',
-    'width'
-  ])
-  
-  let {
-  children,
-  ...props
-  } = $props();
+import allowedAttributes from "../utils/attributes.js";
+
+const elementAttributes = new Set([
+	"autoplay",
+	"controls",
+	"controlslist",
+	"crossorigin",
+	"disablepictureinpicture",
+	"height",
+	"loop",
+	"muted",
+	"playsinline",
+	"poster",
+	"preload",
+	"src",
+	"width",
+]);
+
+const { children, ...props } = $props();
 </script>
-<video autoplay="false" controls preload="none" {...allowedAttributes(props, elementAttributes)}>
+
+<video
+  autoplay="false"
+  controls
+  preload="none"
+  {...allowedAttributes(props, elementAttributes)}
+>
   {@render children?.()}
 </video>
 <!--

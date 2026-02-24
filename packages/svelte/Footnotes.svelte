@@ -1,17 +1,17 @@
 <script>
-  import Article from "@design-system/svelte/element/article.svelte";
-  import A from "@design-system/svelte/element/a.svelte";
-  import P from "@design-system/svelte/element/p.svelte";
-  import H2 from "@design-system/svelte/element/h2.svelte";
-  import Ol from "@design-system/svelte/element/ol.svelte";
-  import Li from "@design-system/svelte/element/li.svelte";
-  import Footer from "@design-system/svelte/element/footer.svelte";
+import A from "@design-system/svelte/element/a.svelte";
+import Article from "@design-system/svelte/element/article.svelte";
+import Footer from "@design-system/svelte/element/footer.svelte";
+import H2 from "@design-system/svelte/element/h2.svelte";
+import Li from "@design-system/svelte/element/li.svelte";
+import Ol from "@design-system/svelte/element/ol.svelte";
+import P from "@design-system/svelte/element/p.svelte";
 
-  const {
-    title,
-    returnLabel = "Back to content", // TODO i18n
-    footnotes = [],
-  } = $props();
+const {
+	title,
+	returnLabel = "Back to content", // TODO i18n
+	footnotes = [],
+} = $props();
 </script>
 
 <Footer>

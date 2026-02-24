@@ -1,12 +1,11 @@
 <script>
-  import allowedAttributes from '../utils/attributes.js'
-  const elementAttributes = new Set([])
-  
-  let {
-  children,
-  ...props
-  } = $props();
+import allowedAttributes from "../utils/attributes.js";
+
+const elementAttributes = new Set([]);
+
+const { children, ...props } = $props();
 </script>
+
 <picture {...allowedAttributes(props, elementAttributes)}>
   {@render children?.()}
 </picture>
@@ -14,7 +13,6 @@
   TODO move logic up
 <script>
   import Img from "./Img.svelte";
-  import dataAttributes from "../utils/dataAttributes.js";
   let { ...props } = $props();
   let {
     is,
@@ -28,7 +26,7 @@
     loading,
     decoding
   } = props
-  
+
   const srcset = (format) => {
     return sourceWidths.map(width => {
       let searchParams = src.searchParams
@@ -41,7 +39,6 @@
 
 <picture
   {is}
-  {...dataAttributes(props)}
 >
   {#each sourceFormats as format}
     <source
