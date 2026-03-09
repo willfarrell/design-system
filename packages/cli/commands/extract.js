@@ -151,11 +151,11 @@ const buildCSS = (
 
 	imports.push({
 		key: "layers/base.css",
-		line: `@import '@${namespace}/vanilla/layers/base.css';\n`,
+		line: `@import "@${namespace}/vanilla/layers/base.css";\n`,
 	});
 	imports.push({
 		key: "layers/media.css",
-		line: `@import '@${namespace}/vanilla/layers/media.css';\n`,
+		line: `@import "@${namespace}/vanilla/layers/media.css";\n`,
 	});
 
 	let list = Object.keys(tags);
@@ -164,7 +164,7 @@ const buildCSS = (
 		if (existsSync(`${vanillaPath}/elements/${key}.css`)) {
 			imports.push({
 				key: `elements/${key}.css`,
-				line: `@import '@${namespace}/vanilla/elements/${key}.css';\n`,
+				line: `@import "@${namespace}/vanilla/elements/${key}.css";\n`,
 			});
 		}
 	}
@@ -177,7 +177,7 @@ const buildCSS = (
 				addedClasses.add(`classes/${key}.css`);
 				imports.push({
 					key: `classes/${key}.css`,
-					line: `@import '@${namespace}/vanilla/classes/${key}.css';\n`,
+					line: `@import "@${namespace}/vanilla/classes/${key}.css";\n`,
 				});
 			}
 		}
@@ -194,7 +194,7 @@ const buildCSS = (
 					addedClasses.add(cssKey);
 					imports.push({
 						key: cssKey,
-						line: `@import '@${namespace}/vanilla/classes/${tagKey}.css';\n`,
+						line: `@import "@${namespace}/vanilla/classes/${tagKey}.css";\n`,
 					});
 				}
 			}
@@ -206,7 +206,7 @@ const buildCSS = (
 		if (existsSync(`${vanillaPath}/classes/${key}.css`)) {
 			imports.push({
 				key: `classes/${key}.css`,
-				line: `@import '@${namespace}/vanilla/classes/${key}.css';\n`,
+				line: `@import "@${namespace}/vanilla/classes/${key}.css";\n`,
 			});
 		}
 	}
@@ -216,7 +216,7 @@ const buildCSS = (
 		if (existsSync(`${vanillaPath}/classes/${key}.css`)) {
 			imports.push({
 				key: `classes/${key}.css`,
-				line: `@import '@${namespace}/vanilla/classes/${key}.css';\n`,
+				line: `@import "@${namespace}/vanilla/classes/${key}.css";\n`,
 			});
 		}
 	}
@@ -226,18 +226,18 @@ const buildCSS = (
 		if (existsSync(`${vanillaPath}/components/${key}.css`)) {
 			imports.push({
 				key: `components/${key}.css`,
-				line: `@import '@${namespace}/vanilla/components/${key}.css';\n`,
+				line: `@import "@${namespace}/vanilla/components/${key}.css";\n`,
 			});
 		}
 	}
 
 	imports.push({
 		key: "theme.css",
-		line: `@import '@${namespace}/vanilla/theme.css';\n`,
+		line: `@import "@${namespace}/vanilla/theme.css";\n`,
 	});
 	imports.push({
 		key: "theme-custom",
-		line: `@import '${theme}';\n`,
+		line: `@import "${theme}";\n`,
 	});
 
 	return { imports, header };
