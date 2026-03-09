@@ -1,9 +1,9 @@
 <script>
-import Alert from "@design-system/svelte/Alert.svelte";
-import Strong from "@design-system/svelte/element/strong.svelte";
+import Alert from "@design-system/components/Alert.svelte";
+import Strong from "@design-system/elements/strong.svelte";
 </script>
 
-<Alert role="alert" data-theme="warn">
+<Alert role="alert" data-theme="fail">
 	<Strong>Assertive:</Strong> message about the alert.
 </Alert>
 

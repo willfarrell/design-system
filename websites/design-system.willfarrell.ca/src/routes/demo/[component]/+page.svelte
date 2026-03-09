@@ -1,14 +1,14 @@
 <script>
 import Example from "@components/Example.svelte";
-import Head from "@components/Head.svelte";
 
 const { data } = $props();
-const { component } = data;
+const component = $derived(data.component);
 </script>
 
-<Head>
+<svelte:head>
 	<title>{component} | Demo | Design System</title>
-</Head>
+	<meta name="description" content="{component} demo for the semantic fluid design system" />
+</svelte:head>
 
 <div>
 	<Example {component} />

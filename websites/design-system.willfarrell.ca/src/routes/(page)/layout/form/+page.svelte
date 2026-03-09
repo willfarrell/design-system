@@ -1,48 +1,47 @@
 <script>
-import Head from "@components/Head.svelte";
-import ButtonSubmit from "@design-system/svelte/ButtonSubmit.svelte";
-import A from "@design-system/svelte/element/a.svelte";
-import Abbr from "@design-system/svelte/element/abbr.svelte";
-import Address from "@design-system/svelte/element/address.svelte";
-import Article from "@design-system/svelte/element/article.svelte";
-import B from "@design-system/svelte/element/b.svelte";
-import Button from "@design-system/svelte/element/button.svelte";
-import Code from "@design-system/svelte/element/code.svelte";
-import Del from "@design-system/svelte/element/del.svelte";
-import Div from "@design-system/svelte/element/div.svelte";
-import Em from "@design-system/svelte/element/em.svelte";
-import Form from "@design-system/svelte/element/form.svelte";
-import Hgroup from "@design-system/svelte/element/hgroup.svelte";
-import I from "@design-system/svelte/element/i.svelte";
-import Img from "@design-system/svelte/element/img.svelte";
-import Ins from "@design-system/svelte/element/ins.svelte";
-import Kbd from "@design-system/svelte/element/kbd.svelte";
-import Li from "@design-system/svelte/element/li.svelte";
-import Main from "@design-system/svelte/element/main.svelte";
-import Mark from "@design-system/svelte/element/mark.svelte";
-import Nav from "@design-system/svelte/element/nav.svelte";
-import Ol from "@design-system/svelte/element/ol.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import S from "@design-system/svelte/element/s.svelte";
-import Section from "@design-system/svelte/element/section.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
-import Strong from "@design-system/svelte/element/strong.svelte";
-import Sub from "@design-system/svelte/element/sub.svelte";
-import Sup from "@design-system/svelte/element/sup.svelte";
-import Time from "@design-system/svelte/element/time.svelte";
-import U from "@design-system/svelte/element/u.svelte";
-import Ul from "@design-system/svelte/element/ul.svelte";
-import Var from "@design-system/svelte/element/var.svelte";
-import Fieldset from "@design-system/svelte/Fieldset.svelte";
-import FormErrors from "@design-system/svelte/FormErrors.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import H2 from "@design-system/svelte/Heading2.svelte";
-import HSub from "@design-system/svelte/HeadingSub.svelte";
-import InputCheckbox from "@design-system/svelte/InputCheckbox.svelte";
-import InputSelect from "@design-system/svelte/InputSelect.svelte";
-import InputText from "@design-system/svelte/InputText.svelte";
-import InputTextarea from "@design-system/svelte/InputTextarea.svelte";
-import LayoutCenter from "@design-system/svelte/LayoutCenter.svelte";
+import ButtonSubmit from "@design-system/components/ButtonSubmit.svelte";
+import Fieldset from "@design-system/components/Fieldset.svelte";
+import FormErrors from "@design-system/components/FormErrors.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import H2 from "@design-system/components/Heading2.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import InputCheckbox from "@design-system/components/InputCheckbox.svelte";
+import InputSelect from "@design-system/components/InputSelect.svelte";
+import InputText from "@design-system/components/InputText.svelte";
+import InputTextarea from "@design-system/components/InputTextarea.svelte";
+import LayoutCenter from "@design-system/components/LayoutCenter.svelte";
+import A from "@design-system/elements/a.svelte";
+import Abbr from "@design-system/elements/abbr.svelte";
+import Address from "@design-system/elements/address.svelte";
+import Article from "@design-system/elements/article.svelte";
+import B from "@design-system/elements/b.svelte";
+import Button from "@design-system/elements/button.svelte";
+import Code from "@design-system/elements/code.svelte";
+import Del from "@design-system/elements/del.svelte";
+import Div from "@design-system/elements/div.svelte";
+import Em from "@design-system/elements/em.svelte";
+import Form from "@design-system/elements/form.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import I from "@design-system/elements/i.svelte";
+import Img from "@design-system/elements/img.svelte";
+import Ins from "@design-system/elements/ins.svelte";
+import Kbd from "@design-system/elements/kbd.svelte";
+import Li from "@design-system/elements/li.svelte";
+import Main from "@design-system/elements/main.svelte";
+import Mark from "@design-system/elements/mark.svelte";
+import Nav from "@design-system/elements/nav.svelte";
+import Ol from "@design-system/elements/ol.svelte";
+import P from "@design-system/elements/p.svelte";
+import S from "@design-system/elements/s.svelte";
+import Section from "@design-system/elements/section.svelte";
+import Small from "@design-system/elements/small.svelte";
+import Strong from "@design-system/elements/strong.svelte";
+import Sub from "@design-system/elements/sub.svelte";
+import Sup from "@design-system/elements/sup.svelte";
+import Time from "@design-system/elements/time.svelte";
+import U from "@design-system/elements/u.svelte";
+import Ul from "@design-system/elements/ul.svelte";
+import Var from "@design-system/elements/var.svelte";
 import { paragraph } from "@examples/index.js";
 
 const errors = [
@@ -55,10 +54,10 @@ const label = "What are the details?";
 const hint = paragraph;
 </script>
 
-<Head>
+<svelte:head>
 	<title>Form | Layout | Design System</title>
-	<meta name="description" content="A sematic fluid design system" />
-</Head>
+	<meta name="description" content="A semantic fluid design system" />
+</svelte:head>
 
 <LayoutCenter class="container form">
 	<Section>
@@ -151,6 +150,6 @@ const hint = paragraph;
 		scroll-snap-align: start;
 	} */
 	.form {
-		min-height: 100svh;
+		min-block-size: 100svh;
 	}
 </style>

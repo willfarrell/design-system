@@ -1,27 +1,17 @@
 <script>
-import Button from "@design-system/svelte/element/button.svelte";
-import Form from "@design-system/svelte/element/form.svelte";
-import Search from "@design-system/svelte/element/search.svelte";
-import FieldOptgroup from "@design-system/svelte/FieldOptgroup.svelte";
-import FieldOption from "@design-system/svelte/FieldOption.svelte";
-import Fieldset from "@design-system/svelte/Fieldset.svelte";
-import FormErrors from "@design-system/svelte/FormErrors.svelte";
-import InputCheckbox from "@design-system/svelte/InputCheckbox.svelte";
-import InputEmail from "@design-system/svelte/InputEmail.svelte";
-import InputFile from "@design-system/svelte/InputFile.svelte";
-import InputHidden from "@design-system/svelte/InputHidden.svelte";
-import InputNumber from "@design-system/svelte/InputNumber.svelte";
-import InputOneTimeCode from "@design-system/svelte/InputOneTimeCode.svelte";
-import InputPasswordGet from "@design-system/svelte/InputPasswordGet.svelte";
-import InputRadio from "@design-system/svelte/InputRadio.svelte";
-import InputSearch from "@design-system/svelte/InputSearch.svelte";
-import InputSelect from "@design-system/svelte/InputSelect.svelte";
-import InputText from "@design-system/svelte/InputText.svelte";
-import InputTextarea from "@design-system/svelte/InputTextarea.svelte";
-import InputUrl from "@design-system/svelte/InputUrl.svelte";
+import FieldHgroupSnippet from "@design-system/components/FieldHgroupSnippet.svelte";
+import FieldInput from "@design-system/components/FieldInput.svelte";
+import A from "@design-system/elements/a.svelte";
+import Button from "@design-system/elements/button.svelte";
+import Form from "@design-system/elements/form.svelte";
+import P from "@design-system/elements/p.svelte";
 </script>
 
+{#snippet labelSnippet(label)}
+    <FieldHgroupSnippet {label}/>
+{/snippet}
 <Form method="POST">
-	<InputNumber id="number" label="Number" hint="Should be prime and greater than 99" size="3" />
+	<FieldInput id="number" {labelSnippet} label="Number" hint="Should be prime and greater than 99" type="number" size="3" />
 	<Button>Submit</Button>
+	<P>Need help? <A href="/form/input-number" target="_top">View our guidance</A></P>
 </Form>

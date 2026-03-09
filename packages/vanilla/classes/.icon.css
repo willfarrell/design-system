@@ -1,0 +1,36 @@
+.icon {
+	display: inline-block;
+	inline-size: 1em;
+	block-size: 1em;
+}
+
+:where(a, button):has(.icon) {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	/* padding: 0.5em 0.75em;
+  min-block-size: 3em;
+  min-inline-size: 3em; */
+	/* for when there is only an icon */
+	block-size: calc(
+		var(--padding-fixed) +
+		var(--border-width) *
+		2 +
+		var(--line-height, 1.5) *
+		1em
+	); /* TODO refactor, make cleaner */
+}
+
+/* icon follow by text */
+.icon + span {
+	margin-inline-start: 0.5em;
+}
+
+/* icon follow by text */
+span + .icon {
+	margin-inline-start: 0.5em;
+}
+
+svg.icon {
+	fill: currentColor;
+}

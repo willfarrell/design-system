@@ -1,0 +1,14 @@
+/* https://web.dev/one-line-layouts/ */
+
+/*
+320px is the smallest device size supported
+*/
+.grid {
+	display: grid;
+	gap: var(--grid-gap);
+	grid-template-columns: repeat(
+			auto-fit,
+			minmax(var(--grid-min-width, 100%), 1fr)
+		);
+	inline-size: 100%;
+}

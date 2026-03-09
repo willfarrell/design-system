@@ -1,65 +1,63 @@
 <script>
-import Head from "@components/Head.svelte";
-import ButtonSubmit from "@design-system/svelte/ButtonSubmit.svelte";
-import Card from "@design-system/svelte/Card.svelte";
-import A from "@design-system/svelte/element/a.svelte";
-import Abbr from "@design-system/svelte/element/abbr.svelte";
-import Address from "@design-system/svelte/element/address.svelte";
-import Article from "@design-system/svelte/element/article.svelte";
-import Aside from "@design-system/svelte/element/aside.svelte";
-import B from "@design-system/svelte/element/b.svelte";
-import Button from "@design-system/svelte/element/button.svelte";
-import Code from "@design-system/svelte/element/code.svelte";
-import Del from "@design-system/svelte/element/del.svelte";
-import Details from "@design-system/svelte/element/details.svelte";
-
-import Div from "@design-system/svelte/element/div.svelte";
-import Em from "@design-system/svelte/element/em.svelte";
-import Form from "@design-system/svelte/element/form.svelte";
-import Hgroup from "@design-system/svelte/element/hgroup.svelte";
-import I from "@design-system/svelte/element/i.svelte";
-import Ins from "@design-system/svelte/element/ins.svelte";
-import Kbd from "@design-system/svelte/element/kbd.svelte";
-import Li from "@design-system/svelte/element/li.svelte";
-import Main from "@design-system/svelte/element/main.svelte";
-import Mark from "@design-system/svelte/element/mark.svelte";
-import Nav from "@design-system/svelte/element/nav.svelte";
-import Ol from "@design-system/svelte/element/ol.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import S from "@design-system/svelte/element/s.svelte";
-import Search from "@design-system/svelte/element/search.svelte";
-import Section from "@design-system/svelte/element/section.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
-import Span from "@design-system/svelte/element/span.svelte";
-import Strong from "@design-system/svelte/element/strong.svelte";
-import Sub from "@design-system/svelte/element/sub.svelte";
-import Summary from "@design-system/svelte/element/summary.svelte";
-import Sup from "@design-system/svelte/element/sup.svelte";
-import Time from "@design-system/svelte/element/time.svelte";
-import U from "@design-system/svelte/element/u.svelte";
-import Ul from "@design-system/svelte/element/ul.svelte";
-import Var from "@design-system/svelte/element/var.svelte";
-import FieldLegend from "@design-system/svelte/FieldLegend.svelte";
-import Fieldset from "@design-system/svelte/Fieldset.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import H2 from "@design-system/svelte/Heading2.svelte";
-import H3 from "@design-system/svelte/Heading3.svelte";
-import H4 from "@design-system/svelte/Heading4.svelte";
-import H5 from "@design-system/svelte/Heading5.svelte";
-import H6 from "@design-system/svelte/Heading6.svelte";
-import HSub from "@design-system/svelte/HeadingSub.svelte";
-import Icon from "@design-system/svelte/Icon.svelte";
-import Image from "@design-system/svelte/Image.svelte";
-import InputCheckbox from "@design-system/svelte/InputCheckbox.svelte";
-import InputSearch from "@design-system/svelte/InputSearch.svelte";
-import InputText from "@design-system/svelte/InputText.svelte";
+import ButtonSubmit from "@design-system/components/ButtonSubmit.svelte";
+import Card from "@design-system/components/Card.svelte";
+import FieldLegend from "@design-system/components/FieldLegend.svelte";
+import Fieldset from "@design-system/components/Fieldset.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import H2 from "@design-system/components/Heading2.svelte";
+import H3 from "@design-system/components/Heading3.svelte";
+import H4 from "@design-system/components/Heading4.svelte";
+import H5 from "@design-system/components/Heading5.svelte";
+import H6 from "@design-system/components/Heading6.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import Icon from "@design-system/components/Icon.svelte";
+import Image from "@design-system/components/Image.svelte";
+import InputCheckbox from "@design-system/components/InputCheckbox.svelte";
+import InputSearch from "@design-system/components/InputSearch.svelte";
+import InputText from "@design-system/components/InputText.svelte";
+import A from "@design-system/elements/a.svelte";
+import Abbr from "@design-system/elements/abbr.svelte";
+import Address from "@design-system/elements/address.svelte";
+import Article from "@design-system/elements/article.svelte";
+import Aside from "@design-system/elements/aside.svelte";
+import B from "@design-system/elements/b.svelte";
+import Button from "@design-system/elements/button.svelte";
+import Code from "@design-system/elements/code.svelte";
+import Del from "@design-system/elements/del.svelte";
+import Details from "@design-system/elements/details.svelte";
+import Div from "@design-system/elements/div.svelte";
+import Em from "@design-system/elements/em.svelte";
+import Form from "@design-system/elements/form.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import I from "@design-system/elements/i.svelte";
+import Ins from "@design-system/elements/ins.svelte";
+import Kbd from "@design-system/elements/kbd.svelte";
+import Li from "@design-system/elements/li.svelte";
+import Main from "@design-system/elements/main.svelte";
+import Mark from "@design-system/elements/mark.svelte";
+import Nav from "@design-system/elements/nav.svelte";
+import Ol from "@design-system/elements/ol.svelte";
+import P from "@design-system/elements/p.svelte";
+import S from "@design-system/elements/s.svelte";
+import Search from "@design-system/elements/search.svelte";
+import Section from "@design-system/elements/section.svelte";
+import Small from "@design-system/elements/small.svelte";
+import Span from "@design-system/elements/span.svelte";
+import Strong from "@design-system/elements/strong.svelte";
+import Sub from "@design-system/elements/sub.svelte";
+import Summary from "@design-system/elements/summary.svelte";
+import Sup from "@design-system/elements/sup.svelte";
+import Time from "@design-system/elements/time.svelte";
+import U from "@design-system/elements/u.svelte";
+import Ul from "@design-system/elements/ul.svelte";
+import Var from "@design-system/elements/var.svelte";
 import { paragraph } from "@examples/index.js";
 </script>
 
-<Head>
+<svelte:head>
 	<title>Slices | Layout | Design System</title>
-	<meta name="description" content="A sematic fluid design system" />
-</Head>
+	<meta name="description" content="A semantic fluid design system" />
+</svelte:head>
 
 <Main id="main" class="container-slices">
 	<Section class="slice hero vertical" data-theme="dark">
@@ -150,7 +148,7 @@ import { paragraph } from "@examples/index.js";
 		</Div>
 		<Ul class="grid">
 			{#each new Array(8).fill('x') as item, idx}
-				<Li>
+				<Li class="card">
 					<H3>Item {idx}</H3>
 					<P>{paragraph.substring(0, 35)}</P>
 				</Li>
@@ -175,10 +173,10 @@ import { paragraph } from "@examples/index.js";
 			/* background image for entire slice */
 			& > picture {
 				position: absolute;
-				top: 0px;
-				left: 0px;
-				width: 100%;
-				height: 100%;
+				inset-block-start: 0px;
+				inset-inline-start: 0px;
+				inline-size: 100%;
+				block-size: 100%;
 				z-index: -1;
 				& img {
 					object-fit: cover;
@@ -188,12 +186,12 @@ import { paragraph } from "@examples/index.js";
 			/* slice types */
 			&.hero {
 				/*& > div {
-					height: 20vh; /* required for shape-outside *
+					block-size: 20vh; /* required for shape-outside *
 				}
 				& > div:before {
 					content: '';
-					width: 75%;
-					height: 100%;
+					inline-size: 75%;
+					block-size: 100%;
 					shape-outside: polygon(0 100%, 100% 0, 100% 100%);
 					float: right;
 
@@ -216,8 +214,9 @@ import { paragraph } from "@examples/index.js";
 				flex-wrap: wrap;
 				gap: var(--gap-padding);
 				& > div {
-					min-width: 30ch;
-					width: calc(50% - var(--gap-padding) / 2);
+					min-inline-size: min(30ch, 100%);
+					inline-size: calc(50% - var(--gap-padding) / 2);
+					overflow-wrap: anywhere;
 				}
 			}
 
@@ -247,7 +246,7 @@ import { paragraph } from "@examples/index.js";
 				& > picture {
 					& > img {
 						object-fit: cover;
-						height: 100%;
+						block-size: 100%;
 					}
 				}
 			}
@@ -256,7 +255,7 @@ import { paragraph } from "@examples/index.js";
 				list-style: none;
 				padding-inline: 0;
 
-				& > li {
+				& > li.card {
 					border: var(--border-width) solid var(--border-color, currentColor);
 					border-radius: var(--border-radius);
 					padding: var(--padding-fixed);

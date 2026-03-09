@@ -1,5 +1,5 @@
 <script>
-import TaskList from "@design-system/svelte/TaskList.svelte";
+import TaskList from "@design-system/components/TaskList.svelte";
 
 const tasks = [
 	{

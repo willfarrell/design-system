@@ -1,8 +1,0 @@
-/* back button should be before <main> */
-.back:before {
-	content: "\2039"; /* left chevron */
-	position: relative;
-	inset-inline-start: -0.125rem;
-	display: inline-block;
-	height: 0px; /* fixes :focus-visible when using display: inline-block */
-}

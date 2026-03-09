@@ -1,8 +1,8 @@
 <script>
-import A from "@design-system/svelte/element/a.svelte";
-import Div from "@design-system/svelte/element/div.svelte";
-import Span from "@design-system/svelte/element/span.svelte";
-import Icon from "@design-system/svelte/Icon.svelte";
+import Icon from "@design-system/components/Icon.svelte";
+import A from "@design-system/elements/a.svelte";
+import Div from "@design-system/elements/div.svelte";
+import Span from "@design-system/elements/span.svelte";
 import { page } from "$app/state";
 </script>
 

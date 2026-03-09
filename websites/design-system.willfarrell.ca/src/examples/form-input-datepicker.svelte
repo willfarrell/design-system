@@ -1,29 +1,10 @@
 <script>
-import Button from "@design-system/svelte/element/button.svelte";
-import Div from "@design-system/svelte/element/div.svelte";
-import Form from "@design-system/svelte/element/form.svelte";
-import Search from "@design-system/svelte/element/search.svelte";
-import FieldOptgroup from "@design-system/svelte/FieldOptgroup.svelte";
-import FieldOption from "@design-system/svelte/FieldOption.svelte";
-import Fieldset from "@design-system/svelte/Fieldset.svelte";
-import FormErrors from "@design-system/svelte/FormErrors.svelte";
-import InputCheckbox from "@design-system/svelte/InputCheckbox.svelte";
-import InputDate from "@design-system/svelte/InputDate.svelte";
-import InputEmail from "@design-system/svelte/InputEmail.svelte";
-import InputFile from "@design-system/svelte/InputFile.svelte";
-import InputHidden from "@design-system/svelte/InputHidden.svelte";
-import InputNumber from "@design-system/svelte/InputNumber.svelte";
-import InputOneTimeCode from "@design-system/svelte/InputOneTimeCode.svelte";
-import InputPasswordGet from "@design-system/svelte/InputPasswordGet.svelte";
-import InputRadio from "@design-system/svelte/InputRadio.svelte";
-import InputSearch from "@design-system/svelte/InputSearch.svelte";
-import InputSelect from "@design-system/svelte/InputSelect.svelte";
-import InputTel from "@design-system/svelte/InputTel.svelte";
-import InputText from "@design-system/svelte/InputText.svelte";
-import InputTextarea from "@design-system/svelte/InputTextarea.svelte";
-import InputUrl from "@design-system/svelte/InputUrl.svelte";
-
-const error = [{ id: "dob", message: "error message" }];
+import FieldHgroupSnippet from "@design-system/components/FieldHgroupSnippet.svelte";
+import InputDate from "@design-system/components/InputDate.svelte";
+import A from "@design-system/elements/a.svelte";
+import Button from "@design-system/elements/button.svelte";
+import Form from "@design-system/elements/form.svelte";
+import P from "@design-system/elements/p.svelte";
 </script>
 
 <!--
@@ -33,7 +14,11 @@ Safari: width of 0
 Firefox: width of M
 Expected: width of M, when inputmode="numeric" uses with of 0
 -->
+{#snippet labelSnippet(label)}
+    <FieldHgroupSnippet {label}/>
+{/snippet}
 <Form method="POST">
-	<InputDate id="date" label="Date" />
+	<InputDate id="date" {labelSnippet} label="Date" />
 	<Button>Submit</Button>
+	<P>Need help? <A href="/form/input-date" target="_top">View our guidance</A></P>
 </Form>

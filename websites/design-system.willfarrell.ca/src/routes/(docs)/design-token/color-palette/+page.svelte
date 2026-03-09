@@ -1,25 +1,22 @@
 <script>
-import Head from "@components/Head.svelte";
 import Snippet from "@components/Snippet.svelte";
-import Codeblock from "@design-system/svelte/Codeblock.svelte";
-import A from "@design-system/svelte/element/a.svelte";
-import Div from "@design-system/svelte/element/div.svelte";
-import Footer from "@design-system/svelte/element/footer.svelte";
-import Header from "@design-system/svelte/element/header.svelte";
-import Hgroup from "@design-system/svelte/element/hgroup.svelte";
-import Li from "@design-system/svelte/element/li.svelte";
-import Main from "@design-system/svelte/element/main.svelte";
-import Nav from "@design-system/svelte/element/nav.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import Section from "@design-system/svelte/element/section.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
-import Time from "@design-system/svelte/element/time.svelte";
-import Ul from "@design-system/svelte/element/ul.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import H2 from "@design-system/svelte/Heading2.svelte";
-import H3 from "@design-system/svelte/Heading3.svelte";
-import HSub from "@design-system/svelte/HeadingSub.svelte";
-import Table from "@design-system/svelte/Table.svelte";
+import Codeblock from "@design-system/components/Codeblock.svelte";
+import DataTime from "@design-system/components/DataTime.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import H2 from "@design-system/components/Heading2.svelte";
+import H3 from "@design-system/components/Heading3.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import Table from "@design-system/components/Table.svelte";
+import A from "@design-system/elements/a.svelte";
+import Div from "@design-system/elements/div.svelte";
+import Footer from "@design-system/elements/footer.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import Li from "@design-system/elements/li.svelte";
+import Main from "@design-system/elements/main.svelte";
+import Nav from "@design-system/elements/nav.svelte";
+import P from "@design-system/elements/p.svelte";
+import Small from "@design-system/elements/small.svelte";
+import Ul from "@design-system/elements/ul.svelte";
 import { APCAcontrast, fontLookupAPCA, sRGBtoY } from "apca-w3";
 import chroma from "chroma-js";
 import { colorParsley } from "colorparsley";
@@ -223,9 +220,8 @@ const page_ = {
 </script>
 
 <svelte:head>
-	<!-- <Head>
-		<title>Design System</title>
-	</Head> -->
+	<title>{page_.title} | {page_.group} | Design System</title>
+	<meta name="description" content="Colour palette generator with APCA contrast checking for light and dark colour schemes" />
 </svelte:head>
 
 <Main id="main">
@@ -373,8 +369,8 @@ const page_ = {
 		}
 	}
 	.preview {
-		width: 4rem;
-		height: 4rem;
+		inline-size: 4rem;
+		block-size: 4rem;
 		padding: 1rem;
 		border-radius: 1rem;
 		display: flex;
@@ -382,8 +378,8 @@ const page_ = {
 		justify-content: center;
 
 		& .preview {
-			width: 2rem;
-			height: 2rem;
+			inline-size: 2rem;
+			block-size: 2rem;
 			padding: 0.5rem;
 		}
 	}

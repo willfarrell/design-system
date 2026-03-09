@@ -1,7 +1,7 @@
 // https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
 
 const globalAttributes = new Set([
-  "accesskey",
+	"accesskey",
 	// "anchor", // Deprecatd
 	"autocapitalize",
 	"autocorrect",

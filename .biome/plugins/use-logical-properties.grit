@@ -1,0 +1,239 @@
+language css
+
+// Docs: https://adrianroselli.com/2019/11/css-logical-properties.html
+// Requires https://github.com/biomejs/biome/issues/5687
+or {
+	// Inset
+	`top: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'top' with 'inset-block-start'.", severity="info")
+	} => `inset-block-start: $val`,
+	`bottom: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'bottom' with 'inset-block-end'.", severity="info")
+	} => `inset-block-end: $val`,
+	`left: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'left' with 'inset-inline-start'.", severity="info")
+	} => `inset-inline-start: $val`,
+	`right: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'right' with 'inset-inline-end'.", severity="info")
+	} => `inset-inline-end: $val`,
+	// Margin
+	`margin-top: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'margin-top' with 'margin-block-start'.", severity="info")
+	} => `margin-block-start: $val`,
+	`margin-bottom: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'margin-bottom' with 'margin-block-end'.", severity="info")
+	} => `margin-block-end: $val`,
+	`margin-left: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'margin-left' with 'margin-inline-start'.", severity="info")
+	} => `margin-inline-start: $val`,
+	`margin-right: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'margin-right' with 'margin-inline-end'.", severity="info")
+	} => `margin-inline-end: $val`,
+	// Padding
+	`padding-top: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'padding-top' with 'padding-block-start'.", severity="info")
+	} => `padding-block-start: $val`,
+	`padding-bottom: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'padding-bottom' with 'padding-block-end'.", severity="info")
+	} => `padding-block-end: $val`,
+	`padding-left: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'padding-left' with 'padding-inline-start'.", severity="info")
+	} => `padding-inline-start: $val`,
+	`padding-right: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'padding-right' with 'padding-inline-end'.", severity="info")
+	} => `padding-inline-end: $val`,
+	// Border shorthand
+	`border-top: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-top' with 'border-block-start'.", severity="info")
+	} => `border-block-start: $val`,
+	`border-bottom: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-bottom' with 'border-block-end'.", severity="info")
+	} => `border-block-end: $val`,
+	`border-left: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-left' with 'border-inline-start'.", severity="info")
+	} => `border-inline-start: $val`,
+	`border-right: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-right' with 'border-inline-end'.", severity="info")
+	} => `border-inline-end: $val`,
+	// Border width
+	`border-top-width: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-top-width' with 'border-block-start-width'.", severity="info")
+	} => `border-block-start-width: $val`,
+	`border-bottom-width: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-bottom-width' with 'border-block-end-width'.", severity="info")
+	} => `border-block-end-width: $val`,
+	`border-left-width: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-left-width' with 'border-inline-start-width'.", severity="info")
+	} => `border-inline-start-width: $val`,
+	`border-right-width: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-right-width' with 'border-inline-end-width'.", severity="info")
+	} => `border-inline-end-width: $val`,
+	// Border color
+	`border-top-color: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-top-color' with 'border-block-start-color'.", severity="info")
+	} => `border-block-start-color: $val`,
+	`border-bottom-color: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-bottom-color' with 'border-block-end-color'.", severity="info")
+	} => `border-block-end-color: $val`,
+	`border-left-color: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-left-color' with 'border-inline-start-color'.", severity="info")
+	} => `border-inline-start-color: $val`,
+	`border-right-color: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-right-color' with 'border-inline-end-color'.", severity="info")
+	} => `border-inline-end-color: $val`,
+	// Border style
+	`border-top-style: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-top-style' with 'border-block-start-style'.", severity="info")
+	} => `border-block-start-style: $val`,
+	`border-bottom-style: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-bottom-style' with 'border-block-end-style'.", severity="info")
+	} => `border-block-end-style: $val`,
+	`border-left-style: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-left-style' with 'border-inline-start-style'.", severity="info")
+	} => `border-inline-start-style: $val`,
+	`border-right-style: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-right-style' with 'border-inline-end-style'.", severity="info")
+	} => `border-inline-end-style: $val`,
+	// Border radius
+	`border-top-left-radius: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-top-left-radius' with 'border-start-start-radius'.", severity="info")
+	} => `border-start-start-radius: $val`,
+	`border-top-right-radius: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-top-right-radius' with 'border-start-end-radius'.", severity="info")
+	} => `border-start-end-radius: $val`,
+	`border-bottom-left-radius: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-bottom-left-radius' with 'border-end-start-radius'.", severity="info")
+	} => `border-end-start-radius: $val`,
+	`border-bottom-right-radius: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'border-bottom-right-radius' with 'border-end-end-radius'.", severity="info")
+	} => `border-end-end-radius: $val`,
+	// Sizing
+	`width: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'width' with 'inline-size'.", severity="info")
+	} => `inline-size: $val`,
+	`height: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'height' with 'block-size'.", severity="info")
+	} => `block-size: $val`,
+	`min-width: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'min-width' with 'min-inline-size'.", severity="info")
+	} => `min-inline-size: $val`,
+	`min-height: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'min-height' with 'min-block-size'.", severity="info")
+	} => `min-block-size: $val`,
+	`max-width: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'max-width' with 'max-inline-size'.", severity="info")
+	} => `max-inline-size: $val`,
+	`max-height: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'max-height' with 'max-block-size'.", severity="info")
+	} => `max-block-size: $val`,
+	// Overflow
+	`overflow-x: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'overflow-x' with 'overflow-inline'.", severity="info")
+	} => `overflow-inline: $val`,
+	`overflow-y: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'overflow-y' with 'overflow-block'.", severity="info")
+	} => `overflow-block: $val`,
+	// Text align
+	`text-align: left` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'text-align: left' with 'text-align: start'.", severity="info")
+	} => `text-align: start`,
+	`text-align: right` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'text-align: right' with 'text-align: end'.", severity="info")
+	} => `text-align: end`,
+	// Scroll margin
+	`scroll-margin-top: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'scroll-margin-top' with 'scroll-margin-block-start'.", severity="info")
+	} => `scroll-margin-block-start: $val`,
+	`scroll-margin-bottom: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'scroll-margin-bottom' with 'scroll-margin-block-end'.", severity="info")
+	} => `scroll-margin-block-end: $val`,
+	`scroll-margin-left: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'scroll-margin-left' with 'scroll-margin-inline-start'.", severity="info")
+	} => `scroll-margin-inline-start: $val`,
+	`scroll-margin-right: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'scroll-margin-right' with 'scroll-margin-inline-end'.", severity="info")
+	} => `scroll-margin-inline-end: $val`,
+	// Scroll padding
+	`scroll-padding-top: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'scroll-padding-top' with 'scroll-padding-block-start'.", severity="info")
+	} => `scroll-padding-block-start: $val`,
+	`scroll-padding-bottom: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'scroll-padding-bottom' with 'scroll-padding-block-end'.", severity="info")
+	} => `scroll-padding-block-end: $val`,
+	`scroll-padding-left: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'scroll-padding-left' with 'scroll-padding-inline-start'.", severity="info")
+	} => `scroll-padding-inline-start: $val`,
+	`scroll-padding-right: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'scroll-padding-right' with 'scroll-padding-inline-end'.", severity="info")
+	} => `scroll-padding-inline-end: $val`,
+	// Overscroll behavior
+	`overscroll-behavior-x: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'overscroll-behavior-x' with 'overscroll-behavior-inline'.", severity="info")
+	} => `overscroll-behavior-inline: $val`,
+	`overscroll-behavior-y: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'overscroll-behavior-y' with 'overscroll-behavior-block'.", severity="info")
+	} => `overscroll-behavior-block: $val`,
+	// Contain intrinsic size
+	`contain-intrinsic-width: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'contain-intrinsic-width' with 'contain-intrinsic-inline-size'.", severity="info")
+	} => `contain-intrinsic-inline-size: $val`,
+	`contain-intrinsic-height: $val` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'contain-intrinsic-height' with 'contain-intrinsic-block-size'.", severity="info")
+	} => `contain-intrinsic-block-size: $val`,
+	// Float
+	`float: left` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'float: left' with 'float: inline-start'.", severity="info")
+	} => `float: inline-start`,
+	`float: right` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'float: right' with 'float: inline-end'.", severity="info")
+	} => `float: inline-end`,
+	// Clear
+	`clear: left` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'clear: left' with 'clear: inline-start'.", severity="info")
+	} => `clear: inline-start`,
+	`clear: right` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'clear: right' with 'clear: inline-end'.", severity="info")
+	} => `clear: inline-end`,
+	// Resize
+	`resize: horizontal` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'resize: horizontal' with 'resize: inline'.", severity="info")
+	} => `resize: inline`,
+	`resize: vertical` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'resize: vertical' with 'resize: block'.", severity="info")
+	} => `resize: block`,
+	// Caption side
+	`caption-side: top` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'caption-side: top' with 'caption-side: block-start'.", severity="info")
+	} => `caption-side: block-start`,
+	`caption-side: bottom` as $decl where {
+		register_diagnostic(span=$decl, message="Replace 'caption-side: bottom' with 'caption-side: block-end'.", severity="info")
+	} => `caption-side: block-end`
+
+	// == No logical equivalents in CSS spec yet ==
+
+	// Media queries (proposed, not implemented)
+	// @media (width) -> @media (inline-size)
+	// @media (min-width) -> @media (min-inline-size)
+	// @media (max-width) -> @media (max-inline-size)
+	// @media (height) -> @media (block-size)
+	// @media (min-height) -> @media (min-block-size)
+	// @media (max-height) -> @media (max-block-size)
+
+	// Transform functions (not in CSS Transforms spec)
+	// translateX() -> (no logical equivalent exists)
+	// translateY() -> (no logical equivalent exists)
+	// scaleX() -> (no logical equivalent exists)
+	// scaleY() -> (no logical equivalent exists)
+	// skewX() -> (no logical equivalent exists)
+	// skewY() -> (no logical equivalent exists)
+
+	// Background position (not in any spec)
+	// background-position-x -> (no logical equivalent exists)
+	// background-position-y -> (no logical equivalent exists)
+
+	// Gradients (not in any spec)
+	// linear-gradient(to top, ...) -> (no logical equivalent exists)
+	// linear-gradient(to bottom, ...) -> (no logical equivalent exists)
+	// linear-gradient(to left, ...) -> (no logical equivalent exists)
+	// linear-gradient(to right, ...) -> (no logical equivalent exists)
+}

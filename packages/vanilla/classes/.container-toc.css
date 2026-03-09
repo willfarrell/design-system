@@ -1,0 +1,83 @@
+/*main[class^="container-"] {
+  margin-inline: var(--padding-page-inline);
+}*/
+
+.container-aside > .container-toc {
+	margin: unset;
+}
+
+/* biome-ignore lint/style/noDescendingSpecificity: contextual override precedes base rule */
+.container-toc {
+	max-inline-size: calc(60ch + var(--page-gap) + 30ch);
+	margin: 0 auto;
+
+	container-name: container-toc;
+	container-type: inline-size;
+	flex: 1 1 0%;
+
+	& > article {
+		display: grid;
+		grid-template-areas:
+			"header"
+			"aside"
+			"content";
+
+		& > :first-child {
+			grid-area: header;
+			padding-block-start: var(--padding-fixed);
+		}
+		& > aside {
+			grid-area: aside;
+			padding-block-end: var(--padding-fixed); /* TODO find alt */
+		}
+		& > :last-child {
+			grid-area: content;
+		}
+
+		& > div {
+			max-inline-size: 60ch;
+		}
+	}
+
+	/* 60ch (main) + 3em (gap) + 30ch (toc) */
+	/* calc(60ch + 3em + 30ch) not supported */
+	/* @container (70em < width) {
+    column-gap: 3em;
+    grid-template-columns: min-content auto;
+    grid-template-areas:
+      "top toc"
+      "doc toc";
+  } */
+}
+
+/* 60ch (main) + 3em (gap) + 30ch (toc) */
+/* calc(60ch + 3em + 30ch) not supported */
+@container container-toc (53em < width) {
+	.container-toc {
+		& > article:not(.\9) {
+			column-gap: var(--page-gap);
+			grid-template-columns: min-content auto;
+			grid-template-areas:
+				"header aside"
+				"content aside";
+
+			& > aside {
+				flex-shrink: 0;
+				inline-size: 30ch;
+				position: relative;
+				/*max-block-size: calc(100vh - var(--sticky-header-height, 0));
+        inset-block-start: var(--sticky-header-height, 0);*/
+
+				& > nav {
+					inset-block-start: var(--padding-fixed);
+					position: sticky;
+					overflow-block: scroll;
+				}
+			}
+
+			& > div {
+				inline-size: 60ch;
+			}
+		}
+	}
+}

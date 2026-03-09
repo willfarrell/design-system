@@ -2,7 +2,7 @@
 	"$schema": "../../node_modules/wrangler/config-schema.json",
 	"name": "design-system",
 	"compatibility_date": "2026-02-05",
-	"compatibility_flags": ["global_fetch_strictly_public"],
+	"compatibility_flags": ["global_fetch_strictly_public", "nodejs_compat"],
 	"main": ".svelte-kit/cloudflare/_worker.js",
 	"assets": {
 		"binding": "ASSETS",
@@ -16,5 +16,13 @@
 			"invocation_logs": false
 		}
 	},
-	"send_metrics": false
+	"workers_dev": true,
+	"preview_urls": true,
+	"send_metrics": false,
+	"routes": [
+		{
+			"pattern": "design-system.willfarrell.ca",
+			"custom_domain": true
+		}
+	]
 }

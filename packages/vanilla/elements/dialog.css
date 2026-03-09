@@ -1,0 +1,56 @@
+dialog {
+	display: none;
+	border: none;
+	padding: 0;
+
+	&[open] {
+		display: flex;
+		position: fixed;
+		inset-block-start: 0;
+		inline-size: 100vw;
+		block-size: 100svh;
+		background: transparent;
+		overflow-block: scroll;
+	}
+
+	&::backdrop {
+		/* position: fixed;
+    inset-block-start: 0; */
+		background: rgba(0, 0, 0, 0.8);
+		backdrop-filter: blur(5px);
+	}
+
+	& form {
+		inline-size: clamp(16rem, 50vw, 40rem);
+		block-size: auto;
+		margin: auto;
+		background: var(--color-l0);
+	}
+
+	& header {
+		position: sticky;
+		padding: var(--padding-fixed);
+	}
+	& main {
+		padding: var(--padding-fixed);
+	}
+	& footer {
+		padding: var(--padding-fixed);
+	}
+}
+
+@media (forced-colors: active) {
+	dialog::backdrop {
+		background: CanvasText;
+		opacity: 0.8;
+	}
+	dialog form {
+		border: 0.25rem solid CanvasText;
+	}
+}
+
+/* prevent scroll when dialog open */
+body:has(dialog[open]) {
+	/*position: fixed;*/ /* for iOS, but causes jump to top */
+	overflow: hidden;
+}

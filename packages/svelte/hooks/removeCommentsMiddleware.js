@@ -1,4 +1,4 @@
-const commentRegExp = /<!--[[\]!a-z0-9]*-->\n*/g;
+const commentRegExp = /(<!--[[\]!a-z0-9-]*-->|<!>)\n*/g;
 
 const removeCommentsMiddleware = async ({ event, resolve }) => {
 	const response = await resolve(event, {

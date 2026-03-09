@@ -1,5 +1,6 @@
 <script>
-import A from "@design-system/svelte/element/a.svelte";
+import A from "@design-system/elements/a.svelte";
+import Nav from "@design-system/elements/nav.svelte";
 </script>
 
-<A href="#">Back to top</A>
+<Nav><A href="#">Back to top</A></Nav>

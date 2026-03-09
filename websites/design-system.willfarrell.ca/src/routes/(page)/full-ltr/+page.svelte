@@ -1,34 +1,33 @@
 <script>
 import Example from "@components/Example.svelte";
-import Head from "@components/Head.svelte";
 import Snippet from "@components/Snippet.svelte";
-import Codeblock from "@design-system/svelte/Codeblock.svelte";
-import A from "@design-system/svelte/element/a.svelte";
-import Article from "@design-system/svelte/element/article.svelte";
-import Code from "@design-system/svelte/element/code.svelte";
-import Div from "@design-system/svelte/element/div.svelte";
-import Footer from "@design-system/svelte/element/footer.svelte";
-import Hgroup from "@design-system/svelte/element/hgroup.svelte";
-import Li from "@design-system/svelte/element/li.svelte";
-import Main from "@design-system/svelte/element/main.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import Section from "@design-system/svelte/element/section.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
-import Time from "@design-system/svelte/element/time.svelte";
-import Ul from "@design-system/svelte/element/ul.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import H2 from "@design-system/svelte/Heading2.svelte";
-import H3 from "@design-system/svelte/Heading3.svelte";
-import H4 from "@design-system/svelte/Heading4.svelte";
-import HSub from "@design-system/svelte/HeadingSub.svelte";
-import LayoutCenter from "@design-system/svelte/LayoutCenter.svelte";
-import Table from "@design-system/svelte/Table.svelte";
+import Codeblock from "@design-system/components/Codeblock.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import H2 from "@design-system/components/Heading2.svelte";
+import H3 from "@design-system/components/Heading3.svelte";
+import H4 from "@design-system/components/Heading4.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import LayoutCenter from "@design-system/components/LayoutCenter.svelte";
+import Table from "@design-system/components/Table.svelte";
+import A from "@design-system/elements/a.svelte";
+import Article from "@design-system/elements/article.svelte";
+import Code from "@design-system/elements/code.svelte";
+import Div from "@design-system/elements/div.svelte";
+import Footer from "@design-system/elements/footer.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import Li from "@design-system/elements/li.svelte";
+import Main from "@design-system/elements/main.svelte";
+import P from "@design-system/elements/p.svelte";
+import Section from "@design-system/elements/section.svelte";
+import Small from "@design-system/elements/small.svelte";
+import Time from "@design-system/elements/time.svelte";
+import Ul from "@design-system/elements/ul.svelte";
 </script>
 
-<Head>
+<svelte:head>
 	<title>Full (ltr) | Design System</title>
-	<meta name="description" content="All sematic fluid design system components" />
-</Head>
+	<meta name="description" content="All semantic fluid design system components" />
+</svelte:head>
 
 <LayoutCenter>
 	<Article>
@@ -75,17 +74,19 @@ import Table from "@design-system/svelte/Table.svelte";
 			Source:
 			  - Why 60ch, WCAG needs 80ch: https://meyerweb.com/eric/thoughts/2018/06/28/what-is-the-css-ch-unit/
 			  -->
-			<H3>Inline text elements</H3>
+			<H3>Inline style elements</H3>
 			<Example component="inline-style-elements" />
+			<H3>Inline format elements</H3>
+			<Example component="inline-format-elements" />
 			<H3>Links</H3>
 			<Example component="link" />
 			<Example component="link-button" />
 			<Example component="link-mailto" />
 			<Example component="link-tel" />
-			<!-- <Example component="link-skip"  /> --><!-- Applied above -->
+			<Example component="link-skip" />
 			<Example component="link-back" />
-			<!-- <Example component="link-back-to-top" /> --><!-- Applied below -->
-			<!--<Example component="link-tag" />--><!-- role invalid, skip -->
+			<Example component="link-back-to-top" />
+			<Example component="link-tag" />
 
 			<H3>Lists</H3>
 			<H4>Unordered</H4>
@@ -116,14 +117,14 @@ import Table from "@design-system/svelte/Table.svelte";
 			<Example component="form-input-datepicker" />
 			<H3>Search input</H3>
 			<Example component="form-input-search" />
-			<P>TODO - Address Input</P>
+			<H3>Address input</H3>
+			<Example component="form-input-address" />
 			<H3>Checkboxes</H3>
 			<Example component="form-input-checkbox" />
 			<H3>Radios</H3>
 			<Example component="form-input-radio" />
 			<H3>Select [Avoid]</H3>
 			<Example component="form-input-select" />
-			<Example component="form-input-select-typeahead" />
 			<Example component="form-input-select-multiple" />
 			<!--<H3>Data list</H3>
 			<Example component="form-input-datalist" />-->
@@ -131,21 +132,18 @@ import Table from "@design-system/svelte/Table.svelte";
 			<Example component="form-input-textarea" />
 			<H3>File input</H3>
 			<Example component="form-input-file" />
-			<P
-				>Authentication - username - email [Avoid] - password [Avoid] - totp [Avoid] - WebAuthn /
-				PassKey</P
-			>
+			<H3>WebAuthn</H3>
+			<Example component="form-input-webauthn" />
 
 			<H3>Input focus</H3>
 			<Example component="form-input-focus" />
-			<H3>Address</H3>
-			<Example component="form-input-address" />
 			<H3>Errors</H3>
 			<Example component="form-errors" />
 		</Section>
 		<Section>
 			<H2>Media elements</H2>
 			<H3>Icons</H3>
+			<Example component="icon" />
 			<H3>Images</H3>
 			<H3>Video</H3>
 			<P>- HTML - Vimeo? - Youtube?</P>
@@ -158,25 +156,31 @@ import Table from "@design-system/svelte/Table.svelte";
 			<H2>Components</H2>
 			<H3>Accordion</H3>
 			<Example component="accordion" />
-			<!--
-					Ref: https://adrianroselli.com/2023/08/progressively-enhanced-html-accordion.html
-				-->
+			<Example component="accordion-chevron" />
 			<H3>Address</H3>
 			<Example component="address" />
+			<H3>Alert</H3>
+			<Example component="alert" />
+			<H3>Badge</H3>
+			<Example component="badge" />
 			<H3>Banner</H3>
 			<H3>Blockquote</H3>
 			<Example component="blockquote" />
-			<!--  https://adrianroselli.com/2023/07/blockquotes-in-screen-readers.html -->
+			<H3>Callout</H3>
+			<Example component="callout" />
 			<H3>Card</H3>
 			<Example component="card" />
-			<!--
-					https://inclusive-components.design/cards/
-				-->
 			<H3>Code block</H3>
+			<H3>Data formatters</H3>
+			<Example component="data-bytes" />
+			<Example component="data-enum" />
+			<Example component="data-number" />
+			<Example component="data-time" />
 			<H3>Disclosure</H3>
 			<Example component="details" />
+			<Example component="details-chevron" />
 			<H3>Dialog [Avoid]</H3>
-			<Example component="dialog" /><!-- contains header/footer which need labels -->
+			<Example component="dialog" />
 			<H3>Dropdown</H3>
 			<H3>Form Aside (Faceted search)</H3>
 			<H3>Header</H3>
@@ -184,21 +188,19 @@ import Table from "@design-system/svelte/Table.svelte";
 			<H3>Footer</H3>
 			<H3>Footnotes</H3>
 			<Example component="footnotes" />
-			<!--
-				TODO unfinished
-				Ref: https://www.sitepoint.com/accessible-footnotes-css/
-			-->
 			<H3>Nav Aside</H3>
 			<H3>Nav Scrollspy</H3>
 			<H3>Pagination (Numbered)</H3>
 			<H3>Pagination (Next/Prev)</H3>
+			<H3>Popover</H3>
+			<Example component="popover" />
 			<H3>Tabs [Avoid]</H3>
 			<H3>Table</H3>
 			<Example component="table" />
-			<!--
-				// https://inclusive-components.design/data-tables/
-				-->
-			<H3>Code block</H3>
+			<H3>Tag</H3>
+			<Example component="tag" />
+			<H3>Task list</H3>
+			<Example component="task-list" />
 		</Section>
 		<Section>
 			<H3>Grid</H3>

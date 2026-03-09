@@ -1,57 +1,56 @@
 <script>
 import Snippet from "@components/Snippet.svelte";
 import Variable from "@components/Variable.svelte";
-import DataTime from "@design-system/svelte/DataTime.svelte";
-import A from "@design-system/svelte/element/a.svelte";
-import Abbr from "@design-system/svelte/element/abbr.svelte";
-import Address from "@design-system/svelte/element/address.svelte";
-import B from "@design-system/svelte/element/b.svelte";
-import Blockquote from "@design-system/svelte/element/blockquote.svelte";
-import Button from "@design-system/svelte/element/button.svelte";
-import Cite from "@design-system/svelte/element/cite.svelte";
-import Code from "@design-system/svelte/element/code.svelte";
-import Del from "@design-system/svelte/element/del.svelte";
-import Details from "@design-system/svelte/element/details.svelte";
-import Em from "@design-system/svelte/element/em.svelte";
-import Footer from "@design-system/svelte/element/footer.svelte";
-import Form from "@design-system/svelte/element/form.svelte";
-import Header from "@design-system/svelte/element/header.svelte";
-import Hgroup from "@design-system/svelte/element/hgroup.svelte";
-import I from "@design-system/svelte/element/i.svelte";
-import Img from "@design-system/svelte/element/img.svelte";
-import Ins from "@design-system/svelte/element/ins.svelte";
-import Kbd from "@design-system/svelte/element/kbd.svelte";
-import Li from "@design-system/svelte/element/li.svelte";
-import Mark from "@design-system/svelte/element/mark.svelte";
-import Ol from "@design-system/svelte/element/ol.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import S from "@design-system/svelte/element/s.svelte";
-import Section from "@design-system/svelte/element/section.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
-import Strong from "@design-system/svelte/element/strong.svelte";
-import Sub from "@design-system/svelte/element/sub.svelte";
-import Summary from "@design-system/svelte/element/summary.svelte";
-import Sup from "@design-system/svelte/element/sup.svelte";
-import Table from "@design-system/svelte/element/table.svelte";
-import Tbody from "@design-system/svelte/element/tbody.svelte";
-import Td from "@design-system/svelte/element/td.svelte";
-import Th from "@design-system/svelte/element/th.svelte";
-import Thead from "@design-system/svelte/element/thead.svelte";
-import Tr from "@design-system/svelte/element/tr.svelte";
-import U from "@design-system/svelte/element/u.svelte";
-import Ul from "@design-system/svelte/element/ul.svelte";
-import Var from "@design-system/svelte/element/var.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import H2 from "@design-system/svelte/Heading2.svelte";
-import H3 from "@design-system/svelte/Heading3.svelte";
-import H4 from "@design-system/svelte/Heading4.svelte";
-import H5 from "@design-system/svelte/Heading5.svelte";
-import H6 from "@design-system/svelte/Heading6.svelte";
-import HSub from "@design-system/svelte/HeadingSub.svelte";
-import Image from "@design-system/svelte/Image.svelte";
-import InputText from "@design-system/svelte/InputText.svelte";
-import LayoutTableOfContents from "@design-system/svelte/LayoutTableOfContents.svelte";
-import NavScrollspy from "@design-system/svelte/NavScrollspy.svelte";
+import DataTime from "@design-system/components/DataTime.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import H2 from "@design-system/components/Heading2.svelte";
+import H3 from "@design-system/components/Heading3.svelte";
+import H4 from "@design-system/components/Heading4.svelte";
+import H5 from "@design-system/components/Heading5.svelte";
+import H6 from "@design-system/components/Heading6.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import Image from "@design-system/components/Image.svelte";
+import InputText from "@design-system/components/InputText.svelte";
+import LayoutTableOfContents from "@design-system/components/LayoutTableOfContents.svelte";
+import NavScrollspy from "@design-system/components/NavScrollspy.svelte";
+import A from "@design-system/elements/a.svelte";
+import Abbr from "@design-system/elements/abbr.svelte";
+import Address from "@design-system/elements/address.svelte";
+import B from "@design-system/elements/b.svelte";
+import Blockquote from "@design-system/elements/blockquote.svelte";
+import Button from "@design-system/elements/button.svelte";
+import Cite from "@design-system/elements/cite.svelte";
+import Code from "@design-system/elements/code.svelte";
+import Del from "@design-system/elements/del.svelte";
+import Details from "@design-system/elements/details.svelte";
+import Em from "@design-system/elements/em.svelte";
+import Footer from "@design-system/elements/footer.svelte";
+import Form from "@design-system/elements/form.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import I from "@design-system/elements/i.svelte";
+import Img from "@design-system/elements/img.svelte";
+import Ins from "@design-system/elements/ins.svelte";
+import Kbd from "@design-system/elements/kbd.svelte";
+import Li from "@design-system/elements/li.svelte";
+import Mark from "@design-system/elements/mark.svelte";
+import Ol from "@design-system/elements/ol.svelte";
+import P from "@design-system/elements/p.svelte";
+import S from "@design-system/elements/s.svelte";
+import Section from "@design-system/elements/section.svelte";
+import Small from "@design-system/elements/small.svelte";
+import Strong from "@design-system/elements/strong.svelte";
+import Sub from "@design-system/elements/sub.svelte";
+import Summary from "@design-system/elements/summary.svelte";
+import Sup from "@design-system/elements/sup.svelte";
+import Table from "@design-system/elements/table.svelte";
+import Tbody from "@design-system/elements/tbody.svelte";
+import Td from "@design-system/elements/td.svelte";
+import Th from "@design-system/elements/th.svelte";
+import Thead from "@design-system/elements/thead.svelte";
+import Tr from "@design-system/elements/tr.svelte";
+import U from "@design-system/elements/u.svelte";
+import Ul from "@design-system/elements/ul.svelte";
+import Var from "@design-system/elements/var.svelte";
 
 const fontSize = 16; // px
 const fontScale = 0.5; // vw
@@ -70,6 +69,11 @@ const page = {
 };
 </script>
 
+<svelte:head>
+	<title>{page.title} | {page.group} | Design System</title>
+	<meta name="description" content="Font weight values and fluid sizing for headings and body text" />
+</svelte:head>
+
 <LayoutTableOfContents>
 	{#snippet header()}
 		<Hgroup>
@@ -80,19 +84,19 @@ const page = {
 	{/snippet}
 	{#snippet aside()}
 		<NavScrollspy>
-			<Section>
-				<Header><H2>On this page</H2></Header>
+			{#snippet children()}
 				<Ol>
 					<Li><A href="#example">Example</A></Li>
 					<Li><A href="#variables">Variables</A></Li>
 				</Ol>
-			</Section>
+		{/snippet}
+
 		</NavScrollspy>
 	{/snippet}
 	<Section>
 		<P
-			>Set to the users preference or 18px, whichever is larger. 18px is choosen because of the
-			increased thickness leading to improved contast (WCAG ???). All headers use % of user setting,
+			>Set to the users preference or 18px, whichever is larger. 18px is chosen because of the
+			increased thickness leading to improved contrast (WCAG ???). All headers use % of user setting,
 			while ensuring a 2.5 ratio between the largest and smallest font sizes for readability.</P
 		>
 		<H2>Fluid Font size</H2>

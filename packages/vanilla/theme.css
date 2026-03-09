@@ -1,0 +1,376 @@
+h1 {
+	--font-size: 200%;
+}
+h2 {
+	--font-size: 175%;
+}
+h3 {
+	--font-size: 150%;
+}
+h4 {
+	--font-size: 125%;
+}
+h5 {
+	--font-size: 118.75%;
+}
+h6 {
+	--font-size: 112.5%;
+}
+small,
+sub,
+sup {
+	--font-size: 80%;
+}
+
+:root {
+	color-scheme: light dark;
+
+	/* *** Font *** */
+	--font-family: system-ui, sans-serif;
+	--font-size: 100%;
+	--font-weight: 400;
+	--line-height: 1.5;
+
+	/* *** Dimensions *** */
+	--border-width: 0.125rem;
+	--border-radius: 0;
+	--gap: 1rem;
+	--grid-gap: 1.5rem;
+	--grid-min-width: 30ch;
+	--grid-col-max-width: 100%; /* .grid-max-col - still need? */
+
+	/* *** padding *** */
+	--padding-fixed: 1rem;
+	--padding-fluid: 1em;
+	--page-gap: 3em;
+	/* aside + main + scrollspy */
+	--padding-page-inline: max(
+		calc((100vw - 30ch - 60ch - 30ch - var(--page-gap) * 2) / 2),
+		1rem
+	);
+
+	/* *** colour *** */
+	/* hex values should be at 50% lightness */
+	--hex-none: #636363;
+	/*--hex-main: #6a4ab7;*/
+	--hex-info: #1762b6;
+	--hex-pass: #2c761d;
+	--hex-warn: #835b00;
+	--hex-fail: #b52010;
+
+	--hex-ins: #526e2f;
+	--hex-del: #a23e38;
+	--hex-mark: #6f6424;
+
+	/*--lightness-shade-light-a: 0.8956;
+  --lightness-shade-light-b: 0.7947;
+  --lightness-shade-dark-b: 0.4491;
+  --lightness-shade-dark-a: 0.2964;*/
+	--lightness-shade-step: calc(0.09 / 0.16);
+
+	/*--lightness-light-l0: 1;
+  --lightness-light-l1: 0.9818;
+  --lightness-light-l2: 0.9678;
+  --lightness-light-l3: 0.9569;
+  --lightness-light-l4: 0.9528;
+  --lightness-light-l5: 0.9453;*/
+	--lightness-light-l0: 1;
+	--lightness-light-l1: 0.9851;
+	--lightness-light-l2: 0.9731;
+	--lightness-light-l3: 0.9642;
+	--lightness-light-l4: 0.9581;
+	--lightness-light-l5: 0.9521;
+	--lightness-dark-a: 0.92;
+	--lightness-dark-b: 0.8279;
+
+	--lightness-dark-a16: calc(
+		var(--lightness-dark-a) +
+		var(--lightness-shade-step) *
+		0.16
+	);
+	--lightness-dark-a12: calc(
+		var(--lightness-dark-a) +
+		var(--lightness-shade-step) *
+		0.12
+	);
+	--lightness-dark-a8: calc(
+		var(--lightness-dark-a) +
+		var(--lightness-shade-step) *
+		0.08
+	);
+	--lightness-dark-a0: calc(var(--lightness-dark-a));
+
+	--lightness-dark-b16: calc(
+		var(--lightness-dark-b) +
+		var(--lightness-shade-step) *
+		0.16
+	);
+	--lightness-dark-b12: calc(
+		var(--lightness-dark-b) +
+		var(--lightness-shade-step) *
+		0.12
+	);
+	--lightness-dark-b8: calc(
+		var(--lightness-dark-b) +
+		var(--lightness-shade-step) *
+		0.08
+	);
+	--lightness-dark-b0: calc(var(--lightness-dark-b));
+
+	--lightness-light-b0: calc(var(--lightness-light-b));
+	--lightness-light-b8: calc(
+		var(--lightness-light-b) -
+		var(--lightness-shade-step) *
+		0.08
+	);
+	--lightness-light-b12: calc(
+		var(--lightness-light-b) -
+		var(--lightness-shade-step) *
+		0.12
+	);
+	--lightness-light-b16: calc(
+		var(--lightness-light-b) -
+		var(--lightness-shade-step) *
+		0.16
+	);
+
+	--lightness-light-a0: calc(var(--lightness-light-a));
+	--lightness-light-a8: calc(
+		var(--lightness-light-a) -
+		var(--lightness-shade-step) *
+		0.08
+	);
+	--lightness-light-a12: calc(
+		var(--lightness-light-a) -
+		var(--lightness-shade-step) *
+		0.12
+	);
+	--lightness-light-a16: calc(
+		var(--lightness-light-a) -
+		var(--lightness-shade-step) *
+		0.16
+	);
+
+	/*--lightness-dark-l5: 0.2434;
+  --lightness-dark-l4: 0.2253;
+  --lightness-dark-l3: 0.2172;
+  --lightness-dark-l2: 0.1926;
+  --lightness-dark-l1: 0.1651;
+  --lightness-dark-l0: 0.1176;*/
+	--lightness-light-b: 0.5;
+	--lightness-light-a: 0.4115;
+	--lightness-dark-l5: 0.3485;
+	--lightness-dark-l4: 0.3329;
+	--lightness-dark-l3: 0.325;
+	--lightness-dark-l2: 0.3052;
+	--lightness-dark-l1: 0.2809;
+	--lightness-dark-l0: 0.2393;
+
+	@media (prefers-color-scheme: light) {
+		--lightness-l0: var(--lightness-light-l0); /* light-l0 */
+		--lightness-l1: var(--lightness-light-l1); /* light-l1 */
+		--lightness-l2: var(--lightness-light-l2); /* light-l2 */
+		--lightness-l3: var(--lightness-light-l3); /* light-l3 */
+		--lightness-l4: var(--lightness-light-l4); /* light-l4 */
+		--lightness-l5: var(--lightness-light-l5); /* light-l5 */
+
+		--lightness-text: var(--lightness-dark-l0); /* dark-l0 */
+		--lightness-fill-text: var(--lightness-light-l0); /* dark-l1 */
+		--lightness-main: var(--lightness-light-a0); /* light-a0 */
+		--lightness-main-pseudo: var(--lightness-dark-a0); /* dark-a0 */
+		--lightness-main-bold: var(--lightness-light-b8); /* light-b8 */
+		--lightness-main-bold-pseudo: var(--lightness-dark-b8); /* dark-b8 */
+		--lightness-semantic: var(--lightness-light-b12); /* light-b12 */
+		--lightness-semantic-pseudo: var(--lightness-dark-b12); /* dark-b12 */
+	}
+	@media (prefers-color-scheme: dark) {
+		--lightness-l0: var(--lightness-dark-l0); /* light-l0 */
+		--lightness-l1: var(--lightness-dark-l1); /* light-l1 */
+		--lightness-l2: var(--lightness-dark-l2); /* light-l2 */
+		--lightness-l3: var(--lightness-dark-l3); /* light-l3 */
+		--lightness-l4: var(--lightness-dark-l4); /* light-l4 */
+		--lightness-l5: var(--lightness-dark-l5); /* light-l5 */
+
+		--lightness-text: var(--lightness-light-l1); /* dark-l0 */
+		--lightness-fill-text: var(--lightness-dark-l1); /* dark-l1 */
+		--lightness-main: var(--lightness-dark-a0); /* light-a0 */
+		--lightness-main-pseudo: var(--lightness-light-a0); /* dark-a0 */
+		--lightness-main-bold: var(--lightness-dark-b8); /* light-b8 */
+		--lightness-main-bold-pseudo: var(--lightness-light-b8); /* dark-b8 */
+		--lightness-semantic: var(--lightness-dark-b12); /* dark-b12 */
+		--lightness-semantic-pseudo: var(--lightness-light-b12); /* light-b12 */
+	}
+
+	@media (prefers-contrast: more) and (prefers-color-scheme: light) {
+		/* Goal 15:1 Contrast */
+		--lightness-text: 0.27;
+		--lightness-fill-text: 1;
+		--lightness-main: 0.27;
+		--lightness-main-pseudo: 0.97;
+		--lightness-main-bold: 0.27;
+		--lightness-main-bold-pseudo: 0.97;
+		--lightness-semantic: 0.27;
+		--lightness-semantic-pseudo: 0.97;
+	}
+	@media (prefers-contrast: more) and (prefers-color-scheme: dark) {
+		/* Goal 15:1 Contrast */
+		--lightness-text: 0.97;
+		--lightness-fill-text: 0.2393;
+		--lightness-main: 0.97;
+		--lightness-main-pseudo: 0.27;
+		--lightness-main-bold: 0.97;
+		--lightness-main-bold-pseudo: 0.27;
+		--lightness-semantic: 0.97;
+		--lightness-semantic-pseudo: 0.27;
+	}
+
+	--color-l0: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-l0) c h
+	);
+	--color-l1: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-l1) c h
+	);
+	--color-l2: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-l2) c h
+	);
+	--color-l3: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-l3) c h
+	);
+	--color-l4: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-l4) c h
+	);
+	--color-l5: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-l5) c h
+	);
+	--color-text: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-text) c h
+	);
+	--color-fill-text: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-fill-text) c h
+	);
+	--color-focus: oklch(from var(--hex-main) var(--lightness-main) c h);
+	--color-main: oklch(from var(--hex-main) var(--lightness-main) c h);
+	--color-main-pseudo: oklch(
+		from var(--hex-main) var(--lightness-main-pseudo) c h
+	);
+	--color-main-bold: oklch(from var(--hex-main) var(--lightness-main-bold) c h);
+	--color-main-bold-pseudo: oklch(
+		from var(--hex-main) var(--lightness-main-bold-pseudo) c h
+	);
+
+	--color-ins: oklch(from var(--hex-ins) var(--lightness-semantic) c h);
+	--color-del: oklch(from var(--hex-del) var(--lightness-semantic) c h);
+	--color-mark: oklch(from var(--hex-mark) var(--lightness-semantic) c h);
+	--color-info: oklch(from var(--hex-info) var(--lightness-main-bold) c h);
+	--color-pass: oklch(from var(--hex-pass) var(--lightness-main-bold) c h);
+	--color-warn: oklch(from var(--hex-warn) var(--lightness-main-bold) c h);
+	--color-fail: oklch(from var(--hex-fail) var(--lightness-main-bold) c h);
+	--color-fail-pseudo: oklch(
+		from var(--hex-fail) var(--lightness-main-bold-pseudo) c h
+	);
+
+	@media (forced-colors: active) {
+		--color-l0: Canvas;
+		--color-l1: Canvas;
+		--color-l2: Canvas;
+		--color-l3: Canvas;
+		--color-l4: Canvas;
+		--color-l5: Canvas;
+		--color-text: CanvasText;
+		--color-fill-text: Canvas;
+		--color-focus: Highlight;
+		--color-main: CanvasText;
+		--color-main-pseudo: CanvasText;
+		--color-main-bold: ButtonText;
+		--color-main-bold-pseudo: ButtonText;
+		--color-ins: CanvasText;
+		--color-del: CanvasText;
+		--color-mark: CanvasText;
+		--color-info: CanvasText;
+		--color-pass: CanvasText;
+		--color-warn: CanvasText;
+		--color-fail: CanvasText;
+	}
+
+	/* light-dark, can't be used for numbers */
+	/*
+  --lightness-l0: light-dark(
+    var(--lightness-light-l0),
+    var(--lightness-dark-l0)
+  );
+  --lightness-l1: light-dark(
+    var(--lightness-light-l1),
+    var(--lightness-dark-l1)
+  );
+  --lightness-l2: light-dark(
+    var(--lightness-light-l2),
+    var(--lightness-dark-l2)
+  );
+  --lightness-l3: light-dark(
+    var(--lightness-light-l3),
+    var(--lightness-dark-l3)
+  );
+  --lightness-l4: light-dark(
+    var(--lightness-light-l4),
+    var(--lightness-dark-l4)
+  );
+  --lightness-l5: light-dark(
+    var(--lightness-light-l5),
+    var(--lightness-dark-l5)
+  );
+
+  --lightness-text: light-dark(
+    var(--lightness-dark-l0),
+    var(--lightness-light-l1)
+  );
+  --lightness-fill-text: light-dark(
+    var(--lightness-light-l1),
+    var(--lightness-dark-l0)
+  );
+  --lightness-main: light-dark(
+    var(--lightness-light-a0),
+    var(--lightness-dark-a0)
+  );
+  --lightness-main-pseudo: light-dark(
+    var(--lightness-dark-a0),
+    var(--lightness-light-a0)
+  );
+  --lightness-main-bold: light-dark(
+    var(--lightness-light-b8),
+    var(--lightness-dark-b8)
+  );
+  --lightness-main-bold-pseudo: light-dark(
+    var(--lightness-dark-b8),
+    var(--lightness-light-b8)
+  );*/
+	/* Unused above */
+
+	--theme-color: var(--hex-none);
+}
+
+[data-theme="main"] {
+	--theme-color: var(--hex-main);
+}
+
+[data-theme="info"] {
+	--theme-color: var(--hex-info);
+}
+[data-theme="pass"] {
+	--theme-color: var(--hex-pass);
+}
+[data-theme="warn"] {
+	--theme-color: var(--hex-warn);
+}
+[data-theme="fail"] {
+	--theme-color: var(--hex-fail);
+}
+
+span.badge,
+button,
+a.button,
+input,
+select,
+textarea,
+[type="file"]::file-selector-button {
+	border-radius: var(--border-radius);
+}

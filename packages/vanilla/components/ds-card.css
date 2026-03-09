@@ -1,0 +1,38 @@
+ul:has(> li > [is="ds-card"]) {
+	list-style: none;
+	padding-inline: 0;
+}
+[is="ds-card"] {
+	border: var(--border-width) solid var(--color-l5, currentColor);
+	border-radius: var(--border-radius);
+	display: flex;
+	flex-direction: column;
+	position: relative;
+
+	&:defined {
+		cursor: pointer;
+		& a {
+			text-decoration: none;
+		}
+		&:hover {
+			background-color: var(--color-l2);
+		}
+	}
+
+	& :where(h2, h3, h4, h5, h6) {
+		--font-size: 125%;
+	}
+
+	&:has(a:focus-visible) {
+		outline: 0.25rem solid var(--color-focus);
+		outline-offset: 0.25rem;
+	}
+
+	& .text {
+		order: 1;
+		padding: var(--padding-fixed);
+		flex: 1 0 auto;
+		display: flex;
+		flex-direction: column;
+	}
+}

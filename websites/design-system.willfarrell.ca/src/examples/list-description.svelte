@@ -1,7 +1,7 @@
 <script>
-import Dd from "@design-system/svelte/element/dd.svelte";
-import Dl from "@design-system/svelte/element/dl.svelte";
-import Dt from "@design-system/svelte/element/dt.svelte";
+import Dd from "@design-system/elements/dd.svelte";
+import Dl from "@design-system/elements/dl.svelte";
+import Dt from "@design-system/elements/dt.svelte";
 </script>
 
 <Dl>

@@ -1,0 +1,21 @@
+span.badge {
+	--tag-bg: oklch(
+		from var(--theme-color, var(--hex-main)) var(--lightness-main-pseudo) c h
+	);
+	--tag-text: oklch(
+		from var(--theme-color, var(--hex-main)) var(--lightness-text) c h
+	);
+	display: inline-block;
+	background-color: var(--tag-bg);
+	color: var(--tag-text);
+	padding: calc(var(--padding-fixed) * 0.25) calc(var(--padding-fixed) * 0.5);
+	font-size: 80%;
+	font-weight: 700;
+	line-height: 1;
+	text-align: center;
+	vertical-align: baseline;
+}
+
+span.badge a {
+	color: inherit;
+}

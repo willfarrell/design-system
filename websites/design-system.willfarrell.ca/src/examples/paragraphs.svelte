@@ -1,5 +1,5 @@
 <script>
-import P from "@design-system/svelte/element/p.svelte";
+import P from "@design-system/elements/p.svelte";
 import { paragraph } from "@examples/index.js";
 </script>
 

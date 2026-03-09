@@ -1,0 +1,58 @@
+/* unset <a> styles */
+a.button {
+	text-decoration: none;
+}
+/* pulled from button.css */
+a.button {
+	font: inherit;
+	cursor: pointer;
+
+	font-weight: 700;
+
+	overflow: visible;
+	text-align: center;
+	/* flex-grow: 1; */
+	border: var(--border-width) solid var(--border-color, var(--color-main-bold));
+	padding: calc(var(--padding-fixed) * 0.54) var(--padding-fixed);
+
+	white-space: nowrap;
+
+	background-color: var(--color-main-bold);
+	color: var(--color-fill-text);
+
+	&:hover {
+		background-color: color-mix(
+			in srgb,
+			var(--color-main-bold-pseudo) 8%,
+			var(--color-main-bold)
+		);
+	}
+}
+
+a.button:active,
+a.button:focus-visible {
+	background-color: color-mix(
+		in srgb,
+		var(--color-main-bold-pseudo) 12%,
+		var(--color-main-bold)
+	);
+}
+
+@media (forced-colors: active) {
+	a.button {
+		background-color: transparent;
+		border-color: ButtonText;
+	}
+}
+
+[role="group"]:has(a.button) {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--gap);
+	align-items: baseline;
+
+	& a.button {
+		align-self: flex-end;
+	}
+}

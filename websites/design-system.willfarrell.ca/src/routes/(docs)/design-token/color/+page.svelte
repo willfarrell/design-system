@@ -1,36 +1,33 @@
 <script>
-import Head from "@components/Head.svelte";
-import Codeblock from "@design-system/svelte/Codeblock.svelte";
-import DataTime from "@design-system/svelte/DataTime.svelte";
-import A from "@design-system/svelte/element/a.svelte";
-import Button from "@design-system/svelte/element/button.svelte";
-import Del from "@design-system/svelte/element/del.svelte";
-import Div from "@design-system/svelte/element/div.svelte";
-import Form from "@design-system/svelte/element/form.svelte";
-import Header from "@design-system/svelte/element/header.svelte";
-import Hgroup from "@design-system/svelte/element/hgroup.svelte";
-import Ins from "@design-system/svelte/element/ins.svelte";
-import Li from "@design-system/svelte/element/li.svelte";
-import Main from "@design-system/svelte/element/main.svelte";
-import Mark from "@design-system/svelte/element/mark.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import Section from "@design-system/svelte/element/section.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
-import Strong from "@design-system/svelte/element/strong.svelte";
-import Ul from "@design-system/svelte/element/ul.svelte";
-import FieldOption from "@design-system/svelte/FieldOption.svelte";
-import Fieldset from "@design-system/svelte/Fieldset.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import H2 from "@design-system/svelte/Heading2.svelte";
-import H3 from "@design-system/svelte/Heading3.svelte";
-import HSub from "@design-system/svelte/HeadingSub.svelte";
-import InputCheckbox from "@design-system/svelte/InputCheckbox.svelte";
-import InputSelect from "@design-system/svelte/InputSelect.svelte";
-import NavScrollspy from "@design-system/svelte/NavScrollspy.svelte";
+import Codeblock from "@design-system/components/Codeblock.svelte";
+import DataTime from "@design-system/components/DataTime.svelte";
+import FieldOption from "@design-system/components/FieldOption.svelte";
+import Fieldset from "@design-system/components/Fieldset.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import H2 from "@design-system/components/Heading2.svelte";
+import H3 from "@design-system/components/Heading3.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import InputCheckbox from "@design-system/components/InputCheckbox.svelte";
+import InputSelect from "@design-system/components/InputSelect.svelte";
+import NavScrollspy from "@design-system/components/NavScrollspy.svelte";
+import A from "@design-system/elements/a.svelte";
+import Button from "@design-system/elements/button.svelte";
+import Del from "@design-system/elements/del.svelte";
+import Div from "@design-system/elements/div.svelte";
+import Form from "@design-system/elements/form.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import Ins from "@design-system/elements/ins.svelte";
+import Li from "@design-system/elements/li.svelte";
+import Main from "@design-system/elements/main.svelte";
+import Mark from "@design-system/elements/mark.svelte";
+import P from "@design-system/elements/p.svelte";
+import Section from "@design-system/elements/section.svelte";
+import Small from "@design-system/elements/small.svelte";
+import Strong from "@design-system/elements/strong.svelte";
+import Ul from "@design-system/elements/ul.svelte";
 import { APCAcontrast, fontLookupAPCA, sRGBtoY } from "apca-w3";
 import chroma from "chroma-js";
 import { colorParsley } from "colorparsley";
-
 import { page } from "$app/state";
 
 /*
@@ -68,7 +65,7 @@ const wcag3Contrast = (fg, bg) => {
 
 /*const baseShadeLight = { hex: '#000000', lightness: 100, direction: -1 };
 	const baseShadeDark = { hex: '#000000', lightness: 11.76, direction: 1 };
-	const baseShade = { hex: '#522e9a', lightness: 0 };
+	const baseShade = { hex: '#6a4ab7', lightness: 0 };
 
 	const findMinContrast = (
 		backgroundHex,
@@ -328,23 +325,23 @@ const palettes = {
 	neutral: { key: "neutral", ...paletteNeutral },
 };
 const colors = {
-	red: "#c52f21",
-	"cerise-red": "#D81B60",
-	cinnabar: "#E53935",
-	pomegranate: "#F4511E",
-	pizazz: "#FB8C00",
-	"selective-yellow": "#FFB300",
-	"bright-yellow": "#FDD835",
-	"key-lime-pie": "#C0CA33",
-	sushi: "#7CB342",
-	apple: "#43A047",
-	"elf-green": "#00897B",
-	pelorous: "#00ACC1",
-	"curious-blue": "#039BE5",
-	"cornflower-blue": "#1E88E5",
-	cobalt: "#3949AB",
-	"daisy-bush": "#5E35B1",
-	"violet-eggplant": "#8E24AA",
+	red: "#da3425",
+	"cerise-red": "#e31c65",
+	cinnabar: "#e2201d",
+	pomegranate: "#f3420c",
+	pizazz: "#ff8c00",
+	"selective-yellow": "#ffb300",
+	"bright-yellow": "#fdcf02",
+	"key-lime-pie": "#c1cc33",
+	sushi: "#81ba45",
+	apple: "#4bb450",
+	"elf-green": "#00ffe6",
+	pelorous: "#00e1ff",
+	"curious-blue": "#03a9fc",
+	"cornflower-blue": "#1a86e5",
+	cobalt: "#4051bf",
+	"daisy-bush": "#693bc4",
+	"violet-eggplant": "#ae2dd2",
 };
 for (const key in colors) {
 	const swatch = makePalette(shades, colors[key], 0, false);
@@ -352,21 +349,37 @@ for (const key in colors) {
 	palettes[key] = { key, ...swatch };
 }
 // console.log(palettes)
-const auditMode = page.url.searchParams.get("audit") === "contrast";
+// const auditMode = page.url.searchParams.get("audit") === "contrast";
+// const userPalette = {
+// 	bg: page.url.searchParams.get("bg") ?? "neutral",
+// 	text: page.url.searchParams.get("text") ?? "neutral",
+// 	main: page.url.searchParams.get("main") ?? "daisy-bush",
+// 	focus: page.url.searchParams.get("focus") ?? "daisy-bush",
+// 	ins: page.url.searchParams.get("ins") ?? "sushi",
+// 	del: page.url.searchParams.get("del") ?? "cinnabar",
+// 	mark: page.url.searchParams.get("mark") ?? "bright-yellow",
+// 	info: page.url.searchParams.get("info") ?? "cornflower-blue",
+// 	pass: page.url.searchParams.get("pass") ?? "apple",
+// 	warn: page.url.searchParams.get("warn") ?? "selective-yellow",
+// 	//fail: page.url.searchParams.get('fail') ?? 'red',
+// 	"fail-light": page.url.searchParams.get("fail-light") ?? "red",
+// 	"fail-dark": page.url.searchParams.get("fail-dark") ?? "cerise-red",
+// };
+const auditMode = false;
 const userPalette = {
-	bg: page.url.searchParams.get("bg") ?? "neutral",
-	text: page.url.searchParams.get("text") ?? "neutral",
-	main: page.url.searchParams.get("main") ?? "daisy-bush",
-	focus: page.url.searchParams.get("focus") ?? "daisy-bush",
-	ins: page.url.searchParams.get("ins") ?? "sushi",
-	del: page.url.searchParams.get("del") ?? "cinnabar",
-	mark: page.url.searchParams.get("mark") ?? "bright-yellow",
-	info: page.url.searchParams.get("info") ?? "cornflower-blue",
-	pass: page.url.searchParams.get("pass") ?? "apple",
-	warn: page.url.searchParams.get("warn") ?? "selective-yellow",
-	//fail: page.url.searchParams.get('fail') ?? 'red',
-	"fail-light": page.url.searchParams.get("fail-light") ?? "red",
-	"fail-dark": page.url.searchParams.get("fail-dark") ?? "cerise-red",
+	bg:  "neutral",
+	text: "neutral",
+	main:  "daisy-bush",
+	focus: "daisy-bush",
+	ins:  "sushi",
+	del: "cinnabar",
+	mark: "bright-yellow",
+	info: "cornflower-blue",
+	pass:  "apple",
+	warn:  "selective-yellow",
+	fail: "red",
+	"fail-light": "red",
+	"fail-dark":  "cerise-red",
 };
 
 const cssVariables = {
@@ -394,8 +407,7 @@ const cssVariables = {
 		info: palettes[userPalette.info]["light-b0"].color,
 		pass: palettes[userPalette.pass]["light-b0"].color,
 		warn: palettes[userPalette.warn]["light-b0"].color,
-		fail: palettes[userPalette.fail ?? userPalette["fail-light"]]["light-b0"]
-			.color,
+		fail: palettes[userPalette.fail]["light-b0"].color,
 	},
 	dark: {
 		l0: palettes[userPalette.bg]["dark-l0"].color,
@@ -421,8 +433,7 @@ const cssVariables = {
 		info: palettes[userPalette.info]["dark-b0"].color,
 		pass: palettes[userPalette.pass]["dark-b0"].color,
 		warn: palettes[userPalette.warn]["dark-b0"].color,
-		fail: palettes[userPalette.fail ?? userPalette["fail-dark"]]["dark-b0"]
-			.color,
+		fail: palettes[userPalette.fail]["dark-b0"].color,
 	},
 };
 
@@ -447,10 +458,8 @@ const page_ = {
 </script>
 
 <svelte:head>
-	<!-- <Head>
-		<title>Colour | Design System</title>
-		<meta name="description" content="Colour palette builder sematic fluid design system" />
-	</Head> -->
+	<title>{page_.title} | {page_.group} | Design System</title>
+	<meta name="description" content="Colour role builder for the semantic fluid design system" />
 </svelte:head>
 
 <Main id="main">
@@ -544,19 +553,19 @@ const page_ = {
 										<Ul class="force-text-color">
 											<Li
 												><Strong>text:</Strong>
-												{cssVariables[prefersColorScheme]['l' + 0]}
-												{cssVariables[prefersColorScheme]['l' + level]}
+												{cssVariables[prefersColorScheme].l0}
+												{cssVariables[prefersColorScheme][`l${level}`]}
 												{wcagCalculateFillGrade(
-													cssVariables[prefersColorScheme]['l' + 0],
-													cssVariables[prefersColorScheme]['l' + level],
+													cssVariables[prefersColorScheme].l0,
+													cssVariables[prefersColorScheme][`l${level}`],
 													'background'
 												)}</Li
 											>
 											<Li
 												><Strong>text:</Strong>
 												{wcagCalculateTextGrade(
-													cssVariables[prefersColorScheme]['l' + level],
-													cssVariables[prefersColorScheme]['text'],
+													cssVariables[prefersColorScheme][`l${level}`],
+													cssVariables[prefersColorScheme].text,
 													18,
 													400
 												)}</Li
@@ -604,11 +613,11 @@ const page_ = {
 											{#if level}
 												<Li
 													><Strong>background:</Strong>
-													{cssVariables[prefersColorScheme]['l' + 0]}
-													{cssVariables[prefersColorScheme]['l' + level]}
+													{cssVariables[prefersColorScheme].l0}
+													{cssVariables[prefersColorScheme][`l${level}`]}
 													{wcagCalculateFillGrade(
-														cssVariables[prefersColorScheme]['l' + 0],
-														cssVariables[prefersColorScheme]['l' + level],
+														cssVariables[prefersColorScheme].l0,
+														cssVariables[prefersColorScheme][`l${level}`],
 														'background'
 													)}</Li
 												>
@@ -616,8 +625,8 @@ const page_ = {
 											<Li
 												><Strong>text:</Strong>
 												{wcagCalculateTextGrade(
-													cssVariables[prefersColorScheme]['l' + level],
-													cssVariables[prefersColorScheme]['text'],
+													cssVariables[prefersColorScheme][`l${level}`],
+													cssVariables[prefersColorScheme].text,
 													18,
 													400,
 													prefersContrast
@@ -626,8 +635,8 @@ const page_ = {
 											<Li
 												><Strong>strong:</Strong>
 												{wcagCalculateTextGrade(
-													cssVariables[prefersColorScheme]['l' + level],
-													cssVariables[prefersColorScheme]['text'],
+													cssVariables[prefersColorScheme][`l${level}`],
+													cssVariables[prefersColorScheme].text,
 													18,
 													700,
 													prefersContrast
@@ -636,8 +645,8 @@ const page_ = {
 											<Li
 												><Strong>link:</Strong>
 												{wcagCalculateTextGrade(
-													cssVariables[prefersColorScheme]['l' + level],
-													cssVariables[prefersColorScheme]['main'],
+													cssVariables[prefersColorScheme][`l${level}`],
+													cssVariables[prefersColorScheme].main,
 													18,
 													400,
 													prefersContrast
@@ -646,8 +655,8 @@ const page_ = {
 											<Li
 												><Strong>inserted:</Strong>
 												{wcagCalculateTextGrade(
-													cssVariables[prefersColorScheme]['l' + level],
-													cssVariables[prefersColorScheme]['ins'],
+													cssVariables[prefersColorScheme][`l${level}`],
+													cssVariables[prefersColorScheme].ins,
 													18,
 													400,
 													prefersContrast
@@ -656,25 +665,25 @@ const page_ = {
 											<Li
 												><Strong>deleted:</Strong>
 												{wcagCalculateTextGrade(
-													cssVariables[prefersColorScheme]['l' + level],
-													cssVariables[prefersColorScheme]['del'],
+													cssVariables[prefersColorScheme][`l${level}`],
+													cssVariables[prefersColorScheme].del,
 													18,
 													400,
 													prefersContrast
 												)}</Li
 											>
 											<Li
-												><Strong>hilighted (fill):</Strong>
+												><Strong>highlighted (fill):</Strong>
 												{wcagCalculateFillGrade(
-													cssVariables[prefersColorScheme]['l' + level],
-													cssVariables[prefersColorScheme]['mark'],
+													cssVariables[prefersColorScheme][`l${level}`],
+													cssVariables[prefersColorScheme].mark,
 													'more'
 												)}</Li
 											>
 											<Li
-												><Strong>hilighted (text):</Strong>
+												><Strong>highlighted (text):</Strong>
 												{wcagCalculateTextGrade(
-													cssVariables[prefersColorScheme]['mark'],
+													cssVariables[prefersColorScheme].mark,
 													cssVariables[prefersColorScheme]['fill-text'],
 													18,
 													400,
@@ -684,8 +693,8 @@ const page_ = {
 											<Li
 												><Strong>button (focus):</Strong>
 												{wcagCalculateTextGrade(
-													cssVariables[prefersColorScheme]['l' + level],
-													cssVariables[prefersColorScheme]['main'],
+													cssVariables[prefersColorScheme][`l${level}`],
+													cssVariables[prefersColorScheme].main,
 													18,
 													700,
 													prefersContrast
@@ -694,15 +703,15 @@ const page_ = {
 											<Li
 												><Strong>button (fill):</Strong>
 												{wcagCalculateFillGrade(
-													cssVariables[prefersColorScheme]['l' + level],
-													cssVariables[prefersColorScheme]['main'],
+													cssVariables[prefersColorScheme][`l${level}`],
+													cssVariables[prefersColorScheme].main,
 													'more'
 												)}</Li
 											>
 											<Li
 												><Strong>button (text):</Strong>
 												{wcagCalculateTextGrade(
-													cssVariables[prefersColorScheme]['main'],
+													cssVariables[prefersColorScheme].main,
 													cssVariables[prefersColorScheme]['fill-text'],
 													18,
 													700,
@@ -717,7 +726,7 @@ const page_ = {
 										<Strong>bold</Strong>
 										<Ins>inserted</Ins>
 										<Del>deleted</Del>
-										<Mark>hilighted</Mark></P
+										<Mark>highlighted</Mark></P
 									>
 									<Div role="group">
 										<Button>button</Button>
@@ -755,6 +764,14 @@ const page_ = {
 
 		Source: https://gka.github.io/palettes/#/12|s|ffffff,0000ee,000000||1|0
 		https://accessiblepalette.com/ https://www.myndex.com/APCA/ https://contrast.tools/
+	</Section>
+	<Section>
+		<H2>References</H2>
+		<Ul>
+			<Li><A href="https://adrianroselli.com/2023/12/be-careful-using-prefers-color-scheme.html">Be Careful Using prefers-color-scheme</A> — Adrian Roselli</Li>
+			<Li><A href="https://adrianroselli.com/2022/06/dont-override-windows-high-contrast-mode.html">Don't Override Windows High Contrast Mode</A> — Adrian Roselli</Li>
+			<Li><A href="https://www.myndex.com/APCA/">APCA Contrast Calculator</A></Li>
+		</Ul>
 	</Section>
 </Main>
 

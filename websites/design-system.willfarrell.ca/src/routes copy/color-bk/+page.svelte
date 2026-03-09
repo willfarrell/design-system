@@ -1,25 +1,25 @@
 <script>
 import Head from "@components/Head.svelte";
 import Snippet from "@components/Snippet.svelte";
-import Codeblock from "@design-system/svelte/Codeblock.svelte";
-import A from "@design-system/svelte/element/a.svelte";
-import Div from "@design-system/svelte/element/div.svelte";
-import Footer from "@design-system/svelte/element/footer.svelte";
-import Header from "@design-system/svelte/element/header.svelte";
-import Hgroup from "@design-system/svelte/element/hgroup.svelte";
-import Li from "@design-system/svelte/element/li.svelte";
-import Main from "@design-system/svelte/element/main.svelte";
-import Nav from "@design-system/svelte/element/nav.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import Section from "@design-system/svelte/element/section.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
-import Time from "@design-system/svelte/element/time.svelte";
-import Ul from "@design-system/svelte/element/ul.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import H2 from "@design-system/svelte/Heading2.svelte";
-import H3 from "@design-system/svelte/Heading3.svelte";
-import HSub from "@design-system/svelte/HeadingSub.svelte";
-import Table from "@design-system/svelte/Table.svelte";
+import Codeblock from "@design-system/components/Codeblock.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import H2 from "@design-system/components/Heading2.svelte";
+import H3 from "@design-system/components/Heading3.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import Table from "@design-system/components/Table.svelte";
+import A from "@design-system/elements/a.svelte";
+import Div from "@design-system/elements/div.svelte";
+import Footer from "@design-system/elements/footer.svelte";
+import Header from "@design-system/elements/header.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import Li from "@design-system/elements/li.svelte";
+import Main from "@design-system/elements/main.svelte";
+import Nav from "@design-system/elements/nav.svelte";
+import P from "@design-system/elements/p.svelte";
+import Section from "@design-system/elements/section.svelte";
+import Small from "@design-system/elements/small.svelte";
+import Time from "@design-system/elements/time.svelte";
+import Ul from "@design-system/elements/ul.svelte";
 import { APCAcontrast, fontLookupAPCA, sRGBtoY } from "apca-w3";
 import chroma from "chroma-js";
 import { colorParsley } from "colorparsley";
@@ -94,7 +94,7 @@ const hexToRgb = (hex) =>
 	hex
 		.replace(
 			/^#?([a-f\d])([a-f\d])([a-f\d])$/i,
-			(m, r, g, b) => "#" + r + r + g + g + b + b,
+			(m, r, g, b) => `#${r}${r}${g}${g}${b}${b}`,
 		)
 		.substring(1)
 		.match(/.{2}/g)
@@ -191,23 +191,23 @@ const palettles = $state({
 	neutral: { key: "neutral", ...paletteNeutral },
 });
 const colors = {
-	red: "#c52f21",
-	"cerise-red": "#D81B60",
-	cinnabar: "#E53935",
-	pomegranate: "#F4511E",
-	pizazz: "#FB8C00",
-	"selective-yellow": "#FFB300",
-	"bright-yellow": "#FDD835",
-	"key-lime-pie": "#C0CA33",
-	sushi: "#7CB342",
-	apple: "#43A047",
-	"elf-green": "#00897B",
-	pelorous: "#00ACC1",
-	"curious-blue": "#039BE5",
-	"cornflower-blue": "#1E88E5",
-	cobalt: "#3949AB",
-	"daisy-bush": "#5E35B1",
-	"violet-eggplant": "#8E24AA",
+	red: "#da3425",
+	"cerise-red": "#e31c65",
+	cinnabar: "#e2201d",
+	pomegranate: "#f3420c",
+	pizazz: "#ff8c00",
+	"selective-yellow": "#ffb300",
+	"bright-yellow": "#fdcf02",
+	"key-lime-pie": "#c1cc33",
+	sushi: "#81ba45",
+	apple: "#4bb450",
+	"elf-green": "#00ffe6",
+	pelorous: "#00e1ff",
+	"curious-blue": "#03a9fc",
+	"cornflower-blue": "#1a86e5",
+	cobalt: "#4051bf",
+	"daisy-bush": "#693bc4",
+	"violet-eggplant": "#ae2dd2",
 };
 for (const key in colors) {
 	const swatch = makePalette(shades, colors[key], 0, false);
@@ -400,8 +400,8 @@ https://accessiblepalette.com/ https://www.myndex.com/APCA/
 		gap: var(--gap);
 	}
 	:global(.preview) {
-		width: 6rem;
-		height: 6rem;
+		inline-size: 6rem;
+		block-size: 6rem;
 		padding: 1rem;
 		border-radius: 1rem;
 		display: flex;
@@ -409,8 +409,8 @@ https://accessiblepalette.com/ https://www.myndex.com/APCA/
 		justify-content: center;
 
 		& .preview {
-			width: 3em;
-			height: 3em;
+			inline-size: 3em;
+			block-size: 3em;
 			padding: 0.5rem;
 		}
 	}

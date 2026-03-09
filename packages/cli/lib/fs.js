@@ -1,10 +1,4 @@
-import {
-	existsSync,
-	mkdirSync,
-	readdirSync,
-	readFileSync,
-	writeFileSync,
-} from "node:fs";
+import { existsSync, mkdirSync, readdirSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { dirname, extname, join as pathJoin } from "node:path";
 

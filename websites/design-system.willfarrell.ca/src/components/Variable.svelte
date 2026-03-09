@@ -1,18 +1,22 @@
 <script>
-import makeVarableComponent from "@variables/index.js";
+    import { pascalCase } from "change-case";
 
-// import VariableH2 from '@variables/H2.svelte';
+    const makeVariableComponent = (component) => {
+	return `Variable${pascalCase(component)}`;
+    };
 
 const { component, ...props } = $props();
 const components = {
 	// VariableH2
 };
-const componentName = makeVarableComponent(component ?? "");
-const importedComponent = components[componentName];
-if (!importedComponent) {
-	console.error(component, "aka", componentName, "missing");
-}
-const SvelteComponent = $derived(importedComponent);
+const componentName = $derived(makeVariableComponent(component ?? ""));
+const importedComponent = $derived(components[componentName]);
+const SvelteComponent = $derived.by(() => {
+	if (!importedComponent) {
+		console.error(component, "aka", componentName, "missing");
+	}
+	return importedComponent;
+});
 </script>
 
 {#if SvelteComponent}

@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import { basename, extname, join as pathJoin } from "node:path";
-import { getModuleDir, saveFileSync, walkDirSync } from "../lib/fs.js";
+import { walkDirSync } from "../lib/fs.js";
 
 // Subresource Integrity
 const algo = "sha256";
@@ -46,11 +46,11 @@ const command = (input, dir, options) => {
 
 	const filename = basename(input);
 	const ext = extname(filename).substring(1);
-	let elementRegExp;
-	let replaceString;
+	let _elementRegExp;
+	let _replaceString;
 	if (ext === ".css") {
-		elementRegExp = /<link[^>]*?href="?[^>]*?app.css??[^>]*"?[^>]*?\/?>/;
-		replaceString = `<style integrity="${algo}-${integrity}">${replaceContent}</style>`;
+		_elementRegExp = /<link[^>]*?href="?[^>]*?app.css??[^>]*"?[^>]*?\/?>/;
+		_replaceString = `<style integrity="${algo}-${integrity}">${replaceContent}</style>`;
 	} /* else if (ext === '.js') {
     elementRegExp = new RegExp(
       `<script[^>]*?src="?[^>]*?${filename}\??[^>]*"?[^>]*?/?>`

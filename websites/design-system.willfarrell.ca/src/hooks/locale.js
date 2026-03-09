@@ -1,19 +1,12 @@
-import { redirect } from "@sveltejs/kit";
 // import * as minifyHtml from "@minify-html/js" // Faster, but: Note that you need plugins to import files that are not JavaScript
 import { minify as htmlMinify } from "html-minifier-terser"; // TODO switch for esbuild
-
-import preferredLanguages from "negotiator/lib/language.js";
-import { building } from "$app/environment";
-import { version as codeVersion } from "../../package.json";
-
-assert;
-{
-	type: "json";
-}
+import { version as codeVersion } from "../../package.json" with {
+	type: "json",
+};
 
 let version = codeVersion;
 if (process.env.NODE_ENV !== "production") {
-	version += "-" + Date.now();
+	version += `-${Date.now()}`;
 }
 
 const htmlMinifyOptions = {

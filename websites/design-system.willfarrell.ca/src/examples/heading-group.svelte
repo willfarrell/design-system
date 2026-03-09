@@ -1,9 +1,9 @@
 <script>
-import DataTime from "@design-system/svelte/DataTime.svelte";
-import Hgroup from "@design-system/svelte/element/hgroup.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import HSub from "@design-system/svelte/HeadingSub.svelte";
+import DataTime from "@design-system/components/DataTime.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import Small from "@design-system/elements/small.svelte";
 </script>
 
 <Hgroup>

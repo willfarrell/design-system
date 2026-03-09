@@ -1,25 +1,27 @@
 {
-	"name": "@design-system/cli",
-	"version": "0.0.0",
+	"name": "@willfarrell-ds/cli",
+	"version": "0.0.0-alpha.0",
 	"description": "",
 	"type": "module",
 	"bin": {
 		"ds": "index.js"
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "npm run test:unit",
+		"test:unit": "node --test --experimental-test-module-mocks"
 	},
 	"repository": {
 		"type": "git",
 		"url": "git+https://willfarrell@github.com/willfarrell/design-system.git"
 	},
 	"author": "willfarrell",
-	"license": "NULL",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/willfarrell/design-system/issues"
 	},
 	"homepage": "https://github.com/willfarrell/design-system#readme",
 	"dependencies": {
+		"color-convert": "3.1.3",
 		"mathjs": "15.1.1"
 	}
 }

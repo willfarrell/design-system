@@ -1,0 +1,32 @@
+details.chevron {
+	summary {
+		display: flex;
+		legend,
+		strong {
+			display: flex;
+			inline-size: 100%;
+		}
+	}
+	summary::after {
+		content: "";
+		inline-size: 1em;
+		block-size: 1em;
+		background-color: var(--border-color, currentColor);
+		margin: auto var(--padding-fixed);
+		/* chevron down */
+		clip-path: polygon(10% 20%, 50% 60%, 90% 20%, 100% 30%, 50% 80%, 0 30%);
+		vertical-align: baseline;
+		justify-self: end;
+	}
+}
+details[open].chevron {
+	summary::after {
+		transform: rotate(180deg);
+	}
+}
+
+@media (forced-colors: active) {
+	details.chevron summary::after {
+		background-color: CanvasText;
+	}
+}

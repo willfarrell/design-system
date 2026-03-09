@@ -1,0 +1,65 @@
+@media (prefers-contrast: more) {
+	:root {
+		--border-width: 0.1875rem;
+	}
+	* {
+		border-color: currentColor;
+		box-shadow: none;
+		text-shadow: none;
+	}
+	button,
+	input,
+	select,
+	textarea {
+		border: var(--border-width) solid currentColor;
+	}
+}
+
+@media (prefers-contrast: more) {
+	a {
+		text-decoration-thickness: 0.15em;
+	}
+}
+
+@media (prefers-contrast: custom), (forced-colors: active) {
+	* {
+		box-shadow: none;
+		text-shadow: none;
+		background-image: none;
+	}
+
+	a {
+		color: LinkText;
+	}
+	button,
+	a.button {
+		background-color: transparent;
+		border-color: ButtonText;
+	}
+
+	svg {
+		stroke: CanvasText;
+		fill: CanvasText;
+	}
+	a svg {
+		stroke: LinkText;
+		fill: LinkText;
+	}
+	button svg {
+		stroke: ButtonText;
+		fill: ButtonText;
+	}
+}
+
+@media (inverted-colors: inverted) {
+	img {
+		filter: invert(1);
+	}
+
+	/* match forced-colors */
+	* {
+		box-shadow: none;
+		text-shadow: none;
+		background-image: none;
+	}
+}

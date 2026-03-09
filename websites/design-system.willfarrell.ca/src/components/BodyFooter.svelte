@@ -1,20 +1,21 @@
 <script>
-import BodyFooter from "@design-system/svelte/BodyFooter.svelte";
-import A from "@design-system/svelte/element/a.svelte";
-import Address from "@design-system/svelte/element/address.svelte";
-import Div from "@design-system/svelte/element/div.svelte";
-import Li from "@design-system/svelte/element/li.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import Span from "@design-system/svelte/element/span.svelte";
-import Ul from "@design-system/svelte/element/ul.svelte";
-import H3 from "@design-system/svelte/Heading3.svelte";
-import Icon from "@design-system/svelte/Icon.svelte";
-import Image from "@design-system/svelte/Image.svelte";
-
+import BodyFooter from "@design-system/components/BodyFooter.svelte";
+import H3 from "@design-system/components/Heading3.svelte";
+import Icon from "@design-system/components/Icon.svelte";
+import Image from "@design-system/components/Image.svelte";
+import A from "@design-system/elements/a.svelte";
+import Address from "@design-system/elements/address.svelte";
+import Div from "@design-system/elements/div.svelte";
+import Li from "@design-system/elements/li.svelte";
+import P from "@design-system/elements/p.svelte";
+import Span from "@design-system/elements/span.svelte";
+import Ul from "@design-system/elements/ul.svelte";
 import { page } from "$app/state";
 
 const { children } = $props();
-const { url, params, data, form } = page;
+const data = $derived.by(() => {
+	try { return page.data; } catch { return {}; }
+});
 
 const navLinks = {
 	"Design tokens": {
@@ -22,9 +23,6 @@ const navLinks = {
 	},
 	Components: {
 		"Left To Right (LTR)": "/full-ltr",
-		"Right To Left (RTL)": "/full-rtl",
-		"Vertical Right to Left (VRL)": "/full-vrl",
-		"Vertical Left to Right (VLR)": "/full-vlr",
 	},
 	Layouts: {
 		Slices: "/layout/slices",
@@ -33,6 +31,9 @@ const navLinks = {
 		Form: "/layout/form",
 		Search: "/layout/search",
 	},
+	Support: {
+		GitHub: "https://github.com/willfarrell/design-system",
+	},
 };
 </script>
 
@@ -40,10 +41,10 @@ const navLinks = {
     {#snippet logo()}
         <A href="/">
           <Image
-            src="/img/logo-square.svg"
-            alt="Home"
-            height="68"
-            width="105"
+            src="/img/logo.svg"
+            alt="Design System logo, to the homepage"
+            height="48"
+            width="48"
           />
         </A>
     {/snippet}
@@ -55,16 +56,6 @@ const navLinks = {
 			</Address>
     {/snippet}
 
-        <Div>
-			<H3>Social</H3>
-			<Ul>
-				<Li>
-					<A href="https://github.com/willfarrell/design-system">
-						<Icon src="/img/icons.svg#github" alt="" /><Span>GitHub</Span>
-					</A>
-				</Li>
-			</Ul>
-        </Div>
 		<!-- <Div>
 			<H3>Policies</H3>
 			<Ul>

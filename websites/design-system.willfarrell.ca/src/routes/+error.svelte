@@ -1,19 +1,28 @@
 <script>
-// import bootstrapUrl from "../scripts/bootstrap.js?url";
-import Div from "@design-system/svelte/element/div.svelte";
-import Main from "@design-system/svelte/element/main.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import Span from "@design-system/svelte/element/span.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import Image from "@design-system/svelte/Image.svelte";
+    import "@styles/above.css";
+    import H1 from "@design-system/components/Heading1.svelte";
+import Image from "@design-system/components/Image.svelte";
+import Div from "@design-system/elements/div.svelte";
+import Main from "@design-system/elements/main.svelte";
+import P from "@design-system/elements/p.svelte";
+import Span from "@design-system/elements/span.svelte";
+import belowStyles from "@styles/below.css?url";
+    import printStyles from "@styles/print.css?url";
 import { page } from "$app/state";
+    import bootstrapUrl from "../scripts/bootstrap.js?url&worker";
 
-const { params } = page;
+const status = $derived.by(() => {
+	try { return status; } catch { return 500; }
+});
 </script>
 
 <svelte:head>
-    <title>{page.status} | Middy.js</title>
-    <!-- <script src="{bootstrapUrl}?v=" type="module"></script> -->
+    <title>{status} | Design System</title>
+    <meta name="description" content="Error page" />
+
+    <link rel="preload stylesheet" as="style" href="{belowStyles}" />
+    <link rel="stylesheet" media="print" href="{printStyles}" />
+    <script src="{bootstrapUrl}" type="module"></script>
 </svelte:head>
 
 <Main id="main" class="container-error">
@@ -27,8 +36,8 @@ const { params } = page;
             fetchpriority="high"
             loading="eager"
         />
-        <H1>{page.status}</H1>
-        {#if page.status === 500}
+        <H1>{status}</H1>
+        {#if status === 500}
             <P>
                 {import.meta.env.AWS_REQUEST_ID ??
                     "00000000-0000-0000-0000-000000000000"}
@@ -38,18 +47,19 @@ const { params } = page;
 </Main>
 
 <style>
-    :global(html, body) {
-        height: 100%;
+    :global(html),
+    :global(body) {
+        block-size: 100%;
     }
     :global(main.container-error) {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 100%;
+        block-size: 100%;
 
         & div {
-            width: 40ch;
+            inline-size: 40ch;
             text-align: center;
         }
         & span {

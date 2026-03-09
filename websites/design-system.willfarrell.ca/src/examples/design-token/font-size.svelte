@@ -1,12 +1,12 @@
 <script>
-import H1 from "@design-system/svelte/element/h1.svelte";
-import H2 from "@design-system/svelte/element/h2.svelte";
-import H3 from "@design-system/svelte/element/h3.svelte";
-import H4 from "@design-system/svelte/element/h4.svelte";
-import H5 from "@design-system/svelte/element/h5.svelte";
-import H6 from "@design-system/svelte/element/h6.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
+import H1 from "@design-system/elements/h1.svelte";
+import H2 from "@design-system/elements/h2.svelte";
+import H3 from "@design-system/elements/h3.svelte";
+import H4 from "@design-system/elements/h4.svelte";
+import H5 from "@design-system/elements/h5.svelte";
+import H6 from "@design-system/elements/h6.svelte";
+import P from "@design-system/elements/p.svelte";
+import Small from "@design-system/elements/small.svelte";
 </script>
 
 <H1>Heading 1</H1>

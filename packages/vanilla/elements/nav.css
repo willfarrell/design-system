@@ -1,0 +1,26 @@
+nav {
+	ul {
+		margin: unset;
+		padding-inline-start: 0;
+		list-style-type: "";
+	}
+	details ul {
+		padding-inline-start: 1em;
+		list-style-type: "";
+	}
+	a {
+		display: flex;
+		text-decoration: none;
+	}
+
+	/* scrollspy */
+	:has(ol) {
+		/* biome-ignore lint/correctness/noUnknownProperty: scroll-target-group is a newer CSS property */
+		scroll-target-group: auto;
+	}
+	ol {
+		margin: unset;
+		padding-inline-start: 0;
+		list-style-type: "";
+	}
+}

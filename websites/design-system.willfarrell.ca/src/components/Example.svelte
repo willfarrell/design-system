@@ -4,13 +4,19 @@ import ExampleAccordionChevron from "@examples/accordion-chevron.svelte";
 // Components
 import ExampleAddress from "@examples/address.svelte";
 import ExampleAlert from "@examples/alert.svelte";
+import ExampleBadge from "@examples/badge.svelte";
 import ExampleBlockquote from "@examples/blockquote.svelte";
 import ExampleButton from "@examples/button.svelte";
 import ExampleCallout from "@examples/callout.svelte";
 import ExampleCard from "@examples/card.svelte";
+import ExampleDataBytes from "@examples/data-bytes.svelte";
+import ExampleDataEnum from "@examples/data-enum.svelte";
+import ExampleDataNumber from "@examples/data-number.svelte";
+import ExampleDataTime from "@examples/data-time.svelte";
 import ExampleDetails from "@examples/details.svelte";
 import ExampleDetailsChevron from "@examples/details-chevron.svelte";
 import ExampleDialog from "@examples/dialog.svelte";
+import ExampleDialogFallback from "@examples/dialog-fallback.svelte";
 import ExampleFootnotes from "@examples/footnotes.svelte";
 import ExampleFormErrors from "@examples/form-errors.svelte";
 import ExampleFormInputAddress from "@examples/form-input-address.svelte";
@@ -29,11 +35,11 @@ import ExampleFormInputSearch from "@examples/form-input-search.svelte";
 //import ExampleFormInputDatalist from '@examples/form-input-datalist.svelte';
 import ExampleFormInputSelect from "@examples/form-input-select.svelte";
 import ExampleFormInputSelectMultiple from "@examples/form-input-select-multiple.svelte";
-import ExampleFormInputSelectTypeahead from "@examples/form-input-select-typeahead.svelte";
 import ExampleFormInputTel from "@examples/form-input-tel.svelte";
 import ExampleFormInputText from "@examples/form-input-text.svelte";
 import ExampleFormInputTextarea from "@examples/form-input-textarea.svelte";
 import ExampleFormInputUrl from "@examples/form-input-url.svelte";
+import ExampleFormInputWebauthn from "@examples/form-input-webauthn.svelte";
 // Patterns
 import ExampleGridCards from "@examples/grid-cards.svelte";
 import ExampleHeadingGroup from "@examples/heading-group.svelte";
@@ -41,6 +47,7 @@ import ExampleHeadingGroup from "@examples/heading-group.svelte";
 import ExampleHeadings from "@examples/headings.svelte";
 // Style
 import ExampleHorizontalRule from "@examples/horizontal-rule.svelte";
+import ExampleIcon from "@examples/icon.svelte";
 import makeExampleComponent from "@examples/index.js";
 import ExampleInlineFormatElements from "@examples/inline-format-elements.svelte";
 import ExampleInlineStyleElements from "@examples/inline-style-elements.svelte";
@@ -56,17 +63,24 @@ import ExampleListDescription from "@examples/list-description.svelte";
 import ExampleListOrdered from "@examples/list-ordered.svelte";
 import ExampleListUnordered from "@examples/list-unordered.svelte";
 import ExampleParagraphs from "@examples/paragraphs.svelte";
+import ExamplePopover from "@examples/popover.svelte";
 import ExampleTable from "@examples/table.svelte";
+import ExampleTag from "@examples/tag.svelte";
 import ExampleTaskList from "@examples/task-list.svelte";
 
 const { component, ...props } = $props();
 
-const componets = {
+const components = {
 	ExampleAddress,
+	ExampleBadge,
 	ExampleBlockquote,
 	ExampleCallout,
 	ExampleAlert,
 	ExampleButton,
+	ExampleDataBytes,
+	ExampleDataEnum,
+	ExampleDataNumber,
+	ExampleDataTime,
 	ExampleHeadings,
 	ExampleHeadingGroup,
 	ExampleHorizontalRule,
@@ -93,11 +107,11 @@ const componets = {
 	ExampleFormInputCheckbox,
 	ExampleFormInputRadio,
 	ExampleFormInputSelect,
-	ExampleFormInputSelectTypeahead,
 	ExampleFormInputSelectMultiple,
 	//ExampleFormInputDatalist,
 	ExampleFormInputTextarea,
 	ExampleFormInputFile,
+	ExampleFormInputWebauthn,
 	ExampleFormInputAddress,
 	ExampleLink,
 	ExampleLinkButton,
@@ -107,23 +121,29 @@ const componets = {
 	ExampleLinkBack,
 	ExampleLinkBackToTop,
 	ExampleLinkTag,
+	ExampleIcon,
+	ExamplePopover,
 	ExampleCard,
+	ExampleTag,
 	ExampleDetails,
 	ExampleDetailsChevron,
 	ExampleAccordion,
 	ExampleAccordionChevron,
 	ExampleDialog,
+	ExampleDialogFallback,
 	ExampleTaskList,
 	ExampleFootnotes,
 	ExampleGridCards,
 };
 
-const componentName = makeExampleComponent(component ?? "");
-const importedComponent = componets[componentName];
-if (!importedComponent) {
-	console.error(component, "aka", componentName, "missing");
-}
-const SvelteComponent = $derived(importedComponent);
+const componentName = $derived(makeExampleComponent(component ?? ""));
+const importedComponent = $derived(components[componentName]);
+const SvelteComponent = $derived.by(() => {
+	if (!importedComponent) {
+		console.error(component, "aka", componentName, "missing");
+	}
+	return importedComponent;
+});
 </script>
 
 {#if SvelteComponent}

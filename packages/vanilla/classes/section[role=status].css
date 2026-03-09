@@ -1,0 +1,30 @@
+section[role="status"] {
+	--alert-bg: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-l5) c h
+	);
+	--alert-border: oklch(
+		from var(--theme-color, var(--hex-main)) var(--lightness-main) c h
+	);
+	--alert-label: oklch(
+		from var(--theme-color, var(--hex-none)) var(--lightness-text) c h
+	);
+	position: relative;
+	border: 2px solid var(--alert-border);
+	border-radius: 0.5rem;
+	padding: 1rem;
+	margin-block-start: 1rem;
+	color: var(--alert-label);
+	background-color: var(--alert-bg);
+	& p {
+		margin-block: 0;
+
+		/*& strong {
+			position: absolute;
+			inset-block-start: -1rem;
+			padding: 0 1rem;
+			background-color: var(--alert-bg);
+			border: 2px solid var(--alert-border);
+			border-radius: 0.5rem;
+		}*/
+	}
+}

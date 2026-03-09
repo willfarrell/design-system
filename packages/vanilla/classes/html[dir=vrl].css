@@ -1,0 +1,12 @@
+/* Ref: https://www.w3.org/International/articles/vertical-text/ */
+/* locales: ja, ko, zh */
+html[dir="vrl"] {
+	writing-mode: vertical-rl;
+	time {
+		text-combine-upright: digits 2;
+		text-transform: full-width;
+	}
+	li::marker {
+		text-combine-upright: all;
+	}
+}

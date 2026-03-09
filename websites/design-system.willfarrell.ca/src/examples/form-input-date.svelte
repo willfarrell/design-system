@@ -1,29 +1,17 @@
 <script>
-import Button from "@design-system/svelte/element/button.svelte";
-import Div from "@design-system/svelte/element/div.svelte";
-import Form from "@design-system/svelte/element/form.svelte";
-import Fieldset from "@design-system/svelte/Fieldset.svelte";
-import FormErrors from "@design-system/svelte/FormErrors.svelte";
-import InputNumber from "@design-system/svelte/InputNumber.svelte";
-import InputText from "@design-system/svelte/InputText.svelte";
-
-const error = [];
+import FieldHgroupSnippet from "@design-system/components/FieldHgroupSnippet.svelte";
+import InputDate from "@design-system/components/InputDate.svelte";
+import A from "@design-system/elements/a.svelte";
+import Button from "@design-system/elements/button.svelte";
+import Form from "@design-system/elements/form.svelte";
+import P from "@design-system/elements/p.svelte";
 </script>
 
-<!--
-Note: size diff on each browser
-Chrome: width of 0
-Safari: width of 0
-Firefox: width of M
-Expected: width of M, when inputmode="numeric" uses with of 0
--->
+{#snippet labelSnippet(label)}
+    <FieldHgroupSnippet {label}/>
+{/snippet}
 <Form method="POST">
-	<Fieldset id="dob" label="Date of your last adventure" hint="For example 2022 5 30" {error}>
-		<Div role="group">
-			<InputNumber id="year" label="Year" size="4" />
-			<InputText id="month" label="Month" size="4" /><!-- width of 3 M when based on 0 -->
-			<InputNumber id="day" label="Day" size="2" />
-		</Div>
-	</Fieldset>
+	<InputDate id="date" {labelSnippet} label="Date of your last adventure" />
 	<Button>Submit</Button>
+	<P>Need help? <A href="/form/input-date" target="_top">View our guidance</A></P>
 </Form>

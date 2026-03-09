@@ -1,0 +1,105 @@
+@import "./input.css";
+
+div:has(input[type="checkbox"]) {
+	min-block-size: calc(
+		var(--border-width) *
+		2 +
+		var(--padding-fixed) *
+		2 +
+		1em
+	);
+}
+
+input[type="checkbox"] {
+	cursor: pointer;
+	position: absolute;
+	padding: calc(var(--padding-fixed) * 0.54 + 0.75em);
+	margin: 0;
+	appearance: none;
+	/* TODO scale up, then set opacity:0 */
+}
+
+input[type="checkbox"]:after {
+	content: "";
+	position: absolute;
+	/* Good old trig, use height and border-width as hypotenuses to calc y side offset */
+	inset-block-start: calc(50% - 0.53033em * 0.5 + 0.220971em * 0.5);
+	inset-inline-start: 50%;
+
+	transform: translate(-50%, -50%) rotate(-45deg);
+
+	block-size: 0.75em;
+	inline-size: 1.4375em;
+
+	/* inset-block-start: calc(var(--padding-fixed) * 0.5 + 0.4em); */
+	/* inset-block-start: 0.6875em; */
+	/* inset-inline-start: calc(var(--padding-fixed) * 0.5 + 0.3em); */
+	/* inset-inline-start: 0.5625em; */
+	border: solid;
+	border-block-width: 0 0.3125em;
+	border-inline-width: 0.3125em 0;
+
+	visibility: hidden;
+}
+input[type="checkbox"]:checked:after {
+	visibility: visible;
+}
+
+input[type="checkbox"] + label {
+	margin-inline-start: calc(
+		var(--padding-fixed) *
+		2 +
+		1em +
+		var(--border-width) *
+		2
+	);
+	padding: calc(var(--border-width) + var(--padding-fixed) * 0.5)
+		var(--padding-fixed) 0;
+	touch-action: manipulation;
+}
+
+/* hint */
+input[type="checkbox"] ~ [id$="-hint"] {
+	margin-inline-start: calc(
+		var(--padding-fixed) *
+		2 +
+		1em +
+		var(--border-width) *
+		2
+	);
+	padding: 0 var(--padding-fixed);
+}
+
+/* conditional */
+input[type="checkbox"] ~ div:first-of-type {
+	display: block;
+	border-inline-start: 0.4rem solid currentColor;
+	margin-inline-start: calc(
+		var(--border-width) +
+		var(--padding-fixed) +
+		1em *
+		0.5 -
+		0.4rem *
+		0.5
+	);
+	padding: 0 var(--padding-fixed);
+	padding-inline-start: calc(
+		var(--border-width) +
+		var(--padding-fixed) *
+		2 +
+		1em *
+		0.5 -
+		0.4rem *
+		0.5
+	);
+}
+
+input[type="checkbox"]:not(:checked) ~ div:first-of-type {
+	display: none;
+}
+
+@media (forced-colors: active) {
+	input[type="checkbox"] {
+		appearance: auto;
+	}
+}

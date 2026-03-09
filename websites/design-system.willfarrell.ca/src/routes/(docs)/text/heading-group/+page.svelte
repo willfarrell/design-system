@@ -1,49 +1,21 @@
 <script>
 import Snippet from "@components/Snippet.svelte";
 import Variable from "@components/Variable.svelte";
-import DataTime from "@design-system/svelte/DataTime.svelte";
-import A from "@design-system/svelte/element/a.svelte";
-import Abbr from "@design-system/svelte/element/abbr.svelte";
-import Address from "@design-system/svelte/element/address.svelte";
-import B from "@design-system/svelte/element/b.svelte";
-import Blockquote from "@design-system/svelte/element/blockquote.svelte";
-import Button from "@design-system/svelte/element/button.svelte";
-import Cite from "@design-system/svelte/element/cite.svelte";
-import Code from "@design-system/svelte/element/code.svelte";
-import Del from "@design-system/svelte/element/del.svelte";
-import Details from "@design-system/svelte/element/details.svelte";
-import Em from "@design-system/svelte/element/em.svelte";
-import Footer from "@design-system/svelte/element/footer.svelte";
-import Header from "@design-system/svelte/element/header.svelte";
-import Hgroup from "@design-system/svelte/element/hgroup.svelte";
-import I from "@design-system/svelte/element/i.svelte";
-import Img from "@design-system/svelte/element/img.svelte";
-import Ins from "@design-system/svelte/element/ins.svelte";
-import Kbd from "@design-system/svelte/element/kbd.svelte";
-import Li from "@design-system/svelte/element/li.svelte";
-import Mark from "@design-system/svelte/element/mark.svelte";
-import Ol from "@design-system/svelte/element/ol.svelte";
-import P from "@design-system/svelte/element/p.svelte";
-import S from "@design-system/svelte/element/s.svelte";
-import Section from "@design-system/svelte/element/section.svelte";
-import Small from "@design-system/svelte/element/small.svelte";
-import Strong from "@design-system/svelte/element/strong.svelte";
-import Sub from "@design-system/svelte/element/sub.svelte";
-import Summary from "@design-system/svelte/element/summary.svelte";
-import Sup from "@design-system/svelte/element/sup.svelte";
-import U from "@design-system/svelte/element/u.svelte";
-import Ul from "@design-system/svelte/element/ul.svelte";
-import Var from "@design-system/svelte/element/var.svelte";
-import H1 from "@design-system/svelte/Heading1.svelte";
-import H2 from "@design-system/svelte/Heading2.svelte";
-import H3 from "@design-system/svelte/Heading3.svelte";
-import H4 from "@design-system/svelte/Heading4.svelte";
-import H5 from "@design-system/svelte/Heading5.svelte";
-import H6 from "@design-system/svelte/Heading6.svelte";
-import HSub from "@design-system/svelte/HeadingSub.svelte";
-import Image from "@design-system/svelte/Image.svelte";
-import LayoutTableOfContents from "@design-system/svelte/LayoutTableOfContents.svelte";
-import NavScrollspy from "@design-system/svelte/NavScrollspy.svelte";
+import DataTime from "@design-system/components/DataTime.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import H2 from "@design-system/components/Heading2.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import LayoutTableOfContents from "@design-system/components/LayoutTableOfContents.svelte";
+import NavScrollspy from "@design-system/components/NavScrollspy.svelte";
+import A from "@design-system/elements/a.svelte";
+import Code from "@design-system/elements/code.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import Li from "@design-system/elements/li.svelte";
+import Ol from "@design-system/elements/ol.svelte";
+import P from "@design-system/elements/p.svelte";
+import Section from "@design-system/elements/section.svelte";
+import Small from "@design-system/elements/small.svelte";
+import Ul from "@design-system/elements/ul.svelte";
 
 const page = {
 	group: "Text",
@@ -51,6 +23,11 @@ const page = {
 	update: "2025-05-01",
 };
 </script>
+
+<svelte:head>
+	<title>{page.title} | {page.group} | Design System</title>
+	<meta name="description" content="The heading group (hgroup) pairs a heading with a subtitle or tagline. Only the heading element contributes to the document outline." />
+</svelte:head>
 
 <LayoutTableOfContents>
 	{#snippet header()}
@@ -62,17 +39,47 @@ const page = {
 	{/snippet}
 	{#snippet aside()}
 		<NavScrollspy>
-			<Section>
-				<Header><H2>On this page</H2></Header>
+			{#snippet children()}
 				<Ol>
+					<Li><A href="#description">Description</A></Li>
 					<Li><A href="#example">Example</A></Li>
+					<Li><A href="#accessibility">Accessibility</A></Li>
+					<Li><A href="#references">References</A></Li>
+					<Li><A href="#related">Related</A></Li>
+					<Li><A href="#variables">Variables</A></Li>
 				</Ol>
-			</Section>
+		{/snippet}
+
 		</NavScrollspy>
 	{/snippet}
 	<Section>
+		<H2 id="description">Description</H2>
+		<P>The heading group (<Code>&lt;hgroup&gt;</Code>) pairs a heading with a subtitle or tagline. Only the heading element within the group contributes to the document outline.</P>
+	</Section>
+	<Section>
 		<H2 id="example">Example</H2>
 		<Snippet example="heading-group" />
+	</Section>
+	<Section>
+		<H2 id="accessibility">Accessibility</H2>
+		<Ul>
+			<Li>The <Code>&lt;hgroup&gt;</Code> element groups a heading with supplementary content (subtitle, tagline).</Li>
+			<Li>Only the primary heading (h1-h6) within <Code>&lt;hgroup&gt;</Code> is exposed as a heading to assistive technology.</Li>
+			<Li>The subtitle <Code>&lt;p&gt;</Code> is associated with the heading but does not create a separate heading level.</Li>
+		</Ul>
+	</Section>
+	<Section>
+		<H2 id="references">References</H2>
+		<Ul>
+			<Li><A href="https://adrianroselli.com/2024/05/level-setting-heading-levels.html">Level-Setting Heading Levels</A> — Adrian Roselli</Li>
+			<Li><A href="https://adrianroselli.com/2016/08/there-is-no-document-outline-algorithm.html">There Is No Document Outline Algorithm</A> — Adrian Roselli</Li>
+		</Ul>
+	</Section>
+	<Section>
+		<H2 id="related">Related</H2>
+		<Ul>
+			<Li><A href="/text/headings">Headings</A> — for standalone headings</Li>
+		</Ul>
 	</Section>
 	<Section>
 		<H2 id="variables">Variables</H2>

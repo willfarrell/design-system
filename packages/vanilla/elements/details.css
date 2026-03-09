@@ -1,0 +1,24 @@
+details {
+	max-inline-size: 60ch;
+}
+
+/* reset */
+
+/* Safari 16.6 Extra */
+summary::-webkit-details-marker {
+	display: none;
+}
+
+/* Safari 16.6 Missing */
+details[open] > summary:first-of-type {
+	list-style-type: disclosure-open;
+}
+/* Safari 16.6 Missing */
+/* biome-ignore lint/style/noDescendingSpecificity: Safari 16.6 fallback ordering */
+details > summary:first-of-type {
+	list-style: inside disclosure-closed;
+}
+
+summary {
+	cursor: pointer;
+}

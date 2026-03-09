@@ -1,166 +1,113 @@
-h1 {
-	--font-size: 200%;
-}
-h2 {
-	--font-size: 175%;
-}
-h3 {
-	--font-size: 150%;
-}
-h4 {
-	--font-size: 125%;
-}
-h5 {
-	--font-size: 118.75%;
-}
-h6 {
-	--font-size: 112.5%;
-}
-small,
-sub,
-sup {
-	--font-size: 80%;
+:root {
+	--hex-main: #6a4ab7; /*#f90;*/
 }
 
-/* border radius */
-span.badge,
-button,
-a.button,
-input,
-select,
-textarea,
-[type="file"]::file-selector-button {
-	border-radius: var(--border-radius);
+header input {
+	/*--border-inline-size: 1px;*/
+	--border-color: var(--color-main-bold);
 }
-
-/* address multiple inputs */
-fieldset.address {
-	display: flex;
-	gap: var(--gap);
-	flex-direction: column;
+.grid:has(.stat) {
+	--grid-min-width: 20ch;
+	grid-template-columns: repeat(auto-fit, var(--grid-min-width));
+	list-style-type: none;
+	padding-inline-start: 0;
+	justify-content: center;
 }
+.grid > .stat {
+	--border-width: 0;
 
-/* Do not use this file, used only for demo to force states */
-
-/* a */
-a:not(.button).force {
-	&.active {
-		color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
-		text-decoration: underline solid 0.5em
-			color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
-		text-decoration-thickness: 0.5em;
-		text-underline-position: under;
+	& h3 {
+		display: inline-flex;
+		align-items: center;
 	}
-	&.focus {
-		color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-		text-decoration: underline solid 0.5em
-			color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-		text-decoration-thickness: 0.5em;
-		text-underline-position: under;
+	& p {
+		margin-block: 0;
 	}
-	&.hover {
-		color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-		text-decoration: underline solid 0.5em
-			color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-		text-decoration-thickness: 0.5em;
-		text-underline-position: under;
-	}
-	/* & .visited {
-	} */
 }
-a.button.force {
-	&.active {
-		background-color: color-mix(
-			in srgb,
-			var(--color-main-bold-pseudo) 12%,
-			var(--color-main-bold)
-		);
-	}
-	&.focus {
-		background-color: color-mix(
-			in srgb,
-			var(--color-main-bold-pseudo) 12%,
-			var(--color-main-bold)
-		);
-		/* base.css */
-		outline: 0.25rem solid var(--color-focus);
-		outline-offset: 0.25rem;
-		z-index: 1;
-	}
-	&.hover {
-		background-color: color-mix(
-			in srgb,
-			var(--color-main-bold-pseudo) 8%,
-			var(--color-main-bold)
-		);
+section.grid:has(.feature) {
+	padding: var(--block-padding) var(--page-gap);
+}
+.grid:has(.feature) {
+	max-inline-size: 100ch;
+	margin: auto;
+}
+.card.feature {
+	--border-width: 0;
+	--border-radius: 2em;
+	padding: var(--border-radius);
+
+	& .icon {
+		block-size: 5em;
+		inline-size: 5em;
 	}
 }
 
-/* button */
-button.force {
-	&.active {
-		background-color: color-mix(
-			in srgb,
-			var(--color-main-bold-pseudo) 12%,
-			var(--color-main-bold)
-		);
-	}
-	&.focus {
-		background-color: color-mix(
-			in srgb,
-			var(--color-main-bold-pseudo) 12%,
-			var(--color-main-bold)
-		);
-		/* base.css */
-		outline: 0.25rem solid var(--color-focus);
-		outline-offset: 0.25rem;
-		z-index: 1;
-	}
-	&.hover {
-		background-color: color-mix(
-			in srgb,
-			var(--color-main-bold-pseudo) 8%,
-			var(--color-main-bold)
-		);
+/* round buttons, cards */
+:root {
+	--border-radius: 0.25rem;
+}
+[is="ds-card"] {
+	background-color: var(--color-l1);
+	--border-radius: 0.5rem;
+
+	/*filter: drop-shadow(0 0 0.5rem var(--color-main-pseudo));
+    &:hover {
+        filter: drop-shadow(0 0 1rem var(--color-main-pseudo));
+    }*/
+}
+
+/* Logos */
+
+/* Safari bug workaround */
+/* Use filter: https://angel-rs.github.io/css-color-filter-generator/ */
+[src="/img/logo.svg"] {
+	/* #1f1f1f */
+	filter: brightness(0) saturate(100%) invert(6%) sepia(56%) saturate(12%)
+		hue-rotate(102deg) brightness(95%) contrast(88%);
+}
+@media (prefers-color-scheme: dark) {
+	[src="/img/logo.svg"] {
+		/* #fafafa */
+		filter: brightness(0) saturate(100%) invert(100%) sepia(4%) saturate(0%)
+			hue-rotate(259deg) brightness(104%) contrast(96%);
 	}
 }
 
-/* inputs */
-input.force,
-select.force,
-textarea.force {
-	&.focus {
-		/* base.css */
-		outline: 0.25rem solid var(--color-focus);
-		outline-offset: 0.25rem;
-		z-index: 1;
-	}
+/* Hero shader background */
+.hero {
+	position: relative;
+	overflow: visible;
 }
-fieldset.force.focus {
-	& input {
-		/* base.css */
-		outline: 0.25rem solid var(--color-focus);
-		outline-offset: 0.25rem;
-		z-index: 1;
+
+.hero::before {
+	content: "";
+	position: absolute;
+	inset-block-start: 0;
+	inset-inline-start: 0;
+	inset-inline-end: 0;
+	inset-block-end: -25%;
+	z-index: -1;
+	background:
+		radial-gradient(circle at 40% 40%, var(--hex-main) 0%, transparent 25%),
+		radial-gradient(circle at 50% 60%, var(--hex-main) 0%, transparent 25%),
+		radial-gradient(circle at 30% 50%, var(--hex-main) 0%, transparent 25%);
+	filter: blur(25px);
+	animation: hero-shader 20s ease-in-out infinite;
+	opacity: 0.6;
+	@media (prefers-color-scheme: dark) {
+		opacity: 0.4;
 	}
 }
 
-/* size workaround for firefox inconsistency */
-.size-2 {
-	width: 2em;
-}
-.size-4 {
-	width: 4em;
-}
-.size-6 {
-	width: 6em;
-}
-.size-num-2 {
-	width: 2ch;
-}
-.size-num-4 {
-	width: 4ch;
-}
-.size-num-6 {
-	width: 6ch;
+@keyframes hero-shader {
+	0%,
+	100% {
+		transform: translate(15%, -15%) scale(1);
+	}
+	33% {
+		transform: translate(20%, -20%) scale(1.05);
+	}
+	66% {
+		transform: translate(-5%, 5%) scale(0.95);
+	}
 }
