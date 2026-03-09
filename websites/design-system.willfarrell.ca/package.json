@@ -5,10 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"start": "vite dev",
-		"build": "npm run build:scripts && npm run build:svelte && npm run build:styles:extract && npm run build:styles:optimize && npm run build:svg",
-		"build:scripts": "npm run build:scripts:bootstrap && npm run build:scripts:components",
-		"build:scripts:bootstrap": "esbuild src/scripts/* --platform=browser --format=esm  --bundle --minify '--external:/js/*' --legal-comments=external --sourcemap=external --log-level=error --allow-overwrite --outdir=static/js/",
-		"build:scripts:components": "rm -rf static/js/pewc && mkdir -p static/js/pewc && cp ../../packages/vanilla/components/ds-*.js static/js/pewc/ && esbuild static/js/pewc/* --platform=browser --format=esm  --bundle --minify '--external:/js/*' --legal-comments=external --sourcemap=external --log-level=error --allow-overwrite --outdir=static/js/pewc/",
+		"build": "npm run build:svelte && npm run build:styles:extract && npm run build:styles:optimize && npm run build:svg",
 		"build:styles:extract": "node ../../packages/cli/index.js extract --input-dir ./.svelte-kit --theme ./src/styles/theme.css --output-dir src/styles/",
 		"build:styles:optimize": "node ../../packages/cli/index.js optimize-styles ./.svelte-kit",
 		"build:svelte": "vite build",
