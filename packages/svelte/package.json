@@ -31,7 +31,7 @@
 	},
 	"homepage": "https://github.com/willfarrell/design-system#readme",
 	"dependencies": {
-		"@willfarrell-ds/vanilla": "0.0.0",
+		"@willfarrell-ds/vanilla": "0.0.0-alpha.0",
 		"pretty": "2.0.0",
 		"prismjs": "1.30.0",
 		"tinykeys": "3.0.0"

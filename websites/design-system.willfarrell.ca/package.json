@@ -25,8 +25,8 @@
 		"release:deploy": "wrangler deploy"
 	},
 	"dependencies": {
-		"@willfarrell-ds/svelte": "0.0.0",
-		"@willfarrell-ds/vanilla": "0.0.0",
+		"@willfarrell-ds/svelte": "0.0.0-alpha.0",
+		"@willfarrell-ds/vanilla": "0.0.0-alpha.0",
 		"apca-w3": "^0.1.0",
 		"change-case": "5.4.4",
 		"chroma-js": "^3.0.0",
