@@ -85,34 +85,51 @@ const parse = (content) => {
 // Svelte 5 SSR outputs JS objects like { class: "container-slices", is: "ds-card" }
 const jsAttrRegExp = /(?:class|is|type|role|aria-[\w-]+)\s*:\s*"([^"]*)"/g;
 const jsAttrKeyRegExp = /(class|is|type|role|aria-[\w-]+)\s*:\s*"([^"]*)"/;
+
+// Svelte 5 SSR destructuring defaults like: is = "ds-card", class = "container"
+const jsDestructureDefaultRegExp = /(?:class|is|type|role)\s*=\s*"([^"]*)"/g;
+const jsDestructureDefaultKeyRegExp = /(class|is|type|role)\s*=\s*"([^"]*)"/;
+
+const addJSAttr = (key, value) => {
+	if (key === "class") {
+		for (const className of value.split(" ")) {
+			const k = `.${className}`;
+			indexes.classes[k] ??= 0;
+			indexes.classes[k] += 1;
+		}
+	} else if (key === "is") {
+		indexes.pewc[value] ??= 0;
+		indexes.pewc[value] += 1;
+	} else if (key === "role") {
+		indexes.roles[`[role=${value}]`] ??= 0;
+		indexes.roles[`[role=${value}]`] += 1;
+	} else if (key.startsWith("aria-") && value) {
+		const prefix = value.split("-")[0];
+		if (prefix) {
+			const ariaKey = `[${key}^=${prefix}-]`;
+			indexes.arias[ariaKey] ??= 0;
+			indexes.arias[ariaKey] += 1;
+		}
+	}
+};
+
 const parseJS = (content) => {
 	let match = jsAttrRegExp.exec(content);
 	while (match) {
 		const keyMatch = match[0].match(jsAttrKeyRegExp);
 		if (keyMatch) {
-			const [, key, value] = keyMatch;
-			if (key === "class") {
-				for (const className of value.split(" ")) {
-					const k = `.${className}`;
-					indexes.classes[k] ??= 0;
-					indexes.classes[k] += 1;
-				}
-			} else if (key === "is") {
-				indexes.pewc[value] ??= 0;
-				indexes.pewc[value] += 1;
-			} else if (key === "role") {
-				indexes.roles[`[role=${value}]`] ??= 0;
-				indexes.roles[`[role=${value}]`] += 1;
-			} else if (key.startsWith("aria-") && value) {
-				const prefix = value.split("-")[0];
-				if (prefix) {
-					const ariaKey = `[${key}^=${prefix}-]`;
-					indexes.arias[ariaKey] ??= 0;
-					indexes.arias[ariaKey] += 1;
-				}
-			}
+			addJSAttr(keyMatch[1], keyMatch[2]);
 		}
 		match = jsAttrRegExp.exec(content);
+	}
+
+	let defaultMatch = jsDestructureDefaultRegExp.exec(content);
+	while (defaultMatch) {
+		const keyMatch = defaultMatch[0].match(jsDestructureDefaultKeyRegExp);
+		if (keyMatch) {
+			addJSAttr(keyMatch[1], keyMatch[2]);
+		}
+		defaultMatch = jsDestructureDefaultRegExp.exec(content);
 	}
 };
 

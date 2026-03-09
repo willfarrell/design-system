@@ -47,11 +47,14 @@ function highlight(code, language) {
 	// https://prismjs.com/plugins/show-invisibles/
 	// https://prismjs.com/plugins/match-braces/
 	// wrap indent https://github.com/PrismJS/prism/issues/2202
+	// Bug: PrismJS doesn't encode `>` as `&gt;` in its output
 	return globalThis.Prism.highlight(
 		componentCode ?? code,
 		globalThis.Prism.languages[language],
 		language,
-	).replaceAll('class="token ', 'class="');
+	)
+	.replace(/(<[^>]*>)|>/g, (match, tag) => tag ?? '&gt;')
+	.replaceAll('class="token ', 'class="');
 }
 
 const html = $derived(highlight(code, language));
