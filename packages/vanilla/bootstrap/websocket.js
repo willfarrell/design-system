@@ -1,6 +1,11 @@
 /* eslint-env browser */
-/* global v */
-const webSocketWorker = new SharedWorker(`/js/worker/websocket.js?v=${v}`);
+
+const d = document;
+const trustedTypePolicy = trustedTypes?.createPolicy("ws") ?? {createScriptURL: (string) => string}
+
+const link = d.querySelector(`link[href*="/ws"][href$=".js"]`);
+const scriptURL = trustedTypePolicy.createScriptURL(link?.href ?? `/ws.js`)
+const webSocketWorker = new SharedWorker(scriptURL);
 
 /**
  * Sends a message to the worker and passes that to the Web Socket.

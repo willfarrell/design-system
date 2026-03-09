@@ -38,10 +38,12 @@
 				"frame-src": ["self"],
 				"img-src": ["self"],
 				"manifest-src": ["self"],
+				"require-trusted-types-for": ["script"],
 				"script-src": ["self"],
 				"script-src-attr": ["report-sample"],
 				"style-src": ["self"],
 				"style-src-attr": ["report-sample"],
+				"trusted-types":["sw"],
 				"upgrade-insecure-requests": true,
 				"worker-src": ["self"],
 				"report-to": ["default"]

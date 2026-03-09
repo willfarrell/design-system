@@ -1,46 +1,49 @@
 /* eslint-env browser */
-/* global trustedTypePolicy */
+/* global trustedTypes */
+
 const d = document;
 const w = window;
 const n = navigator;
 
 w.addEventListener("load", async () => {
 	if ("serviceWorker" in n) {
-		const sw = n.serviceWorker;
-		const reg = await sw.register(trustedTypePolicy.createScriptURL("/sw.js"), {
+    const sw = n.serviceWorker;
+    const link = d.querySelector(`link[href*="/sw-"][href$=".js"]`);
+    let scriptURL = link?.href ?? `/sw.js`
+    if (w.trustedTypes) {
+        const swPolicy = trustedTypes.createPolicy("sw", {
+          createScriptURL: (scriptURL) => {
+            const url = new URL(scriptURL, window.location.origin);
+            if (url.origin !== window.location.origin) {
+              throw new TypeError("Service Worker must be same-origin");
+            }
+            return url.href;
+          }
+        });
+        scriptURL = swPolicy.createScriptURL(scriptURL);
+    }
+		const reg = await sw.register(scriptURL, {
 			scope: "/",
 		});
 
-		const swEvents = {};
+		const swResponseEvents = {
+    }
+    const defaultResponseEvent = (event) => {
+      console.warn('Unhandled ServiceWorker.message', event)
+    }
 
-		sw.addEventListener("message", async (event) => {
-			console.log("message", event);
-			if (!reg.active) return;
-			if (event.origin !== location.origin) return;
-			await swEvents?.[event.type]?.();
-		});
-		// let swDialog = document.getElementById('sw')
-		/* update: () => {
-// TODO
-if (!swDialog) {
-  swDialog = document.createElement('dialog')
-  document.body.appendChild(swEvents)
-}
-
-// TODO pull from data-property
-swDialog.innerHTML =
-  '<dialog id="sw" open>We\'ve updated DataStream. Reload the page to apply update. <button onclick="location.reload()">Reload page</button></dialog>'
-swDialog.open = true
-  } */
-
-		// document.addEventListener('visibilitychange', () => {
-		//   console.log(document.visibilityState) // session duration
-		// })
-
-		d.addEventListener("ononline", () => {
-			sw.controller.postMessage({
-				type: "online",
-			});
-		});
+    sw.addEventListener('message', async (event) => {
+      if (!reg.active) { return }
+      if (event.origin !== location.origin) { return }
+      const eventHandler = swResponseEvents[event.type] ?? defaultResponseEvent
+      await eventHandler(event);
+    })
 	}
 });
+
+// move to @work-bee/offline - {client}
+document.addEventListener('ononline', () => {
+  navigator?.serviceWorker.controller?.postMessage?.({
+    type: 'online',
+  })
+})

@@ -36,7 +36,6 @@ const navPrimary = null; //{};
 </script>
 
 <svelte:head>
-  <!-- <script src={webComponentUrl} type="module"></script> -->
   <link rel="modulepreload" href={webComponentUrl} />
 </svelte:head>
 
