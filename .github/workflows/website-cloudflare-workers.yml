@@ -1,10 +1,12 @@
-name: Deploy website to CloudFlare Pages
+name: Deploy website to CloudFlare Workers
 
 on:
   workflow_dispatch:
   push:
     branches:
       - main
+    paths:
+      - websites/*
 
 env:
   NODE_VERSION: 24.x
@@ -17,8 +19,6 @@ jobs:
   website:
     name: Publish website
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
 
     steps:
       - name: Checkout repository
@@ -30,15 +30,14 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - name: Install dependencies
         run: |
-          npm ci --ignore-scripts --workspace websites/${{ DOMAIN_NAME }}
+          npm ci --ignore-scripts --workspace websites/${{ env.DOMAIN_NAME }}
       - name: Build website
-        working-directory: websites/${{ DOMAIN_NAME }}
+        working-directory: websites/${{ env.DOMAIN_NAME }}
         run: |
           npm run build
       - name: Publish website
         uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3.14.1
-        working-directory: websites/${{ DOMAIN_NAME }}
         with:
+          workingDirectory: websites/${{ env.DOMAIN_NAME }}
           apiToken: ${{ secrets.CLOUDFLARE_TOKEN }}
-          command: |
-            deploy
+          command: deploy
