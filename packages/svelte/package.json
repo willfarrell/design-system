@@ -12,18 +12,10 @@
 		"!**/.DS_Store"
 	],
 	"exports": {
-		"./components/*": {
-			"svelte": "./components/*"
-		},
-		"./elements/*": {
-			"svelte": "./elements/*"
-		},
-		"./hooks/*": {
-			"svelte": "./hooks/*"
-		},
-		"./utils/*": {
-			"svelte": "./utils/*"
-		}
+		"./components/*": "./components/*",
+		"./elements/*": "./elements/*",
+		"./hooks/*": "./hooks/*",
+		"./utils/*": "./utils/*"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
