@@ -115,6 +115,26 @@ const nonInheritingElements = new Set([
 
 const simpleElementSelectorRegExp = /^[a-z][a-z0-6]*$/;
 
+const globalSelectorRegExp = /^(:root|body|html)(\s*,\s*(:root|body|html))*$/;
+
+const findEnclosingSelector = (content, matchIndex) => {
+	let depth = 0;
+	let i = matchIndex;
+	while (i >= 0) {
+		if (content[i] === "}") depth++;
+		else if (content[i] === "{") {
+			if (depth === 0) {
+				let j = i - 1;
+				while (j >= 0 && content[j] !== "}" && content[j] !== "{") j--;
+				return content.slice(j + 1, i).trim();
+			}
+			depth--;
+		}
+		i--;
+	}
+	return null;
+};
+
 const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 let assignments;
@@ -143,7 +163,14 @@ const parse = (content, { prefix = "" } = {}) => {
 			//valueType:  // TODO only replace certain types
 			assignmentCount: 0,
 			foundCount: 0,
+			scoped: false,
 		};
+
+		const selector = findEnclosingSelector(content, match.index);
+		if (selector !== null && !globalSelectorRegExp.test(selector)) {
+			assignments[variable].scoped = true;
+		}
+
 		// Only count as a new assignment if the value differs (same value in multiple chunks is logically one assignment)
 		if (
 			assignments[variable].assignmentCount === 0 ||
@@ -518,7 +545,9 @@ const simplifyCalcWithVar = (content) => {
 
 const optimize = (content) => {
 	singleUseVars = Object.keys(assignments).filter(
-		(variable) => assignments[variable].assignmentCount === 1,
+		(variable) =>
+			assignments[variable].assignmentCount === 1 &&
+			!assignments[variable].scoped,
 	);
 
 	let optimizedContent = content;

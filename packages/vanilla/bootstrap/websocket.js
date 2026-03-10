@@ -1,10 +1,12 @@
 /* eslint-env browser */
 
 const d = document;
-const trustedTypePolicy = trustedTypes?.createPolicy("ws") ?? {createScriptURL: (string) => string}
+const trustedTypePolicy = trustedTypes?.createPolicy("ws") ?? {
+	createScriptURL: (string) => string,
+};
 
 const link = d.querySelector(`link[href*="/ws"][href$=".js"]`);
-const scriptURL = trustedTypePolicy.createScriptURL(link?.href ?? `/ws.js`)
+const scriptURL = trustedTypePolicy.createScriptURL(link?.href ?? `/ws.js`);
 const webSocketWorker = new SharedWorker(scriptURL);
 
 /**

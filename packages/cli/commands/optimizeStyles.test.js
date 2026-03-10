@@ -986,6 +986,72 @@ describe("optimizeStyles", () => {
 		});
 	});
 
+	describe("scoped variable inlining", () => {
+		it("does NOT inline a scoped assignment (preserves fallback)", () => {
+			files[`${cwd}/src/style.css`] = [
+				"header input { --border-color: var(--color-l5); }",
+				"div { border-color: var(--border-color, currentColor); }",
+			].join("\n");
+
+			optimizeStyles("src", { iterations: 1 });
+
+			const result = files[`${cwd}/src/style.css`];
+			assert.ok(
+				result.includes("var(--border-color, currentColor)"),
+				`Expected fallback preserved, got: ${result}`,
+			);
+		});
+
+		it("inlines a body {} assignment (global scope)", () => {
+			files[`${cwd}/src/style.css`] = [
+				"body { --color: #000; }",
+				"div { color: var(--color); }",
+			].join("\n");
+
+			optimizeStyles("src", { iterations: 1 });
+
+			const result = files[`${cwd}/src/style.css`];
+			assert.ok(
+				!result.includes("var(--color)"),
+				`Expected var inlined, got: ${result}`,
+			);
+			assert.ok(
+				result.includes("color: #000"),
+				`Expected value inlined, got: ${result}`,
+			);
+		});
+
+		it("does NOT inline when variable is in both :root and scoped selector", () => {
+			files[`${cwd}/src/style.css`] = [
+				":root { --x: 1rem; }",
+				".dark { --x: 2rem; }",
+				"div { width: var(--x); }",
+			].join("\n");
+
+			optimizeStyles("src", { iterations: 1 });
+
+			const result = files[`${cwd}/src/style.css`];
+			assert.ok(
+				result.includes("var(--x)"),
+				`Expected var preserved, got: ${result}`,
+			);
+		});
+
+		it("does NOT inline same scoped value across files", () => {
+			files[`${cwd}/src/a.css`] = ".card { --spacing: 1rem; }";
+			files[`${cwd}/src/b.css`] =
+				".card { --spacing: 1rem; }\ndiv { padding: var(--spacing, 0); }";
+
+			optimizeStyles("src", { iterations: 1 });
+
+			const result = files[`${cwd}/src/b.css`];
+			assert.ok(
+				result.includes("var(--spacing, 0)"),
+				`Expected fallback preserved, got: ${result}`,
+			);
+		});
+	});
+
 	describe("iteration behavior", () => {
 		it("resolves chained vars across iterations", () => {
 			files[`${cwd}/src/style.css`] = [

@@ -1,6 +1,6 @@
 {
 	"name": "@willfarrell-ds/svelte",
-	"version": "0.0.0-alpha.1",
+	"version": "0.0.0-alpha.3",
 	"type": "module",
 	"description": "Design system using Svelte",
 	"files": [
@@ -12,10 +12,18 @@
 		"!**/.DS_Store"
 	],
 	"exports": {
-		"./components/*": "./components/*",
-		"./elements/*": "./elements/*",
-		"./hooks/*": "./hooks/*",
-		"./utils/*": "./utils/*"
+		"./components/*": {
+			"svelte": "./components/*"
+		},
+		"./elements/*": {
+			"svelte": "./elements/*"
+		},
+		"./hooks/*": {
+			"svelte": "./hooks/*"
+		},
+		"./utils/*": {
+			"svelte": "./utils/*"
+		}
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -31,7 +39,7 @@
 	},
 	"homepage": "https://github.com/willfarrell/design-system#readme",
 	"dependencies": {
-		"@willfarrell-ds/vanilla": "0.0.0-alpha.1",
+		"@willfarrell-ds/vanilla": "0.0.0-alpha.3",
 		"pretty": "2.0.0",
 		"prismjs": "1.30.0",
 		"tinykeys": "3.0.0"

@@ -13,8 +13,8 @@ const lazyLoad = new IntersectionObserver(async (entries, observer) => {
 		if (isIntersecting) {
 			// don't `await` to ensure non-blocking
 			const name = target.getAttribute("is");
-      const link = d.querySelector(`link[href*="/${name}-"][href$=".js"]`);
-      const scriptURL = link?.href ?? `/js/pewc/${name}.js`
+			const link = d.querySelector(`link[href*="/${name}-"][href$=".js"]`);
+			const scriptURL = link?.href ?? `/js/pewc/${name}.js`;
 			import(scriptURL);
 		}
 	}

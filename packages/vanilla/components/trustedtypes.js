@@ -1,20 +1,20 @@
-let policy
+let policy;
 let initPromise;
-const createPolicy = async (policyName = 'pewc') => {
-  if (!policy) {
-    if (!initPromise) {
-      initPromise = Promise.resolve().then(() => {
-        policy = trustedTypes.createPolicy(policyName, {
-          // createHTML when needed
-        })
-      })
-    }
-    await initPromise;
-  }
-  return policy
-}
+const createPolicy = async (policyName = "pewc") => {
+	if (!policy) {
+		if (!initPromise) {
+			initPromise = Promise.resolve().then(() => {
+				policy = trustedTypes.createPolicy(policyName, {
+					// createHTML when needed
+				});
+			});
+		}
+		await initPromise;
+	}
+	return policy;
+};
 
-export default createPolicy
+export default createPolicy;
 
 /*
 
