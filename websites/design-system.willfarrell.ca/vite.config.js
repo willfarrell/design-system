@@ -22,9 +22,6 @@ export default defineConfig({
 	},
 	customLogger: logger,
 	optimizeDeps: {
-		exclude: [
-			'@willfarrell-ds/svelte',
-			'@willfarrell-ds/vanilla'
-		]
-	}
+		exclude: ["@willfarrell-ds/svelte", "@willfarrell-ds/vanilla"],
+	},
 });
