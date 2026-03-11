@@ -164,4 +164,16 @@ import Ul from "@design-system/elements/ul.svelte";
             </Li>
         </Ul>
     </Section>
+
+    <Section class="slice vertical">
+        <Div class="inline-center">
+            <P>
+                <A href="https://github.com/sponsors/willfarrell" class="button"
+                    ><Icon src="/img/icons.svg#heart" /><Span
+                        >Become a sponsor</Span
+                    >
+                </A></P
+            >
+        </Div>
+    </Section>
 </LayoutSlices>
