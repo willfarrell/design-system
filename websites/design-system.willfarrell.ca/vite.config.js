@@ -18,8 +18,13 @@ export default defineConfig({
 		sriPrerendered(),
 	],
 	build: {
-		// Set to 0 to disable inlining completely
 		assetsInlineLimit: 0,
 	},
 	customLogger: logger,
+	optimizeDeps: {
+		exclude: [
+			'@willfarrell-ds/svelte',
+			'@willfarrell-ds/vanilla'
+		]
+	}
 });

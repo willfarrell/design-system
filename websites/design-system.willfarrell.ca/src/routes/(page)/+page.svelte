@@ -150,7 +150,7 @@ import Ul from "@design-system/elements/ul.svelte";
                 />
                 <H3>Sustainability</H3>
                 <P
-                    >WSG <Em>Draft</Em>. Only send what you need, when you need it. Progressive enhancement when JavaScript is available.</P
+                    >WSG <Em>Draft</Em>. Only send what you need, when you need it. Progressively Enhanced WebComponents (PEWC) when JavaScript is available.</P
                 >
             </Li>
             <Li class="card feature">

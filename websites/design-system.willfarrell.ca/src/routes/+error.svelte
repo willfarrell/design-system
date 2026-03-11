@@ -12,12 +12,13 @@ import { page } from "$app/state";
     import bootstrapUrl from "../scripts/bootstrap.js?url&worker";
 
 const status = $derived.by(() => {
-	try { return status; } catch { return 500; }
+	try { return page.status; } catch { return 500; }
 });
+const message = $derived(page.error?.message ?? "An error occurred");
 </script>
 
 <svelte:head>
-    <title>{status} | Design System</title>
+    <title>{status} {message} | Design System</title>
     <meta name="description" content="Error page" />
 
     <link rel="preload stylesheet" as="style" href="{belowStyles}" />
@@ -36,7 +37,7 @@ const status = $derived.by(() => {
             fetchpriority="high"
             loading="eager"
         />
-        <H1>{status}</H1>
+        <H1>{status} {message}</H1>
         {#if status === 500}
             <P>
                 {import.meta.env.AWS_REQUEST_ID ??

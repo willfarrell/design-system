@@ -44,7 +44,7 @@ const cards = [
 
 <Ul class="grid">
 	{#each cards as card}
-		<Li><Card href={card.href} id={card.id}>
+		<Li><Card id={card.id}>
 			<H3><A href={card.href} aria-describedby={card.id}>{card.title}</A></H3>
 			<P>{card.description}</P>
 			<Span aria-hidden="true" id={card.id}>Read more</Span>
