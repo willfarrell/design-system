@@ -6,7 +6,7 @@ on:
     branches:
       - main
     paths:
-      - websites/*
+      - websites/**
 
 env:
   NODE_VERSION: 24.x
