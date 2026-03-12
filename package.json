@@ -6,7 +6,6 @@
 	"type": "module",
 	"scripts": {
 		"prepare": "husky",
-		"preinstall": "npm link --workspaces",
 		"git:pre-commit": "npm run git:lint-staged && npm run git:test-staged",
 		"git:commit-msg": "commitlint --config commitlint.config.cjs --edit",
 		"git:lint-staged": "npm run test:lint",
@@ -38,7 +37,7 @@
 		"audit": "npm audit fix --workspaces",
 		"release:license:add": "license-check-and-add add -f license.json",
 		"release:license:remove": "license-check-and-add remove -f license.json",
-		"release:sync": "npm version $npm_package_version --workspaces && find ./packages -name \"package.json\" -exec sed -i '' -E \"s#\\\"@willfarrell-ds/(.*)\\\": ([^,]*)#\\\"@willfarrell-ds/\\1\\\": $(npm pkg get version)#g\" {} \\; && npm run rm:node_modules && npm link --workspaces && npm install && npm run lint",
+		"release:sync": "npm version $npm_package_version --workspaces; find ./packages -name \"package.json\" -exec sed -i '' -E \"s#\\\"@willfarrell-ds/(.*)\\\": ([^,]*)#\\\"@willfarrell-ds/\\1\\\": $(npm pkg get version)#g\" {} \\; && npm run rm && npm install && npm run lint",
 		"release:publish:next": "npm publish --workspaces --tag next --access public",
 		"release:deploy": "npm run release:deploy --workspaces --if-present",
 		"release:tag": "git tag $npm_package_version"
@@ -61,9 +60,13 @@
 		"husky": "^9.0.0"
 	},
 	"overrides": {
-		"@sveltejs/kit": {
-			"cookie": "0.7.2"
-		}
+  	"@sveltejs/kit": {
+  		"cookie": "^0.7.2",
+  		"devalue": "^5.6.4"
+  	},
+  	"svelte": {
+  		"devalue": "^5.6.4"
+  	},
 	},
 	"workspaces": [
 		"packages/*",
