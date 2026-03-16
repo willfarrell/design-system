@@ -1,5 +1,5 @@
 <script>
-import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-card.js?url&worker";
+import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-card.js?worker&url";
 import Article from "../elements/article.svelte";
 import Div from "../elements/div.svelte";
 
@@ -20,7 +20,6 @@ const slugify = (id) => {
 </script>
 
 <svelte:head>
-  <!-- <script src={webComponentUrl} type="module"></script> -->
   <link rel="modulepreload" href={webComponentUrl} />
 </svelte:head>
 

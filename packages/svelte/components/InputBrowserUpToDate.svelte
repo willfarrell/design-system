@@ -1,6 +1,5 @@
 <script>
-import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-input-browser-up-to-date.js?url&worker";
-
+import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-input-browser-up-to-date.js?worker&url";
 import A from "../elements/a.svelte";
 import Fieldset from "../elements/fieldset.svelte";
 import Li from "../elements/li.svelte";
@@ -16,7 +15,6 @@ error = error?.filter((v) => v.id === id);
 </script>
 
 <svelte:head>
-  <!-- <script src={webComponentUrl} type="module"></script> -->
   <link rel="modulepreload" href={webComponentUrl} />
 </svelte:head>
 

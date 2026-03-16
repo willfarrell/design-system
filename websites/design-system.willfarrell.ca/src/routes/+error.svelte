@@ -9,7 +9,7 @@ import Span from "@design-system/elements/span.svelte";
 import belowStyles from "@styles/below.css?url";
     import printStyles from "@styles/print.css?url";
 import { page } from "$app/state";
-    import bootstrapUrl from "../scripts/bootstrap.js?url&worker";
+    import bootstrapUrl from "../scripts/bootstrap.js?worker&url";
 
 const status = $derived.by(() => {
 	try { return page.status; } catch { return 500; }
