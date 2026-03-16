@@ -15,7 +15,7 @@ import Search from "@design-system/elements/search.svelte";
 import Span from "@design-system/elements/span.svelte";
 import Strong from "@design-system/elements/strong.svelte";
 import Ul from "@design-system/elements/ul.svelte";
-import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-input-focus.js?url&worker";
+import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-input-focus.js?worker&url";
 import { page } from "$app/state";
 
 const data = $derived.by(() => {

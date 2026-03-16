@@ -4,6 +4,10 @@
 	"description": "",
 	"private": true,
 	"type": "module",
+	"engines": {
+		"node": ">=24"
+	},
+	"engineStrict": true,
 	"scripts": {
 		"prepare": "husky",
 		"git:pre-commit": "npm run git:lint-staged && npm run git:test-staged",
@@ -20,7 +24,7 @@
 		"test:sast:lockfile": "lockfile-lint --path package-lock.json --type npm --allowed-hosts npm --validate-https",
 		"test:sast:ort": "docker run ghcr.io/oss-review-toolkit/ort --help",
 		"test:sast:semgrep": "semgrep scan --config auto",
-		"test:sast:trivy": "trivy fs --scanners vuln,license --include-dev-deps --ignored-licenses 0BSD,Apache-2.0,BSD-1-Clause,BSD-2-Clause,BSD-3-Clause,CC0-1.0,CC-BY-4.0,ISC,MIT --exit-code 1 --disable-telemetry .",
+		"test:sast:trivy": "trivy fs --scanners vuln,license --include-dev-deps --ignored-licenses 0BSD,Apache-2.0,BSD-1-Clause,BSD-2-Clause,BSD-3-Clause,CC0-1.0,CC-BY-4.0,ISC,MIT,Python-2.0 --exit-code 1 --disable-telemetry .",
 		"test:sast:trufflehog": "trufflehog filesystem --only-verified --log-level=-1 ./",
 		"test:types": "which tstyche > /dev/null 2>&1 && tstyche || echo 'tstyche not found, skipping type tests'",
 		"test:e2e": "npm run test:e2e --workspaces --if-present",
@@ -52,7 +56,10 @@
 		"url": "https://github.com/willfarrell/design-system/issues"
 	},
 	"homepage": "https://github.com/willfarrell/design-system#readme",
-	"dependencies": {},
+	"funding": {
+		"type": "github",
+		"url": "https://github.com/sponsors/willfarrell"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "^2.0.0",
 		"@commitlint/cli": "^20.0.0",
@@ -67,6 +74,9 @@
   	"svelte": {
   		"devalue": "^5.6.4"
   	},
+  	"wrangler": {
+  		"undici": "^7.24.0"
+  	}
 	},
 	"workspaces": [
 		"packages/*",

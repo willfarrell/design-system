@@ -1,5 +1,5 @@
 <script>
-import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-scrollspy.js?url&worker";
+import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-scrollspy.js?worker&url";
 import H2 from "../elements/h2.svelte";
 import Header from "../elements/header.svelte";
 import Nav from "../elements/nav.svelte";
@@ -9,7 +9,6 @@ const { children, labelHeader = "On this page", labelId = "nav-scrollspy-label",
 </script>
 
 <svelte:head>
-  <!-- <script src={webComponentUrl} type="module"></script> -->
   <link rel="modulepreload" href={webComponentUrl} />
 </svelte:head>
 

@@ -1,7 +1,7 @@
 <script>
     import "@styles/above.css";
     // import trustedTypesUrl from "@willfarrell-ds/vanilla/components/trustedtypes.js?url";
-    import bootstrapUrl from "@scripts/bootstrap.js?url&worker";
+    import bootstrapUrl from "@scripts/bootstrap.js?worker&url";
     import belowStyles from "@styles/below.css?url";
     import printStyles from "@styles/print.css?url";
 

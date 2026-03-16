@@ -1,6 +1,5 @@
 <script>
-import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-task.js?url&worker";
-
+import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-task.js?worker&url";
 import A from "../elements/a.svelte";
 import Li from "../elements/li.svelte";
 import Strong from "../elements/strong.svelte";
@@ -10,7 +9,6 @@ const { is = "ds-task", tasks = [] } = $props();
 </script>
 
 <svelte:head>
-  <!-- <script src={webComponentUrl} type="module"></script> -->
   <link rel="modulepreload" href={webComponentUrl} />
 </svelte:head>
 
