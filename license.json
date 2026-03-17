@@ -1,0 +1,32 @@
+{
+	"license": "license.template",
+	"licenseFormats": {
+		"js|ts": {
+			"eachLine": {
+				"prepend": "// "
+			}
+		}
+	},
+	"ignoreFile": ".gitignore",
+	"ignore": [
+		".github/**/*",
+		".husky/**/*",
+		"commitlint.config.cjs",
+		"docs/**/*",
+		"LICENSE",
+		"license.template",
+		"**/.gitignore",
+		"**/*.fuzz.js",
+		"**/*.perf.js",
+		"**/*.test.js",
+		"**/*.tst.ts",
+		"**/*.md",
+		"**/*.yml",
+		"**/*.css",
+		"**/*.svelte",
+		"**/*.json",
+		"**/*.html",
+		"websites/**/*",
+		".DS_Store"
+	]
+}
