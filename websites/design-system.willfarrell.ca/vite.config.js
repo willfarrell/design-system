@@ -21,6 +21,9 @@ export default defineConfig({
 		assetsInlineLimit: 0,
 	},
 	customLogger: logger,
+	ssr: {
+		noExternal: ["@willfarrell-ds/vanilla"],
+	},
 	optimizeDeps: {
 		exclude: ["@willfarrell-ds/svelte", "@willfarrell-ds/vanilla"],
 	},
