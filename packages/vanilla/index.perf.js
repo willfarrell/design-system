@@ -1,5 +1,5 @@
 import { test } from "node:test";
-import { createSignal, sendSignal } from "./bootstrap/pewc/signals.js";
+import { createSignal } from "./bootstrap/pewc/signals.js";
 
 test("perf: createSignal", async () => {
 	const iterations = 100_000;

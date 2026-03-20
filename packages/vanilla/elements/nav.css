@@ -15,7 +15,6 @@ nav {
 
 	/* scrollspy */
 	:has(ol) {
-		/* biome-ignore lint/correctness/noUnknownProperty: scroll-target-group is a newer CSS property */
 		scroll-target-group: auto;
 	}
 	ol {

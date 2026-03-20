@@ -1,5 +1,12 @@
 import { describe, expect, test } from "tstyche";
-import { createSignal, listenSignal, sendSignal, storeMemory, storeSessionStorage, storeLocalStorage } from "./bootstrap/pewc/signals.js";
+import {
+	createSignal,
+	listenSignal,
+	sendSignal,
+	storeLocalStorage,
+	storeMemory,
+	storeSessionStorage,
+} from "./bootstrap/pewc/signals.js";
 
 describe("@willfarrell-ds/vanilla pewc/signals", () => {
 	test("createSignal is a function", () => {

@@ -1,6 +1,5 @@
 select.chevron {
 	padding-inline: var(--padding-fixed) calc(var(--padding-fixed) * 2 + 1em); /* 1em is width of :after */
-	/* biome-ignore lint/correctness/noUnknownPseudoElement: ::picker-icon is a newer CSS pseudo-element */
 	::picker-icon {
 		display: none;
 	}

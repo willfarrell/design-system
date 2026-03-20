@@ -1,6 +1,6 @@
 {
 	"name": "@willfarrell-ds/vanilla",
-	"version": "0.0.0-alpha.4",
+	"version": "0.0.0-alpha.5",
 	"type": "module",
 	"description": "Design system using vanilla html, css, js",
 	"files": [
