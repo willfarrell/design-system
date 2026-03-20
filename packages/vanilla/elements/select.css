@@ -16,8 +16,7 @@ select {
 }
 
 select,
-/* biome-ignore lint/correctness/noUnknownPseudoElement: ::picker() is a newer CSS pseudo-element */
-	::picker(select) {
+::picker(select) {
 	appearance: base-select;
 }
 

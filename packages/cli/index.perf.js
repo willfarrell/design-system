@@ -1,5 +1,4 @@
 import { test } from "node:test";
-import optimizeStyles from "./commands/optimizeStyles.js";
 
 test("perf: placeholder", async () => {
 	// CLI commands operate on files, perf test needs real file I/O
