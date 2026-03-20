@@ -1,6 +1,6 @@
 {
 	"name": "design-system.willfarrell.ca",
-	"version": "0.0.0-alpha.4",
+	"version": "0.0.0-alpha.5",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -24,10 +24,10 @@
 	"dependencies": {
 		"@willfarrell-ds/svelte": "0.0.0-alpha.3",
 		"@willfarrell-ds/vanilla": "0.0.0-alpha.3",
-		"@work-bee/core": "0.0.5",
+		"@work-bee/core": "0.1.1",
 		"@work-bee/fallback": "0.0.5",
-		"@work-bee/offline": "0.0.5",
-		"@work-bee/save-data": "0.0.5",
+		"@work-bee/offline": "0.1.1",
+		"@work-bee/save-data": "0.1.1",
 		"apca-w3": "^0.1.0",
 		"change-case": "5.4.4",
 		"chroma-js": "^3.0.0",

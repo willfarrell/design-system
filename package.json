@@ -1,6 +1,6 @@
 {
 	"name": "@willfarrell-ds/monorepo",
-	"version": "0.0.0-alpha.4",
+	"version": "0.0.0-alpha.5",
 	"description": "",
 	"private": true,
 	"type": "module",
@@ -64,19 +64,15 @@
 		"@biomejs/biome": "^2.0.0",
 		"@commitlint/cli": "^20.0.0",
 		"@commitlint/config-conventional": "^20.0.0",
-		"husky": "^9.0.0"
+		"fast-check": "^4.0.0",
+		"husky": "^9.0.0",
+		"tinybench": "^6.0.0",
+		"tstyche": "^6.0.0"
 	},
 	"overrides": {
-  	"@sveltejs/kit": {
-  		"cookie": "^0.7.2",
-  		"devalue": "^5.6.4"
-  	},
-  	"svelte": {
-  		"devalue": "^5.6.4"
-  	},
-  	"wrangler": {
-  		"undici": "^7.24.0"
-  	}
+		"@sveltejs/kit": {
+			"cookie": "^0.7.2"
+		}
 	},
 	"workspaces": [
 		"packages/*",

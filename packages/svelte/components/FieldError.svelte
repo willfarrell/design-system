@@ -7,6 +7,6 @@ const { id, error } = $props();
 {#if true}
   {@const errors = error?.filter((v) => v.id === id)}
   {#if errors?.length}
-    <Span id={id + "-error"} aria-live="polite">{errors[0].message}</Span>
+    <Span id={`${id}-error`} aria-live="polite">{errors[0].message}</Span>
   {/if}
 {/if}
