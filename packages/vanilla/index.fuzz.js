@@ -3,7 +3,6 @@ import fc from "fast-check";
 import { createSignal } from "./bootstrap/pewc/signals.js";
 
 const catchError = (input, e) => {
-	console.error(input, e);
 	throw e;
 };
 
