@@ -9,7 +9,7 @@ const catchError = (input, e) => {
 
 describe("Fuzz", () => {
 	test("Should accept random options for extract", async () => {
-		fc.assert(
+		await fc.assert(
 			fc.asyncProperty(fc.string(), async (input) => {
 				try {
 					extract({ inputDir: input });
