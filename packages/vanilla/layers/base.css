@@ -28,10 +28,21 @@ body {
 	line-height: var(--line-height, 1.5);
 	/* text-box: set per element (h1-h6, hgroup) — doesn't inherit, so no body default. TODO buttons, inputs */
 	overflow-wrap: break-word;
+	text-wrap-style: pretty;
 	scroll-behavior: smooth;
 	-webkit-font-smoothing: antialiased;
 
 	--width-scrollbar: calc(100vw - 100%); /* TODO not correct */
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hgroup {
+	text-wrap-style: balance;
 }
 
 /* ensure anchor tags jump to right position */

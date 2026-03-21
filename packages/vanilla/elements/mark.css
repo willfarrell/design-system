@@ -1,7 +1,8 @@
 /* https://developer.mozilla.org/en-US/docs/Web/HTML/elements/mark#accessibility_concerns */
 /* https://adrianroselli.com/2025/04/tweaking-text-level-styles-reprised.html#Mark */
 
-mark {
+mark,
+::target-text {
 	padding: 0.125rem 0.25rem;
 	background-color: var(--color-mark);
 	color: var(--color-fill-text);
