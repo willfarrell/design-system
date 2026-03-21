@@ -3,13 +3,12 @@ import fc from "fast-check";
 import allowedAttributes from "./utils/attributes.js";
 
 const catchError = (input, e) => {
-	console.error(input, e);
 	throw e;
 };
 
 describe("Fuzz", () => {
 	test("Should handle random props for allowedAttributes", async () => {
-		fc.assert(
+		await fc.assert(
 			fc.asyncProperty(
 				fc.dictionary(fc.string(), fc.string()),
 				async (input) => {
