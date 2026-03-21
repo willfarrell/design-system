@@ -1,29 +1,15 @@
 <script>
 import { page } from "$app/state";
 import A from "../elements/a.svelte";
-import Button from "../elements/button.svelte";
 import Details from "../elements/details.svelte";
 import Div from "../elements/div.svelte";
 import Footer from "../elements/footer.svelte";
-import Form from "../elements/form.svelte";
-import I from "../elements/i.svelte";
 import Li from "../elements/li.svelte";
 import Nav from "../elements/nav.svelte";
-import Option from "../elements/option.svelte";
-import Search from "../elements/search.svelte";
-import Select from "../elements/select.svelte";
-import Span from "../elements/span.svelte";
 import Strong from "../elements/strong.svelte";
 import Summary from "../elements/summary.svelte";
 import Ul from "../elements/ul.svelte";
-import ButtonSubmit from "./ButtonSubmit.svelte";
-import Fieldset from "./Fieldset.svelte";
 import H2 from "./Heading2.svelte";
-import H3 from "./Heading3.svelte";
-import Icon from "./Icon.svelte";
-import Image from "./Image.svelte";
-import InputRadio from "./InputRadio.svelte";
-import InputTextarea from "./InputTextarea.svelte";
 
 const { logo, address, children, navLinks, labelHeader = "Footer" } = $props();
 const url = $derived.by(() => {
