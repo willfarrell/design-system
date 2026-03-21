@@ -9,7 +9,7 @@ const catchError = (input, e) => {
 
 describe("Fuzz", () => {
 	test("Should handle random signal names", async () => {
-		fc.assert(
+		await fc.assert(
 			fc.asyncProperty(fc.string(), async (input) => {
 				try {
 					createSignal(input);

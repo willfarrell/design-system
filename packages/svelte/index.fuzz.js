@@ -9,7 +9,7 @@ const catchError = (input, e) => {
 
 describe("Fuzz", () => {
 	test("Should handle random props for allowedAttributes", async () => {
-		fc.assert(
+		await fc.assert(
 			fc.asyncProperty(
 				fc.dictionary(fc.string(), fc.string()),
 				async (input) => {
