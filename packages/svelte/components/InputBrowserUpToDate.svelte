@@ -59,19 +59,19 @@ error = error?.filter((v) => v.id === id);
 
 <style>
   :global([is="ds-input-browser-up-to-date"]) {
-    & ul {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-      list-style-type: "";
+      & ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        list-style-type: "";
+      }
+      & a {
+        padding: 1rem;
+        text-decoration: none;
+      }
+      & img {
+        block-size: 3em;
+        inline-size: 3em;
+      }
     }
-    & a {
-      padding: 1rem;
-      text-decoration: none;
-    }
-    & img {
-      block-size: 3em;
-      inline-size: 3em;
-    }
-  }
 </style>

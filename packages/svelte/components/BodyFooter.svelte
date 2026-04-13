@@ -91,27 +91,27 @@ const records = $derived(data?.records);
 
 <style>
   :global {
-    body {
-      display: flex;
-      flex-direction: column;
-      min-block-size: 100vh;
-
-      & > div {
-        flex: 1 0 auto;
-      }
-
-      & > footer {
+      body {
         display: flex;
-        gap: 1em;
-        /* aside + main + scrollspy */
-        padding: 0.5em var(--padding-page-inline);
-        border-block-start: solid #555 1px;
+        flex-direction: column;
+        min-block-size: 100vh;
 
-        &.grid {
-          --grid-gap: 1.5em;
-          --grid-min-width: 20ch;
+        & > div {
+          flex: 1 0 auto;
+        }
+
+        & > footer {
+          display: flex;
+          gap: 1em;
+          /* aside + main + scrollspy */
+          padding: 0.5em var(--padding-page-inline);
+          border-block-start: solid #555 1px;
+
+          &.grid {
+            --grid-gap: 1.5em;
+            --grid-min-width: 20ch;
+          }
         }
       }
     }
-  }
 </style>

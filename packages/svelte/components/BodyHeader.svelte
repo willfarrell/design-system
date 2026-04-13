@@ -82,68 +82,68 @@ const url = $derived.by(() => {
 
 <style>
   :global {
-    /*:root{
-            --sticky-header-height: calc(2 * 0.5em + 1em + 2 * 0.5em + 2 * var(--padding-fixed) * 0.54 + 1em + 1.5em);
-        }*/
-    body > header {
-      /*position: sticky;
-            inset-block-start: 0;
-            z-index: 1;*/
+      /*:root{
+              --sticky-header-height: calc(2 * 0.5em + 1em + 2 * 0.5em + 2 * var(--padding-fixed) * 0.54 + 1em + 1.5em);
+          }*/
+      body > header {
+        /*position: sticky;
+              inset-block-start: 0;
+              z-index: 1;*/
 
-      /* Ref: https://www.joshwcomeau.com/css/backdrop-filter/ */
-      backdrop-filter: blur(16px);
-      background: linear-gradient(to bottom, var(--color-l0), transparent 50%);
+        /* Ref: https://www.joshwcomeau.com/css/backdrop-filter/ */
+        backdrop-filter: blur(16px);
+        background: linear-gradient(to bottom, var(--color-l0), transparent 50%);
 
-      nav {
-        display: flex;
-        gap: 1em;
-        /* aside + main + scrollspy */
-        padding: 0.5em var(--padding-page-inline);
-        border-block-end: solid #555 1px;
-
-        :nth-child(2) > :first-child {
-          margin-inline-start: auto;
-        }
-
-        div {
+        nav {
           display: flex;
-          flex: 1 1 0%;
           gap: 1em;
-          min-inline-size: 0;
-        }
+          /* aside + main + scrollspy */
+          padding: 0.5em var(--padding-page-inline);
+          border-block-end: solid #555 1px;
 
-        search, search form, search [role="group"] {
-          min-inline-size: 0;
-        }
+          :nth-child(2) > :first-child {
+            margin-inline-start: auto;
+          }
 
-        search input {
-          min-inline-size: 0;
-          inline-size: 100%;
-        }
+          div {
+            display: flex;
+            flex: 1 1 0%;
+            gap: 1em;
+            min-inline-size: 0;
+          }
 
-        div > ul {
-          container-type: unset;
-          flex: 0 1 0%;
-        }
+          search, search form, search [role="group"] {
+            min-inline-size: 0;
+          }
 
-        ul {
-          container-type: inline-size;
-          display: flex;
-          flex: 1 1 0%;
-          gap: 1em;
-        }
+          search input {
+            min-inline-size: 0;
+            inline-size: 100%;
+          }
 
-        li {
-            align-self: anchor-center;
-        }
+          div > ul {
+            container-type: unset;
+            flex: 0 1 0%;
+          }
 
-        @container (inline-size < 40ch) {
+          ul {
+            container-type: inline-size;
+            display: flex;
+            flex: 1 1 0%;
+            gap: 1em;
+          }
+
           li {
-            display: none;
-            background: #f00;
+              align-self: anchor-center;
+          }
+
+          @container (inline-size < 40ch) {
+            li {
+              display: none;
+              background: #f00;
+            }
           }
         }
       }
     }
-  }
 </style>

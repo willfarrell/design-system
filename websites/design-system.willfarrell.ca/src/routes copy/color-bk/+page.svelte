@@ -396,22 +396,22 @@ https://accessiblepalette.com/ https://www.myndex.com/APCA/
 
 <style>
 	:global(.palette) {
-		display: flex;
-		gap: var(--gap);
-	}
-	:global(.preview) {
-		inline-size: 6rem;
-		block-size: 6rem;
-		padding: 1rem;
-		border-radius: 1rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		& .preview {
-			inline-size: 3em;
-			block-size: 3em;
-			padding: 0.5rem;
+			display: flex;
+			gap: var(--gap);
 		}
-	}
+		:global(.preview) {
+			inline-size: 6rem;
+			block-size: 6rem;
+			padding: 1rem;
+			border-radius: 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			& .preview {
+				inline-size: 3em;
+				block-size: 3em;
+				padding: 0.5rem;
+			}
+		}
 </style>

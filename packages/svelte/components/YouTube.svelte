@@ -34,40 +34,40 @@ const baseUrl =
 
 <style>
   .aspect-wrapper {
-    inline-size: 100%;
-    block-size: 100%;
-    position: relative;
-    padding: 28.125%; /* 16:9 aspect ratio added here to eliminate black bars with previous method */
-  }
-  .light-youtube-wrapper {
-    background-color: #000;
-    position: absolute;
-    inset-block-start: 0;
-    inset-inline-start: 0;
-    inset-block-end: 0;
-    inset-inline-end: 0;
-    display: block;
-    contain: content;
-    max-inline-size: 100%;
-    border-radius: var(--image-radius);
-  }
+      inline-size: 100%;
+      block-size: 100%;
+      position: relative;
+      padding: 28.125%; /* 16:9 aspect ratio added here to eliminate black bars with previous method */
+    }
+    .light-youtube-wrapper {
+      background-color: #000;
+      position: absolute;
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      inset-block-end: 0;
+      inset-inline-end: 0;
+      display: block;
+      contain: content;
+      max-inline-size: 100%;
+      border-radius: var(--image-radius);
+    }
 
-  div:has(button) {
-    cursor: pointer;
-  }
+    div:has(button) {
+      cursor: pointer;
+    }
 
-  button {
-    position: absolute;
-    inset-block-start: 50%;
-    inset-inline-start: 50%;
-    z-index: 1;
-    filter: grayscale(100%) opacity(65%);
-    transform: translate(-50%, -50%);
-  }
+    button {
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      z-index: 1;
+      filter: grayscale(100%) opacity(65%);
+      transform: translate(-50%, -50%);
+    }
 
-  /* `:is()` Hack to prevent from being detected as unused */
-  :is(iframe) {
-    inline-size: 100%;
-    block-size: 100%;
-  }
+    /* `:is()` Hack to prevent from being detected as unused */
+    :is(iframe) {
+      inline-size: 100%;
+      block-size: 100%;
+    }
 </style>

@@ -777,13 +777,13 @@ const page_ = {
 
 <style global>
 	.window {
-		margin: 0.5rem;
-		padding: 1rem;
-		border-radius: 0.5rem;
-		background-color: var(--color-bg);
-	}
-	/* So browser bug when mixing root, theme, and style override */
-	.force-text-color {
-		color: var(--color-text);
-	}
+			margin: 0.5rem;
+			padding: 1rem;
+			border-radius: 0.5rem;
+			background-color: var(--color-bg);
+		}
+		/* So browser bug when mixing root, theme, and style override */
+		.force-text-color {
+			color: var(--color-text);
+		}
 </style>

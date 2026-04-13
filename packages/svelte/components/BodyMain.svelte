@@ -10,7 +10,7 @@ const { children } = $props();
 
 <style>
   :global(body > div) {
-    margin-inline: var(--padding-page-inline);
-    padding-block: 1em;
-  }
+      margin-inline: var(--padding-page-inline);
+      padding-block: 1em;
+    }
 </style>
