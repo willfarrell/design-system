@@ -16,6 +16,6 @@ const { component } = data;
 
 <style>
 	div {
-		padding: 1rem;
-	}
+			padding: 1rem;
+		}
 </style>

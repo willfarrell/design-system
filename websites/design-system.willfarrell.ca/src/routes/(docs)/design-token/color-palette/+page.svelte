@@ -360,27 +360,27 @@ const page_ = {
 
 <style global>
 	.palette {
-		display: flex;
-		gap: var(--gap);
-		div {
 			display: flex;
-			flex-direction: column;
 			gap: var(--gap);
+			div {
+				display: flex;
+				flex-direction: column;
+				gap: var(--gap);
+			}
 		}
-	}
-	.preview {
-		inline-size: 4rem;
-		block-size: 4rem;
-		padding: 1rem;
-		border-radius: 1rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
+		.preview {
+			inline-size: 4rem;
+			block-size: 4rem;
+			padding: 1rem;
+			border-radius: 1rem;
+			display: flex;
+			align-items: center;
+			justify-content: center;
 
-		& .preview {
-			inline-size: 2rem;
-			block-size: 2rem;
-			padding: 0.5rem;
+			& .preview {
+				inline-size: 2rem;
+				block-size: 2rem;
+				padding: 0.5rem;
+			}
 		}
-	}
 </style>

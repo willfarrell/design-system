@@ -1,12 +1,12 @@
 <script>
     import P from "../elements/p.svelte";
-    import Section from "../elements/section.svelte";
+        import Section from "../elements/section.svelte";
 
-let {
-	children,
-	role = "alert", // or status
-	...props
-} = $props();
+    let {
+    	children,
+    	role = "alert", // or status
+    	...props
+    } = $props();
 </script>
 
 <Section {role} {...props}>
