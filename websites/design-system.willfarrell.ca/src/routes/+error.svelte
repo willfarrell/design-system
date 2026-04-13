@@ -1,20 +1,20 @@
 <script>
     import "@styles/above.css";
-    import H1 from "@design-system/components/Heading1.svelte";
-import Image from "@design-system/components/Image.svelte";
-import Div from "@design-system/elements/div.svelte";
-import Main from "@design-system/elements/main.svelte";
-import P from "@design-system/elements/p.svelte";
-import Span from "@design-system/elements/span.svelte";
-import belowStyles from "@styles/below.css?url";
-    import printStyles from "@styles/print.css?url";
-import { page } from "$app/state";
-    import bootstrapUrl from "../scripts/bootstrap.js?worker&url";
+        import H1 from "@design-system/components/Heading1.svelte";
+    import Image from "@design-system/components/Image.svelte";
+    import Div from "@design-system/elements/div.svelte";
+    import Main from "@design-system/elements/main.svelte";
+    import P from "@design-system/elements/p.svelte";
+    import Span from "@design-system/elements/span.svelte";
+    import belowStyles from "@styles/below.css?url";
+        import printStyles from "@styles/print.css?url";
+    import { page } from "$app/state";
+        import bootstrapUrl from "../scripts/bootstrap.js?worker&url";
 
-const status = $derived.by(() => {
-	try { return page.status; } catch { return 500; }
-});
-const message = $derived(page.error?.message ?? "An error occurred");
+    const status = $derived.by(() => {
+    	try { return page.status; } catch { return 500; }
+    });
+    const message = $derived(page.error?.message ?? "An error occurred");
 </script>
 
 <svelte:head>
@@ -49,23 +49,23 @@ const message = $derived(page.error?.message ?? "An error occurred");
 
 <style>
     :global(html),
-    :global(body) {
-        block-size: 100%;
-    }
-    :global(main.container-error) {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        block-size: 100%;
+        :global(body) {
+            block-size: 100%;
+        }
+        :global(main.container-error) {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            block-size: 100%;
 
-        & div {
-            inline-size: 40ch;
-            text-align: center;
+            & div {
+                inline-size: 40ch;
+                text-align: center;
+            }
+            & span {
+                padding: 0 1rem 1rem 1rem;
+                white-space: nowrap;
+            }
         }
-        & span {
-            padding: 0 1rem 1rem 1rem;
-            white-space: nowrap;
-        }
-    }
 </style>
