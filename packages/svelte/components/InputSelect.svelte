@@ -5,12 +5,14 @@ import FieldError from "./FieldError.svelte";
 import FieldHint from "./FieldHint.svelte";
 import FieldLabel from "./FieldLabel.svelte";
 
-const { children, id, name, label, labelSnippet, hint, error, ...props } = $props();
+const { children, id, name, label, labelSnippet, hint, error, ...props } =
+	$props();
 const resolvedName = $derived(name ?? id);
 const errors = $derived(error?.filter((v) => v.id === id));
 const describedby = $derived(
-  [hint ? `${id}-hint` : null, errors?.length ? `${id}-error` : null]
-    .filter(Boolean).join(" ") || undefined
+	[hint ? `${id}-hint` : null, errors?.length ? `${id}-error` : null]
+		.filter(Boolean)
+		.join(" ") || undefined,
 );
 const ariaInvalid = $derived(errors?.length ? "true" : undefined);
 </script>

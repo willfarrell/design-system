@@ -19,7 +19,11 @@ import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-input-focus.j
 import { page } from "$app/state";
 
 const data = $derived.by(() => {
-	try { return page.data; } catch { return {}; }
+	try {
+		return page.data;
+	} catch {
+		return {};
+	}
 });
 
 const navTopLinks = $derived.by(() => ({
