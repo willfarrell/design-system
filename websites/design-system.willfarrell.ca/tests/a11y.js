@@ -684,7 +684,7 @@ export function hoverFocusContentTests(test, path) {
 				)
 					return null;
 				const title = e.getAttribute("title");
-				if (!title || !title.trim()) return null;
+				if (!title?.trim()) return null;
 				const tag = e.tagName.toLowerCase();
 				const text = (e.textContent || "").trim().slice(0, 25);
 				return `<${tag}> "${text}" has title="${title.slice(0, 40)}" — title tooltips are not hoverable or persistent`;
