@@ -17,7 +17,11 @@ const elementAttributes = new Set([
 const { ...props } = $props();
 
 const path = $derived.by(() => {
-	try { return page.url.pathname + page.url.hash; } catch { return ''; }
+	try {
+		return page.url.pathname + page.url.hash;
+	} catch {
+		return "";
+	}
 });
 // Prevents prerendering
 // if (search?.substring(0, 2) !== "?/") {

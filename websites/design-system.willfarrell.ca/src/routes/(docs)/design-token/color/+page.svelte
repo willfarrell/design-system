@@ -367,19 +367,19 @@ for (const key in colors) {
 // };
 const auditMode = false;
 const userPalette = {
-	bg:  "neutral",
+	bg: "neutral",
 	text: "neutral",
-	main:  "daisy-bush",
+	main: "daisy-bush",
 	focus: "daisy-bush",
-	ins:  "sushi",
+	ins: "sushi",
 	del: "cinnabar",
 	mark: "bright-yellow",
 	info: "cornflower-blue",
-	pass:  "apple",
-	warn:  "selective-yellow",
+	pass: "apple",
+	warn: "selective-yellow",
 	fail: "red",
 	"fail-light": "red",
-	"fail-dark":  "cerise-red",
+	"fail-dark": "cerise-red",
 };
 
 const cssVariables = {
@@ -777,13 +777,13 @@ const page_ = {
 
 <style global>
 	.window {
-			margin: 0.5rem;
-			padding: 1rem;
-			border-radius: 0.5rem;
-			background-color: var(--color-bg);
-		}
-		/* So browser bug when mixing root, theme, and style override */
-		.force-text-color {
-			color: var(--color-text);
-		}
+				margin: 0.5rem;
+				padding: 1rem;
+				border-radius: 0.5rem;
+				background-color: var(--color-bg);
+			}
+			/* So browser bug when mixing root, theme, and style override */
+			.force-text-color {
+				color: var(--color-text);
+			}
 </style>

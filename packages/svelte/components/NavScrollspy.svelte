@@ -5,7 +5,13 @@ import Header from "../elements/header.svelte";
 import Nav from "../elements/nav.svelte";
 import Section from "../elements/section.svelte";
 
-const { children, labelHeader = "On this page", labelId = "nav-scrollspy-label", is = "ds-scrollspy", ...props } = $props();
+const {
+	children,
+	labelHeader = "On this page",
+	labelId = "nav-scrollspy-label",
+	is = "ds-scrollspy",
+	...props
+} = $props();
 </script>
 
 <svelte:head>

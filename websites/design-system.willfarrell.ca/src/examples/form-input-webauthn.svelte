@@ -7,7 +7,7 @@ import A from "@design-system/elements/a.svelte";
 import H2 from "@design-system/elements/h2.svelte";
 import P from "@design-system/elements/p.svelte";
 
-const webAuthnOptions = {}
+const webAuthnOptions = {};
 </script>
 
 <H2>Register</H2>

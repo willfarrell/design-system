@@ -57,9 +57,9 @@ import Ul from "@design-system/elements/ul.svelte";
 import Var from "@design-system/elements/var.svelte";
 
 const page = {
-  group: "",       // Text | Form | Component | Design tokens | Layout
-  title: "",       // Component name
-  update: "",      // YYYY-MM-DD
+	group: "", // Text | Form | Component | Design tokens | Layout
+	title: "", // Component name
+	update: "", // YYYY-MM-DD
 };
 </script>
 

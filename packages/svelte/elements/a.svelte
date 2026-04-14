@@ -16,7 +16,11 @@ const elementAttributes = new Set([
 const { children, ...rawProps } = $props();
 
 const path = $derived.by(() => {
-	try { return page.url.pathname + page.url.hash; } catch { return ''; }
+	try {
+		return page.url.pathname + page.url.hash;
+	} catch {
+		return "";
+	}
 });
 
 const props = $derived.by(() => {

@@ -7,7 +7,11 @@ const { datetime, value, ...props } = $props();
 const dateValue = $derived(datetime ?? value);
 
 const locale = $derived.by(() => {
-	try { return page.locale; } catch { return undefined; }
+	try {
+		return page.locale;
+	} catch {
+		return undefined;
+	}
 });
 
 const getLocalizedDate = (value, locale, options = {}) => {

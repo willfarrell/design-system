@@ -21,7 +21,11 @@ const getLocalizedBytes = (value, locale, decimals = 2) => {
 };
 
 const locale = $derived.by(() => {
-	try { return page.locale; } catch { return undefined; }
+	try {
+		return page.locale;
+	} catch {
+		return undefined;
+	}
 });
 const label = $derived(getLocalizedBytes(value, locale ?? "en-CA", props));
 </script>

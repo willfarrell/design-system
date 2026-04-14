@@ -4,7 +4,11 @@ import P from "@design-system/elements/p.svelte";
 import { page } from "$app/state";
 
 const pathname = $derived.by(() => {
-	try { return page.url.pathname; } catch { return ''; }
+	try {
+		return page.url.pathname;
+	} catch {
+		return "";
+	}
 });
 </script>
 
