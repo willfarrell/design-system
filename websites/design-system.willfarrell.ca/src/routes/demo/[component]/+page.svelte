@@ -16,6 +16,6 @@ const component = $derived(data.component);
 
 <style>
 	div {
-			padding: 1rem;
-		}
+				padding: 1rem;
+			}
 </style>

@@ -137,12 +137,12 @@ const results = new Array(24).fill("x").map((x, i) => {
 
 <style global>
 	.container-results {
-			max-inline-size: 60em;
-			inline-size: 100%;
+				max-inline-size: 60em;
+				inline-size: 100%;
 
-			.grid {
-				--grid-gap: 1em;
-				--grid-min-width: 30ch;
+				.grid {
+					--grid-gap: 1em;
+					--grid-min-width: 30ch;
+				}
 			}
-		}
 </style>

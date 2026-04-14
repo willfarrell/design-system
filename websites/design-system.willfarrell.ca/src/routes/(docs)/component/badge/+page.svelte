@@ -1,26 +1,26 @@
 <script>
-		import Snippet from "@components/Snippet.svelte";
-			import DataTime from "@design-system/components/DataTime.svelte";
-			import H1 from "@design-system/components/Heading1.svelte";
-			import H2 from "@design-system/components/Heading2.svelte";
-			import HSub from "@design-system/components/HeadingSub.svelte";
-			import LayoutTableOfContents from "@design-system/components/LayoutTableOfContents.svelte";
-			import NavScrollspy from "@design-system/components/NavScrollspy.svelte";
-			import A from "@design-system/elements/a.svelte";
-			import Header from "@design-system/elements/header.svelte";
-			import Hgroup from "@design-system/elements/hgroup.svelte";
-			import Li from "@design-system/elements/li.svelte";
-			import Ol from "@design-system/elements/ol.svelte";
-			import P from "@design-system/elements/p.svelte";
-			import Section from "@design-system/elements/section.svelte";
-			import Small from "@design-system/elements/small.svelte";
-			import Ul from "@design-system/elements/ul.svelte";
+import Snippet from "@components/Snippet.svelte";
+import DataTime from "@design-system/components/DataTime.svelte";
+import H1 from "@design-system/components/Heading1.svelte";
+import H2 from "@design-system/components/Heading2.svelte";
+import HSub from "@design-system/components/HeadingSub.svelte";
+import LayoutTableOfContents from "@design-system/components/LayoutTableOfContents.svelte";
+import NavScrollspy from "@design-system/components/NavScrollspy.svelte";
+import A from "@design-system/elements/a.svelte";
+import Header from "@design-system/elements/header.svelte";
+import Hgroup from "@design-system/elements/hgroup.svelte";
+import Li from "@design-system/elements/li.svelte";
+import Ol from "@design-system/elements/ol.svelte";
+import P from "@design-system/elements/p.svelte";
+import Section from "@design-system/elements/section.svelte";
+import Small from "@design-system/elements/small.svelte";
+import Ul from "@design-system/elements/ul.svelte";
 
-			const page = {
-				group: "Component",
-				title: "Badge",
-				update: "2025-05-01",
-			};
+const page = {
+	group: "Component",
+	title: "Badge",
+	update: "2025-05-01",
+};
 </script>
 
 <svelte:head>

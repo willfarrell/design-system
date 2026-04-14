@@ -14,7 +14,11 @@ import { page } from "$app/state";
 
 const { children } = $props();
 const data = $derived.by(() => {
-	try { return page.data; } catch { return {}; }
+	try {
+		return page.data;
+	} catch {
+		return {};
+	}
 });
 
 const navLinks = {

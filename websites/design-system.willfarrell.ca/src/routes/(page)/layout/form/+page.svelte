@@ -143,13 +143,13 @@ const hint = paragraph;
 
 <style global>
 	/* html:has(.form) {
-			scroll-snap-type: y mandatory;
-			-webkit-overflow-scrolling: touch;
-		}
-		html:has(.form) > * {
-			scroll-snap-align: start;
-		} */
-		.form {
-			min-block-size: 100svh;
-		}
+				scroll-snap-type: y mandatory;
+				-webkit-overflow-scrolling: touch;
+			}
+			html:has(.form) > * {
+				scroll-snap-align: start;
+			} */
+			.form {
+				min-block-size: 100svh;
+			}
 </style>

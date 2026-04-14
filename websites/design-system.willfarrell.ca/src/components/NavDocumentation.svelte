@@ -6,7 +6,11 @@ import A from "@design-system/elements/a.svelte";
 import { page } from "$app/state";
 
 const pathname = $derived.by(() => {
-	try { return page.url.pathname; } catch { return ''; }
+	try {
+		return page.url.pathname;
+	} catch {
+		return "";
+	}
 });
 
 import Abbr from "@design-system/elements/abbr.svelte";
