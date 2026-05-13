@@ -34,8 +34,8 @@
 		"colorparsley": "^0.1.0"
 	},
 	"devDependencies": {
-		"@axe-core/playwright": "4.11.2",
-		"@playwright/test": "1.59.1",
+		"@axe-core/playwright": "4.11.3",
+		"@playwright/test": "1.60.0",
 		"@sveltejs/adapter-cloudflare": "^7.0.0",
 		"@sveltejs/kit": "^2.0.0",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
