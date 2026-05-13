@@ -8,13 +8,13 @@ input {
 }
 
 input:where(
-		[type="text"],
-		[type="search"],
-		[type="date"],
-		[type="email"],
-		[type="url"],
-		[type="password"]
-	) {
+	[type="text"],
+	[type="search"],
+	[type="date"],
+	[type="email"],
+	[type="url"],
+	[type="password"]
+) {
 	padding-block: calc(var(--padding-fixed) * 0.54);
 	padding-inline: var(--padding-fixed);
 }
