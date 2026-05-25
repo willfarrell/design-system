@@ -37,7 +37,7 @@
 		"@axe-core/playwright": "4.11.1",
 		"@playwright/test": "1.58.2",
 		"@sveltejs/adapter-cloudflare": "^7.0.0",
-		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/kit": "^2.60.1",
 		"@sveltejs/vite-plugin-svelte": "^7.0.0",
 		"@willfarrell-ds/cli": "0.0.0-alpha.5",
 		"svelte": "^5.55.7",
