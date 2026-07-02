@@ -8,11 +8,11 @@
 @import "./layers/classes.css";
 
 /* components */
-@import "../components/ds-card.css";
-@import "../components/ds-form-submit.css";
-@import "../components/ds-input-file.css";
-@import "../components/ds-input-focus.css";
-@import "../components/ds-task.css";
+@import "./components/ds-card.css";
+@import "./components/ds-form-submit.css";
+@import "./components/ds-input-file.css";
+@import "./components/ds-input-focus.css";
+@import "./components/ds-task.css";
 
 /* theme */
 @import "./theme.css";

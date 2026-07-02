@@ -6,7 +6,7 @@ import Span from "@design-system/elements/span.svelte";
 import { page } from "$app/state";
 </script>
 
-<Div role="group">
+<Div class="group">
 	<A href="#" class="button">verb</A>
 	<A href="#" class="button force active">verb (active)</A>
 	<A href="#" class="button force focus">verb (focus)</A>

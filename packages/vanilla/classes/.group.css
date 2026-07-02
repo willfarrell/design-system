@@ -1,0 +1,15 @@
+.group {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--gap);
+
+	&:has(button, a.button) {
+		align-items: baseline;
+
+		& button,
+		& a.button {
+			align-self: flex-end;
+		}
+	}
+}

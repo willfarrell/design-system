@@ -26,10 +26,3 @@ select,
 		appearance: auto;
 	}
 }
-
-[role="group"]:has(select) {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: var(--gap);
-}

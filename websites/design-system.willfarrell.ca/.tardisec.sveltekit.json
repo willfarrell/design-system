@@ -1,0 +1,36 @@
+{
+	"kit": {
+		"csp": {
+			"mode": "hash",
+			"directives": {
+				"default-src": ["none"],
+				"base-uri": ["none"],
+				"connect-src": ["self"],
+				"form-action": ["self"],
+				"frame-ancestors": ["self"],
+				"frame-src": ["self"],
+				"img-src": ["self"],
+				"manifest-src": ["self"],
+				"require-trusted-types-for": ["script"],
+				"script-src": ["self"],
+				"script-src-attr": ["report-sample"],
+				"style-src": ["self"],
+				"style-src-attr": ["report-sample"],
+				"trusted-types": ["svelte-trusted-html"],
+				"upgrade-insecure-requests": true,
+				"worker-src": ["self"],
+				"report-to": ["default"]
+			},
+			"reportOnly": {
+				"base-uri": ["none"],
+				"default-src": ["report-sample", "'report-sha256'"],
+				"form-action": ["none"],
+				"frame-ancestors": ["none"],
+				"frame-src": ["self"],
+				"report-to": ["default"],
+				"report-uri": ["https://81a31947-3668-5a23-b9c1-5b0b309badd2.report-to.org"],
+				"require-trusted-types-for": ["script"]
+			}
+		}
+	}
+}

@@ -6,7 +6,6 @@
 @import "@willfarrell-ds/vanilla/elements/dialog.css";
 @import "@willfarrell-ds/vanilla/elements/dt.css";
 @import "@willfarrell-ds/vanilla/elements/fieldset.css";
-@import "@willfarrell-ds/vanilla/elements/figure.css";
 @import "@willfarrell-ds/vanilla/elements/form.css";
 @import "@willfarrell-ds/vanilla/elements/h2.css";
 @import "@willfarrell-ds/vanilla/elements/h3.css";
@@ -15,7 +14,6 @@
 @import "@willfarrell-ds/vanilla/elements/h6.css";
 @import "@willfarrell-ds/vanilla/elements/hr.css";
 @import "@willfarrell-ds/vanilla/elements/input.css";
-@import "@willfarrell-ds/vanilla/elements/input[type=checkbox].css";
 @import "@willfarrell-ds/vanilla/elements/ins.css";
 @import "@willfarrell-ds/vanilla/elements/kbd.css";
 @import "@willfarrell-ds/vanilla/elements/label.css";
@@ -35,6 +33,7 @@
 @import "@willfarrell-ds/vanilla/classes/li.card.css";
 @import "@willfarrell-ds/vanilla/classes/select.chevron.css";
 @import "@willfarrell-ds/vanilla/classes/.grid.css";
+@import "@willfarrell-ds/vanilla/classes/.group.css";
 @import "@willfarrell-ds/vanilla/classes/.icon.css";
 @import "@willfarrell-ds/vanilla/components/ds-card.css";
 @import "@willfarrell-ds/vanilla/components/ds-form-submit.css";

@@ -44,15 +44,3 @@ a.button:focus-visible {
 		border-color: ButtonText;
 	}
 }
-
-[role="group"]:has(a.button) {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: var(--gap);
-	align-items: baseline;
-
-	& a.button {
-		align-self: flex-end;
-	}
-}

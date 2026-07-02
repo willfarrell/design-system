@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 import adapter from "@sveltejs/adapter-cloudflare";
 import pkg from "./package.json" with { type: "json" };
-import tardisec from "./tardisec.json" with { type: "json" };
+import tardisec from "./.tardisec.sveltekit.json" with { type: "json" };
 
 const domain = process.env.DOMAIN ?? pkg.name;
 const origin = `https://${domain}`;
@@ -11,12 +11,13 @@ const config = {
 		alias: {
 			"@design-system": resolve("../../packages/svelte"),
 			"@components": resolve("./src/components"),
+			"@hooks": resolve("./src/hooks"),
 			"@scripts": resolve("./src/scripts"),
 			"@styles": resolve("./src/styles"),
 			"@examples": resolve("./src/examples"),
 		},
 		appDir: "_",
-		csp: tardisec["svelte.config.js"]["Content-Security-Policy"],
+		csp: tardisec.kit.csp,
 		csrf: {
 			trustedOrigins: [origin],
 		},

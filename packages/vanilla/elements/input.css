@@ -19,13 +19,6 @@ input:where(
 	padding-inline: var(--padding-fixed);
 }
 
-[role="group"]:has(input) {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: var(--gap);
-}
-
 /* Fix size attr width in Firefox - requires: https://bugzilla.mozilla.org/show_bug.cgi?id=435426 */
 /*
 [size] {

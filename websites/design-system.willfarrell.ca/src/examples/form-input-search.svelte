@@ -31,8 +31,8 @@ import Span from "@design-system/elements/span.svelte";
     <FieldHgroupSnippet {label}/>
 {/snippet}
 <Search>
-	<Form method="GET" role="group">
-		<Div>
+	<Form method="GET">
+		<Div class="group">
 			<InputSearch id="q" {labelSnippet} label="Search" />
 			<Button><Icon src="/img/icons.svg#search" /><Span>Search</Span></Button>
 		</Div>
