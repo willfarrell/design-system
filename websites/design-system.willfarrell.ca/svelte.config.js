@@ -1,7 +1,7 @@
 import { resolve } from "node:path";
 import adapter from "@sveltejs/adapter-cloudflare";
-import pkg from "./package.json" with { type: "json" };
 import tardisec from "./.tardisec.sveltekit.json" with { type: "json" };
+import pkg from "./package.json" with { type: "json" };
 
 const domain = process.env.DOMAIN ?? pkg.name;
 const origin = `https://${domain}`;
