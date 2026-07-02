@@ -195,8 +195,14 @@ describe("optimizeStyles", () => {
 			optimizeStyles("src", { iterations: 1 });
 
 			const result = files[`${cwd}/src/style.css`];
-			assert.ok(result.includes("calc(l + 0.5)"), `Expected calc(l + 0.5) preserved: ${result}`);
-			assert.ok(result.includes("calc(l * 0.5)"), `Expected calc(l * 0.5) preserved: ${result}`);
+			assert.ok(
+				result.includes("calc(l + 0.5)"),
+				`Expected calc(l + 0.5) preserved: ${result}`,
+			);
+			assert.ok(
+				result.includes("calc(l * 0.5)"),
+				`Expected calc(l * 0.5) preserved: ${result}`,
+			);
 		});
 
 		it("preserves nested calc(calc(...))", () => {

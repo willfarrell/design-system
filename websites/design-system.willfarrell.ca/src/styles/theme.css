@@ -46,7 +46,8 @@ section.grid:has(.feature) {
 :root {
 	--border-radius: 0.25rem;
 }
-[is="ds-card"], li.card {
+[is="ds-card"],
+li.card {
 	--border-radius: 0.5rem;
 	--border-color: var(--color-l5);
 	/*--shadow-color: var(--color-text);*/

@@ -3,9 +3,8 @@ ul:has(> li > [is="ds-card"]) {
 	padding-inline: 0;
 }
 
-
 [is="ds-card"] {
-    border: var(--border-width) solid var(--border-color, currentColor);
+	border: var(--border-width) solid var(--border-color, currentColor);
 	border-radius: var(--border-radius);
 	display: flex;
 	flex-direction: column;
@@ -13,12 +12,24 @@ ul:has(> li > [is="ds-card"]) {
 	background-color: var(--color-l1);
 
 	box-shadow:
-           0 1px 2px 		light-dark(var(--shadow-color, lightgray), transparent),
-           0 4px 12px 		light-dark(var(--shadow-color, lightgray), transparent),
-           0 12px 32px 		light-dark(var(--shadow-color, lightgray), transparent),
-           inset 0 0 0 1px 	light-dark(transparent, oklch(from var(--glow-color, var(--color-main)) calc(l + 0.5) c h / 0.5)),
-           0 0 16px 	    light-dark(transparent, oklch(from var(--glow-color, var(--color-main)) calc(l + 0.5) c h / 0.3)),
-           0 0 3px 	        light-dark(transparent, oklch(from var(--glow-color, var(--color-main)) calc(l + 0.5) c h / 0.5));
+		0 1px 2px light-dark(var(--shadow-color, lightgray), transparent),
+		0 4px 12px light-dark(var(--shadow-color, lightgray), transparent),
+		0 12px 32px light-dark(var(--shadow-color, lightgray), transparent),
+		inset 0 0 0 1px
+		light-dark(
+			transparent,
+			oklch(from var(--glow-color, var(--color-main)) calc(l + 0.5) c h / 0.5)
+		),
+		0 0 16px
+		light-dark(
+			transparent,
+			oklch(from var(--glow-color, var(--color-main)) calc(l + 0.5) c h / 0.3)
+		),
+		0 0 3px
+		light-dark(
+			transparent,
+			oklch(from var(--glow-color, var(--color-main)) calc(l + 0.5) c h / 0.5)
+		);
 
 	&:defined {
 		cursor: pointer;
@@ -40,9 +51,9 @@ ul:has(> li > [is="ds-card"]) {
 	}
 
 	& .img {
-	    overflow: hidden;
-    	border-start-start-radius: inherit;
-    	border-start-end-radius: inherit;
+		overflow: hidden;
+		border-start-start-radius: inherit;
+		border-start-end-radius: inherit;
 	}
 
 	& .text {
