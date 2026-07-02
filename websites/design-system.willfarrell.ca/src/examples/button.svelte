@@ -6,7 +6,7 @@ import Span from "@design-system/elements/span.svelte";
 </script>
 
 <!-- TODO mention FireFox bug -->
-<Div role="group">
+<Div class="group">
 	<Button>verb</Button>
 	<Button class="force active">verb (active)</Button>
 	<Button class="force focus">verb (focus)</Button>

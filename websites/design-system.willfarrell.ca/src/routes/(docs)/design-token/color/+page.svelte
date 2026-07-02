@@ -573,7 +573,7 @@ const page_ = {
 										</Ul>
 									{/if}
 									<Div
-										role="group"
+										class="group"
 										style="--color-main-bold: {buttonColor[prefersColorScheme][
 											prefersContrast
 										].hex()}"
@@ -728,7 +728,7 @@ const page_ = {
 										<Del>deleted</Del>
 										<Mark>highlighted</Mark></P
 									>
-									<Div role="group">
+									<Div class="group">
 										<Button>button</Button>
 									</Div>
 								</Div>

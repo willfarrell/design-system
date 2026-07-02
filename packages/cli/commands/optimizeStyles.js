@@ -620,6 +620,12 @@ const optimize = (content) => {
 			if (equation.includes(`${fct}(`)) {
 				return rawMatch;
 			}
+			// Bare identifier (not a unit suffix like `1em`) = relative color
+			// channel (`calc(l + 0.5)`) or CSS keyword — mathjs would misread
+			// it as a unit (l = liter), so leave untouched
+			if (/(?<![\d.a-zA-Z])[a-zA-Z]+/.test(equation)) {
+				return rawMatch;
+			}
 			if (fct === "calc") {
 				try {
 					const safeEquation = equation.replace(percentEncodeRegExp, "$1 pct");

@@ -8,6 +8,7 @@ button:has([data-loader]) {
 }
 [data-loader="true"] {
 	margin-inline-start: 0.5rem;
+	margin-block: auto;
 	display: inline-block;
 	inline-size: 1rem;
 	padding: 0.125rem;

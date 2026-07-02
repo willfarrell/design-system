@@ -8,8 +8,10 @@ const is = "ds-form-webauthn-create";
 customElements.define(
 	is,
 	class extends HTMLFormElement {
+	  $pending = false;
 		$submitted = false;
 		$loader = null;
+		$handleSubmit = (event) => this.handleSubmit(event);
 		constructor() {
 			super();
 
@@ -17,14 +19,14 @@ customElements.define(
 			this.$options = JSON.parse(this.$input.getAttribute("data-options"));
 
 			this.$loader = this.querySelector('[data-loader="false"]');
-
-			if (this.$input.getAttribute("autocomplete").includes("webauthn")) {
-				this.handleSubmit();
-			}
 		}
 
 		async handleSubmit(event) {
 			event?.preventDefault();
+			// The focus-deferred auto-start and a submit click can both reach here;
+			// only run one ceremony at a time.
+			if (this.$pending || this.$submitted) return;
+			this.$pending = true;
 			try {
 				const credential = await startRegistration({
 					optionsJSON: this.$options,
@@ -39,15 +41,26 @@ customElements.define(
 			} catch (e) {
 				// clicking `Cancel` triggers error
 				console.error(e);
+			} finally {
+				this.$pending = false;
 			}
 		}
 
 		connectedCallback() {
-			this.addEventListener("submit", this.handleSubmit);
+			this.addEventListener("submit", this.$handleSubmit);
+
+			if (this.$input.getAttribute("autocomplete").includes("webauthn")) {
+				if (document.hasFocus()) {
+					this.$handleSubmit();
+				} else {
+					window.addEventListener("focus", this.$handleSubmit, { once: true });
+				}
+			}
 		}
 
 		disconnectedCallback() {
-			this.removeEventListener("submit", this.handleSubmit);
+			this.removeEventListener("submit", this.$handleSubmit);
+			window.removeEventListener("focus", this.$handleSubmit);
 		}
 	},
 	{ extends: "form" },

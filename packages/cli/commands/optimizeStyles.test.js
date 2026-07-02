@@ -188,6 +188,17 @@ describe("optimizeStyles", () => {
 			);
 		});
 
+		it("preserves calc() with relative color channel keywords", () => {
+			files[`${cwd}/src/style.css`] =
+				"div { color: oklch(from red calc(l + 0.5) c h / 0.5); border-color: oklch(from red calc(l * 0.5) c h); }";
+
+			optimizeStyles("src", { iterations: 1 });
+
+			const result = files[`${cwd}/src/style.css`];
+			assert.ok(result.includes("calc(l + 0.5)"), `Expected calc(l + 0.5) preserved: ${result}`);
+			assert.ok(result.includes("calc(l * 0.5)"), `Expected calc(l * 0.5) preserved: ${result}`);
+		});
+
 		it("preserves nested calc(calc(...))", () => {
 			files[`${cwd}/src/style.css`] = "div { width: calc(calc(1 + 1) + 2); }";
 

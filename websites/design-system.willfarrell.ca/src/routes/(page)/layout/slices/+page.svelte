@@ -75,7 +75,7 @@ import { paragraph } from "@examples/index.js";
 				<H1>Hero slice</H1>
 				<HSub>call to action statement {paragraph.substring(0, 120)}</HSub>
 			</Hgroup>
-			<Div role="group">
+			<Div class="group">
 				<A href="#" class="button">call to action</A>
 			</Div>
 		</Div>
@@ -122,7 +122,7 @@ import { paragraph } from "@examples/index.js";
 				<H1>Hero slice</H1>
 				<HSub>call to action statement {paragraph.substring(0, 120)}</HSub>
 			</Hgroup>
-			<Div role="group">
+			<Div class="group">
 				<A href="#" class="button">call to action</A>
 			</Div>
 		</Div>
