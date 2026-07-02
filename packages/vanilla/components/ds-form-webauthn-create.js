@@ -8,7 +8,7 @@ const is = "ds-form-webauthn-create";
 customElements.define(
 	is,
 	class extends HTMLFormElement {
-	  $pending = false;
+		$pending = false;
 		$submitted = false;
 		$loader = null;
 		$handleSubmit = (event) => this.handleSubmit(event);
