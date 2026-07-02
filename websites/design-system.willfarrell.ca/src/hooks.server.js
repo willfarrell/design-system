@@ -4,7 +4,7 @@ import applyCacheControlMiddleware from "@design-system/hooks/applyCacheControlM
 import removeCommentsMiddleware from "@design-system/hooks/removeCommentsMiddleware.js";
 import removeDuplicateImportMiddleware from "@design-system/hooks/removeDuplicateImportMiddleware.js";
 import removeOnEventsMiddleware from "@design-system/hooks/removeOnEventsMiddleware.js";
-// import tardisecMiddleware from "@hooks/tardisecMiddleware.js";
+import tardisecMiddleware from "@hooks/tardisecMiddleware.js";
 import { sequence } from "@sveltejs/kit/hooks";
 
 // export {init} from '@hooks/init.js'
@@ -14,7 +14,7 @@ export const handle = sequence(
 	// localeMiddleware,
 	// applyContentEncodingMiddleware,
 	applyCacheControlMiddleware,
-	// tardisecMiddleware,
+	tardisecMiddleware,
 	removeCommentsMiddleware,
 	removeOnEventsMiddleware,
 	removeDuplicateImportMiddleware,

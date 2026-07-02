@@ -42,7 +42,7 @@ import Ul from "@design-system/elements/ul.svelte";
             <P
                 >Sematic fluid design</P
             >
-            <Div role="group">
+            <Div class="group">
                 <P>
                     <A href="/docs" class="button"
                         ><Span>Get started</Span>

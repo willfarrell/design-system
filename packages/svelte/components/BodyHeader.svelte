@@ -86,18 +86,31 @@ const url = $derived.by(() => {
 
 <style>
   :global {
-        /*:root{
-                --sticky-header-height: calc(2 * 0.5em + 1em + 2 * 0.5em + 2 * var(--padding-fixed) * 0.54 + 1em + 1.5em);
-            }*/
-        body > header {
-          /*position: sticky;
-                inset-block-start: 0;
-                z-index: 1;*/
+    /* Hidey-bar pattern: relative ot sticky header */
+    html {
+        container-type: scroll-state;
+    }
 
-          /* Ref: https://www.joshwcomeau.com/css/backdrop-filter/ */
+    body > header {
+        @container (not scroll-state(scrolled:none)) {
+            position:sticky;
+            top: 0;
+            transition: translate 0.3s;
+        }
+        @container (scroll-state(scrolled:bottom)) {
+            translate: 0 -100%;
+        }
+        @container (scroll-state(scrolled:top)) {
+            translate: 0 0;
+        }
+    }
+    /* Ref: https://www.joshwcomeau.com/css/backdrop-filter/ */
+    body > header {
           backdrop-filter: blur(16px);
           background: linear-gradient(to bottom, var(--color-l0), transparent 50%);
-
+    }
+    body > header {
+        z-index: 1;
           nav {
             display: flex;
             gap: 1em;
@@ -116,7 +129,7 @@ const url = $derived.by(() => {
               min-inline-size: 0;
             }
 
-            search, search form, search [role="group"] {
+            search, search form, search .group {
               min-inline-size: 0;
             }
 
