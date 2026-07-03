@@ -26,9 +26,7 @@ body {
 	font-size: max(var(--font-size), 18px);
 	font-weight: var(--font-weight, 400);
 	line-height: var(--line-height, 1.5);
-	/* TODO add in when supported - headings, buttons, inputs */
-	/*text-box-trim: trim-start;
-    text-box-edge: cap alphabetic;*/
+	/* text-box: set per element (h1-h6, hgroup) — doesn't inherit, so no body default. TODO buttons, inputs */
 	overflow-wrap: break-word;
 	scroll-behavior: smooth;
 	-webkit-font-smoothing: antialiased;

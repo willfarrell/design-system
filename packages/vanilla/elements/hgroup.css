@@ -6,8 +6,3 @@ hgroup > [aria-roledescription="subtitle"] {
 	margin-block: 0;
 	max-inline-size: 60ch;
 }
-
-hgroup > h1 {
-	text-box-trim: trim-both;
-	text-box-edge: cap text;
-}
