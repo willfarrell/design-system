@@ -75,7 +75,9 @@
 		"tstyche": "^7.0.0"
 	},
 	"overrides": {
-		"cookie": ">=0.7.2",
+		"@sveltejs/kit": {
+			"cookie": "^0.7.2"
+		},
 		"esbuild": ">=0.28.1",
 		"mathjs": ">=15.2.0",
 		"ws": ">=8.21.0"

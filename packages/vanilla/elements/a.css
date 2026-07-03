@@ -15,7 +15,7 @@ a:focus-visible {
 /* target-current for scrollspy */
 a:active,
 a[aria-current="page"],
-a::target-current {
+a:target-current {
 	color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
 	text-decoration: underline solid 0.4em
 		color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
