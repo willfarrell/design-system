@@ -10,8 +10,12 @@ button {
 	text-align: center;
 	/* flex-grow: 1; */
 	border: var(--border-width) solid var(--border-color, var(--color-main-bold));
-	padding-block: calc(var(--padding-fixed) * 0.54);
-	padding-inline: var(--padding-fixed);
+	padding: var(--padding-fixed);
+	padding-block:  calc(var(--padding-fixed) * 0.54);
+	@supports (text-box: trim-both cap alphabetic) {
+		text-box: trim-both cap alphabetic;
+		padding-block: var(--padding-fixed);
+	}
 
 	white-space: nowrap;
 
