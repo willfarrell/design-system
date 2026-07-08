@@ -8,4 +8,7 @@ h1 {
 	max-inline-size: 60ch;
 
 	text-box: trim-both cap alphabetic;
+	@supports (text-box: trim-both cap alphabetic) {
+	    padding-block: calc((1lh - 1cap) / 2);
+	}
 }

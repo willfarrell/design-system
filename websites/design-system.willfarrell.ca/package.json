@@ -16,8 +16,6 @@
 		"test:e2e:update": "playwright test --update-snapshots",
 		"test:e2e:dev": "playwright test --ui",
 		"test:e2e:new": "playwright codegen https://localhost:5173",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
-		"format": "prettier --plugin-search-dir . --write .",
 		"release:login": "wrangler login --browser false",
 		"release:deploy": "wrangler deploy"
 	},

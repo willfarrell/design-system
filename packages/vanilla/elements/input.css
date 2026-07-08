@@ -5,6 +5,7 @@ input {
 	border: var(--border-width) solid var(--border-color, currentColor);
 	color: var(--color-text);
 	background: transparent;
+	max-inline-size: 100%;
 }
 
 input:where(

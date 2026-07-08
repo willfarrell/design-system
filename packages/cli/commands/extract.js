@@ -100,6 +100,10 @@ const addJSAttr = (key, value) => {
 	} else if (key === "is") {
 		indexes.pewc[value] ??= 0;
 		indexes.pewc[value] += 1;
+	} else if (key === "type") {
+		const k = `input[type=${value}]`;
+		indexes.tags[k] ??= 0;
+		indexes.tags[k] += 1;
 	} else if (key === "role") {
 		indexes.roles[`[role=${value}]`] ??= 0;
 		indexes.roles[`[role=${value}]`] += 1;

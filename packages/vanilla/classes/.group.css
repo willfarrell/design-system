@@ -12,4 +12,10 @@
 			align-self: flex-end;
 		}
 	}
+	/*&:has(:interest-source) [interestfor] {
+	  interest-delay-start: 0s;
+	}*/
 }
+/*[interestfor] {
+  interest-delay-start: 0.3s;
+}*/

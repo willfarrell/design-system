@@ -11,7 +11,7 @@ button {
 	/* flex-grow: 1; */
 	border: var(--border-width) solid var(--border-color, var(--color-main-bold));
 	padding: var(--padding-fixed);
-	padding-block:  calc(var(--padding-fixed) * 0.54);
+	padding-block: calc(var(--padding-fixed) * 0.54);
 	@supports (text-box: trim-both cap alphabetic) {
 		text-box: trim-both cap alphabetic;
 		padding-block: var(--padding-fixed);
@@ -38,6 +38,10 @@ button:focus-visible {
 		var(--color-main-bold-pseudo) 12%,
 		var(--color-main-bold)
 	);
+}
+
+button:active {
+    scale: 0.95;
 }
 
 td:has(.button) {
