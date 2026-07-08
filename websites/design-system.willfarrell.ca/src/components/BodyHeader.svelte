@@ -19,7 +19,11 @@ import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-input-focus.j
 import { page } from "$app/state";
 
 const data = $derived.by(() => {
-	try { return page.data; } catch { return {}; }
+	try {
+		return page.data;
+	} catch {
+		return {};
+	}
 });
 
 const navTopLinks = $derived.by(() => ({
@@ -56,7 +60,7 @@ const navPrimary = null; //{};
     {#snippet end()}
         <Search>
         <Form method="GET" action="/search">
-           	<Div role="group">
+           	<Div class="group">
 					<InputSearch id="q" aria-label="Search" placeholder="Search ⌘+K" size="18" is="ds-input-focus" data-keys="$mod+K" />
 					<!-- <Code>&#8984;</Code><Code>K</Code> -->
 					<Button type="submit"><Icon src="/img/icons.svg#search" /><Span class="visually-hidden">Search</Span></Button>

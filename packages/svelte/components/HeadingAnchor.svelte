@@ -1,6 +1,6 @@
 <script>
-    import A from "../elements/a.svelte";
-    import Span from "../elements/span.svelte";
+import A from "../elements/a.svelte";
+import Span from "../elements/span.svelte";
 
 const { id } = $props();
 </script>

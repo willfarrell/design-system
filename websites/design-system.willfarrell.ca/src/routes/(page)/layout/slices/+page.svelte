@@ -75,7 +75,7 @@ import { paragraph } from "@examples/index.js";
 				<H1>Hero slice</H1>
 				<HSub>call to action statement {paragraph.substring(0, 120)}</HSub>
 			</Hgroup>
-			<Div role="group">
+			<Div class="group">
 				<A href="#" class="button">call to action</A>
 			</Div>
 		</Div>
@@ -122,7 +122,7 @@ import { paragraph } from "@examples/index.js";
 				<H1>Hero slice</H1>
 				<HSub>call to action statement {paragraph.substring(0, 120)}</HSub>
 			</Hgroup>
-			<Div role="group">
+			<Div class="group">
 				<A href="#" class="button">call to action</A>
 			</Div>
 		</Div>
@@ -159,108 +159,108 @@ import { paragraph } from "@examples/index.js";
 
 <style global>
 	.container-slices {
-		display: flex;
-		flex-direction: column;
-
-		& section {
-			position: relative;
-			display: flex;
-			flex-direction: column;
-			--block-padding: 5vw;
-			--inline-padding: var(--padding-page-inline);
-			--gap-padding: max(1rem, 5vw);
-
-			/* background image for entire slice */
-			& > picture {
-				position: absolute;
-				inset-block-start: 0px;
-				inset-inline-start: 0px;
-				inline-size: 100%;
-				block-size: 100%;
-				z-index: -1;
-				& img {
-					object-fit: cover;
-				}
-			}
-
-			/* slice types */
-			&.hero {
-				/*& > div {
-					block-size: 20vh; /* required for shape-outside *
-				}
-				& > div:before {
-					content: '';
-					inline-size: 75%;
-					block-size: 100%;
-					shape-outside: polygon(0 100%, 100% 0, 100% 100%);
-					float: right;
-
-					background-color: lightblue;
-					clip-path: polygon(0 100%, 100% 0, 100% 100%);
-				}*/
-				[role='group'] {
-					margin-block-start: 1rem;
-				}
-			}
-			&.horizontal,
-			&.vertical {
-				padding: var(--block-padding) var(--inline-padding);
-			}
-			/* Can be nested inside vertical */
-			&.horizontal,
-			& .horizontal {
 				display: flex;
-				flex-direction: row;
-				flex-wrap: wrap;
-				gap: var(--gap-padding);
-				& > div {
-					min-inline-size: min(30ch, 100%);
-					inline-size: calc(50% - var(--gap-padding) / 2);
-					overflow-wrap: anywhere;
-				}
-			}
+				flex-direction: column;
 
-			/* ## layout overrides ## */
-			& > .inline-start {
-				text-align: start;
-				justify-items: start;
-			}
-			& > .inline-center {
-				text-align: center;
-				justify-items: center;
-			}
-			& > .inline-end {
-				text-align: end;
-				justify-items: end;
-			}
-			& > .block-start {
-				margin-block: 0 auto;
-			}
-			& > .block-middle {
-				margin-block: auto;
-			}
-			& > .block-end {
-				margin-block: auto 0;
-			}
-			& > .background-img {
-				& > picture {
-					& > img {
-						object-fit: cover;
+				& section {
+					position: relative;
+					display: flex;
+					flex-direction: column;
+					--block-padding: 5vw;
+					--inline-padding: var(--padding-page-inline);
+					--gap-padding: max(1rem, 5vw);
+
+					/* background image for entire slice */
+					& > picture {
+						position: absolute;
+						inset-block-start: 0px;
+						inset-inline-start: 0px;
+						inline-size: 100%;
 						block-size: 100%;
+						z-index: -1;
+						& img {
+							object-fit: cover;
+						}
+					}
+
+					/* slice types */
+					&.hero {
+						/*& > div {
+							block-size: 20vh; /* required for shape-outside *
+						}
+						& > div:before {
+							content: '';
+							inline-size: 75%;
+							block-size: 100%;
+							shape-outside: polygon(0 100%, 100% 0, 100% 100%);
+							float: right;
+
+							background-color: lightblue;
+							clip-path: polygon(0 100%, 100% 0, 100% 100%);
+						}*/
+						[role='group'] {
+							margin-block-start: 1rem;
+						}
+					}
+					&.horizontal,
+					&.vertical {
+						padding: var(--block-padding) var(--inline-padding);
+					}
+					/* Can be nested inside vertical */
+					&.horizontal,
+					& .horizontal {
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						gap: var(--gap-padding);
+						& > div {
+							min-inline-size: min(30ch, 100%);
+							inline-size: calc(50% - var(--gap-padding) / 2);
+							overflow-wrap: anywhere;
+						}
+					}
+
+					/* ## layout overrides ## */
+					& > .inline-start {
+						text-align: start;
+						justify-items: start;
+					}
+					& > .inline-center {
+						text-align: center;
+						justify-items: center;
+					}
+					& > .inline-end {
+						text-align: end;
+						justify-items: end;
+					}
+					& > .block-start {
+						margin-block: 0 auto;
+					}
+					& > .block-middle {
+						margin-block: auto;
+					}
+					& > .block-end {
+						margin-block: auto 0;
+					}
+					& > .background-img {
+						& > picture {
+							& > img {
+								object-fit: cover;
+								block-size: 100%;
+							}
+						}
+					}
+
+					& > .grid {
+						list-style: none;
+						padding-inline: 0;
+
+						& > li.card {
+							border: var(--border-width) solid var(--border-color, currentColor);
+							border-radius: var(--border-radius);
+							padding: var(--padding-fixed);
+						}
 					}
 				}
 			}
-
-			& > .grid {
-				list-style: none;
-				padding-inline: 0;
-
-				& > li.card {
-					border: var(--border-width) solid var(--border-color, currentColor);
-					border-radius: var(--border-radius);
-					padding: var(--padding-fixed);
-				}
-			}
-		}
-	}
 </style>

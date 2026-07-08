@@ -1,9 +1,9 @@
 <script>
-    import { pascalCase } from "change-case";
+import { pascalCase } from "change-case";
 
-    const makeVariableComponent = (component) => {
+const makeVariableComponent = (component) => {
 	return `Variable${pascalCase(component)}`;
-    };
+};
 
 const { component, ...props } = $props();
 const components = {

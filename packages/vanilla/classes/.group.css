@@ -1,0 +1,21 @@
+.group {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--gap);
+
+	&:has(button, a.button) {
+		align-items: baseline;
+
+		& button,
+		& a.button {
+			align-self: flex-end;
+		}
+	}
+	/*&:has(:interest-source) [interestfor] {
+	  interest-delay-start: 0s;
+	}*/
+}
+/*[interestfor] {
+  interest-delay-start: 0.3s;
+}*/

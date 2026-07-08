@@ -22,74 +22,298 @@ const page = {
 };
 
 const designTokens = [
-	{ href: "/design-token/typography", title: "Typography", description: "Font family, size, weight, and line-height configuration" },
-	{ href: "/design-token/font-size", title: "Font size", description: "Responsive typography scale with fluid sizing" },
-	{ href: "/design-token/font-weight", title: "Font weight", description: "Font weight values and usage guidelines" },
+	{
+		href: "/design-token/typography",
+		title: "Typography",
+		description: "Font family, size, weight, and line-height configuration",
+	},
+	{
+		href: "/design-token/font-size",
+		title: "Font size",
+		description: "Responsive typography scale with fluid sizing",
+	},
+	{
+		href: "/design-token/font-weight",
+		title: "Font weight",
+		description: "Font weight values and usage guidelines",
+	},
 ];
 
 const text = [
-	{ href: "/text/headings", title: "Headings", description: "Heading hierarchy for document structure" },
-	{ href: "/text/heading-group", title: "Heading group", description: "Pair headings with subtitles using hgroup" },
-	{ href: "/text/paragraph", title: "Paragraphs", description: "Block text with relative font sizing" },
-	{ href: "/text/links", title: "Links", description: "Navigation links with semantic HTML" },
-	{ href: "/text/inline-style", title: "Style inline elements", description: "Semantic elements for emphasis and styling" },
-	{ href: "/text/inline-format", title: "Style format elements", description: "Editorial marks for deletions, insertions, and highlights" },
-	{ href: "/text/list-ol", title: "List (ordered)", description: "Sequenced lists with screen reader semantics" },
-	{ href: "/text/list-ul", title: "List (unordered)", description: "Unordered lists without inherent sequence" },
-	{ href: "/text/list-dl", title: "List (description)", description: "Description lists for glossaries and key-value pairs" },
-	{ href: "/text/address", title: "Address", description: "Contact information with semantic markup" },
-	{ href: "/text/details", title: "Disclosure", description: "Show/hide content with disclosure widget" },
-	{ href: "/text/accordion", title: "Accordion", description: "Grouped disclosure sections with exclusive open states" },
-	{ href: "/text/blockquote", title: "Blockquote", description: "Extended quotations with attribution" },
-	{ href: "/text/callout", title: "Callout", description: "Supplementary information boxes" },
-	{ href: "/text/alert", title: "Alert", description: "Urgent messages announced via live regions" },
-	{ href: "/text/table", title: "Table", description: "Tabular data with header scoping and accessibility" },
-	{ href: "/text/footnotes", title: "Footnotes", description: "Supplementary references linked within content" },
-	{ href: "/text/horizontal-rule", title: "Horizontal rule", description: "Thematic breaks between content sections" },
+	{
+		href: "/text/headings",
+		title: "Headings",
+		description: "Heading hierarchy for document structure",
+	},
+	{
+		href: "/text/heading-group",
+		title: "Heading group",
+		description: "Pair headings with subtitles using hgroup",
+	},
+	{
+		href: "/text/paragraph",
+		title: "Paragraphs",
+		description: "Block text with relative font sizing",
+	},
+	{
+		href: "/text/links",
+		title: "Links",
+		description: "Navigation links with semantic HTML",
+	},
+	{
+		href: "/text/inline-style",
+		title: "Style inline elements",
+		description: "Semantic elements for emphasis and styling",
+	},
+	{
+		href: "/text/inline-format",
+		title: "Style format elements",
+		description: "Editorial marks for deletions, insertions, and highlights",
+	},
+	{
+		href: "/text/list-ol",
+		title: "List (ordered)",
+		description: "Sequenced lists with screen reader semantics",
+	},
+	{
+		href: "/text/list-ul",
+		title: "List (unordered)",
+		description: "Unordered lists without inherent sequence",
+	},
+	{
+		href: "/text/list-dl",
+		title: "List (description)",
+		description: "Description lists for glossaries and key-value pairs",
+	},
+	{
+		href: "/text/address",
+		title: "Address",
+		description: "Contact information with semantic markup",
+	},
+	{
+		href: "/text/details",
+		title: "Disclosure",
+		description: "Show/hide content with disclosure widget",
+	},
+	{
+		href: "/text/accordion",
+		title: "Accordion",
+		description: "Grouped disclosure sections with exclusive open states",
+	},
+	{
+		href: "/text/blockquote",
+		title: "Blockquote",
+		description: "Extended quotations with attribution",
+	},
+	{
+		href: "/text/callout",
+		title: "Callout",
+		description: "Supplementary information boxes",
+	},
+	{
+		href: "/text/alert",
+		title: "Alert",
+		description: "Urgent messages announced via live regions",
+	},
+	{
+		href: "/text/table",
+		title: "Table",
+		description: "Tabular data with header scoping and accessibility",
+	},
+	{
+		href: "/text/footnotes",
+		title: "Footnotes",
+		description: "Supplementary references linked within content",
+	},
+	{
+		href: "/text/horizontal-rule",
+		title: "Horizontal rule",
+		description: "Thematic breaks between content sections",
+	},
 ];
 
 const form = [
-	{ href: "/form/errors", title: "Errors", description: "Validation messages associated with form fields" },
-	{ href: "/form/buttons", title: "Button", description: "In-page actions using native button elements" },
-	{ href: "/form/input-text", title: "Text", description: "Single-line text input with visible labels" },
-	{ href: "/form/input-name", title: "Name", description: "Name inputs with autocomplete support" },
-	{ href: "/form/input-email", title: "Email address", description: "Email field with optimized mobile keyboard" },
-	{ href: "/form/input-tel", title: "Telephone number", description: "Telephone input with dial pad on mobile" },
-	{ href: "/form/input-url", title: "URL", description: "URL field with format validation" },
-	{ href: "/form/input-password", title: "Password", description: "Masked text with show/hide toggle" },
-	{ href: "/form/input-webauthn", title: "WebAuthn", description: "Passwordless authentication inputs" },
-	{ href: "/form/input-date", title: "Date", description: "Native date picker with calendar widget" },
-	{ href: "/form/input-address", title: "Address", description: "Grouped address fields in a fieldset" },
-	{ href: "/form/input-textarea", title: "Textarea", description: "Multi-line text input for longer content" },
-	{ href: "/form/input-number", title: "Number", description: "Numeric input with increment/decrement controls" },
-	{ href: "/form/input-one-time-code", title: "One time code", description: "Verification code input with SMS autofill" },
-	{ href: "/form/input-select", title: "Select", description: "Native dropdown list with minimal styling" },
-	{ href: "/form/input-radio", title: "Radios", description: "Single-selection option group in a fieldset" },
-	{ href: "/form/input-checkbox", title: "Checkboxes", description: "Multi-selection checkboxes or toggle switches" },
-	{ href: "/form/input-file", title: "File", description: "Browser-native file picker control" },
-	{ href: "/form/input-search", title: "Search", description: "Search field with clear button" },
+	{
+		href: "/form/errors",
+		title: "Errors",
+		description: "Validation messages associated with form fields",
+	},
+	{
+		href: "/form/buttons",
+		title: "Button",
+		description: "In-page actions using native button elements",
+	},
+	{
+		href: "/form/input-text",
+		title: "Text",
+		description: "Single-line text input with visible labels",
+	},
+	{
+		href: "/form/input-name",
+		title: "Name",
+		description: "Name inputs with autocomplete support",
+	},
+	{
+		href: "/form/input-email",
+		title: "Email address",
+		description: "Email field with optimized mobile keyboard",
+	},
+	{
+		href: "/form/input-tel",
+		title: "Telephone number",
+		description: "Telephone input with dial pad on mobile",
+	},
+	{
+		href: "/form/input-url",
+		title: "URL",
+		description: "URL field with format validation",
+	},
+	{
+		href: "/form/input-password",
+		title: "Password",
+		description: "Masked text with show/hide toggle",
+	},
+	{
+		href: "/form/input-webauthn",
+		title: "WebAuthn",
+		description: "Passwordless authentication inputs",
+	},
+	{
+		href: "/form/input-date",
+		title: "Date",
+		description: "Native date picker with calendar widget",
+	},
+	{
+		href: "/form/input-address",
+		title: "Address",
+		description: "Grouped address fields in a fieldset",
+	},
+	{
+		href: "/form/input-textarea",
+		title: "Textarea",
+		description: "Multi-line text input for longer content",
+	},
+	{
+		href: "/form/input-number",
+		title: "Number",
+		description: "Numeric input with increment/decrement controls",
+	},
+	{
+		href: "/form/input-one-time-code",
+		title: "One time code",
+		description: "Verification code input with SMS autofill",
+	},
+	{
+		href: "/form/input-select",
+		title: "Select",
+		description: "Native dropdown list with minimal styling",
+	},
+	{
+		href: "/form/input-radio",
+		title: "Radios",
+		description: "Single-selection option group in a fieldset",
+	},
+	{
+		href: "/form/input-checkbox",
+		title: "Checkboxes",
+		description: "Multi-selection checkboxes or toggle switches",
+	},
+	{
+		href: "/form/input-file",
+		title: "File",
+		description: "Browser-native file picker control",
+	},
+	{
+		href: "/form/input-search",
+		title: "Search",
+		description: "Search field with clear button",
+	},
 ];
 
 const components = [
-	{ href: "/component/dialog", title: "Dialog", description: "Modal overlay using native dialog element" },
-	{ href: "/component/task-list", title: "Task list", description: "Checklist with completion states" },
-	{ href: "/component/card", title: "Card", description: "Container grouping related content and actions" },
-	{ href: "/component/badge", title: "Badge", description: "Inline label for counts or status" },
-	{ href: "/component/tag", title: "Tag", description: "Keyword label for categorization" },
-	{ href: "/component/icon", title: "Icon", description: "SVG icon from sprite sheet" },
-	{ href: "/component/popover", title: "Popover", description: "Non-modal overlay using HTML popover attribute" },
-	{ href: "/component/data-bytes", title: "DataBytes", description: "File size formatter with locale-aware units" },
-	{ href: "/component/data-number", title: "DataNumber", description: "Numeric formatter with locale-aware styles" },
-	{ href: "/component/data-time", title: "DataTime", description: "Date/time formatter with semantic time element" },
-	{ href: "/component/data-enum", title: "DataEnum", description: "Value-to-label mapper for enums and statuses" },
+	{
+		href: "/component/dialog",
+		title: "Dialog",
+		description: "Modal overlay using native dialog element",
+	},
+	{
+		href: "/component/task-list",
+		title: "Task list",
+		description: "Checklist with completion states",
+	},
+	{
+		href: "/component/card",
+		title: "Card",
+		description: "Container grouping related content and actions",
+	},
+	{
+		href: "/component/badge",
+		title: "Badge",
+		description: "Inline label for counts or status",
+	},
+	{
+		href: "/component/tag",
+		title: "Tag",
+		description: "Keyword label for categorization",
+	},
+	{
+		href: "/component/icon",
+		title: "Icon",
+		description: "SVG icon from sprite sheet",
+	},
+	{
+		href: "/component/popover",
+		title: "Popover",
+		description: "Non-modal overlay using HTML popover attribute",
+	},
+	{
+		href: "/component/data-bytes",
+		title: "DataBytes",
+		description: "File size formatter with locale-aware units",
+	},
+	{
+		href: "/component/data-number",
+		title: "DataNumber",
+		description: "Numeric formatter with locale-aware styles",
+	},
+	{
+		href: "/component/data-time",
+		title: "DataTime",
+		description: "Date/time formatter with semantic time element",
+	},
+	{
+		href: "/component/data-enum",
+		title: "DataEnum",
+		description: "Value-to-label mapper for enums and statuses",
+	},
 ];
 
 const layouts = [
-	{ href: "/layout/article", title: "Article", description: "Center-focused single-column template" },
-	{ href: "/layout/documentation", title: "Documentation", description: "Two-column with sidebar and table of contents" },
-	{ href: "/layout/form", title: "Form", description: "Full-viewport form with centered content" },
-	{ href: "/layout/search", title: "Search", description: "Aside-based layout with filters and results" },
-	{ href: "/layout/slices", title: "Slices", description: "Full-width hero sections and content blocks" },
+	{
+		href: "/layout/article",
+		title: "Article",
+		description: "Center-focused single-column template",
+	},
+	{
+		href: "/layout/documentation",
+		title: "Documentation",
+		description: "Two-column with sidebar and table of contents",
+	},
+	{
+		href: "/layout/form",
+		title: "Form",
+		description: "Full-viewport form with centered content",
+	},
+	{
+		href: "/layout/search",
+		title: "Search",
+		description: "Aside-based layout with filters and results",
+	},
+	{
+		href: "/layout/slices",
+		title: "Slices",
+		description: "Full-width hero sections and content blocks",
+	},
 ];
 </script>
 

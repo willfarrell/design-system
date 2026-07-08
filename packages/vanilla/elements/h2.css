@@ -7,8 +7,10 @@ h2 {
 	margin-block: 0;
 	max-inline-size: 60ch;
 
-	/*text-box-trim: trim-start;
-    text-box-edge: cap alphabetic;*/
+	text-box: trim-both cap alphabetic;
+	@supports (text-box: trim-both cap alphabetic) {
+		padding-block: calc((1lh - 1cap) / 2);
+	}
 }
 
 h2[id] a {
@@ -18,7 +20,8 @@ h2[id] a {
 	text-align: end;
 }
 
-@media (min-width: 40em) {
+/* hang into the aside gutter only when .container-aside actually shows it */
+@container container-aside (width >= 53em) {
 	h2[id] a {
 		inset-inline-end: auto;
 		inset-inline-start: -1.3em;

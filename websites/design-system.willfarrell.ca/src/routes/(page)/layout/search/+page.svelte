@@ -77,7 +77,7 @@ const results = new Array(24).fill("x").map((x, i) => {
 	{#snippet aside()}
 		<Search>
 			<Form method="GET">
-				<Div role="group">
+				<Div class="group">
 					<InputSearch id="q" label="Search" size="18" />
 					<Button
 						><Icon src="/img/icons.svg#search" /><Span class="visually-hidden">Search</Span></Button
@@ -137,12 +137,12 @@ const results = new Array(24).fill("x").map((x, i) => {
 
 <style global>
 	.container-results {
-		max-inline-size: 60em;
-		inline-size: 100%;
+				max-inline-size: 60em;
+				inline-size: 100%;
 
-		.grid {
-			--grid-gap: 1em;
-			--grid-min-width: 30ch;
-		}
-	}
+				.grid {
+					--grid-gap: 1em;
+					--grid-min-width: 30ch;
+				}
+			}
 </style>

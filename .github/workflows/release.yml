@@ -13,6 +13,10 @@ env:
 permissions:
   contents: read
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   build:
     name: Build
@@ -24,8 +28,15 @@ jobs:
       id-token: write # actions/attest-build-provenance
       attestations: write # actions/attest-build-provenance
     steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+        with:
+          egress-policy: audit
+          disable-telemetry: true
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
       - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
@@ -35,19 +46,27 @@ jobs:
         run: |
           tag=$(npm pkg get version | xargs)
           echo "tag=${tag}" >> "$GITHUB_ENV"
-          echo "prerelease=$([ ${tag##*-*} ] && echo false || echo true)" >> "$GITHUB_ENV"
+          echo "prerelease=$([ "${tag##*-*}" ] && echo false || echo true)" >> "$GITHUB_ENV"
       - name: Install dependencies
         run: |
           npm ci --ignore-scripts
+      - name: Verify dependency signatures
+        run: |
+          npm audit signatures
       - name: Build
         run: |
           npm run build --if-present
       - name: Pack
         id: pack
         run: |
+          # Pack only public workspaces. `npm pack --workspaces` would also pack the
+          # private websites/* and .github workspaces, risking their publication.
+          mapfile -t args < <(
+            npm query '.workspace' | node -e 'for (const w of JSON.parse(require("node:fs").readFileSync(0, "utf8"))) if (!w.private) { console.log("--workspace"); console.log(w.location) }'
+          )
           {
             echo "packages<<EOF"
-            npm pack --workspaces --json
+            npm pack "${args[@]}" --json
             echo EOF
           } >> "$GITHUB_OUTPUT"
       - name: Build Attestations
@@ -74,8 +93,13 @@ jobs:
     permissions:
       contents: write # softprops/action-gh-release
     steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+        with:
+          egress-policy: audit
+          disable-telemetry: true
       - name: Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0 # zizmor: ignore[cache-poisoning] no cache configured (no `cache:` input); reconsider if caching is added
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: https://registry.npmjs.org
@@ -85,7 +109,7 @@ jobs:
           name: ${{ needs.build.outputs.tag }}
       - name: Release
         # Replaces actions/create-release & actions/upload-release-asset (deprecated)
-        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0
+        uses: softprops/action-gh-release@a06a81a03ee405af7f2048a818ed3f03bbf83c7b # v2.5.0 # zizmor: ignore[superfluous-actions] prefer maintained action over inline `gh release` script
         with:
           draft: true
           prerelease: ${{ needs.build.outputs.prerelease }}
@@ -106,7 +130,13 @@ jobs:
     permissions:
       contents: read
       id-token: write # npm publish
+      attestations: read # gh attestation verify
     steps:
+      - name: Harden runner
+        uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+        with:
+          egress-policy: audit
+          disable-telemetry: true
       - name: Setup Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
         with:
@@ -116,6 +146,11 @@ jobs:
         uses: actions/download-artifact@70fc10c6e5e1ce46ad2ea6f2b72d43f7d47b13c3 # 8.0.0
         with:
           name: ${{ needs.release.outputs.tag }}
+      - name: Verify build provenance attestation
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          find . -name '*.tgz' -print -exec gh attestation verify {} --repo ${{ github.repository }} \;
       - name: npm publish (next)
         if: ${{ needs.release.outputs.prerelease == 'true' }}
         run: |

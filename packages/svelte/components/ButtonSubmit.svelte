@@ -6,7 +6,7 @@ import Span from "../elements/span.svelte";
 const { children, labelLoading = "Loading...", ...props } = $props();
 </script>
 
-<Div role="group">
+<Div class="group">
   <Button type="submit" {...props}>
     {@render children?.()}
   </Button>

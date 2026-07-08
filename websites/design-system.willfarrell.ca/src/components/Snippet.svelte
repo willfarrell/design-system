@@ -36,19 +36,19 @@ const html = $derived.by(() => {
 
 <style>
 	:global(.snippet) {
-		/* border: var(--border-width) solid currentColor; */
-		padding: var(--padding-fixed) 0;
+				/* border: var(--border-width) solid currentColor; */
+				padding: var(--padding-fixed) 0;
 
-		:global(footer) {
-			margin-block-start: var(--padding-fixed);
-		}
+				:global(footer) {
+					margin-block-start: var(--padding-fixed);
+				}
 
-		:global(iframe) {
-			border: var(--border-width) solid var(--border-color, currentColor);
-			inline-size: 100%;
-			block-size: 15em;
-			resize: both;
-			overflow: auto;
-		}
-	}
+				:global(iframe) {
+					border: var(--border-width) solid var(--border-color, currentColor);
+					inline-size: 100%;
+					block-size: 15em;
+					resize: both;
+					overflow: auto;
+				}
+			}
 </style>

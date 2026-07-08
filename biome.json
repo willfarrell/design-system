@@ -1,5 +1,5 @@
 {
-	"$schema": "https://biomejs.dev/schemas/2.4.8/schema.json",
+	"$schema": "https://biomejs.dev/schemas/2.5.0/schema.json",
 	"vcs": {
 		"enabled": true,
 		"clientKind": "git",
@@ -16,7 +16,7 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"recommended": true,
+			"preset": "recommended",
 			"complexity": {
 				"noBannedTypes": "off"
 			},
@@ -46,10 +46,39 @@
 	},
 	"overrides": [
 		{
+			"includes": ["**/*.svg"],
+			"linter": {
+				"rules": {
+					"a11y": {
+						"noSvgWithoutTitle": "warn"
+					}
+				}
+			}
+		},
+		{
 			"includes": ["**/*.svelte"],
 			"css": {
 				"linter": {
 					"enabled": false
+				}
+			},
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noAssignInExpressions": "off"
+					},
+					"a11y": {
+						"noHeaderScope": "off",
+						"noAutofocus": "off",
+						"useSemanticElements": "warn",
+						"useValidAriaValues": "warn",
+						"noNoninteractiveTabindex": "warn",
+						"useValidAnchor": "warn",
+						"noLabelWithoutControl": "warn"
+					},
+					"style": {
+						"noDescendingSpecificity": "off"
+					}
 				}
 			}
 		}

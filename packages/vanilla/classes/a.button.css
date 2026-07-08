@@ -13,7 +13,12 @@ a.button {
 	text-align: center;
 	/* flex-grow: 1; */
 	border: var(--border-width) solid var(--border-color, var(--color-main-bold));
-	padding: calc(var(--padding-fixed) * 0.54) var(--padding-fixed);
+	padding: var(--padding-fixed);
+	padding-block: calc(var(--padding-fixed) * 0.54);
+	@supports (text-box: trim-both cap alphabetic) {
+		text-box: trim-both cap alphabetic;
+		padding-block: var(--padding-fixed);
+	}
 
 	white-space: nowrap;
 
@@ -38,21 +43,13 @@ a.button:focus-visible {
 	);
 }
 
+a.button:active {
+	scale: 0.95;
+}
+
 @media (forced-colors: active) {
 	a.button {
 		background-color: transparent;
 		border-color: ButtonText;
-	}
-}
-
-[role="group"]:has(a.button) {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: var(--gap);
-	align-items: baseline;
-
-	& a.button {
-		align-self: flex-end;
 	}
 }

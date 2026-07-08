@@ -1,6 +1,6 @@
 <script>
-    import P from "../elements/p.svelte";
-    import Section from "../elements/section.svelte";
+import P from "../elements/p.svelte";
+import Section from "../elements/section.svelte";
 
 let {
 	children,

@@ -10,8 +10,12 @@ button {
 	text-align: center;
 	/* flex-grow: 1; */
 	border: var(--border-width) solid var(--border-color, var(--color-main-bold));
+	padding: var(--padding-fixed);
 	padding-block: calc(var(--padding-fixed) * 0.54);
-	padding-inline: var(--padding-fixed);
+	@supports (text-box: trim-both cap alphabetic) {
+		text-box: trim-both cap alphabetic;
+		padding-block: var(--padding-fixed);
+	}
 
 	white-space: nowrap;
 
@@ -36,16 +40,8 @@ button:focus-visible {
 	);
 }
 
-[role="group"]:has(button) {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	gap: var(--gap);
-	align-items: baseline;
-
-	& button {
-		align-self: flex-end;
-	}
+button:active {
+	scale: 0.95;
 }
 
 td:has(.button) {

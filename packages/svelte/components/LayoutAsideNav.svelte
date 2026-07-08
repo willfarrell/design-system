@@ -11,7 +11,11 @@ import Ul from "../elements/ul.svelte";
 
 const { children, top, nav } = $props();
 const url = $derived.by(() => {
-	try { return page.url; } catch { return { pathname: '', hash: '' }; }
+	try {
+		return page.url;
+	} catch {
+		return { pathname: "", hash: "" };
+	}
 });
 
 /*

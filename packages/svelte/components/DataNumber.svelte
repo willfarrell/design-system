@@ -10,7 +10,11 @@ const getLocalizedNumber = (value, locale, options = {}) => {
 };
 
 const locale = $derived.by(() => {
-	try { return page.locale; } catch { return undefined; }
+	try {
+		return page.locale;
+	} catch {
+		return undefined;
+	}
 });
 const label = $derived(getLocalizedNumber(value, locale, props));
 </script>

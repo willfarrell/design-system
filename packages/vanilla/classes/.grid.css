@@ -8,7 +8,7 @@
 	gap: var(--grid-gap);
 	grid-template-columns: repeat(
 			auto-fit,
-			minmax(var(--grid-min-width, 100%), 1fr)
+			minmax(min(var(--grid-min-width, 100%), 100%), 1fr)
 		);
 	inline-size: 100%;
 }
