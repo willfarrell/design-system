@@ -8,14 +8,14 @@
 
 // https://github.com/developit/mitt
 
-const signals = {};
+const signals = Object.create(null);
 
 export const createSignal = (id, { value, store } = {}) => {
 	store ??= storeMemory;
 	signals[id] ??= { callbacks: [] };
 	signals[id].value = store(id, value);
 	// for those that listen first
-	boradcast(id);
+	broadcast(id);
 };
 
 export const listenSignal = (id, callback) => {
@@ -39,11 +39,11 @@ export const sendSignal = (id, value, { assign, force } = {}) => {
 	// }
 	const changed = signals[id].value.set(value);
 	if (changed || force) {
-		boradcast(id);
+		broadcast(id);
 	}
 };
 
-const boradcast = (id) => {
+const broadcast = (id) => {
 	const value = signals[id].value.get();
 	for (const callback of signals[id].callbacks) {
 		callback(value);
@@ -170,7 +170,7 @@ export const storeSearchParams = (id, value = {}) => {
 
 		const data = {};
 		for (const key of allowedKeys) {
-			data[key] = params.getAll();
+			data[key] = params.getAll(key);
 			if (data[key].length === 1) {
 				data[key] = data[key][0];
 			}

@@ -233,18 +233,21 @@ export function viewportTests(test, path) {
 		await page.waitForLoadState("domcontentloaded");
 		// constructed stylesheet instead of addStyleTag: CSSOM is not subject
 		// to CSP style-src, so the strict CSP stays fully enforced
-		await page.evaluate((css) => {
-			const sheet = new CSSStyleSheet();
-			sheet.replaceSync(css);
-			document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
-		}, `
+		await page.evaluate(
+			(css) => {
+				const sheet = new CSSStyleSheet();
+				sheet.replaceSync(css);
+				document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+			},
+			`
 			* {
 				line-height: 1.5em !important;
 				letter-spacing: 0.12em !important;
 				word-spacing: 0.16em !important;
 			}
 			p { margin-bottom: 2em !important; }
-		`);
+		`,
+		);
 		expect(await hasNoHorizontalOverflow(page)).toBe(true);
 	});
 }
