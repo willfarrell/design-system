@@ -44,7 +44,7 @@ a.button:focus-visible {
 }
 
 a.button:active {
-    scale: 0.95;
+	scale: 0.95;
 }
 
 @media (forced-colors: active) {

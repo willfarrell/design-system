@@ -41,7 +41,7 @@ button:focus-visible {
 }
 
 button:active {
-    scale: 0.95;
+	scale: 0.95;
 }
 
 td:has(.button) {

@@ -154,36 +154,8 @@ jobs:
       - name: npm publish (next)
         if: ${{ needs.release.outputs.prerelease == 'true' }}
         run: |
-          # Fault-tolerant: publish each tarball, skip versions already published,
-          # fail only on a real error so a partial release can be safely re-run.
-          status=0
-          for f in $(find . -name '*.tgz'); do
-            if out=$(npm publish --tag next --provenance --access public "$f" 2>&1); then
-              echo "published: $f"
-            elif printf '%s\n' "$out" | grep -qiE 'cannot publish over|previously published|EPUBLISHCONFLICT'; then
-              echo "skip (already published): $f"
-            else
-              printf '%s\n' "$out" >&2
-              echo "FAILED: $f" >&2
-              status=1
-            fi
-          done
-          exit $status
+          find . -name '*.tgz' -exec npm publish --tag next --provenance --access public {} \;
       - name: npm publish (latest)
         if: ${{ needs.release.outputs.prerelease == 'false' }}
         run: |
-          # Fault-tolerant: publish each tarball, skip versions already published,
-          # fail only on a real error so a partial release can be safely re-run.
-          status=0
-          for f in $(find . -name '*.tgz'); do
-            if out=$(npm publish --tag latest --provenance --access public "$f" 2>&1); then
-              echo "published: $f"
-            elif printf '%s\n' "$out" | grep -qiE 'cannot publish over|previously published|EPUBLISHCONFLICT'; then
-              echo "skip (already published): $f"
-            else
-              printf '%s\n' "$out" >&2
-              echo "FAILED: $f" >&2
-              status=1
-            fi
-          done
-          exit $status
+          find . -name '*.tgz' -exec npm publish --tag latest --provenance --access public {} \;

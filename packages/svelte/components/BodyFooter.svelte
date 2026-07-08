@@ -4,12 +4,12 @@ import A from "../elements/a.svelte";
 import Details from "../elements/details.svelte";
 import Div from "../elements/div.svelte";
 import Footer from "../elements/footer.svelte";
+import H2 from "../elements/h2.svelte";
 import Li from "../elements/li.svelte";
 import Nav from "../elements/nav.svelte";
 import Strong from "../elements/strong.svelte";
 import Summary from "../elements/summary.svelte";
 import Ul from "../elements/ul.svelte";
-import H2 from "../elements/h2.svelte";
 
 const { logo, address, children, navLinks, labelHeader = "Footer" } = $props();
 const url = $derived.by(() => {
