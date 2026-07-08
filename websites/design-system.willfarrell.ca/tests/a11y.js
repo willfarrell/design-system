@@ -231,16 +231,20 @@ export function viewportTests(test, path) {
 	}) => {
 		await page.goto(path);
 		await page.waitForLoadState("domcontentloaded");
-		await page.addStyleTag({
-			content: `
-				* {
-					line-height: 1.5em !important;
-					letter-spacing: 0.12em !important;
-					word-spacing: 0.16em !important;
-				}
-				p { margin-bottom: 2em !important; }
-			`,
-		});
+		// constructed stylesheet instead of addStyleTag: CSSOM is not subject
+		// to CSP style-src, so the strict CSP stays fully enforced
+		await page.evaluate((css) => {
+			const sheet = new CSSStyleSheet();
+			sheet.replaceSync(css);
+			document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+		}, `
+			* {
+				line-height: 1.5em !important;
+				letter-spacing: 0.12em !important;
+				word-spacing: 0.16em !important;
+			}
+			p { margin-bottom: 2em !important; }
+		`);
 		expect(await hasNoHorizontalOverflow(page)).toBe(true);
 	});
 }
@@ -594,6 +598,9 @@ export function hoverFocusContentTests(test, path) {
 		}
 
 		for (const trigger of triggers) {
+			// mobile-only triggers (e.g. the header hamburger) are hidden at
+			// the test viewport and can't be clicked
+			if (!(await trigger.isVisible())) continue;
 			const targetId = await trigger.evaluate((e) =>
 				e.getAttribute("popovertarget"),
 			);
@@ -620,6 +627,9 @@ export function hoverFocusContentTests(test, path) {
 		}
 
 		for (const trigger of triggers) {
+			// mobile-only triggers (e.g. the header hamburger) are hidden at
+			// the test viewport and can't be clicked
+			if (!(await trigger.isVisible())) continue;
 			const targetId = await trigger.evaluate((e) =>
 				e.getAttribute("popovertarget"),
 			);
@@ -651,6 +661,9 @@ export function hoverFocusContentTests(test, path) {
 		}
 
 		for (const trigger of triggers) {
+			// mobile-only triggers (e.g. the header hamburger) are hidden at
+			// the test viewport and can't be clicked
+			if (!(await trigger.isVisible())) continue;
 			const targetId = await trigger.evaluate((e) =>
 				e.getAttribute("popovertarget"),
 			);

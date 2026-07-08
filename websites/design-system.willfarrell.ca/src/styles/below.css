@@ -14,6 +14,11 @@
 @import "@willfarrell-ds/vanilla/elements/h6.css";
 @import "@willfarrell-ds/vanilla/elements/hr.css";
 @import "@willfarrell-ds/vanilla/elements/input.css";
+@import "@willfarrell-ds/vanilla/elements/input[type=checkbox].css";
+@import "@willfarrell-ds/vanilla/elements/input[type=date].css";
+@import "@willfarrell-ds/vanilla/elements/input[type=file].css";
+@import "@willfarrell-ds/vanilla/elements/input[type=radio].css";
+@import "@willfarrell-ds/vanilla/elements/input[type=search].css";
 @import "@willfarrell-ds/vanilla/elements/ins.css";
 @import "@willfarrell-ds/vanilla/elements/kbd.css";
 @import "@willfarrell-ds/vanilla/elements/label.css";

@@ -17,16 +17,20 @@
   text-align: right;
 }*/
 
+html {
+	font-size: max(var(--font-size), 18px);
+}
+
 body {
 	cursor: default;
 	margin: 0;
 	background-color: var(--color-l0);
 	color: var(--color-text);
 	font-family: var(--font-family);
-	font-size: max(var(--font-size), 18px);
 	font-weight: var(--font-weight, 400);
 	line-height: var(--line-height, 1.5);
-	/* text-box: set per element (h1-h6, hgroup) — doesn't inherit, so no body default. TODO buttons, inputs */
+	/* text-box: set per element (h1-h6, buttons) — doesn't inherit, so no body default.
+	   TODO inputs: parses but has no effect on form controls (Chromium 145), and @supports can't tell */
 	overflow-wrap: break-word;
 	scroll-behavior: smooth;
 	-webkit-font-smoothing: antialiased;

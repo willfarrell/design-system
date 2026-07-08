@@ -9,7 +9,7 @@ import Nav from "../elements/nav.svelte";
 import Strong from "../elements/strong.svelte";
 import Summary from "../elements/summary.svelte";
 import Ul from "../elements/ul.svelte";
-import H2 from "./Heading2.svelte";
+import H2 from "../elements/h2.svelte";
 
 const { logo, address, children, navLinks, labelHeader = "Footer" } = $props();
 const url = $derived.by(() => {
