@@ -165,7 +165,9 @@ export const storeSearchParams = (id, value = {}) => {
 
 		// check if using global signal
 		if (valueKeys.length === 0) {
-			allowedKeys = params.keys();
+			allowedKeys = [...params.keys()].filter(
+				(key) => !["__proto__", "constructor", "prototype"].includes(key),
+			);
 		}
 
 		const data = {};
