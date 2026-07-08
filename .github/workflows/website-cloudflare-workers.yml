@@ -22,16 +22,16 @@ jobs:
 
     steps:
       - name: Harden runner
-        uses: step-security/harden-runner@a5ad31d6a139d249332a2605b85202e8c0b78450 # v2.19.1
+        uses: step-security/harden-runner@9af89fc71515a100421586dfdb3dc9c984fbf411 # v2.19.4
         with:
           egress-policy: audit
           disable-telemetry: true
       - name: Checkout repository
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           persist-credentials: false
       - name: Setup Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0 # zizmor: ignore[cache-poisoning] no cache configured (no `cache:` input); reconsider if caching is added
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.2.0 # zizmor: ignore[cache-poisoning] no cache configured (no `cache:` input); reconsider if caching is added
         with:
           node-version: ${{ env.NODE_VERSION }}
           registry-url: "https://registry.npmjs.org"
@@ -43,7 +43,7 @@ jobs:
         run: |
           npm run build
       - name: Publish website
-        uses: cloudflare/wrangler-action@da0e0dfe58b7a431659754fdf3f186c529afbe65 # v3.14.1
+        uses: cloudflare/wrangler-action@ebbaa1584979971c8614a24965b4405ff95890e0 # v4.0.0
         with:
           workingDirectory: websites/${{ env.DOMAIN_NAME }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
