@@ -22,7 +22,7 @@
 	"dependencies": {
 		"@willfarrell-ds/svelte": "0.0.0-alpha.8",
 		"@willfarrell-ds/vanilla": "0.0.0-alpha.8",
-		"@work-bee/core": "0.2.0",
+		"@work-bee/core": "0.3.0",
 		"@work-bee/fallback": "0.0.5",
 		"@work-bee/offline": "0.2.0",
 		"@work-bee/save-data": "0.2.0",
