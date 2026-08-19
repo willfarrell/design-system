@@ -7,7 +7,7 @@ const domain = process.env.DOMAIN ?? pkg.name;
 const origin = `https://${domain}`;
 const config = {
 	kit: {
-		adapter: adapter(),
+		adapter: adapter({ platformProxy: { persist: false } }),
 		alias: {
 			"@design-system": resolve("../../packages/svelte"),
 			"@components": resolve("./src/components"),
