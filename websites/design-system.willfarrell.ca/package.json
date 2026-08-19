@@ -24,7 +24,7 @@
 		"@willfarrell-ds/vanilla": "0.0.0-alpha.8",
 		"@work-bee/core": "0.2.0",
 		"@work-bee/fallback": "0.0.5",
-		"@work-bee/offline": "0.2.0",
+		"@work-bee/offline": "0.4.0",
 		"@work-bee/save-data": "0.2.0",
 		"apca-w3": "^0.1.0",
 		"change-case": "5.4.4",
