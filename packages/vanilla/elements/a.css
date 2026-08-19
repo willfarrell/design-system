@@ -37,22 +37,21 @@ a:visited {
 /* \1F855 NE arrow */
 /* div, .button for cms pages linking to hubs - deprecate when hubs share same domain */
 :is(
-		nav,
-		li,
-		address,
-		header,
-		footer,
-		aside,
-		menu,
-		summary,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6
-	)
-	a {
+	nav,
+	li,
+	address,
+	header,
+	footer,
+	aside,
+	menu,
+	summary,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+) a {
 	display: inline-flex;
 	min-block-size: 24px;
 	min-inline-size: 24px;
