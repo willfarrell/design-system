@@ -98,10 +98,13 @@ import Var from "@design-system/elements/var.svelte";
 					<Li><A href="/form/input-webauthn">WebAuthn</A></Li>
 					<Li><A href="/form/input-date">Date</A></Li>
 					<Li><A href="/form/input-address">Address</A></Li>
+					<Li><A href="/form/input-organization">Organization</A></Li>
 					<Li><A href="/form/input-textarea">Textarea</A></Li>
 					<Li><A href="/form/input-number">Number</A></Li>
 					<Li><A href="/form/input-one-time-code">One time code</A></Li>
 					<Li><A href="/form/input-select">Select</A></Li>
+					<Li><A href="/form/input-select-typeahead">Select typeahead</A></Li>
+					<Li><A href="/form/input-fetch-typeahead">Fetch typeahead</A></Li>
 					<Li><A href="/form/input-radio">Radios</A></Li>
 					<Li><A href="/form/input-checkbox">Checkboxes</A></Li>
 					<Li><A href="/form/input-file">File</A></Li>
@@ -131,7 +134,11 @@ import Var from "@design-system/elements/var.svelte";
 					<Li><A href="/component/badge">Badge</A></Li>
 					<Li><A href="/component/tag">Tag</A></Li>
 					<Li><A href="/component/icon">Icon</A></Li>
+					<Li><A href="/component/codeblock">Codeblock</A></Li>
+					<Li><A href="/component/copy-pre">Copy pre</A></Li>
 					<Li><A href="/component/popover">Popover</A></Li>
+					<Li><A href="/component/tooltip">Tooltip</A></Li>
+					<Li><A href="/component/scrollspy">Scrollspy</A></Li>
 					<Li><A href="/component/data-bytes">DataBytes</A></Li>
 					<Li><A href="/component/data-number">DataNumber</A></Li>
 					<Li><A href="/component/data-time">DataTime</A></Li>

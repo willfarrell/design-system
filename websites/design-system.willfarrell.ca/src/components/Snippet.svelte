@@ -9,7 +9,6 @@ import Header from "@design-system/elements/header.svelte";
 import Iframe from "@design-system/elements/iframe.svelte";
 import Summary from "@design-system/elements/summary.svelte";
 import formatHtml from "pretty";
-import { mount } from "svelte";
 import { render } from "svelte/server";
 
 let { example } = $props();
@@ -17,7 +16,7 @@ let { example } = $props();
 const html = $derived.by(() => {
 	let { html } = render(Example, { props: { component: example } });
 	// Remove unused comments
-	html = html.replace(/(<!--[[\]\d-]*-->|<!>)\n*/g, "");
+	html = html.replace(/(<!--[^>]*-->|<!>)\n*/g, "");
 	return formatHtml(html, { ocd: true });
 });
 </script>

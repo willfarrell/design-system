@@ -2,8 +2,10 @@
 	container-name: container-aside;
 	container-type: inline-size;
 	flex: 1 1 0%;
+	inline-size: calc(100% - 2 * var(--padding-page-inline));
 	max-inline-size: 100%;
 	display: flex;
+	flex-wrap: wrap;
 	column-gap: var(--page-gap);
 	margin-inline: var(--padding-page-inline);
 
@@ -42,7 +44,18 @@
 	/* calc(30ch + 3em + 60ch) not supported */
 	@container (width < 53em) {
 		& > aside {
-			display: none;
+			inline-size: 100%;
+
+			& > nav,
+			> search {
+				position: static;
+			}
+			/* WCAG 2.5.8: real touch targets now that the list is on a phone */
+			& a {
+				display: flex;
+				align-items: center;
+				min-block-size: 44px;
+			}
 		}
 	}
 }

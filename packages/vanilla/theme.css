@@ -39,6 +39,27 @@ sup {
 	--grid-min-width: 30ch;
 	--grid-col-max-width: 100%; /* .grid-max-col - still need? */
 
+	/* *** Elevation *** */
+	--shadow-raised:
+		0 1px 2px light-dark(var(--shadow-color, lightgray), transparent),
+		0 4px 12px light-dark(var(--shadow-color, lightgray), transparent),
+		0 12px 32px light-dark(var(--shadow-color, lightgray), transparent),
+		inset 0 0 0 1px
+		light-dark(
+			transparent,
+			oklch(from var(--glow-color, var(--color-main)) calc(l + 0.5) c h / 0.5)
+		),
+		0 0 16px
+		light-dark(
+			transparent,
+			oklch(from var(--glow-color, var(--color-main)) calc(l + 0.5) c h / 0.3)
+		),
+		0 0 3px
+		light-dark(
+			transparent,
+			oklch(from var(--glow-color, var(--color-main)) calc(l + 0.5) c h / 0.5)
+		);
+
 	/* *** padding *** */
 	--padding-fixed: 1rem;
 	--padding-fluid: 1em;

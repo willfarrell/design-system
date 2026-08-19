@@ -8,19 +8,20 @@ const delayInMiliSeconds = 200;
 customElements.define(
 	is,
 	class extends HTMLElement {
-		constructor() {
-			super();
-			this.link = this.querySelector("a:first-of-type");
-		}
-
 		handleMouseDown() {
 			this.down = +Date.now();
 		}
 
 		handleMouseUp() {
+			// Looked up here, not in the constructor: children aren't parsed yet there,
+			// and a card with no link (a metric, a stat) has nothing to activate.
+			const link = this.querySelector("a:first-of-type");
+			if (!link) {
+				return;
+			}
 			this.up = +Date.now();
 			if (this.up - this.down < delayInMiliSeconds) {
-				this.link.click();
+				link.click();
 			}
 		}
 

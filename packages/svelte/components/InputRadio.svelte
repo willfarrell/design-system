@@ -13,6 +13,7 @@ const fieldsetValue = $derived(fieldsetContext.value);
   {...props}
   {id}
   {name}
+  {hint}
   type="radio"
   {value}
   checked={checked === true || fieldsetValue === value}

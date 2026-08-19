@@ -1,6 +1,6 @@
 select.chevron {
 	padding-inline: var(--padding-fixed) calc(var(--padding-fixed) * 2 + 1em); /* 1em is width of :after */
-	::picker-icon {
+	&::picker-icon {
 		display: none;
 	}
 }
@@ -10,7 +10,7 @@ div:has(> select.chevron:not([multiple])) {
 	display: inline-grid;
 	grid-template-areas: "select";
 	align-items: center;
-	::after {
+	&::after {
 		content: "";
 		inline-size: 1em;
 		block-size: 1em;

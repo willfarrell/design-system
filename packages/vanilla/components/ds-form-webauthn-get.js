@@ -10,6 +10,9 @@ customElements.define(
 		$submitted = false;
 		$loader = null;
 		$handleSubmit = (event) => this.handleSubmit(event);
+		$handleRestore = (event) => {
+			if (event.persisted) location.reload();
+		};
 		constructor() {
 			super();
 
@@ -43,6 +46,7 @@ customElements.define(
 
 		connectedCallback() {
 			this.addEventListener("submit", this.$handleSubmit);
+			window.addEventListener("pageshow", this.$handleRestore);
 
 			if (this.$input.getAttribute("autocomplete").includes("webauthn")) {
 				if (document.hasFocus()) {
@@ -56,6 +60,7 @@ customElements.define(
 		disconnectedCallback() {
 			this.removeEventListener("submit", this.$handleSubmit);
 			window.removeEventListener("focus", this.$handleSubmit);
+			window.removeEventListener("pageshow", this.$handleRestore);
 		}
 	},
 	{ extends: "form" },

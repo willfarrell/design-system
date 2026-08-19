@@ -42,15 +42,21 @@ const url = $derived.by(() => {
             {#if idx !== 0}
               <Hr />
             {/if}
-            <Strong>{key}</Strong>
+            <Strong>{@html key}</Strong>
           {:else if typeof nav[key] === "string"}
-            <A href={nav[key]}>{key}</A>
+            <!-- exact match → a.svelte sets aria-current="page"; subpath → section -->
+            <A
+              href={nav[key]}
+              aria-current={url.pathname.startsWith(`${nav[key]}/`)
+                ? "true"
+                : undefined}>{@html key}</A
+            >
           {:else}
             <Details
               class="chevron"
               open={Object.values(nav[key]).includes(url.pathname)}
             >
-              <Summary><Strong>{key}</Strong></Summary>
+              <Summary><Strong>{@html key}</Strong></Summary>
               {@render links(nav[key])}
             </Details>
           {/if}

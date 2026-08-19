@@ -12,6 +12,9 @@ customElements.define(
 		$submitted = false;
 		$loader = null;
 		$handleSubmit = (event) => this.handleSubmit(event);
+		$handleRestore = (event) => {
+			if (event.persisted) location.reload();
+		};
 		constructor() {
 			super();
 
@@ -23,8 +26,6 @@ customElements.define(
 
 		async handleSubmit(event) {
 			event?.preventDefault();
-			// The focus-deferred auto-start and a submit click can both reach here;
-			// only run one ceremony at a time.
 			if (this.$pending || this.$submitted) return;
 			this.$pending = true;
 			try {
@@ -39,8 +40,11 @@ customElements.define(
 				this.submit();
 				this.$loader?.setAttribute("data-loader", "true");
 			} catch (e) {
-				// clicking `Cancel` triggers error
 				console.error(e);
+				if (e.name === "NotAllowedError" || e.name === "AbortError") return;
+				this.$input.value = e.name;
+				this.$submitted = true;
+				this.submit();
 			} finally {
 				this.$pending = false;
 			}
@@ -48,19 +52,12 @@ customElements.define(
 
 		connectedCallback() {
 			this.addEventListener("submit", this.$handleSubmit);
-
-			if (this.$input.getAttribute("autocomplete").includes("webauthn")) {
-				if (document.hasFocus()) {
-					this.$handleSubmit();
-				} else {
-					window.addEventListener("focus", this.$handleSubmit, { once: true });
-				}
-			}
+			window.addEventListener("pageshow", this.$handleRestore);
 		}
 
 		disconnectedCallback() {
 			this.removeEventListener("submit", this.$handleSubmit);
-			window.removeEventListener("focus", this.$handleSubmit);
+			window.removeEventListener("pageshow", this.$handleRestore);
 		}
 	},
 	{ extends: "form" },

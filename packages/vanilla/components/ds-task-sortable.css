@@ -1,0 +1,15 @@
+[is="ds-task-sortable"] > .task-sortable-controls {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.5em 1em;
+}
+
+[is="ds-task-sortable"] > .task-sortable-controls > div {
+	display: none;
+	margin-inline-start: auto;
+}
+
+[is="ds-task-sortable"]:defined > .task-sortable-controls > div {
+	display: inline-grid;
+}

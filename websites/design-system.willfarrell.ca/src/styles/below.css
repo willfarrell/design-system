@@ -41,7 +41,11 @@
 @import "@willfarrell-ds/vanilla/classes/.group.css";
 @import "@willfarrell-ds/vanilla/classes/.icon.css";
 @import "@willfarrell-ds/vanilla/components/ds-card.css";
+@import "@willfarrell-ds/vanilla/components/ds-copy-pre.css";
 @import "@willfarrell-ds/vanilla/components/ds-form-submit.css";
 @import "@willfarrell-ds/vanilla/components/ds-input-file.css";
 @import "@willfarrell-ds/vanilla/components/ds-input-focus.css";
+@import "@willfarrell-ds/vanilla/components/ds-input-password.css";
+@import "@willfarrell-ds/vanilla/components/ds-table-sortable.css";
 @import "@willfarrell-ds/vanilla/components/ds-task.css";
+@import "@willfarrell-ds/vanilla/components/ds-tooltip.css";

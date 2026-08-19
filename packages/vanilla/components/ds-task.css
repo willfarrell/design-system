@@ -3,12 +3,19 @@ ul:has([is="ds-task"]) {
 	padding-inline: 0;
 }
 [is="ds-task"] {
+	max-inline-size: 100%;
 	border-block-start: var(--border-width) solid
 		var(--border-color, currentColor);
 
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-between;
 	align-content: baseline;
+
+	& small {
+		flex-basis: 100%;
+		margin-block: -0.5em 0.5em;
+	}
 
 	&:last-of-type {
 		border-block-end: var(--border-width) solid
@@ -36,6 +43,8 @@ ul:has([is="ds-task"]) {
 	/* biome-ignore lint/style/noDescendingSpecificity: scoped override */
 	& a {
 		padding: 0.5em 0;
+		/* hyphenated labels (Content-Security-Policy) must not wrap */
+		white-space: nowrap;
 	}
 	& strong {
 		font-weight: 400;

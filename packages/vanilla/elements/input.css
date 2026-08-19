@@ -20,6 +20,11 @@ input:where(
 	padding-inline: var(--padding-fixed);
 }
 
+input:where([type="text"], [type="email"], [type="url"], [type="password"]) {
+	field-sizing: content;
+	min-inline-size: 20ch;
+}
+
 /* Fix size attr width in Firefox - requires: https://bugzilla.mozilla.org/show_bug.cgi?id=435426 */
 /*
 [size] {

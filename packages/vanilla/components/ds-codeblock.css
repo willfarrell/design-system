@@ -1,0 +1,96 @@
+[is="ds-codeblock"] {
+	--hex-neutral: #000000;
+	--hex-red: #da3425;
+	--hex-cerise-red: #e31c65;
+	--hex-cinnabar: #e2201d;
+	--hex-pomegranate: #f3420c;
+	--hex-pizazz: #ff8c00;
+	--hex-selective-yellow: #ffb300;
+	--hex-bright-yellow: #fdcf02;
+	--hex-key-lime-pie: #c1cc33;
+	--hex-sushi: #81ba45;
+	--hex-apple: #4bb450;
+	--hex-elf-green: #00ffe6;
+	--hex-pelorous: #00e1ff;
+	--hex-curious-blue: #03a9fc;
+	--hex-cornflower-blue: #1a86e5;
+	--hex-cobalt: #4051bf;
+	--hex-daisy-bush: #693bc4;
+	--hex-violet-eggplant: #ae2dd2;
+
+	--lightness-code: var(--lightness-main-bold);
+
+	--code-comment: light-dark(
+		oklch(from #000 0.4 c h),
+		oklch(from #000 0.7 c h)
+	);
+	--code-punctuation: oklch(from var(--hex-neutral) var(--lightness-code) c h);
+	--code-deleted: oklch(from var(--hex-red) var(--lightness-code) c h);
+	--code-inserted: oklch(
+		from var(--hex-key-lime-pie) var(--lightness-code) c h
+	);
+	--code-operator: oklch(from var(--hex-cobalt) var(--lightness-code) c h);
+	--code-keyword: oklch(from var(--hex-pelorous) var(--lightness-code) c h);
+	--code-function: oklch(from var(--hex-cinnabar) var(--lightness-code) c h);
+	--code-variable: oklch(from var(--hex-pizazz) var(--lightness-code) c h);
+}
+
+/* prismjs token types */
+[is="ds-codeblock"] .comment,
+[is="ds-codeblock"] .prolog,
+[is="ds-codeblock"] .doctype,
+[is="ds-codeblock"] .cdata {
+	color: var(--code-comment, var(--color-text));
+}
+[is="ds-codeblock"] .punctuation {
+	color: var(--code-punctuation, var(--color-text));
+}
+[is="ds-codeblock"] .namespace {
+	opacity: 0.7;
+}
+[is="ds-codeblock"] .property,
+[is="ds-codeblock"] .tag,
+[is="ds-codeblock"] .boolean,
+[is="ds-codeblock"] .number,
+[is="ds-codeblock"] .constant,
+[is="ds-codeblock"] .symbol,
+[is="ds-codeblock"] .deleted {
+	color: var(--code-deleted, var(--color-del, var(--color-text)));
+}
+[is="ds-codeblock"] .selector,
+[is="ds-codeblock"] .attr-name,
+[is="ds-codeblock"] .string,
+[is="ds-codeblock"] .char,
+[is="ds-codeblock"] .builtin,
+[is="ds-codeblock"] .inserted {
+	color: var(--code-inserted, var(--color-ins, var(--color-text)));
+}
+[is="ds-codeblock"] .operator,
+[is="ds-codeblock"] .entity,
+[is="ds-codeblock"] .url,
+[is="ds-codeblock"] .style .string {
+	color: var(--code-operator, var(--color-text));
+}
+[is="ds-codeblock"] .atrule,
+[is="ds-codeblock"] .attr-value,
+[is="ds-codeblock"] .keyword {
+	color: var(--code-keyword, var(--color-text));
+}
+[is="ds-codeblock"] .function {
+	color: var(--code-function, var(--color-text));
+}
+[is="ds-codeblock"] .regex,
+[is="ds-codeblock"] .important,
+[is="ds-codeblock"] .variable {
+	color: var(--code-variable, var(--color-text));
+}
+[is="ds-codeblock"] .important,
+[is="ds-codeblock"] .bold {
+	font-weight: bold;
+}
+[is="ds-codeblock"] .italic {
+	font-style: italic;
+}
+[is="ds-codeblock"] .entity {
+	cursor: help;
+}

@@ -1,4 +1,3 @@
-
 <script>
 import { page } from "$app/state";
 import A from "../elements/a.svelte";
@@ -44,7 +43,13 @@ const url = $derived.by(() => {
           {#if nav[key] === true}
             <Strong>{key}</Strong>
           {:else if typeof nav[key] === "string"}
-            <A href={nav[key]}>{key}</A>
+            <!-- exact match → a.svelte sets aria-current="page"; subpath → section -->
+            <A
+              href={nav[key]}
+              aria-current={url.pathname.startsWith(`${nav[key]}/`)
+                ? "true"
+                : undefined}>{key}</A
+            >
           {:else}
             <!-- TODO replace with popover -->
             <Details
@@ -118,16 +123,10 @@ const url = $derived.by(() => {
     }
 
     body > header {
-        @container (not scroll-state(scrolled:none)) {
-            position:sticky;
-            top: 0;
-            transition: translate 0.3s;
-        }
-        @container (scroll-state(scrolled:bottom)) {
-            translate: 0 -100%;
-        }
-        @container (scroll-state(scrolled:top)) {
-            translate: 0 0;
+        position: sticky;
+        inset-block-start: calc(-1 * var(--sticky-header-height));
+        @container (scroll-state(scrolled: top)) {
+            inset-block-start: 0;
         }
     }
     /* Ref: https://www.joshwcomeau.com/css/backdrop-filter/ */
@@ -147,7 +146,7 @@ const url = $derived.by(() => {
             var(--color-l0) calc(var(--header-fade) - 50%),
             transparent var(--header-fade)
         );
-        transition: --header-fade 0.3s;
+        transition: inset-block-start 0.3s, --header-fade 0.3s;
 
         &:has(:popover-open) {
             --header-fade: 150%;
@@ -158,6 +157,7 @@ const url = $derived.by(() => {
         z-index: 2;
         /* hamburger breakpoint container */
         container-type: inline-size;
+        inline-size: 100%;
         /* popover menu attaches to header bottom */
         anchor-name: --header;
 
@@ -182,9 +182,14 @@ const url = $derived.by(() => {
               display: flex;
               gap: 1em;
               min-inline-size: 0;
+              align-items: center;
             }
 
             search, search form, search .group {
+              display: flex;
+              flex-direction: row;
+              gap: 1em;
+              align-items: center;
               min-inline-size: 0;
             }
 

@@ -7,5 +7,5 @@
 // const createPolicy = await import(scriptURL);
 // await createPolicy('pewc')
 
-// lock registry
-Object.freeze(trustedTypes);
+// lock registry, import last so every policy is created first
+if (typeof trustedTypes !== "undefined") Object.freeze(trustedTypes);

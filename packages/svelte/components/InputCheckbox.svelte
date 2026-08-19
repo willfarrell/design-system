@@ -13,6 +13,7 @@ const fieldsetValue = $derived(fieldsetContext.value);
   {...props}
   {id}
   {name}
+  {hint}
   type="checkbox"
   {value}
   checked={checked === true || fieldsetValue?.includes(value)}
