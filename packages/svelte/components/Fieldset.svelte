@@ -18,6 +18,11 @@ const {
 } = $props();
 const resolvedName = $derived(name ?? id);
 const resolvedLegend = $derived(legend ?? props.label);
+const invalid = $derived(error?.some((v) => v.id === id));
+const describedby = $derived(
+	[hint && `${id}-hint`, invalid && `${id}-error`].filter(Boolean).join(" ") ||
+		undefined,
+);
 setContext("fieldset", {
 	get name() {
 		return resolvedName;
@@ -28,8 +33,15 @@ setContext("fieldset", {
 });
 </script>
 
-<Fieldset name={resolvedName} {...props}>
-  <FieldLegend {id} legend={resolvedLegend} children={legendSnippet} />
+<Fieldset
+  name={resolvedName}
+  {...props}
+  {id}
+  tabindex="-1"
+  aria-invalid={invalid ? "true" : undefined}
+  aria-describedby={describedby}
+>
+  <FieldLegend legend={resolvedLegend} children={legendSnippet} />
   <FieldHint {id} {hint} />
   <FieldError {id} {error} />
   {@render children?.()}

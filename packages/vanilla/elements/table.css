@@ -13,6 +13,7 @@ https://elad2412.github.io/the-new-css-reset/
 	overflow: auto;
 }
 table {
+	inline-size: 100%;
 	table-layout: fixed;
 	border-spacing: 0;
 	font-variant-numeric: tabular-nums;
@@ -28,7 +29,9 @@ tr {
 	background: var(--color-l0);
 }
 
-tr:nth-child(odd) {
+thead tr,
+tfoot tr,
+tbody tr:nth-child(even) {
 	background-color: var(--color-l3);
 }
 

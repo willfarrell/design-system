@@ -1,5 +1,4 @@
 /* eslint-env browser */
-/* global trustedTypes */
 // Load WebComponent custom builtins on demand
 // https://github.com/ungap/custom-elements
 // https://github.com/WebKit/standards-positions/issues/97
@@ -8,19 +7,22 @@ import "@ungap/custom-elements"; // For Safari polyfill, ~2kb
 
 const d = document;
 
-const lazyLoad = new IntersectionObserver(async (entries, observer) => {
+// don't `await` to ensure non-blocking
+const load = (target) => {
+	const name = target.getAttribute("is");
+	const link = d.querySelector(
+		`link[rel="modulepreload"][href*="/${name}"][href*=".js"]`,
+	);
+	const scriptURL = link?.href ?? `/js/pewc/${name}.js`;
+	import(scriptURL);
+};
+
+const lazyLoad = new IntersectionObserver((entries) => {
 	for (const { target, isIntersecting } of entries) {
-		if (isIntersecting) {
-			// don't `await` to ensure non-blocking
-			const name = target.getAttribute("is");
-			const link = d.querySelector(
-				`link[rel="modulepreload"][href*="/${name}"][href*=".js"]`,
-			);
-			const scriptURL = link?.href ?? `/js/pewc/${name}.js`;
-			import(scriptURL);
-		}
+		if (isIntersecting) load(target);
 	}
 });
-d.querySelectorAll("[is]").forEach((el) => {
-	lazyLoad.observe(el);
-});
+for (const el of d.querySelectorAll("[is]")) {
+	if (!el.getClientRects().length) load(el);
+	else lazyLoad.observe(el);
+}

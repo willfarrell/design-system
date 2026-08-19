@@ -58,6 +58,19 @@ test("WCAG 2.2 A 3.3.2 Labels or Instructions — labels present", async ({
 	}
 });
 
+test("reveal button toggles password visibility", async ({ page }) => {
+	await page.goto(path);
+	const input = page.locator('input[is="ds-input-password"]');
+	const button = page.locator('input[is="ds-input-password"] + button');
+	await expect(button).toBeVisible();
+	await button.click();
+	await expect(input).toHaveAttribute("type", "text");
+	await expect(button).toHaveAttribute("aria-pressed", "true");
+	await button.click();
+	await expect(input).toHaveAttribute("type", "password");
+	await expect(button).toHaveAttribute("aria-pressed", "false");
+});
+
 mediaModeTests(test, path);
 viewportTests(test, path);
 interactiveTests(test, path);
