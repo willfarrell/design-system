@@ -7,7 +7,7 @@ import Summary from "@design-system/elements/summary.svelte";
 import { paragraph } from "@examples/index.js";
 </script>
 
-<Div role="group">
+<Div>
 	<Details name="group" class="chevron">
 		<Summary><Strong>Summary A</Strong></Summary>
 		<P>{paragraph}</P>

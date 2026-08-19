@@ -1,6 +1,6 @@
 {
 	"name": "design-system.willfarrell.ca",
-	"version": "0.0.0-alpha.8",
+	"version": "0.0.0-beta.0",
 	"private": true,
 	"type": "module",
 	"scripts": {

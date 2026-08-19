@@ -96,7 +96,6 @@ const page = {
 		<H2 id="accessibility">Accessibility</H2>
 		<Ul>
 			<Li>Each <Code>&lt;summary&gt;</Code> acts as a button with browser-managed <Code>aria-expanded</Code> state.</Li>
-			<Li>The accordion group should be wrapped in an element with <Code>role="group"</Code> for screen reader context.</Li>
 			<Li><Code>&lt;summary&gt;</Code> neutralizes nested heading semantics. Content headings should be placed inside the revealed content, not in the summary.</Li>
 			<Li>JavaScript is needed if you require keyboard shortcuts (e.g. Home/End) beyond the browser defaults.</Li>
 		</Ul>

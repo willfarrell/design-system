@@ -37,7 +37,7 @@ const props = $derived.by(() => {
 });
 </script>
 
-<!-- No whitespace around children: the `_blank` branch would leave a stray space in every link -->
+<!-- biome-ignore lint/a11y/useValidAnchor: href is passed via props by consumer -->
 <a {...allowedAttributes(props, elementAttributes)}
   >{@render children?.()}{#if props.target === "_blank"}<span
       class="visually-hidden"> (opens in new tab)</span
