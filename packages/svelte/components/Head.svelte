@@ -15,7 +15,7 @@ let { children } = $props();
   <link rel="mask-icon" href="/favicon.svg" color="#175c89" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <link rel="manifest" href="/.well-known/manifest.webmanifest" />
+  <link rel="manifest" href="/.well-known/manifest.webmanifest" crossorigin="use-credentials" />
 
   <!-- <link rel="alternate" type="application/rss+xml" title="RSS" href="/{meta.lang ? meta.lang+'/' : ''}rss.xml">-->
   <!-- <link rel="alternate" type="application/atom+xml" title="Atom" href="/{meta.lang}/atom.xml"> TODO-->
