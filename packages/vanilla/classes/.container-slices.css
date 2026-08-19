@@ -11,6 +11,11 @@
 		--inline-padding: var(--padding-page-inline);
 		--gap-padding: max(1rem, 5vw);
 
+		/* headings keep their id for deep links, but a slice shows no # anchor */
+		&.slice :is(h1, h2, h3, h4, h5, h6) > a[href^="#"] {
+			display: none;
+		}
+
 		/* background image for entire slice */
 		& > picture {
 			position: absolute;

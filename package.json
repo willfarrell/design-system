@@ -1,6 +1,6 @@
 {
 	"name": "@willfarrell-ds/monorepo",
-	"version": "0.0.0-alpha.8",
+	"version": "0.0.0-beta.0",
 	"description": "",
 	"private": true,
 	"type": "module",
@@ -46,7 +46,7 @@
 		"audit": "npm audit fix --workspaces",
 		"release:license:add": "license-check-and-add add -f .license.config.json",
 		"release:license:remove": "license-check-and-add remove -f .license.config.json",
-		"release:sync": "npm version $npm_package_version --workspaces; find ./packages -name \"package.json\" -exec sed -i '' -E \"s#\\\"@willfarrell-ds/(.*)\\\": ([^,]*)#\\\"@willfarrell-ds/\\1\\\": $(npm pkg get version)#g\" {} \\; && npm run rm && npm install && npm run lint",
+		"release:sync": "npm version $npm_package_version --workspaces; find ./packages -name \"package.json\" -exec sed -i '' -E \"s#\\\"@willfarrell-ds/(.*)\\\": ([^,]*)#\\\"@willfarrell-ds/\\1\\\": \\\"$(npm pkg get version | tr -d '\\\"')\\\"#g\" {} \\; && npm run rm && npm install && npm run lint",
 		"release:publish:next": "npm publish --workspaces --tag next --access public",
 		"release:deploy": "npm run release:deploy --workspaces --if-present",
 		"release:tag": "git tag $npm_package_version"
@@ -66,21 +66,18 @@
 		"url": "https://github.com/sponsors/willfarrell"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.0.0",
-		"@commitlint/cli": "^21.0.0",
-		"@commitlint/config-conventional": "^21.0.0",
-		"fast-check": "^4.0.0",
-		"husky": "^9.0.0",
-		"tinybench": "^6.0.0",
-		"tstyche": "^7.0.0"
+		"@biomejs/biome": "^2.5.3",
+		"@commitlint/cli": "^21.2.1",
+		"@commitlint/config-conventional": "^21.2.0",
+		"fast-check": "^4.9.0",
+		"husky": "^9.1.7",
+		"tinybench": "^6.0.2",
+		"tstyche": "^7.2.1"
 	},
 	"overrides": {
 		"@sveltejs/kit": {
 			"cookie": "^0.7.2"
-		},
-		"esbuild": ">=0.28.1",
-		"mathjs": ">=15.2.0",
-		"ws": ">=8.21.0"
+		}
 	},
 	"workspaces": [
 		"packages/*",

@@ -1,0 +1,12 @@
+[is="ds-copy-pre"] {
+	display: flow-root;
+}
+
+[is="ds-copy-pre"] > code {
+	display: block;
+}
+
+[is="ds-copy-pre"] > button {
+	float: inline-end;
+	margin-inline-start: var(--padding-fixed);
+}

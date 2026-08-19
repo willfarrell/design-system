@@ -37,9 +37,9 @@ const props = $derived.by(() => {
 });
 </script>
 
-<a {...allowedAttributes(props, elementAttributes)}>
-  {@render children?.()}
-  {#if props.target === "_blank"}
-    <span class="visually-hidden">(opens in new tab)</span>
-  {/if}
-</a>
+<!-- biome-ignore lint/a11y/useValidAnchor: href is passed via props by consumer -->
+<a {...allowedAttributes(props, elementAttributes)}
+  >{@render children?.()}{#if props.target === "_blank"}<span
+      class="visually-hidden"> (opens in new tab)</span
+    >{/if}</a
+>

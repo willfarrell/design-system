@@ -5,12 +5,7 @@
 	gap: var(--gap);
 
 	&:has(button, a.button) {
-		align-items: baseline;
-
-		& button,
-		& a.button {
-			align-self: flex-end;
-		}
+		align-items: end;
 	}
 	/*&:has(:interest-source) [interestfor] {
 	  interest-delay-start: 0s;

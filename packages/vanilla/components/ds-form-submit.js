@@ -7,6 +7,11 @@ customElements.define(
 		$submitted = false;
 		$loader = null;
 		$onChange = false;
+		$reset = () => {
+			this.$submitted = false;
+			this.removeAttribute("aria-busy");
+			this.$loader?.setAttribute("data-loader", "false");
+		};
 		constructor() {
 			super();
 
@@ -31,6 +36,7 @@ customElements.define(
 
 		connectedCallback() {
 			this.addEventListener("submit", this.handleSubmit);
+			window.addEventListener("pageshow", this.$reset);
 			if (this.$onChange) {
 				this.addEventListener("change", this.handleSubmit);
 			}
@@ -38,6 +44,7 @@ customElements.define(
 
 		disconnectedCallback() {
 			this.removeEventListener("submit", this.handleSubmit);
+			window.removeEventListener("pageshow", this.$reset);
 			if (this.$onChange) {
 				this.removeEventListener("change", this.handleSubmit);
 			}
