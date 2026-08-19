@@ -37,9 +37,9 @@ const props = $derived.by(() => {
 });
 </script>
 
-<a {...allowedAttributes(props, elementAttributes)}>
-  {@render children?.()}
-  {#if props.target === "_blank"}
-    <span class="visually-hidden">(opens in new tab)</span>
-  {/if}
-</a>
+<!-- No whitespace around children: the `_blank` branch would leave a stray space in every link -->
+<a {...allowedAttributes(props, elementAttributes)}
+  >{@render children?.()}{#if props.target === "_blank"}<span
+      class="visually-hidden"> (opens in new tab)</span
+    >{/if}</a
+>

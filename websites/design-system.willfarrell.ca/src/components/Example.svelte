@@ -9,6 +9,8 @@ import ExampleBlockquote from "@examples/blockquote.svelte";
 import ExampleButton from "@examples/button.svelte";
 import ExampleCallout from "@examples/callout.svelte";
 import ExampleCard from "@examples/card.svelte";
+import ExampleCodeblock from "@examples/codeblock.svelte";
+import ExampleCopyPre from "@examples/copy-pre.svelte";
 import ExampleDataBytes from "@examples/data-bytes.svelte";
 import ExampleDataEnum from "@examples/data-enum.svelte";
 import ExampleDataNumber from "@examples/data-number.svelte";
@@ -21,20 +23,24 @@ import ExampleFootnotes from "@examples/footnotes.svelte";
 import ExampleFormErrors from "@examples/form-errors.svelte";
 import ExampleFormInputAddress from "@examples/form-input-address.svelte";
 import ExampleFormInputCheckbox from "@examples/form-input-checkbox.svelte";
+import ExampleFormInputCheckboxGroup from "@examples/form-input-checkbox-group.svelte";
 import ExampleFormInputDate from "@examples/form-input-date.svelte";
 import ExampleFormInputDatepicker from "@examples/form-input-datepicker.svelte";
 import ExampleFormInputEmail from "@examples/form-input-email.svelte";
+import ExampleFormInputFetchTypeahead from "@examples/form-input-fetch-typeahead.svelte";
 import ExampleFormInputFile from "@examples/form-input-file.svelte";
 import ExampleFormInputFocus from "@examples/form-input-focus.svelte";
 import ExampleFormInputName from "@examples/form-input-name.svelte";
 import ExampleFormInputNumber from "@examples/form-input-number.svelte";
 import ExampleFormInputOneTimeCode from "@examples/form-input-one-time-code.svelte";
+import ExampleFormInputOrganization from "@examples/form-input-organization.svelte";
 import ExampleFormInputPassword from "@examples/form-input-password.svelte";
 import ExampleFormInputRadio from "@examples/form-input-radio.svelte";
+import ExampleFormInputRadioGroup from "@examples/form-input-radio-group.svelte";
 import ExampleFormInputSearch from "@examples/form-input-search.svelte";
-//import ExampleFormInputDatalist from '@examples/form-input-datalist.svelte';
 import ExampleFormInputSelect from "@examples/form-input-select.svelte";
 import ExampleFormInputSelectMultiple from "@examples/form-input-select-multiple.svelte";
+import ExampleFormInputSelectTypeahead from "@examples/form-input-select-typeahead.svelte";
 import ExampleFormInputTel from "@examples/form-input-tel.svelte";
 import ExampleFormInputText from "@examples/form-input-text.svelte";
 import ExampleFormInputTextarea from "@examples/form-input-textarea.svelte";
@@ -64,9 +70,12 @@ import ExampleListOrdered from "@examples/list-ordered.svelte";
 import ExampleListUnordered from "@examples/list-unordered.svelte";
 import ExampleParagraphs from "@examples/paragraphs.svelte";
 import ExamplePopover from "@examples/popover.svelte";
+import ExampleScrollspy from "@examples/scrollspy.svelte";
 import ExampleTable from "@examples/table.svelte";
+import ExampleTableSortable from "@examples/table-sortable.svelte";
 import ExampleTag from "@examples/tag.svelte";
 import ExampleTaskList from "@examples/task-list.svelte";
+import ExampleTooltip from "@examples/tooltip.svelte";
 
 const { component, ...props } = $props();
 
@@ -91,6 +100,7 @@ const components = {
 	ExampleListDescription,
 	ExampleParagraphs,
 	ExampleTable,
+	ExampleTableSortable,
 	ExampleFormErrors,
 	ExampleFormInputFocus,
 	ExampleFormInputText,
@@ -101,14 +111,18 @@ const components = {
 	ExampleFormInputPassword,
 	ExampleFormInputNumber,
 	ExampleFormInputOneTimeCode,
+	ExampleFormInputOrganization,
 	ExampleFormInputDate,
 	ExampleFormInputDatepicker,
 	ExampleFormInputSearch,
 	ExampleFormInputCheckbox,
+	ExampleFormInputCheckboxGroup,
 	ExampleFormInputRadio,
+	ExampleFormInputRadioGroup,
 	ExampleFormInputSelect,
 	ExampleFormInputSelectMultiple,
-	//ExampleFormInputDatalist,
+	ExampleFormInputSelectTypeahead,
+	ExampleFormInputFetchTypeahead,
 	ExampleFormInputTextarea,
 	ExampleFormInputFile,
 	ExampleFormInputWebauthn,
@@ -123,7 +137,10 @@ const components = {
 	ExampleLinkTag,
 	ExampleIcon,
 	ExamplePopover,
+	ExampleTooltip,
 	ExampleCard,
+	ExampleCodeblock,
+	ExampleCopyPre,
 	ExampleTag,
 	ExampleDetails,
 	ExampleDetailsChevron,
@@ -132,6 +149,7 @@ const components = {
 	ExampleDialog,
 	ExampleDialogFallback,
 	ExampleTaskList,
+	ExampleScrollspy,
 	ExampleFootnotes,
 	ExampleGridCards,
 };

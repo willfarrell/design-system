@@ -1,0 +1,41 @@
+[is="ds-table-sortable"] thead th {
+	position: relative;
+}
+
+[is="ds-table-sortable"] thead th > button {
+	padding: 0;
+	border: 0;
+	background: none;
+	color: inherit;
+	text-align: inherit;
+	white-space: inherit;
+}
+
+[is="ds-table-sortable"] thead th > button:hover,
+[is="ds-table-sortable"] thead th > button:active,
+[is="ds-table-sortable"] thead th > button:focus-visible {
+	background: none;
+}
+
+[is="ds-table-sortable"] thead th > button:active {
+	scale: none;
+}
+
+/* chevron centered on the thead bottom border */
+[is="ds-table-sortable"] thead th[aria-sort]::after {
+	content: "";
+	position: absolute;
+	inset-block-end: 0;
+	inset-inline-start: 50%;
+	inline-size: 0.5em;
+	block-size: 0.5em;
+	translate: -50% 50%;
+	rotate: 45deg;
+	border-block-start: var(--border-width) solid var(--color-text);
+	border-inline-start: var(--border-width) solid var(--color-text);
+	background: var(--color-l3);
+}
+
+[is="ds-table-sortable"] thead th[aria-sort="descending"]::after {
+	rotate: 225deg;
+}

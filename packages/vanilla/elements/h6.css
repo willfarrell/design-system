@@ -13,17 +13,19 @@ h6 {
 	}
 }
 
-h6[id] a {
+/* scoped to the # anchor: a bare `a` also caught link-wrapped titles */
+h6[id] > a[href^="#"] {
 	position: absolute;
 	inset-inline-end: 0;
 	inline-size: 1em;
-	text-align: end;
+	/* not text-align: a.css makes heading links inline-flex */
+	justify-content: end;
 }
 
 /* hang into the aside gutter only when .container-aside actually shows it */
 @container container-aside (width >= 53em) {
-	h6[id] a {
-		inset-inline-end: auto;
-		inset-inline-start: -1.5em;
+	h6[id] > a[href^="#"] {
+		inset-inline-start: auto;
+		inset-inline-end: calc(100% + 0.5rem);
 	}
 }

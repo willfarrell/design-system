@@ -59,6 +59,8 @@ const page = {
 	<Section>
 		<H2 id="example">Example</H2>
 		<Snippet example="form-input-checkbox" />
+		<P>Related options can be organized into groups using nested <Code>&lt;fieldset&gt;</Code> elements that share the same <Code>name</Code>.</P>
+		<Snippet example="form-input-checkbox-group" />
 	</Section>
 	<Section>
 		<H2 id="accessibility">Accessibility</H2>
