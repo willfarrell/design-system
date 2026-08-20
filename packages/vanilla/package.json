@@ -1,6 +1,6 @@
 {
 	"name": "@willfarrell-ds/vanilla",
-	"version": "0.0.0-alpha.8",
+	"version": "0.0.0-beta.0",
 	"type": "module",
 	"description": "Design system using vanilla html, css, js",
 	"files": [
@@ -45,7 +45,7 @@
 	"dependencies": {
 		"@simplewebauthn/browser": "13.3.0",
 		"@ungap/custom-elements": "1.3.0",
-		"accessible-autocomplete": "3.0.1",
+		"prismjs": "1.30.0",
 		"tinykeys": "4.0.0"
 	}
 }

@@ -12,9 +12,10 @@ a:focus-visible {
 	text-underline-position: under;
 }
 
-/* target-current for scrollspy */
+/* target-current for scrollspy; aria-current=true marks ancestor sections */
 a:active,
 a[aria-current="page"],
+a[aria-current="true"],
 a:target-current {
 	color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
 	text-decoration: underline solid 0.4em
@@ -36,22 +37,21 @@ a:visited {
 /* \1F855 NE arrow */
 /* div, .button for cms pages linking to hubs - deprecate when hubs share same domain */
 :is(
-		nav,
-		li,
-		address,
-		header,
-		footer,
-		aside,
-		menu,
-		summary,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6
-	)
-	a {
+	nav,
+	li,
+	address,
+	header,
+	footer,
+	aside,
+	menu,
+	summary,
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6
+) a {
 	display: inline-flex;
 	min-block-size: 24px;
 	min-inline-size: 24px;

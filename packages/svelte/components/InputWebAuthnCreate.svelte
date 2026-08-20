@@ -5,4 +5,4 @@ const { ...props } = $props();
 // data-options required
 </script>
 
-<InputHidden {...props} autocomplete="webauthn" />
+<InputHidden {...props} />

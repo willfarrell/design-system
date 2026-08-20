@@ -369,24 +369,24 @@ dark
 	<pre><code
 			>@media (prefers-color-scheme: light)
 
-	--code-comment: {palettles['neutral']['light-a0'].color};
-	--code-punctuation: {palettles['neutral']['light-a0'].color};
-	--code-deleted: {palettles['red']['light-a0'].color};
+	--code-comment: {palettles.neutral['light-a0'].color};
+	--code-punctuation: {palettles.neutral['light-a0'].color};
+	--code-deleted: {palettles.red['light-a0'].color};
 	--code-inserted: {palettles['key-lime-pie']['light-a0'].color};
 	--code-operator: {palettles['daisy-bush']['light-a0'].color};
-	--code-keyword: {palettles['pelorous']['light-a0'].color};
-	--code-function: {palettles['cinnabar']['light-a0'].color};
-	--code-variable: {palettles['pizazz']['light-b0'].color};
+	--code-keyword: {palettles.pelorous['light-a0'].color};
+	--code-function: {palettles.cinnabar['light-a0'].color};
+	--code-variable: {palettles.pizazz['light-b0'].color};
 
 	@media (prefers-color-scheme: dark)
-	--code-comment: {palettles['neutral']['dark-a0'].color};
-	--code-punctuation: {palettles['neutral']['dark-a0'].color};
-	--code-deleted: {palettles['red']['dark-a0'].color};
+	--code-comment: {palettles.neutral['dark-a0'].color};
+	--code-punctuation: {palettles.neutral['dark-a0'].color};
+	--code-deleted: {palettles.red['dark-a0'].color};
 	--code-inserted: {palettles['key-lime-pie']['dark-a0'].color};
 	--code-operator: {palettles['daisy-bush']['dark-a0'].color};
-	--code-keyword: {palettles['pelorous']['dark-a0'].color};
-	--code-function: {palettles['cinnabar']['dark-a0'].color};
-	--code-variable: {palettles['pizazz']['dark-b0'].color};
+	--code-keyword: {palettles.pelorous['dark-a0'].color};
+	--code-function: {palettles.cinnabar['dark-a0'].color};
+	--code-variable: {palettles.pizazz['dark-b0'].color};
 
 	</code></pre>
 </details>

@@ -1,7 +1,6 @@
 form {
-	display: flex;
+	display: grid;
 	gap: var(--gap);
-	flex-direction: column;
 	max-inline-size: 60ch;
 
 	& button {
