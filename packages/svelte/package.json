@@ -35,6 +35,6 @@
 		"pretty": "2.0.0"
 	},
 	"peerDependencies": {
-		"svelte": "^5.55.7"
+		"svelte": "^5.56.10"
 	}
 }
