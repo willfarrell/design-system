@@ -1,11 +1,11 @@
 <script>
-import ButtonSubmit from "@design-system/components/ButtonSubmit.svelte";
-import Form from "@design-system/components/Form.svelte";
-import InputWebAuthnCreate from "@design-system/components/InputWebAuthnCreate.svelte";
-import InputWebAuthnGet from "@design-system/components/InputWebAuthnGet.svelte";
-import A from "@design-system/elements/a.svelte";
-import H2 from "@design-system/elements/h2.svelte";
-import P from "@design-system/elements/p.svelte";
+import ButtonSubmit from "@willfarrell-ds/svelte/components/ButtonSubmit.svelte";
+import Form from "@willfarrell-ds/svelte/components/Form.svelte";
+import InputWebAuthnCreate from "@willfarrell-ds/svelte/components/InputWebAuthnCreate.svelte";
+import InputWebAuthnGet from "@willfarrell-ds/svelte/components/InputWebAuthnGet.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import H2 from "@willfarrell-ds/svelte/elements/h2.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 
 const webAuthnOptions = {};
 </script>

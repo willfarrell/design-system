@@ -11,13 +11,14 @@ const {
 	title,
 	returnLabel = "Back to content", // TODO i18n
 	footnotes = [],
+	labelId = "footnote-label",
 } = $props();
 </script>
 
 <Footer>
-  <H2 id="footnote-label">{title}</H2>
+  <H2 id={labelId}>{title}</H2>
   <Ol>
-    {#each footnotes as footnote}
+    {#each footnotes as footnote (footnote.id)}
       <Li id="footnote-{footnote.id}">
         {footnote.value}
         <A href="#footnote-{footnote.id}-ref" aria-label={returnLabel}>↵</A>

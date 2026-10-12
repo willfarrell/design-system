@@ -12,6 +12,7 @@
 @import "../classes/a.button.css";
 @import "../classes/a.skip.css";
 @import "../classes/aside[aria-labelledby^=callout-].css";
+@import "../classes/button.chevron.css";
 @import "../classes/details.chevron.css";
 @import "../classes/li.card.css";
 @import "../classes/section[role=alert].css";

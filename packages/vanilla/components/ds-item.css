@@ -1,0 +1,51 @@
+ul:has(> :is(.ds-item, [is="ds-task"])) {
+	list-style: none;
+	padding-inline: 0;
+}
+:is(.ds-item, [is="ds-task"]) {
+	max-inline-size: 100%;
+	border-block-start: var(--border-width) solid
+		var(--border-color, currentColor);
+
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-content: baseline;
+
+	& > small {
+		flex-basis: 100%;
+		margin-block: -0.5em 0.5em;
+	}
+
+	&:last-of-type {
+		border-block-end: var(--border-width) solid
+			var(--border-color, currentColor);
+	}
+
+	& > a {
+		padding: 0.5em 0;
+		white-space: nowrap;
+	}
+
+	& > strong {
+		font-weight: 400;
+		padding: 0.25em 0;
+		margin-block: 0.5em;
+
+		&.inprogress {
+			padding: 0.25em 0.5em;
+			background-color: var(--color-main-bold-pseudo);
+		}
+
+		&.incomplete {
+			padding: 0.25em 0.5em;
+			background-color: var(--color-main-pseudo);
+		}
+	}
+}
+@media (forced-colors: active) {
+	:is(.ds-item, [is="ds-task"]) > strong:is(.inprogress, .incomplete) {
+		background-color: transparent;
+		border: 2px solid currentColor;
+	}
+}

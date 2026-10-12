@@ -1,6 +1,6 @@
 <script>
-import DataBytes from "@design-system/components/DataBytes.svelte";
-import P from "@design-system/elements/p.svelte";
+import DataBytes from "@willfarrell-ds/svelte/components/DataBytes.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 <P><DataBytes value={0} /></P>

@@ -1,5 +1,5 @@
 <script>
-import Example from "@components/Example.svelte";
+import Example from "#components/Example.svelte";
 
 const { data } = $props();
 const component = $derived(data.component);

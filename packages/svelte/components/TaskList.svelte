@@ -10,8 +10,6 @@ import Icon from "./Icon.svelte";
 
 const { is = "ds-task", tasks = [] } = $props();
 
-// task.sort rides onto the row as data-sort-*, giving TaskListSortable machine
-// values (epoch millis, ordinals) to order by instead of the localized text.
 const sortData = (sort = {}) =>
 	Object.fromEntries(
 		Object.entries(sort).map(([key, value]) => [`data-sort-${key}`, value]),
@@ -25,8 +23,6 @@ const sortData = (sort = {}) =>
 {#snippet li(task)}
   <Li {is} id={task.id} {...sortData(task.sort)}>
     <A href={task.href}>{task.label}</A>
-    <!-- task.icon takes one src or a list: a row can carry more than one marker
-         (e.g. "still reporting" and "fails a scan check" are different facts). -->
     {#each [task.icon ?? []].flat() as icon}<Icon src={icon} />{/each}
     <Strong class={task.tag}>
       <Span>{task.status}</Span>

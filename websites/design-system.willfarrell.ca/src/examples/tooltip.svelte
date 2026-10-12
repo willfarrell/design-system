@@ -1,8 +1,8 @@
 <script>
-import A from "@design-system/elements/a.svelte";
-import Abbr from "@design-system/elements/abbr.svelte";
-import Button from "@design-system/elements/button.svelte";
-import P from "@design-system/elements/p.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Abbr from "@willfarrell-ds/svelte/elements/abbr.svelte";
+import Button from "@willfarrell-ds/svelte/elements/button.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 <P>The <Abbr title="Web Hypertext Application Technology Working Group">WHATWG</Abbr> maintains the HTML standard.</P>

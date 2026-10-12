@@ -1,13 +1,13 @@
 <script>
-import FootnoteLink from "@design-system/components/FootnoteLink.svelte";
-import Footnotes from "@design-system/components/Footnotes.svelte";
-import A from "@design-system/elements/a.svelte";
-import Article from "@design-system/elements/article.svelte";
-import Footer from "@design-system/elements/footer.svelte";
-import H2 from "@design-system/elements/h2.svelte";
-import Li from "@design-system/elements/li.svelte";
-import Ol from "@design-system/elements/ol.svelte";
-import P from "@design-system/elements/p.svelte";
+import FootnoteLink from "@willfarrell-ds/svelte/components/FootnoteLink.svelte";
+import Footnotes from "@willfarrell-ds/svelte/components/Footnotes.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Article from "@willfarrell-ds/svelte/elements/article.svelte";
+import Footer from "@willfarrell-ds/svelte/elements/footer.svelte";
+import H2 from "@willfarrell-ds/svelte/elements/h2.svelte";
+import Li from "@willfarrell-ds/svelte/elements/li.svelte";
+import Ol from "@willfarrell-ds/svelte/elements/ol.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 
 const footnotes = [
 	{

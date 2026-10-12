@@ -1,5 +1,5 @@
-@import "../media/prefers-color-schema-light.css";
-@import "../media/prefers-color-schema-dark.css";
+@import "../media/prefers-color-scheme-light.css";
+@import "../media/prefers-color-scheme-dark.css";
 @import "../media/prefers-contrast.css";
 @import "../media/prefers-reduced-data.css";
 @import "../media/prefers-reduced-motion.css";

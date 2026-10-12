@@ -1,7 +1,7 @@
 <script>
-import Popover from "@design-system/components/Popover.svelte";
-import Button from "@design-system/elements/button.svelte";
-import P from "@design-system/elements/p.svelte";
+import Popover from "@willfarrell-ds/svelte/components/Popover.svelte";
+import Button from "@willfarrell-ds/svelte/elements/button.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 <Button popovertarget="popover-demo">Toggle popover</Button>

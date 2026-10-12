@@ -34,10 +34,10 @@ sup {
 	/* *** Dimensions *** */
 	--border-width: 0.125rem;
 	--border-radius: 0;
+	--corner-shape: squircle;
 	--gap: 1rem;
 	--grid-gap: 1.5rem;
 	--grid-min-width: 30ch;
-	--grid-col-max-width: 100%; /* .grid-max-col - still need? */
 
 	/* *** Elevation *** */
 	--shadow-raised:
@@ -73,7 +73,7 @@ sup {
 	/* *** colour *** */
 	/* hex values should be at 50% lightness */
 	--hex-none: #636363;
-	/*--hex-main: #6a4ab7;*/
+	--hex-main: #6a4ab7;
 	--hex-info: #1762b6;
 	--hex-pass: #2c761d;
 	--hex-warn: #835b00;
@@ -394,4 +394,5 @@ select,
 textarea,
 [type="file"]::file-selector-button {
 	border-radius: var(--border-radius);
+	corner-shape: var(--corner-shape);
 }

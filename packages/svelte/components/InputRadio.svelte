@@ -17,11 +17,4 @@ const fieldsetValue = $derived(fieldsetContext.value);
   type="radio"
   {value}
   checked={checked === true || fieldsetValue === value}
-  aria-describedby={hint ? `${id}-hint` : null}
->
-  <!--{#if children}
-    <Div>
-      {@render children?.()}
-    </Div>
-  {/if}-->
-</FieldsetInput>
+/>

@@ -1,6 +1,6 @@
 <script>
-import P from "@design-system/elements/p.svelte";
-import Strong from "@design-system/elements/strong.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
+import Strong from "@willfarrell-ds/svelte/elements/strong.svelte";
 </script>
 
 <P>Normal (400)</P>

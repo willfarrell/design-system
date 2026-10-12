@@ -20,25 +20,31 @@ customElements.define(
 			if (this.$onChange) {
 				// remove primary submit button, skip search
 				const submitButtons = this.querySelectorAll('[type="submit"]');
-				submitButtons[submitButtons.length - 1].remove();
+				submitButtons[submitButtons.length - 1]?.remove();
 			}
 		}
 
-		handleSubmit(event) {
-			event.preventDefault();
-			if (!this.$submitted) {
-				this.$submitted = true;
-				this.setAttribute("aria-busy", "true");
-				this.submit();
-				this.$loader?.setAttribute("data-loader", "true");
+		handleSubmit = (event) => {
+			if (this.$submitted) {
+				event.preventDefault();
+				return;
 			}
-		}
+			this.$submitted = true;
+			this.setAttribute("aria-busy", "true");
+			this.$loader?.setAttribute("data-loader", "true");
+		};
+
+		handleChange = () => {
+			if (!this.$submitted) {
+				this.requestSubmit();
+			}
+		};
 
 		connectedCallback() {
 			this.addEventListener("submit", this.handleSubmit);
 			window.addEventListener("pageshow", this.$reset);
 			if (this.$onChange) {
-				this.addEventListener("change", this.handleSubmit);
+				this.addEventListener("change", this.handleChange);
 			}
 		}
 
@@ -46,7 +52,7 @@ customElements.define(
 			this.removeEventListener("submit", this.handleSubmit);
 			window.removeEventListener("pageshow", this.$reset);
 			if (this.$onChange) {
-				this.removeEventListener("change", this.handleSubmit);
+				this.removeEventListener("change", this.handleChange);
 			}
 		}
 	},

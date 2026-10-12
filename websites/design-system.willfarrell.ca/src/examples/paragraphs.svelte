@@ -1,6 +1,6 @@
 <script>
-import P from "@design-system/elements/p.svelte";
-import { paragraph } from "@examples/index.js";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
+import { paragraph } from "#examples/index.js";
 </script>
 
 <P

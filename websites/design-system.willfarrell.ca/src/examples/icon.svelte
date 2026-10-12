@@ -1,6 +1,6 @@
 <script>
-import Icon from "@design-system/components/Icon.svelte";
-import P from "@design-system/elements/p.svelte";
+import Icon from "@willfarrell-ds/svelte/components/Icon.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 <P><Icon src="/img/icons.svg#search" /> Search</P>

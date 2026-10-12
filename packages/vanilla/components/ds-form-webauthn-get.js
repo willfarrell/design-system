@@ -21,24 +21,40 @@ customElements.define(
 			this.$loader = this.querySelector('[data-loader="false"]');
 		}
 
+		async authenticate(useBrowserAutofill) {
+			try {
+				const credential = await startAuthentication({
+					optionsJSON: this.$options,
+					useBrowserAutofill,
+				});
+				this.complete(JSON.stringify(credential));
+			} catch (e) {
+				if (
+					useBrowserAutofill ||
+					e.name === "NotAllowedError" ||
+					e.name === "AbortError"
+				) {
+					return;
+				}
+				this.complete(e.name);
+			}
+		}
+
+		complete(value) {
+			if (this.$submitted) return;
+			this.$input.value = value;
+			this.$input.setAttribute("value", value);
+			this.$submitted = true;
+			this.submit();
+			this.$loader?.setAttribute("data-loader", "true");
+		}
+
 		async handleSubmit(event) {
 			event?.preventDefault();
 			if (this.$pending || this.$submitted) return;
 			this.$pending = true;
 			try {
-				const credential = await startAuthentication({
-					optionsJSON: this.$options,
-				});
-				const value = JSON.stringify(credential);
-				this.$input.value = value;
-				this.$input.setAttribute("value", value); // optional: set attribute if you need markup to reflect it
-
-				this.$submitted = true;
-				this.submit();
-				this.$loader?.setAttribute("data-loader", "true");
-			} catch (e) {
-				// clicking `Cancel` triggers error
-				console.error(e);
+				await this.authenticate(false);
 			} finally {
 				this.$pending = false;
 			}
@@ -48,18 +64,13 @@ customElements.define(
 			this.addEventListener("submit", this.$handleSubmit);
 			window.addEventListener("pageshow", this.$handleRestore);
 
-			if (this.$input.getAttribute("autocomplete").includes("webauthn")) {
-				if (document.hasFocus()) {
-					this.$handleSubmit();
-				} else {
-					window.addEventListener("focus", this.$handleSubmit, { once: true });
-				}
+			if (this.$input.getAttribute("autocomplete")?.includes("webauthn")) {
+				this.authenticate(true);
 			}
 		}
 
 		disconnectedCallback() {
 			this.removeEventListener("submit", this.$handleSubmit);
-			window.removeEventListener("focus", this.$handleSubmit);
 			window.removeEventListener("pageshow", this.$handleRestore);
 		}
 	},

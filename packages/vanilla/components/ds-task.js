@@ -8,19 +8,28 @@ const delayInMiliSeconds = 200;
 customElements.define(
 	is,
 	class extends HTMLLIElement {
-		constructor() {
-			super();
-			this.link = this.querySelector("a:first-of-type");
-		}
-
 		handleMouseDown() {
 			this.down = +Date.now();
 		}
 
-		handleMouseUp() {
+		handleMouseUp(event) {
+			if (
+				event.button !== 0 ||
+				event.ctrlKey ||
+				event.metaKey ||
+				event.shiftKey ||
+				event.altKey ||
+				event.target.closest("a,button,input,select,textarea,label,summary")
+			) {
+				return;
+			}
+			const link = this.querySelector("a:first-of-type");
+			if (!link) {
+				return;
+			}
 			this.up = +Date.now();
 			if (this.up - this.down < delayInMiliSeconds) {
-				this.link.click();
+				link.click();
 			}
 		}
 

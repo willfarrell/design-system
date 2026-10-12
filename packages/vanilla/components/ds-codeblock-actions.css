@@ -1,0 +1,13 @@
+[is="ds-codeblock-actions"] {
+	display: flow-root;
+}
+
+[is="ds-codeblock-actions"] > code {
+	display: block;
+	max-inline-size: none;
+}
+
+[is="ds-codeblock-actions"] > button {
+	float: inline-end;
+	margin-inline-start: var(--padding-fixed);
+}

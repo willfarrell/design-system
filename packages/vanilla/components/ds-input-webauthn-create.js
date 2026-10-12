@@ -8,31 +8,42 @@ const is = "ds-input-webauthn-create";
 customElements.define(
 	is,
 	class extends HTMLInputElement {
+		$form = null;
+		$options;
+		$pending = false;
+		$submitted = false;
+		$handleSubmit = (event) => this.handleSubmit(event);
 		constructor() {
 			super();
-			this.$form = this.closest("form");
 			this.$options = JSON.parse(this.getAttribute("data-options"));
 		}
 
-		handleSubmit = async (event) => {
+		async handleSubmit(event) {
+			event.preventDefault();
+			if (this.$pending || this.$submitted) return;
+			this.$pending = true;
 			try {
 				const credential = await startRegistration({
 					optionsJSON: this.$options,
 				});
-				const value = JSON.stringify(credential);
-				event.formData.append(this.name, value);
+				this.value = JSON.stringify(credential);
 			} catch (e) {
-				// clicking `Cancel` triggers error
-				console.error(e);
+				if (e.name === "NotAllowedError" || e.name === "AbortError") return;
+				this.value = e.name;
+			} finally {
+				this.$pending = false;
 			}
-		};
+			this.$submitted = true;
+			this.$form.submit();
+		}
 
 		connectedCallback() {
-			this.$form.addEventListener("submit", this.handleSubmit);
+			this.$form = this.closest("form");
+			this.$form?.addEventListener("submit", this.$handleSubmit);
 		}
 
 		disconnectedCallback() {
-			this.$form.removeEventListener("submit", this.handleSubmit);
+			this.$form?.removeEventListener("submit", this.$handleSubmit);
 		}
 	},
 	{ extends: "input" },

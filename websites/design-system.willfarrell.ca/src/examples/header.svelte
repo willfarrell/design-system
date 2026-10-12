@@ -1,5 +1,5 @@
 <script>
-import PageHeader from "@components/Header.svelte";
+import PageHeader from "#components/Header.svelte";
 </script>
 
 <PageHeader />

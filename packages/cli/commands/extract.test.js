@@ -284,6 +284,23 @@ describe("extract", () => {
 			assert.ok(app.includes("layers/media.css"));
 		});
 
+		it("imports layers/media.css after the themes", () => {
+			const { app, above } = runExtract({ "index.html": "<nav></nav>" }, {}, [
+				"elements/nav.css",
+			]);
+			for (const css of [app, above]) {
+				const lines = css.trim().split("\n");
+				assert.ok(
+					lines.findIndex((line) => line.endsWith('vanilla/theme.css";')) <
+						lines.findIndex((line) => /"\.[^"]*\/theme\.css";$/.test(line)),
+				);
+				assert.equal(
+					lines.at(-1),
+					'@import "@willfarrell-ds/vanilla/layers/media.css";',
+				);
+			}
+		});
+
 		it("includes vanilla theme and custom theme imports", () => {
 			const { app } = runExtract({ "index.html": "<div></div>" }, {}, []);
 			assert.ok(
@@ -291,6 +308,35 @@ describe("extract", () => {
 				"should include vanilla theme",
 			);
 			assert.ok(app.includes("./theme.css"), "should include custom theme");
+		});
+
+		it("imports the default package theme once", () => {
+			const outputDir = `${cwd}/build/css`;
+			files[`${cwd}/build/index.html`] = "<div></div>";
+			extract({
+				inputDir: "build",
+				outputDir,
+				theme: "@willfarrell-ds/vanilla/theme.css",
+			});
+			const app = files[`${outputDir}/app.css`];
+			assert.strictEqual(app.split("theme.css").length - 1, 1);
+			assert.ok(app.includes('@import "@willfarrell-ds/vanilla/theme.css";'));
+		});
+
+		it("imports a package specifier theme as-is", () => {
+			const outputDir = `${cwd}/build/css`;
+			files[`${cwd}/build/index.html`] = "<div></div>";
+			extract({ inputDir: "build", outputDir, theme: "@acme/brand/theme.css" });
+			const app = files[`${outputDir}/app.css`];
+			assert.ok(app.includes('@import "@acme/brand/theme.css";'));
+		});
+
+		it("imports a relative theme path relative to outputDir", () => {
+			const outputDir = `${cwd}/build/css`;
+			files[`${cwd}/build/index.html`] = "<div></div>";
+			extract({ inputDir: "build", outputDir, theme: "./src/theme.css" });
+			const app = files[`${outputDir}/app.css`];
+			assert.ok(app.includes('@import "./../../src/theme.css";'));
 		});
 
 		it("skips imports when CSS file doesn't exist", () => {

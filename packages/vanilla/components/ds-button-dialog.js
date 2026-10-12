@@ -13,10 +13,10 @@ customElements.define(
 		}
 
 		handleShow() {
+			if (!this.$dialog) return;
 			this.setAttribute("aria-expanded", "true");
 			this.$dialog.inert = false;
-			this.$dialog?.showModal();
-			this.$dialog.open = true;
+			this.$dialog.showModal();
 		}
 
 		connectedCallback() {

@@ -1,6 +1,6 @@
 <script>
-import DataNumber from "@design-system/components/DataNumber.svelte";
-import P from "@design-system/elements/p.svelte";
+import DataNumber from "@willfarrell-ds/svelte/components/DataNumber.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 <P><DataNumber value={1234.56} /></P>

@@ -1,10 +1,10 @@
 <script>
-import FieldHgroupSnippet from "@design-system/components/FieldHgroupSnippet.svelte";
-import InputDate from "@design-system/components/InputDate.svelte";
-import A from "@design-system/elements/a.svelte";
-import Button from "@design-system/elements/button.svelte";
-import Form from "@design-system/elements/form.svelte";
-import P from "@design-system/elements/p.svelte";
+import FieldHgroupSnippet from "@willfarrell-ds/svelte/components/FieldHgroupSnippet.svelte";
+import InputDate from "@willfarrell-ds/svelte/components/InputDate.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Button from "@willfarrell-ds/svelte/elements/button.svelte";
+import Form from "@willfarrell-ds/svelte/elements/form.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 <!--

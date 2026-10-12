@@ -11,9 +11,10 @@ customElements.define(
 		// }
 
 		handleClose(event) {
-			this.open = false;
 			this.inert = true;
-			const trigger = document.querySelector(`[data-dialog="${this.id}"]`);
+			const trigger = document.querySelector(
+				`[data-dialog="${CSS.escape(this.id)}"]`,
+			);
 			trigger?.setAttribute("aria-expanded", "false");
 			trigger?.focus();
 		}

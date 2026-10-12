@@ -5,7 +5,7 @@
  */
 
 import { readFileSync } from "node:fs";
-import { join as pathJoin } from "node:path";
+import { resolve } from "node:path";
 import convert from "color-convert";
 import {
 	createUnit,
@@ -15,6 +15,7 @@ import {
 	min as mathjsMin,
 } from "mathjs";
 import { saveFileSync, walkDirSync } from "../lib/fs.js";
+import { escapeRegExp } from "../lib/regexp.js";
 
 const rgbToHex = (r, g, b, a) => {
 	const hex = `#${r.toString(16).padStart(2, "0")}${g.toString(16).padStart(2, "0")}${b.toString(16).padStart(2, "0")}`;
@@ -134,8 +135,6 @@ const findEnclosingSelector = (content, matchIndex) => {
 	}
 	return null;
 };
-
-const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 let assignments;
 let singleUseVars;
@@ -905,7 +904,7 @@ const removeInherited = (content) => {
 
 const optimizeStyles = (input, options = {}) => {
 	init();
-	const sourceDir = pathJoin(process.cwd(), input);
+	const sourceDir = resolve(input);
 	//console.log(sourceDir, options)
 
 	const contentLength = {};

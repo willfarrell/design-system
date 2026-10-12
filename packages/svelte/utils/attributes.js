@@ -1,8 +1,5 @@
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes
-
-const globalAttributes = new Set([
+export const globalAttributes = new Set([
 	"accesskey",
-	// "anchor", // Deprecatd
 	"autocapitalize",
 	"autocorrect",
 	"autofocus",
@@ -37,20 +34,16 @@ const globalAttributes = new Set([
 	"writingsuggestions",
 ]);
 
-// Allows:
-// data-*
-// aria-*
 const allowedAttributes = (props = {}, elementAttributes = new Set([])) => {
 	const attributes = {};
 	for (const prop in props) {
-		const [prefix] = prop.split("-");
+		if (prop.toLowerCase().startsWith("on")) continue;
 		if (
 			elementAttributes.has(prop) ||
 			globalAttributes.has(prop) ||
-			prefix === "data" ||
-			prefix === "aria"
+			/^(data|aria)-./.test(prop)
 		) {
-			attributes[prop] = props[prop]; //.replaceAll('"', '\"');
+			attributes[prop] = props[prop];
 		}
 	}
 	return attributes;

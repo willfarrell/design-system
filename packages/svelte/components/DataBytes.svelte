@@ -10,7 +10,10 @@ const getLocalizedBytes = (value, locale, decimals = 2) => {
 	const k = 1024;
 	const dm = decimals < 0 ? 0 : decimals;
 	const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-	const i = Math.floor(Math.log(value) / Math.log(k));
+	const i = Math.min(
+		sizes.length - 1,
+		Math.max(0, Math.floor(Math.log(Math.abs(value)) / Math.log(k))),
+	);
 	return (
 		new Intl.NumberFormat(locale).format(
 			Number.parseFloat((value / k ** i).toFixed(dm)),
@@ -27,7 +30,7 @@ const locale = $derived.by(() => {
 		return undefined;
 	}
 });
-const label = $derived(getLocalizedBytes(value, locale ?? "en-CA", props));
+const label = $derived(getLocalizedBytes(value, locale ?? "en-CA"));
 </script>
 
 <Data {value} {...props}>{label}</Data>

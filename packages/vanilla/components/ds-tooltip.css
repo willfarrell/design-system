@@ -32,6 +32,11 @@
 		block-size: calc(0.5rem + var(--border-width));
 	}
 
+	&[data-ds-side="below"]::before {
+		inset-block-start: calc(-0.5rem - var(--border-width));
+		inset-block-end: auto;
+	}
+
 	&:popover-open {
 		opacity: 1;
 		transition-delay: 400ms;
@@ -75,7 +80,7 @@
 	}
 }
 
-[data-ds-side="below"] + .ds-tooltip + .ds-tooltip-arrow {
+.ds-tooltip-arrow[data-ds-side="below"] {
 	position-area: block-end;
 	margin-block: 0.25rem auto;
 	border-block-start: var(--border-width) solid var(--color-text);

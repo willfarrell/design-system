@@ -1,21 +1,21 @@
 <script>
-import Snippet from "@components/Snippet.svelte";
-import Codeblock from "@design-system/components/Codeblock.svelte";
-import DataTime from "@design-system/components/DataTime.svelte";
-import H1 from "@design-system/components/Heading1.svelte";
-import H2 from "@design-system/components/Heading2.svelte";
-import HSub from "@design-system/components/HeadingSub.svelte";
-import LayoutTableOfContents from "@design-system/components/LayoutTableOfContents.svelte";
-import NavScrollspy from "@design-system/components/NavScrollspy.svelte";
-import A from "@design-system/elements/a.svelte";
-import Code from "@design-system/elements/code.svelte";
-import Hgroup from "@design-system/elements/hgroup.svelte";
-import Li from "@design-system/elements/li.svelte";
-import Ol from "@design-system/elements/ol.svelte";
-import P from "@design-system/elements/p.svelte";
-import Section from "@design-system/elements/section.svelte";
-import Small from "@design-system/elements/small.svelte";
-import Ul from "@design-system/elements/ul.svelte";
+import Codeblock from "@willfarrell-ds/svelte/components/Codeblock.svelte";
+import DataTime from "@willfarrell-ds/svelte/components/DataTime.svelte";
+import H1 from "@willfarrell-ds/svelte/components/Heading1.svelte";
+import H2 from "@willfarrell-ds/svelte/components/Heading2.svelte";
+import HSub from "@willfarrell-ds/svelte/components/HeadingSub.svelte";
+import LayoutTableOfContents from "@willfarrell-ds/svelte/components/LayoutTableOfContents.svelte";
+import NavScrollspy from "@willfarrell-ds/svelte/components/NavScrollspy.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Code from "@willfarrell-ds/svelte/elements/code.svelte";
+import Hgroup from "@willfarrell-ds/svelte/elements/hgroup.svelte";
+import Li from "@willfarrell-ds/svelte/elements/li.svelte";
+import Ol from "@willfarrell-ds/svelte/elements/ol.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
+import Section from "@willfarrell-ds/svelte/elements/section.svelte";
+import Small from "@willfarrell-ds/svelte/elements/small.svelte";
+import Ul from "@willfarrell-ds/svelte/elements/ul.svelte";
+import Snippet from "#components/Snippet.svelte";
 
 const page = {
 	group: "Component",
@@ -65,7 +65,6 @@ const usage = `<nav is="ds-scrollspy" aria-labelledby="toc-label">
 					<Li><A href="#description">Description</A></Li>
 					<Li><A href="#example">Example</A></Li>
 					<Li><A href="#usage">Usage</A></Li>
-					<Li><A href="#variants">Variants</A></Li>
 					<Li><A href="#accessibility">Accessibility</A></Li>
 					<Li><A href="#references">References</A></Li>
 					<Li><A href="#related">Related</A></Li>
@@ -92,20 +91,12 @@ const usage = `<nav is="ds-scrollspy" aria-labelledby="toc-label">
 		<P>In Svelte, use <Code>NavScrollspy</Code> with a <Code>children</Code> snippet holding the <Code>&lt;Ol&gt;</Code> of links. It accepts <Code>labelHeader</Code> (the heading text, default <q>On this page</q>), <Code>labelId</Code>, and <Code>is</Code> (default <Code>ds-scrollspy</Code>).</P>
 	</Section>
 	<Section>
-		<H2 id="variants">Variants</H2>
-		<P>Two implementations of the same <Code>ds-scrollspy</Code> element ship with the design system. Both register the same custom element name, so the behaviour is chosen by loading one implementation or the other, not by changing the <Code>is</Code> attribute.</P>
-		<Ul>
-			<Li><Code>ds-scrollspy</Code> — the default. It tracks every section independently, so more than one link can be current at once when several short sections share the top half of the viewport. Best for a long table of contents.</Li>
-			<Li><Code>ds-scrollspy-single</Code> — keeps exactly one link current at a time, choosing the nearest heading from the scroll direction. Prefer it when a single active item reads more clearly, such as a short list.</Li>
-		</Ul>
-	</Section>
-	<Section>
 		<H2 id="accessibility">Accessibility</H2>
 		<Ul>
 			<Li>The active link receives <Code>aria-current="true"</Code> and it is removed from the others, so assistive technology announces the section currently in view.</Li>
 			<Li>The navigation is labelled with <Code>aria-labelledby</Code> pointing at its <q>On this page</q> heading, making it identifiable in a list of landmarks.</Li>
 			<Li>Links are real in-page anchors, so they are keyboard focusable and operable with or without the script — the highlight is an enhancement, never a requirement for navigation.</Li>
-			<Li>The default variant can mark several links current at once; prefer <Code>ds-scrollspy-single</Code> when a single announced location is less verbose.</Li>
+			<Li>Several links can be current at once when short sections share the top half of the viewport.</Li>
 		</Ul>
 	</Section>
 	<Section>
