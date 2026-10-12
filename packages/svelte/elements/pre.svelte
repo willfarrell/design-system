@@ -6,6 +6,4 @@ const elementAttributes = new Set([]);
 const { children, ...props } = $props();
 </script>
 
-<pre {...allowedAttributes(props, elementAttributes)}>
-  {@render children?.()}
-</pre>
+<pre {...allowedAttributes(props, elementAttributes)}>{@render children?.()}</pre>

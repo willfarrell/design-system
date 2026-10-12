@@ -1,23 +1,24 @@
 <script>
 import Div from "../elements/div.svelte";
 import Textarea from "../elements/textarea.svelte";
+import fieldAria from "../utils/fieldAria.js";
 import FieldError from "./FieldError.svelte";
 import FieldHint from "./FieldHint.svelte";
 import FieldLabel from "./FieldLabel.svelte";
 
-const { id, name, label, labelSnippet, hint, error, ...props } = $props();
+const {
+	id,
+	name,
+	label,
+	labelSnippet,
+	hint,
+	error,
+	"aria-describedby": describedby,
+	...props
+} = $props();
 const resolvedName = $derived(name ?? id);
 
-// aria-describedby={hint ? id+'-hint' : null}
-// aria-errormessage={error?.length ? id + "-error" : null} // for aria-live only?
-const ariaDescribedby = $derived.by(() => {
-	const parts = [];
-	if (hint) parts.push(`${id}-hint`);
-	if (error?.length) parts.push(`${id}-error`);
-	return parts.join(" ") || null;
-});
-const ariaInvalid = $derived(error?.length ? "true" : null);
-// TODO add in spellcheck?
+const aria = $derived(fieldAria(id, hint, error, describedby));
 </script>
 
 <Div>
@@ -30,7 +31,6 @@ const ariaInvalid = $derived(error?.length ? "true" : null);
     value={null}
     name={resolvedName}
     {...props}
-    aria-describedby={ariaDescribedby}
-    aria-invalid={ariaInvalid}
+    {...aria}
   />
 </Div>

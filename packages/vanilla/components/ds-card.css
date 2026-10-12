@@ -1,11 +1,16 @@
 ul:has(> li > [is="ds-card"]) {
 	list-style: none;
 	padding-inline: 0;
+	/* grid, so the card fills the li the row stretched, else cards in one row differ in height */
+	& > li {
+		display: grid;
+	}
 }
 
 [is="ds-card"] {
 	border: var(--border-width) solid var(--border-color, currentColor);
 	border-radius: var(--border-radius);
+	corner-shape: var(--corner-shape);
 	display: flex;
 	flex-direction: column;
 	position: relative;
@@ -36,6 +41,7 @@ ul:has(> li > [is="ds-card"]) {
 		overflow: hidden;
 		border-start-start-radius: inherit;
 		border-start-end-radius: inherit;
+		corner-shape: inherit;
 	}
 
 	& .text {

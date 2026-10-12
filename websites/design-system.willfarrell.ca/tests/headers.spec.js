@@ -13,13 +13,16 @@ test("tardisec security headers are served", async ({ request }) => {
 
 	for (const [key, value] of Object.entries(tardisec.http.headers)) {
 		if (!value) continue;
-		// kit's csp config renders both CSP headers itself (same directives,
-		// different serialization), so the middleware skips its static copies
-		if (key.toLowerCase().startsWith("content-security-policy")) continue;
 		expect(headers[key.toLowerCase()], key).toBe(value);
 	}
 
+	expect(headers["permissions-policy"]).toContain("camera=()");
+	expect(headers["permissions-policy-report-only"]).toBeUndefined();
+	expect(headers["x-frame-options"]).toBe("SAMEORIGIN");
 	expect(headers["content-security-policy"]).toContain("default-src 'none'");
+	expect(headers["content-security-policy"]).toContain(
+		"frame-ancestors 'self'",
+	);
 	expect(headers["content-security-policy-report-only"]).toContain(
 		"'report-sha256'",
 	);

@@ -1,6 +1,6 @@
 <script>
-import DataTime from "@design-system/components/DataTime.svelte";
-import P from "@design-system/elements/p.svelte";
+import DataTime from "@willfarrell-ds/svelte/components/DataTime.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 <P><DataTime value="2025-01-15" /></P>

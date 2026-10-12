@@ -19,6 +19,7 @@
 
 html {
 	font-size: max(var(--font-size), 18px);
+	scroll-behavior: smooth;
 }
 
 body {
@@ -32,7 +33,6 @@ body {
 	/* text-box: set per element (h1-h6, buttons) — doesn't inherit, so no body default.
 	   TODO inputs: parses but has no effect on form controls (Chromium 145), and @supports can't tell */
 	overflow-wrap: break-word;
-	scroll-behavior: smooth;
 	-webkit-font-smoothing: antialiased;
 
 	--width-scrollbar: calc(100vw - 100%); /* TODO not correct */
@@ -46,8 +46,8 @@ body {
 /* *** Focus *** */
 
 :focus:not(:focus-visible),
-::after:focus:not(:focus-visible),
-::before:focus:not(:focus-visible) {
+:focus:not(:focus-visible)::after,
+:focus:not(:focus-visible)::before {
 	outline: none;
 }
 

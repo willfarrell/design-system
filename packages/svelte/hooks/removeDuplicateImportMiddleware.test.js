@@ -1,138 +1,62 @@
 import assert from "node:assert";
-import { describe, it, mock } from "node:test";
+import { describe, it } from "node:test";
 import removeDuplicateImportMiddleware from "./removeDuplicateImportMiddleware.js";
 
+const run = (html) =>
+	removeDuplicateImportMiddleware({
+		event: {},
+		resolve: (_event, { transformPageChunk }) =>
+			Promise.resolve(transformPageChunk({ html })),
+	});
+
+const count = (html, tag) => html.split(tag).length - 1;
+
 describe("removeDuplicateImportMiddleware", () => {
-	const createMockResolve = (html) => {
-		return mock.fn(() =>
-			Promise.resolve({
-				body: {
-					pipe: () => ({
-						getWebStream: () => null,
-						getReader: () => null,
-						locked: false,
-					}),
-				},
-			}),
-		);
-	};
-
-	it("should handle empty HTML without throwing", async () => {
-		const mockResolve = createMockResolve("");
-		const mockEvent = { request: new URL("http://localhost") };
-
-		const result = await removeDuplicateImportMiddleware({
-			event: mockEvent,
-			resolve: mockResolve,
-		});
-
-		assert.ok(result);
+	it("should handle HTML without imports", async () => {
+		assert.strictEqual(await run(""), "");
+		assert.strictEqual(await run("<p>text</p>"), "<p>text</p>");
 	});
 
 	it("should remove duplicate script imports", async () => {
-		const html = `
-			<html>
-				<script src="/a.js"></script>
-				<script src="/b.js"></script>
-				<script src="/a.js"></script>
-			</html>
-		`;
-		const mockResolve = createMockResolve(html);
-		const mockEvent = { request: new URL("http://localhost") };
-
-		const result = await removeDuplicateImportMiddleware({
-			event: mockEvent,
-			resolve: mockResolve,
-		});
-
-		assert.ok(result);
+		const result = await run(
+			`<script src="/a.js"></script><script src="/b.js"></script><script src="/a.js"></script>`,
+		);
+		assert.strictEqual(count(result, `<script src="/a.js">`), 1);
+		assert.strictEqual(count(result, `<script src="/b.js">`), 1);
 	});
 
 	it("should remove duplicate link imports", async () => {
-		const html = `
-			<html>
-				<link href="/a.css" rel="stylesheet">
-				<link href="/b.css" rel="stylesheet">
-				<link href="/a.css" rel="stylesheet">
-			</html>
-		`;
-		const mockResolve = createMockResolve(html);
-		const mockEvent = { request: new URL("http://localhost") };
-
-		const result = await removeDuplicateImportMiddleware({
-			event: mockEvent,
-			resolve: mockResolve,
-		});
-
-		assert.ok(result);
+		const result = await run(
+			`<link href="/a.css" rel="stylesheet"><link href="/b.css" rel="stylesheet"><link href="/a.css" rel="stylesheet">`,
+		);
+		assert.strictEqual(
+			count(result, `<link href="/a.css" rel="stylesheet">`),
+			1,
+		);
+		assert.strictEqual(
+			count(result, `<link href="/b.css" rel="stylesheet">`),
+			1,
+		);
 	});
 
 	it("should keep different imports unchanged", async () => {
-		const html = `
-			<html>
-				<script src="/a.js"></script>
-				<script src="/b.js"></script>
-			</html>
-		`;
-		const mockResolve = createMockResolve(html);
-		const mockEvent = { request: new URL("http://localhost") };
-
-		const result = await removeDuplicateImportMiddleware({
-			event: mockEvent,
-			resolve: mockResolve,
-		});
-
-		assert.ok(result);
+		const html = `<script src="/a.js"></script><script src="/b.js"></script>`;
+		assert.strictEqual(await run(html), html);
 	});
 
-	it("should handle single import without issues", async () => {
-		const html = `<script src="/only.js"></script>`;
-		const mockResolve = createMockResolve(html);
-		const mockEvent = { request: new URL("http://localhost") };
-
-		const result = await removeDuplicateImportMiddleware({
-			event: mockEvent,
-			resolve: mockResolve,
-		});
-
-		assert.ok(result);
-	});
-
-	it("should handle malformed tags gracefully", async () => {
-		const html = `
-			<html>
-				<script></script>
-				<script></script>
-			</html>
-		`;
-		const mockResolve = createMockResolve(html);
-		const mockEvent = { request: new URL("http://localhost") };
-
-		const result = await removeDuplicateImportMiddleware({
-			event: mockEvent,
-			resolve: mockResolve,
-		});
-
-		assert.ok(result);
+	it("should keep tags without src or href", async () => {
+		const html = "<script></script><script></script>";
+		assert.strictEqual(await run(html), html);
 	});
 
 	it("should handle multiple different duplicate types", async () => {
-		const html = `
-			<html>
-				<script src="/a.js"></script>
-				<link href="/a.css" rel="stylesheet">
-				<script src="/a.js"></script>
-				<link href="/a.css" rel="stylesheet">
-			</html>
-		`;
-		const mockResolve = createMockResolve(html);
-		const mockEvent = { request: new URL("http://localhost") };
-
-		const result = await removeDuplicateImportMiddleware({
-			event: mockEvent,
-			resolve: mockResolve,
-		});
-
-		assert.ok(result);
+		const result = await run(
+			`<script src="/a.js"></script><link href="/a.css" rel="stylesheet"><script src="/a.js"></script><link href="/a.css" rel="stylesheet">`,
+		);
+		assert.strictEqual(count(result, `<script src="/a.js">`), 1);
+		assert.strictEqual(
+			count(result, `<link href="/a.css" rel="stylesheet">`),
+			1,
+		);
 	});
 });

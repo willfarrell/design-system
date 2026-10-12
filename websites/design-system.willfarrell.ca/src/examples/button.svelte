@@ -1,8 +1,8 @@
 <script>
-import Icon from "@design-system/components/Icon.svelte";
-import Button from "@design-system/elements/button.svelte";
-import Div from "@design-system/elements/div.svelte";
-import Span from "@design-system/elements/span.svelte";
+import Icon from "@willfarrell-ds/svelte/components/Icon.svelte";
+import Button from "@willfarrell-ds/svelte/elements/button.svelte";
+import Div from "@willfarrell-ds/svelte/elements/div.svelte";
+import Span from "@willfarrell-ds/svelte/elements/span.svelte";
 </script>
 
 <!-- TODO mention FireFox bug -->

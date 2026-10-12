@@ -9,7 +9,7 @@ w.addEventListener("load", async () => {
 	if ("serviceWorker" in n) {
 		const sw = n.serviceWorker;
 		const link = d.querySelector(`link[href*="/sw-"][href$=".js"]`);
-		let scriptURL = link?.href ?? `/sw.js`;
+		let scriptURL = link?.href ?? `/service-worker.js`;
 		if (w.trustedTypes) {
 			const swPolicy = trustedTypes.createPolicy("sw", {
 				createScriptURL: (scriptURL) => {
@@ -38,15 +38,9 @@ w.addEventListener("load", async () => {
 			if (event.origin !== location.origin) {
 				return;
 			}
-			const eventHandler = swResponseEvents[event.type] ?? defaultResponseEvent;
+			const eventHandler =
+				swResponseEvents[event.data?.type] ?? defaultResponseEvent;
 			await eventHandler(event);
 		});
 	}
-});
-
-// move to @work-bee/offline - {client}
-document.addEventListener("ononline", () => {
-	navigator?.serviceWorker.controller?.postMessage?.({
-		type: "online",
-	});
 });

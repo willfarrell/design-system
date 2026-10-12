@@ -1,5 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
-import { join as pathJoin, relative as pathRelative } from "node:path";
+import { join as pathJoin, relative as pathRelative, resolve } from "node:path";
 import { getModuleDir, saveFileSync, walkDirSync } from "../lib/fs.js";
 
 let indexes = {};
@@ -174,10 +174,6 @@ const buildCSS = (
 		key: "layers/base.css",
 		line: `@import "@${namespace}/vanilla/layers/base.css";\n`,
 	});
-	imports.push({
-		key: "layers/media.css",
-		line: `@import "@${namespace}/vanilla/layers/media.css";\n`,
-	});
 
 	let list = Object.keys(tags);
 	list.sort();
@@ -256,9 +252,15 @@ const buildCSS = (
 		key: "theme.css",
 		line: `@import "@${namespace}/vanilla/theme.css";\n`,
 	});
+	if (theme && theme !== `@${namespace}/vanilla/theme.css`) {
+		imports.push({
+			key: "theme-custom",
+			line: `@import "${theme}";\n`,
+		});
+	}
 	imports.push({
-		key: "theme-custom",
-		line: `@import "${theme}";\n`,
+		key: "layers/media.css",
+		line: `@import "@${namespace}/vanilla/layers/media.css";\n`,
 	});
 
 	return { imports, header };
@@ -298,13 +300,11 @@ const splitCSS = (imports, header) => {
 // }
 
 const extract = (options = {}) => {
-	const inputDirs = Array.isArray(options.inputDir)
-		? options.inputDir
-		: [options.inputDir];
+	const inputDirs = [options.inputDir ?? []].flat();
 	indexes = { tags: {}, classes: {}, roles: {}, arias: {}, pewc: {} };
 
 	for (const input of inputDirs) {
-		const sourceDir = pathJoin(process.cwd(), input);
+		const sourceDir = resolve(input);
 		for (const filePath of walkDirSync(sourceDir, ".html")) {
 			if (options.debug) {
 				console.log("Parse", filePath);
@@ -331,8 +331,10 @@ const extract = (options = {}) => {
 	}
 
 	if (options.outputDir) {
-		const relativeTheme = `./${pathRelative(options.outputDir, options.theme)}`;
-		const { imports, header } = buildCSS(indexes, relativeTheme);
+		const theme = /^[./]/.test(options.theme ?? "")
+			? `./${pathRelative(options.outputDir, options.theme)}`
+			: options.theme;
+		const { imports, header } = buildCSS(indexes, theme);
 		const { app, above, below } = splitCSS(imports, header);
 		saveFileSync(pathJoin(options.outputDir, "app.css"), app);
 		saveFileSync(pathJoin(options.outputDir, "above.css"), above);

@@ -1,6 +1,6 @@
 <script>
-import DataEnum from "@design-system/components/DataEnum.svelte";
-import P from "@design-system/elements/p.svelte";
+import DataEnum from "@willfarrell-ds/svelte/components/DataEnum.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 
 const statusEnums = {
 	active: "Active",

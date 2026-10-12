@@ -12,7 +12,17 @@ customElements.define(
 			this.down = +Date.now();
 		}
 
-		handleMouseUp() {
+		handleMouseUp(event) {
+			if (
+				event.button !== 0 ||
+				event.ctrlKey ||
+				event.metaKey ||
+				event.shiftKey ||
+				event.altKey ||
+				event.target.closest("a,button,input,select,textarea,label,summary")
+			) {
+				return;
+			}
 			// Looked up here, not in the constructor: children aren't parsed yet there,
 			// and a card with no link (a metric, a stat) has nothing to activate.
 			const link = this.querySelector("a:first-of-type");

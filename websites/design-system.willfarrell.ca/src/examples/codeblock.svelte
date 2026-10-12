@@ -1,5 +1,5 @@
 <script>
-import Codeblock from "@design-system/components/Codeblock.svelte";
+import Codeblock from "@willfarrell-ds/svelte/components/Codeblock.svelte";
 
 const code = `function greet(name) {
 	return \`Hello, \${name}!\`;

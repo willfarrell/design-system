@@ -1,8 +1,12 @@
 <script>
+import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-input-webauthn-get.js?worker&url";
 import InputHidden from "./InputHidden.svelte";
 
-const { ...props } = $props();
-// data-options required
+const { is = "ds-input-webauthn-get", ...props } = $props();
 </script>
 
-<InputHidden {...props} autocomplete="webauthn" />
+<svelte:head>
+  <link rel="modulepreload" href={webComponentUrl} />
+</svelte:head>
+
+<InputHidden {is} {...props} autocomplete="webauthn" />

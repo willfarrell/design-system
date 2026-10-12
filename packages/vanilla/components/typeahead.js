@@ -2,38 +2,6 @@
 
 const d = document;
 
-const esc = (string) =>
-	`${string}`.replace(
-		/[&<>"']/g,
-		(c) =>
-			({
-				"&": "&amp;",
-				"<": "&lt;",
-				">": "&gt;",
-				'"': "&quot;",
-				"'": "&#39;",
-			})[c],
-	);
-
-const sanitizer = {
-	attributes: [
-		"id",
-		"class",
-		"role",
-		"aria-selected",
-		"aria-disabled",
-		"data-index",
-	],
-};
-
-const setHTML = (element, html) => {
-	if (element.setHTML) {
-		element.setHTML(html, { sanitizer });
-	} else {
-		element.innerHTML = html;
-	}
-};
-
 export const defaultStatusText = (n) => {
 	switch (n) {
 		case 0:
@@ -120,20 +88,27 @@ export const createCombobox = ({
 		activeIndex = -1;
 		input.removeAttribute("aria-activedescendant");
 		if (items.length) {
-			setHTML(
-				menu,
-				items
-					.map(
-						(item, index) =>
-							`<li id="${esc(listboxId)}-${index}" class="autocomplete__option${index % 2 ? " autocomplete__option--odd" : ""}" role="option" aria-selected="false" data-index="${index}">${esc(item.label)}</li>`,
-					)
-					.join(""),
+			menu.replaceChildren(
+				...items.map((item, index) => {
+					const option = d.createElement("li");
+					option.id = `${listboxId}-${index}`;
+					option.className = `autocomplete__option${index % 2 ? " autocomplete__option--odd" : ""}`;
+					setAttributes(option, {
+						role: "option",
+						"aria-selected": "false",
+						"data-index": index,
+					});
+					option.textContent = item.label;
+					return option;
+				}),
 			);
 		} else {
-			setHTML(
-				menu,
-				`<li class="autocomplete__option autocomplete__option--no-results" role="option" aria-disabled="true">${esc(noResults())}</li>`,
-			);
+			const option = d.createElement("li");
+			option.className =
+				"autocomplete__option autocomplete__option--no-results";
+			setAttributes(option, { role: "option", "aria-disabled": "true" });
+			option.textContent = noResults();
+			menu.replaceChildren(option);
 		}
 		live.textContent = statusText(items.length);
 		show();

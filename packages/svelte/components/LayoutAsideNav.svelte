@@ -17,20 +17,6 @@ const url = $derived.by(() => {
 		return { pathname: "", hash: "" };
 	}
 });
-
-/*
-
-	// Expected `nav` structure
-	{
-		'Group name':true,
-		'Link name':'/path/to/page'
-		'Summary name':{
-			'Link name':'/path/to/page',
-			'Link name':'/path/to/page'
-		}
-	}
-
-	*/
 </script>
 
 {#snippet links(nav)}
@@ -42,21 +28,20 @@ const url = $derived.by(() => {
             {#if idx !== 0}
               <Hr />
             {/if}
-            <Strong>{@html key}</Strong>
+            <Strong>{key}</Strong>
           {:else if typeof nav[key] === "string"}
-            <!-- exact match → a.svelte sets aria-current="page"; subpath → section -->
             <A
               href={nav[key]}
               aria-current={url.pathname.startsWith(`${nav[key]}/`)
                 ? "true"
-                : undefined}>{@html key}</A
+                : undefined}>{key}</A
             >
           {:else}
             <Details
               class="chevron"
               open={Object.values(nav[key]).includes(url.pathname)}
             >
-              <Summary><Strong>{@html key}</Strong></Summary>
+              <Summary><Strong>{key}</Strong></Summary>
               {@render links(nav[key])}
             </Details>
           {/if}

@@ -24,40 +24,51 @@ if (CSS.supports("anchor-name: --a") && HTMLElement.prototype.showPopover) {
 		tip.popover = "manual";
 		tip.ariaHidden = "true";
 		tip.textContent = title;
-		el.after(tip);
 
 		const arrow = d.createElement("span");
 		arrow.id = `${key}-arrow`;
 		arrow.className = "ds-tooltip-arrow";
 		arrow.popover = "manual";
 		arrow.ariaHidden = "true";
-		tip.after(arrow);
+
+		if (el.matches(":dir(rtl)")) tip.dir = arrow.dir = "rtl";
+		d.body.append(tip, arrow);
 
 		if (el.localName === "abbr") el.tabIndex = 0;
 		el.dataset.dsAnchor = key;
 	}
 
+	const parts = (el) => {
+		const key = el?.dataset.dsAnchor;
+		if (!key) return [];
+		return [d.getElementById(key), d.getElementById(`${key}-arrow`)];
+	};
+
 	// the arrow enters the top layer last so it paints over the tooltip border
 	const toggle = (el, force) => {
-		const tip = el.nextElementSibling;
+		const [tip, arrow] = parts(el);
 		if (!tip?.isConnected) return;
 		tip.togglePopover(force);
-		tip.nextElementSibling?.togglePopover(force);
+		arrow?.togglePopover(force);
 	};
 
 	let anchor;
 
 	// CSS cannot expose which position-try fallback won, so the arrow is told
 	const side = () => {
-		const tip = anchor?.nextElementSibling?.getBoundingClientRect();
+		const [tip, arrow] = parts(anchor);
 		if (!tip) return;
-		anchor.dataset.dsSide =
-			tip.top < anchor.getBoundingClientRect().top ? "above" : "below";
+		const value =
+			tip.getBoundingClientRect().top < anchor.getBoundingClientRect().top
+				? "above"
+				: "below";
+		tip.dataset.dsSide = value;
+		if (arrow) arrow.dataset.dsSide = value;
 	};
 
 	const hide = () => {
 		if (!anchor) return;
-		const title = anchor.nextElementSibling?.textContent;
+		const title = parts(anchor)[0]?.textContent;
 		if (title && !anchor.getAttribute("title")) {
 			anchor.setAttribute("title", title);
 		}

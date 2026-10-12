@@ -675,8 +675,8 @@ export function hoverFocusContentTests(test, path) {
 			await trigger.click();
 			await expect(popover).toBeVisible();
 
-			// Content should persist — wait briefly and verify still visible
-			await page.waitForTimeout(500);
+			await page.mouse.move(0, 0);
+			await trigger.evaluate((e) => e.blur());
 			await expect(popover).toBeVisible();
 
 			await page.keyboard.press("Escape");

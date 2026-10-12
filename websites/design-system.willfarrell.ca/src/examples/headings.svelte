@@ -1,10 +1,10 @@
 <script>
-//import H1 from '@design-system/components/Heading1.svelte';
-import H2 from "@design-system/components/Heading2.svelte";
-import H3 from "@design-system/components/Heading3.svelte";
-import H4 from "@design-system/components/Heading4.svelte";
-import H5 from "@design-system/components/Heading5.svelte";
-import H6 from "@design-system/components/Heading6.svelte";
+//import H1 from '@willfarrell-ds/svelte/components/Heading1.svelte';
+import H2 from "@willfarrell-ds/svelte/components/Heading2.svelte";
+import H3 from "@willfarrell-ds/svelte/components/Heading3.svelte";
+import H4 from "@willfarrell-ds/svelte/components/Heading4.svelte";
+import H5 from "@willfarrell-ds/svelte/components/Heading5.svelte";
+import H6 from "@willfarrell-ds/svelte/components/Heading6.svelte";
 </script>
 
 <H2 id="h2">Heading 2</H2>

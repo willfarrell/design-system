@@ -40,6 +40,7 @@
 @import "../elements/label.css";
 @import "../elements/input.css";
 @import "../elements/input[type=checkbox].css";
+@import "../elements/input[type=date].css";
 @import "../elements/input[type=radio].css";
 @import "../elements/input[type=file].css";
 @import "../elements/select.css";

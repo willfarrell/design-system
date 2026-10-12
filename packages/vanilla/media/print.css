@@ -8,7 +8,7 @@
 	body > aside,
 	body > footer,
 	img[alt=""],
-	[role="presentation"] {
+	img[role="presentation"] {
 		display: none;
 	}
 }

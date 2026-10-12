@@ -20,11 +20,12 @@ div:has(> select.chevron:not([multiple])) {
 		clip-path: polygon(10% 20%, 50% 60%, 90% 20%, 100% 30%, 50% 80%, 0 30%);
 		grid-area: select;
 		justify-self: end;
+		pointer-events: none;
 	}
 }
 
-@media (forced-colors: active) {
+@media (prefers-contrast: custom), (forced-colors: active) {
 	div:has(> select.chevron:not([multiple]))::after {
-		background-color: CanvasText;
+		display: none;
 	}
 }

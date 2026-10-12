@@ -16,8 +16,10 @@ const locale = $derived.by(() => {
 
 const getLocalizedDate = (value, locale, options = {}) => {
 	if (!value) return value;
-	options.dateStyle ??= "long";
-	return new Intl.DateTimeFormat(locale, options).format(new Date(value));
+	const format = { ...options };
+	format.dateStyle ??= "long";
+	if (/^\d{4}-\d{2}-\d{2}$/.test(value)) format.timeZone ??= "UTC";
+	return new Intl.DateTimeFormat(locale, format).format(new Date(value));
 };
 </script>
 

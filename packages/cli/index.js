@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // #!/usr/bin/env -S node --experimental-json-modules --no-warnings
 
-import { Command, Option } from "commander";
+import { Command, InvalidArgumentError, Option } from "commander";
 import extract from "./commands/extract.js";
 import inline from "./commands/inline.js";
 import optimizeStyles from "./commands/optimizeStyles.js";
@@ -60,7 +60,15 @@ Optimizations:
 	)
 	.argument("<dir>", "Directory to apply changes to")
 	.addOption(
-		new Option("--iterations", "number of passes to do").default(10).preset(10),
+		new Option("--iterations <n>", "number of passes to do")
+			.default(10)
+			.argParser((value) => {
+				const n = Number.parseInt(value, 10);
+				if (!(n >= 1)) {
+					throw new InvalidArgumentError("Must be an integer >= 1.");
+				}
+				return n;
+			}),
 	)
 	//.addOption(new Option("--prefix", "variable prefix").preset("ds-")) // TODO use
 	.addOption(new Option("--debug", "log debug information").preset(true))

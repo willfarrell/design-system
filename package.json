@@ -1,11 +1,11 @@
 {
 	"name": "@willfarrell-ds/monorepo",
-	"version": "0.0.0-beta.0",
+	"version": "0.0.0-beta.1",
 	"description": "",
 	"private": true,
 	"type": "module",
 	"engines": {
-		"node": ">=24"
+		"node": ">=26"
 	},
 	"engineStrict": true,
 	"scripts": {
@@ -13,30 +13,28 @@
 		"git:pre-commit": "npm run git:lint-staged && npm run git:test-staged",
 		"git:commit-msg": "commitlint --config commitlint.config.cjs --edit",
 		"git:lint-staged": "npm run test:lint",
-		"git:test-staged": "which node && node -v && node --test ./packages/*",
+		"git:test-staged": "node --test --experimental-test-module-mocks 'packages/**/*.test.js'",
 		"lint": "biome check --write --no-errors-on-unmatched",
 		"build": "npm run build --workspaces --if-present",
-		"test": "npm run test:lint && npm run test:unit && npm run test:types && npm run test:e2e && npm run test:sast && npm run test:perf && npm run test:dast",
+		"test": "npm run test:lint && npm run test:unit && npm run test:types && npm run test:e2e && npm run test:sast && npm run test:bench && npm run test:dast",
 		"test:lint": "biome check --staged --no-errors-on-unmatched",
 		"test:unit": "node --test --experimental-test-module-mocks",
-		"test:sast": "npm run test:sast:license && npm run test:sast:lockfile && npm run test:sast:semgrep && npm run test:sast:trufflehog && npm run test:sast:gitleaks && npm run test:sast:actionlint && npm run test:sast:zizmor && npm run test:sast:trivy",
+		"test:sast": "npm run test:sast:lockfile && npm run test:sast:semgrep && npm run test:sast:trufflehog && npm run test:sast:gitleaks && npm run test:sast:actionlint && npm run test:sast:zizmor && npm run test:sast:trivy",
 		"test:sast:actionlint": "actionlint",
 		"test:sast:gitleaks": "npm run test:sast:gitleaks:dir && npm run test:sast:gitleaks:git",
 		"test:sast:gitleaks:dir": "gitleaks dir . --redact --no-banner",
 		"test:sast:gitleaks:git": "gitleaks git . --redact --no-banner",
-		"test:sast:license": "license-check-and-add check -f .license.config.json",
+		"test:sast:license": "node .github/license.mjs check",
 		"test:sast:lockfile": "lockfile-lint --path package-lock.json --type npm --allowed-hosts npm --validate-https",
 		"test:sast:semgrep": "semgrep scan --config auto --error",
 		"test:sast:trivy": "trivy fs --scanners vuln,license --include-dev-deps --ignored-licenses 0BSD,Apache-2.0,BSD-1-Clause,BSD-2-Clause,BSD-3-Clause,CC0-1.0,CC-BY-4.0,ISC,MIT,Python-2.0,LGPL-3.0-or-later,MPL-2.0,BlueOak-1.0.0,Unlicense --exit-code 1 --skip-files '**/bun.lock' --disable-telemetry .",
 		"test:sast:trufflehog": "trufflehog filesystem --only-verified --log-level=-1 ./",
 		"test:sast:zizmor": "zizmor .github",
-		"test:types": "which tstyche > /dev/null 2>&1 && tstyche || echo 'tstyche not found, skipping type tests'",
+		"test:types": "tstyche",
 		"test:e2e": "npm run test:e2e --workspaces --if-present",
-		"test:perf": "node --test ./**/*.perf.js",
+		"test:bench": "node --experimental-bench --bench './packages/**/*.bench.js'",
 		"test:dast": "npm run test:dast:fuzz",
-		"test:dast:fuzz": "node --test ./**/*.fuzz.js",
-		"test:packages:unit": "node --test --experimental-test-module-mocks --experimental-test-coverage --test-coverage-lines=99 --test-coverage-branches=98 --test-coverage-functions=99",
-		"test:packages:fuzz": "node --test ./packages/**/*.fuzz.js",
+		"test:dast:fuzz": "node --test 'packages/*/*.fuzz.js'",
 		"rm": "npm run rm:macos && npm run rm:node_modules && npm run rm:lock",
 		"rm:macos": "find . -name '.DS_Store' -type f -delete",
 		"rm:lock": "find . -name 'package-lock.json' -type f -delete",
@@ -44,12 +42,13 @@
 		"update": "corepack up && npm run rm && npm install --workspaces",
 		"outdated": "npm outdated --workspaces",
 		"audit": "npm audit fix --workspaces",
-		"release:license:add": "license-check-and-add add -f .license.config.json",
-		"release:license:remove": "license-check-and-add remove -f .license.config.json",
-		"release:sync": "npm version $npm_package_version --workspaces; find ./packages -name \"package.json\" -exec sed -i '' -E \"s#\\\"@willfarrell-ds/(.*)\\\": ([^,]*)#\\\"@willfarrell-ds/\\1\\\": \\\"$(npm pkg get version | tr -d '\\\"')\\\"#g\" {} \\; && npm run rm && npm install && npm run lint",
-		"release:publish:next": "npm publish --workspaces --tag next --access public",
+		"release:license:add": "node .github/license.mjs add",
+		"release:license:remove": "node .github/license.mjs remove",
+		"release:sync": "npm version $npm_package_version --workspaces; find ./packages -name \"package.json\" -not -path \"*/node_modules/*\" -exec sed -i.bak -E \"s#\\\"@willfarrell-ds/(.*)\\\": ([^,]*)#\\\"@willfarrell-ds/\\1\\\": \\\"$(npm pkg get version | tr -d '\\\"')\\\"#g\" {} \\; && find ./packages -name \"package.json.bak\" -not -path \"*/node_modules/*\" -delete && npm run rm && npm install && npm run lint",
 		"release:deploy": "npm run release:deploy --workspaces --if-present",
-		"release:tag": "git tag $npm_package_version"
+		"release:tag": "git tag -s -m $npm_package_version $npm_package_version",
+		"release:staged": "npm whoami >/dev/null && npm query '.workspace:not([private])' | jq -r '.[].name' | xargs -n1 -I{} npm stage list {} --json | jq -r '.[] | \"\\(.packageName)@\\(.version) \\(.actor) \\(.shasum)\"'",
+		"release:approve": "npm query '.workspace:not([private])' | jq -r '.[].name' | xargs -n1 -I{} npm stage list {} --json | jq -r --arg v \"$npm_package_version\" '.[] | select(.version == $v) | .id' | xargs -n1 -o npm stage approve"
 	},
 	"repository": {
 		"type": "git",
@@ -66,18 +65,15 @@
 		"url": "https://github.com/sponsors/willfarrell"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^2.5.3",
-		"@commitlint/cli": "^21.2.1",
-		"@commitlint/config-conventional": "^21.2.0",
-		"fast-check": "^4.9.0",
+		"@biomejs/biome": "^2.5.15",
+		"@commitlint/cli": "^21.2.3",
+		"@commitlint/config-conventional": "^21.2.3",
+		"fast-check": "^4.10.2",
 		"husky": "^9.1.7",
-		"tinybench": "^6.0.2",
-		"tstyche": "^7.2.1"
+		"tstyche": "^7.2.5"
 	},
 	"overrides": {
-		"@sveltejs/kit": {
-			"cookie": "^0.7.2"
-		}
+		"sharp": "0.35.5"
 	},
 	"workspaces": [
 		"packages/*",

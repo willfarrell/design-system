@@ -1,7 +1,7 @@
 <script>
-import A from "@design-system/elements/a.svelte";
-import Address from "@design-system/elements/address.svelte";
-import P from "@design-system/elements/p.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Address from "@willfarrell-ds/svelte/elements/address.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 <Address>

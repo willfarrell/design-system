@@ -1,71 +1,14 @@
-ul:has([is="ds-task"]) {
-	list-style: none;
-	padding-inline: 0;
-}
-[is="ds-task"] {
-	max-inline-size: 100%;
-	border-block-start: var(--border-width) solid
-		var(--border-color, currentColor);
+@import "./ds-item.css";
 
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-content: baseline;
-
-	& small {
-		flex-basis: 100%;
-		margin-block: -0.5em 0.5em;
-	}
-
-	&:last-of-type {
-		border-block-end: var(--border-width) solid
-			var(--border-color, currentColor);
-	}
-	&:defined {
-		cursor: pointer;
-		&:hover {
-			background-color: var(--color-l2);
-			& a {
-				/* a:hover */
-				color: color-mix(
-					in srgb,
-					var(--color-main-pseudo) 8%,
-					var(--color-main)
-				);
-				text-decoration: underline solid 0.4em
-					color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-				text-decoration-thickness: 0.4em;
-				text-underline-position: under;
-			}
+[is="ds-task"]:defined {
+	cursor: pointer;
+	&:hover {
+		background-color: var(--color-l2);
+		& > a {
+			color: var(--color-link-hover);
+			text-decoration: underline solid 0.4em var(--color-link-hover);
+			text-decoration-thickness: 0.4em;
+			text-underline-position: under;
 		}
-	}
-
-	/* biome-ignore lint/style/noDescendingSpecificity: scoped override */
-	& a {
-		padding: 0.5em 0;
-		/* hyphenated labels (Content-Security-Policy) must not wrap */
-		white-space: nowrap;
-	}
-	& strong {
-		font-weight: 400;
-		padding: 0.25em 0;
-		margin-block: 0.5em;
-
-		&.inprogress {
-			padding: 0.25em 0.5em;
-			background-color: var(--color-main-bold-pseudo);
-		}
-
-		&.incomplete {
-			padding: 0.25em 0.5em;
-			background-color: var(--color-main-pseudo);
-		}
-	}
-}
-@media (forced-colors: active) {
-	[is="ds-task"] strong.inprogress,
-	[is="ds-task"] strong.incomplete {
-		background-color: transparent;
-		border: 2px solid currentColor;
 	}
 }

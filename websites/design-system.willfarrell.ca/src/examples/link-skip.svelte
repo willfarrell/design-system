@@ -1,8 +1,8 @@
 <script>
-import A from "@design-system/elements/a.svelte";
-import Main from "@design-system/elements/main.svelte";
-import Nav from "@design-system/elements/nav.svelte";
-import P from "@design-system/elements/p.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Main from "@willfarrell-ds/svelte/elements/main.svelte";
+import Nav from "@willfarrell-ds/svelte/elements/nav.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 <Nav><A href="#main" class="skip">Skip to main content</A></Nav>

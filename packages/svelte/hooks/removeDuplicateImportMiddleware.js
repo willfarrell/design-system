@@ -3,7 +3,7 @@ const importRegExp =
 const removeDuplicateImportMiddleware = async ({ event, resolve }) => {
 	const response = await resolve(event, {
 		transformPageChunk: ({ html }) => {
-			const matches = html.match(importRegExp).sort();
+			const matches = (html.match(importRegExp) ?? []).sort();
 
 			let previous = "";
 			for (let i = matches.length; i--; ) {

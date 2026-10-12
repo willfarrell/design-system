@@ -4,6 +4,19 @@ import { createCombobox, defaultStatusText } from "./typeahead.js";
 const is = "ds-fetch-typeahead";
 const debounceWait = 250;
 const criteriaPrefix = "data-criteria-";
+let count = 0;
+
+const safeHref = (href) => {
+	if (typeof href !== "string") return undefined;
+	try {
+		const url = new URL(href, location.href);
+		return url.protocol === "http:" || url.protocol === "https:"
+			? url.href
+			: undefined;
+	} catch {
+		return undefined;
+	}
+};
 
 customElements.define(
 	is,
@@ -79,7 +92,7 @@ customElements.define(
 						return (Array.isArray(items) ? items : []).map((item) => ({
 							value: item.value ?? item.label,
 							label: item.label ?? item.value,
-							href: item.href,
+							href: safeHref(item.href),
 						}));
 					})
 					.catch((error) => {
@@ -97,7 +110,7 @@ customElements.define(
 			let timeout;
 			const combobox = createCombobox({
 				input: this,
-				id: this.id,
+				id: this.id || `${is}-${++count}`,
 				noResults: () => {
 					if (status === "loading") return i18nLoading;
 					if (status === "error") return i18nError;

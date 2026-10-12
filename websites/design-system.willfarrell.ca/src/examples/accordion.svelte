@@ -1,10 +1,10 @@
 <script>
-import Details from "@design-system/elements/details.svelte";
-import Div from "@design-system/elements/div.svelte";
-import P from "@design-system/elements/p.svelte";
-import Strong from "@design-system/elements/strong.svelte";
-import Summary from "@design-system/elements/summary.svelte";
-import { paragraph } from "@examples/index.js";
+import Details from "@willfarrell-ds/svelte/elements/details.svelte";
+import Div from "@willfarrell-ds/svelte/elements/div.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
+import Strong from "@willfarrell-ds/svelte/elements/strong.svelte";
+import Summary from "@willfarrell-ds/svelte/elements/summary.svelte";
+import { paragraph } from "#examples/index.js";
 </script>
 
 <Div>

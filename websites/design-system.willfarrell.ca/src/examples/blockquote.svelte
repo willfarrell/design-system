@@ -1,7 +1,7 @@
 <script>
-import Blockquote from "@design-system/elements/blockquote.svelte";
-import Cite from "@design-system/elements/cite.svelte";
-import Footer from "@design-system/elements/footer.svelte";
+import Blockquote from "@willfarrell-ds/svelte/elements/blockquote.svelte";
+import Cite from "@willfarrell-ds/svelte/elements/cite.svelte";
+import Footer from "@willfarrell-ds/svelte/elements/footer.svelte";
 </script>
 
 <Blockquote>

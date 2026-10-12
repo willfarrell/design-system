@@ -1,28 +1,17 @@
 <script>
-import Fieldset from "./Fieldset.svelte";
+import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-input-javascript-enabled.js?worker&url";
 import InputHidden from "./InputHidden.svelte";
 
-const { ...props } = $props();
-const { id = "javascript-enabled" } = props;
-let {
+const {
+	id = "javascript-enabled",
 	is = `ds-input-${id}`,
 	name = id,
-	label,
-	hint,
 	value = false,
-	error,
-} = props;
-
-error = error?.filter((v) => v.id === id);
+} = $props();
 </script>
 
-<!-- {#if error?.length}
-  <Fieldset {id} {label} {hint} {error}>
-    <InputHidden {name} {value} />
-  </Fieldset>
-{:else}
-  <Fieldset {id} {is}>
-    <InputHidden {name} {value} />
-  </Fieldset>
-{/if} -->
+<svelte:head>
+  <link rel="modulepreload" href={webComponentUrl} />
+</svelte:head>
+
 <InputHidden {is} {name} {value} />

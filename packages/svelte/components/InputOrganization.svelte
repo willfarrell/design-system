@@ -4,4 +4,4 @@ import InputText from "./InputText.svelte";
 const { children, ...props } = $props();
 </script>
 
-<InputText {...props} autocomplete="organization">{@render children?.()}</InputText>
+<InputText autocomplete="organization" {...props}>{@render children?.()}</InputText>

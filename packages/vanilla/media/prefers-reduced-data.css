@@ -4,7 +4,7 @@
 		background-image: none;
 	}
 
-	[role="presentation"],
+	img[role="presentation"],
 	img[alt=""] {
 		display: none;
 	}

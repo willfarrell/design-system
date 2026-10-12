@@ -59,27 +59,27 @@ if (!isScrollTargetGroupSupported) {
 				this.updateActive();
 			}
 
+			handleHashChange = () => {
+				this.setActiveHash();
+			};
+
 			connectedCallback() {
 				this.setActiveHash();
-				window.addEventListener("hashchange", () => {
-					this.setActiveHash();
-				});
+				window.addEventListener("hashchange", this.handleHashChange);
 				this.links.forEach((elem) => {
-					const id = elem.hash.substring(1);
-					let observable = d.querySelector(`section:has(h2[id="${id}"])`);
-					if (!observable) {
-						observable = d.querySelector(`[id="${id}"]`);
+					const id = CSS.escape(elem.hash.substring(1));
+					const observable =
+						d.querySelector(`section:has(h2#${id})`) ??
+						d.querySelector(`#${id}`);
+					if (observable) {
+						this.observer.observe(observable);
 					}
-					this.observer.observe(observable);
 				});
 			}
 
 			disconnectedCallback() {
-				this.links.forEach((elem) => {
-					const id = elem.hash.substring(1);
-					const anchor = d.querySelector(`[id="${id}"]`);
-					this.observer.unobserve(anchor);
-				});
+				window.removeEventListener("hashchange", this.handleHashChange);
+				this.observer.disconnect();
 			}
 		},
 		{ extends: "nav" },

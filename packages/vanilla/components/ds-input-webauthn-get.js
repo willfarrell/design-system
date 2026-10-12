@@ -6,37 +6,63 @@ const is = "ds-input-webauthn-get";
 customElements.define(
 	is,
 	class extends HTMLInputElement {
+		$form = null;
 		$options;
-		$input;
+		$pending = false;
+		$submitted = false;
+		$handleSubmit = (event) => this.handleSubmit(event);
 		constructor() {
 			super();
-			this.$form = this.closest("form");
 			this.$options = JSON.parse(this.getAttribute("data-options"));
-
-			if (this.getAttribute("autocomplete").includes("webauthn")) {
-				this.handleFormdata();
-			}
 		}
 
-		handleFormdata = async (event) => {
+		async authenticate(useBrowserAutofill) {
 			try {
 				const credential = await startAuthentication({
 					optionsJSON: this.$options,
+					useBrowserAutofill,
 				});
-				const value = JSON.stringify(credential);
-				event.formData.append(this.name, value);
+				this.complete(JSON.stringify(credential));
 			} catch (e) {
-				// clicking `Cancel` triggers error
-				console.error(e);
+				if (
+					useBrowserAutofill ||
+					e.name === "NotAllowedError" ||
+					e.name === "AbortError"
+				) {
+					return;
+				}
+				this.complete(e.name);
 			}
-		};
+		}
+
+		complete(value) {
+			if (this.$submitted) return;
+			this.value = value;
+			this.$submitted = true;
+			this.$form.submit();
+		}
+
+		async handleSubmit(event) {
+			event.preventDefault();
+			if (this.$pending || this.$submitted) return;
+			this.$pending = true;
+			try {
+				await this.authenticate(false);
+			} finally {
+				this.$pending = false;
+			}
+		}
 
 		connectedCallback() {
-			this.$form.addEventListener("formdata", this.handleFormdata);
+			this.$form = this.closest("form");
+			this.$form?.addEventListener("submit", this.$handleSubmit);
+			if (this.getAttribute("autocomplete")?.includes("webauthn")) {
+				this.authenticate(true);
+			}
 		}
 
 		disconnectedCallback() {
-			this.$form.removeEventListener("formdata", this.handleFormdata);
+			this.$form?.removeEventListener("submit", this.$handleSubmit);
 		}
 	},
 	{ extends: "input" },
