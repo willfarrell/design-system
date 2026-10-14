@@ -1,5 +1,5 @@
 import { globSync } from "node:fs";
-import { test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 import { expectNoAxeViolations } from "./a11y.js";
 
 const routesDir = new URL("../src/routes/", import.meta.url).pathname;
@@ -56,6 +56,21 @@ for (const path of paths) {
 			await page.goto(path);
 			await page.waitForLoadState("domcontentloaded");
 			await expectNoAxeViolations(page);
+		});
+
+		test("WCAG 2.2 AA 1.4.10 Reflow — no horizontal overflow at 320px viewport", async ({
+			page,
+		}) => {
+			await page.setViewportSize({ width: 320, height: 480 });
+			await page.goto(path);
+			await page.waitForLoadState("domcontentloaded");
+			expect(
+				await page.evaluate(
+					() =>
+						document.documentElement.scrollWidth -
+						document.documentElement.clientWidth,
+				),
+			).toBeLessThanOrEqual(1);
 		});
 	});
 }
