@@ -2,24 +2,19 @@ import { createHash } from "node:crypto";
 import { readFileSync, writeFileSync } from "node:fs";
 import { basename, extname, resolve } from "node:path";
 import { walkDirSync } from "../lib/fs.js";
-import { escapeRegExp } from "../lib/regexp.js";
 
 const algo = "sha256";
 const methods = {
 	css: {
-		regexp: (filename) =>
-			new RegExp(
-				`<link[^>]*?href=["']?(?:[^>"']*?/)?${escapeRegExp(filename)}(?=[?#"'\\s>])[^>]*>`,
-			),
+		regexp:
+			/<link[^>]*?href=["']?(?:[^>"']*?\/)?([^>"'?#\s/]+)(?=[?#"'\s>])[^>]*>/g,
 		keep: (name) => ["blocking", "media", "nonce", "title"].includes(name),
 		escape: (content) => content.replace(/<\/(style)/gi, "<\\/$1"),
 		replace: (attrs, content) => `<style${attrs}>${content}</style>`,
 	},
 	js: {
-		regexp: (filename) =>
-			new RegExp(
-				`<script[^>]*?src=["']?(?:[^>"']*?/)?${escapeRegExp(filename)}(?=[?#"'\\s>])[^>]*>(?:\\s*</script>)?`,
-			),
+		regexp:
+			/<script[^>]*?src=["']?(?:[^>"']*?\/)?([^>"'?#\s/]+)(?=[?#"'\s>])[^>]*>(?:\s*<\/script>)?/g,
 		keep: (name) => !["integrity", "src"].includes(name),
 		escape: (content) => content.replaceAll("</", "<\\/"),
 		replace: (attrs, content) => `<script${attrs}>${content}</script>`,
@@ -51,18 +46,20 @@ const command = (dir, input, options = {}) => {
 		console.log(input, `${algo}-${integrity}`);
 	}
 
-	const regexp = method.regexp(filename);
 	const sourceDir = resolve(dir);
 	for (const filePath of walkDirSync(sourceDir, ".html")) {
 		if (options.debug) {
 			console.log("Update", filePath);
 		}
 		const html = readFileSync(filePath).toString();
+		let inlined = false;
 		writeFileSync(
 			filePath,
-			html.replace(regexp, (tag) =>
-				method.replace(attributes(tag, method.keep), content),
-			),
+			html.replace(method.regexp, (tag, name) => {
+				if (inlined || name !== filename) return tag;
+				inlined = true;
+				return method.replace(attributes(tag, method.keep), content);
+			}),
 		);
 	}
 	console.log("Done!");

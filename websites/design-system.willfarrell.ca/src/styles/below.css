@@ -37,12 +37,16 @@
 @import "@willfarrell-ds/vanilla/elements/textarea.css";
 @import "@willfarrell-ds/vanilla/elements/video.css";
 @import "@willfarrell-ds/vanilla/classes/span.badge.css";
+@import "@willfarrell-ds/vanilla/classes/nav.breadcrumb.css";
 @import "@willfarrell-ds/vanilla/classes/li.card.css";
 @import "@willfarrell-ds/vanilla/classes/button.chevron.css";
 @import "@willfarrell-ds/vanilla/classes/select.chevron.css";
 @import "@willfarrell-ds/vanilla/classes/.grid.css";
 @import "@willfarrell-ds/vanilla/classes/.group.css";
 @import "@willfarrell-ds/vanilla/classes/.icon.css";
+@import "@willfarrell-ds/vanilla/classes/nav.pagination.css";
+@import "@willfarrell-ds/vanilla/classes/input.pause-animations.css";
+@import "@willfarrell-ds/vanilla/classes/section.pause-animations.css";
 @import "@willfarrell-ds/vanilla/classes/section[role=alert].css";
 @import "@willfarrell-ds/vanilla/classes/section[role=status].css";
 @import "@willfarrell-ds/vanilla/components/ds-card.css";

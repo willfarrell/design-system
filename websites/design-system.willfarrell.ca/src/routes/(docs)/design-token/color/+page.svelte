@@ -130,7 +130,7 @@ const page_ = {
 				--lightness-main-pseudo: var(--lightness-dark-a0);
 				--lightness-main-bold: var(--lightness-light-b8);
 				--lightness-main-bold-pseudo: var(--lightness-dark-b8);
-				--lightness-semantic: var(--lightness-light-b12);
+				--lightness-semantic: var(--lightness-light-b16);
 			}
 
 			.scheme-dark {
@@ -147,7 +147,7 @@ const page_ = {
 				--lightness-main-pseudo: var(--lightness-light-a0);
 				--lightness-main-bold: var(--lightness-dark-b8);
 				--lightness-main-bold-pseudo: var(--lightness-light-b8);
-				--lightness-semantic: var(--lightness-dark-b12);
+				--lightness-semantic: var(--lightness-dark-b16);
 			}
 
 			.scheme-light.contrast-more {

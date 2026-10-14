@@ -175,7 +175,7 @@ function colorStr(c) {
 `;
 
 const interactiveSelector =
-	'a[href], button, input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"]), summary';
+	'a[href], button, input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"]), summary, audio[controls], video[controls]';
 
 async function hasNoHorizontalOverflow(page) {
 	return page.evaluate(() => {

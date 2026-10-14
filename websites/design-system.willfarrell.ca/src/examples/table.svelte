@@ -1,6 +1,5 @@
 <script>
 import Table from "@willfarrell-ds/svelte/components/Table.svelte";
-import Caption from "@willfarrell-ds/svelte/elements/caption.svelte";
 import Col from "@willfarrell-ds/svelte/elements/col.svelte";
 import Colgroup from "@willfarrell-ds/svelte/elements/colgroup.svelte";
 import Tbody from "@willfarrell-ds/svelte/elements/tbody.svelte";
@@ -12,8 +11,7 @@ import Tr from "@willfarrell-ds/svelte/elements/tr.svelte";
 import { paragraph } from "#examples/index.js";
 </script>
 
-<Table>
-	<Caption>{paragraph}</Caption>
+<Table caption={paragraph}>
 	<Colgroup>
 		<Col />
 		<Col span="2" />

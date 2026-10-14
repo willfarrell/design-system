@@ -125,6 +125,9 @@ import Var from "@willfarrell-ds/svelte/elements/var.svelte";
 					<Li><A href="/component/card-metric">Card metric</A></Li>
 					<Li><A href="/component/badge">Badge</A></Li>
 					<Li><A href="/component/tag">Tag</A></Li>
+					<Li><A href="/component/breadcrumb">Breadcrumb</A></Li>
+					<Li><A href="/component/pagination">Pagination</A></Li>
+					<Li><A href="/component/image">Image</A></Li>
 					<Li><A href="/component/icon">Icon</A></Li>
 					<Li><A href="/component/video">Video</A></Li>
 					<Li><A href="/component/codeblock">Codeblock</A></Li>

@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { expectNoAxeViolations } from "../a11y.js";
+import { expectNoAxeViolations, mediaModeTests, viewportTests } from "../a11y.js";
 
 test("WCAG 2.2 Level AAA — automated axe audit (nav)", async ({ page }) => {
 	await page.goto("/demo/dropdown-nav");
@@ -48,3 +48,10 @@ test("item list rows are not clickable rows", async ({ page }) => {
 	await expect(page.locator("#item-2-menu")).toBeVisible();
 	expect(new URL(page.url()).pathname).toBe("/demo/dropdown-item-list");
 });
+
+for (const path of ["/demo/dropdown-nav", "/demo/dropdown-item-list"]) {
+	test.describe(path, () => {
+		mediaModeTests(test, path);
+		viewportTests(test, path);
+	});
+}

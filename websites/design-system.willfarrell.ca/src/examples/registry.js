@@ -4,6 +4,7 @@ import ExampleAddress from "./address.svelte";
 import ExampleAlert from "./alert.svelte";
 import ExampleBadge from "./badge.svelte";
 import ExampleBlockquote from "./blockquote.svelte";
+import ExampleBreadcrumb from "./breadcrumb.svelte";
 import ExampleButton from "./button.svelte";
 import ExampleCallout from "./callout.svelte";
 import ExampleCard from "./card.svelte";
@@ -71,6 +72,7 @@ import ExampleLinkTel from "./link-tel.svelte";
 import ExampleListDescription from "./list-description.svelte";
 import ExampleListOrdered from "./list-ordered.svelte";
 import ExampleListUnordered from "./list-unordered.svelte";
+import ExamplePagination from "./pagination.svelte";
 import ExampleParagraphs from "./paragraphs.svelte";
 import ExamplePopover from "./popover.svelte";
 import ExamplePopoverHint from "./popover-hint.svelte";
@@ -87,6 +89,7 @@ export default {
 	ExampleAddress,
 	ExampleBadge,
 	ExampleBlockquote,
+	ExampleBreadcrumb,
 	ExampleCallout,
 	ExampleAlert,
 	ExampleButton,
@@ -156,6 +159,7 @@ export default {
 	ExampleCodeblockActions,
 	ExampleCopyDownload,
 	ExampleTag,
+	ExamplePagination,
 	ExampleDetails,
 	ExampleDetailsChevron,
 	ExampleAccordion,

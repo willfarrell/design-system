@@ -11,14 +11,20 @@ const valid = /^[a-z0-9-]+$/;
 
 const basename = (link) => new URL(link.href).pathname.split("/").pop();
 
+const hashed = /^(?=[\w-]*[A-Z0-9_])[\w-]{8}\.js$/;
+
 const preload = (name) => {
 	const links = [
 		...d.querySelectorAll('link[rel="modulepreload"]:not([data-lang])'),
 	];
-	const hashed = new RegExp(`^${name}-(?=[\\w-]*[A-Z0-9_])[\\w-]{8}\\.js$`);
 	return (
 		links.find((link) => basename(link) === `${name}.js`) ??
-		links.find((link) => hashed.test(basename(link)))
+		links.find((link) => {
+			const file = basename(link);
+			return (
+				file.startsWith(`${name}-`) && hashed.test(file.slice(name.length + 1))
+			);
+		})
 	);
 };
 

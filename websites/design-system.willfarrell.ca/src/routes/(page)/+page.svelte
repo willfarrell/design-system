@@ -8,6 +8,7 @@ import Icon from "@willfarrell-ds/svelte/components/Icon.svelte";
 import Image from "@willfarrell-ds/svelte/components/Image.svelte";
 import LayoutCenter from "@willfarrell-ds/svelte/components/LayoutCenter.svelte";
 import LayoutSlices from "@willfarrell-ds/svelte/components/LayoutSlices.svelte";
+import SectionPauseAnimations from "@willfarrell-ds/svelte/components/SectionPauseAnimations.svelte";
 import A from "@willfarrell-ds/svelte/elements/a.svelte";
 import Article from "@willfarrell-ds/svelte/elements/article.svelte";
 import Div from "@willfarrell-ds/svelte/elements/div.svelte";
@@ -26,7 +27,7 @@ import Ul from "@willfarrell-ds/svelte/elements/ul.svelte";
 </svelte:head>
 
 <LayoutSlices>
-    <Section class="slice hero vertical">
+    <SectionPauseAnimations class="slice hero vertical">
         <Div class="inline-center">
             <Image
               src="/img/logo.svg"
@@ -75,7 +76,7 @@ import Ul from "@willfarrell-ds/svelte/elements/ul.svelte";
                 </Li>
             </Ul>-->
         </Div>
-    </Section>
+    </SectionPauseAnimations>
     <Section class="slice vertical">
         <Div class="inline-center">
             <H2>Features</H2>

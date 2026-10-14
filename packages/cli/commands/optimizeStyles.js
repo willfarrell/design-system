@@ -149,15 +149,13 @@ const init = () => {
 	bodyInheritedDeclarations = {};
 };
 
+const varAssignementRegExp = /[\t ]*(--[a-zA-Z0-9-]+)[\s]*:[\s]*([^};]+)[;]?/g;
+
 const parse = (content, { prefix = "" } = {}) => {
-	const varAssignementRegExp = new RegExp(
-		`[\\t ]*(--${prefix}[a-zA-Z0-9-]+)[\\s]*:[\\s]*([^};]+)[;]?`,
-		"g",
-	);
 	// Find all variables
-	let match = varAssignementRegExp.exec(content);
-	while (match !== null) {
+	for (const match of content.matchAll(varAssignementRegExp)) {
 		const [rawMatch, variable, value, _terminator] = match;
+		if (!variable.startsWith(`--${prefix}`)) continue;
 		const trimmedValue = value.trim();
 		assignments[variable] ??= {
 			rawMatch,
@@ -180,7 +178,6 @@ const parse = (content, { prefix = "" } = {}) => {
 		) {
 			assignments[variable].assignmentCount += 1;
 		}
-		match = varAssignementRegExp.exec(content);
 	}
 };
 
@@ -590,6 +587,9 @@ const simplifyCalcWithVar = (content) => {
 	return result;
 };
 
+const usageRegExp = /var\([\s]*(--[a-zA-Z0-9-]+)[\s]*\)/g;
+const fallbackNameRegExp = /^\s*(--[a-zA-Z0-9-]+)\s*,/;
+
 const optimize = (content) => {
 	singleUseVars = Object.keys(assignments).filter(
 		(variable) =>
@@ -603,12 +603,11 @@ const optimize = (content) => {
 	for (let i = 0, l = singleUseVars.length; i < l; i++) {
 		const variable = singleUseVars[i];
 		const value = assignments[variable].value;
-		const usageRegex = new RegExp(
-			`var\\([\\s]*${variable}[\\s]*\\)`, // TODO add in support for
-			"g",
-		);
 		const startContent = optimizedContent;
-		let endContent = startContent.replace(usageRegex, value);
+		// TODO add in support for
+		let endContent = startContent.replace(usageRegExp, (match, name) =>
+			name === variable ? value : match,
+		);
 
 		// Use paren-aware replacement to handle nested var() fallbacks
 		const marker = `var(`;
@@ -634,8 +633,7 @@ const optimize = (content) => {
 				continue;
 			}
 			const inner = endContent.slice(pos + marker.length, i - 1);
-			const varNameMatch = inner.match(new RegExp(`^\\s*${variable}\\s*,`));
-			if (varNameMatch) {
+			if (inner.match(fallbackNameRegExp)?.[1] === variable) {
 				rebuilt += endContent.slice(idx, pos);
 				rebuilt += value;
 				idx = i;
@@ -1008,7 +1006,7 @@ const optimizeStyles = (input, options = {}) => {
 
 		saveFileSync(filePath, optimizedContent);
 		if (options.debug) {
-			console.log(`Saved ${diff} bytes`, filePath);
+			console.log("Saved", diff, "bytes", filePath);
 		}
 	}
 	if (options.debug) {

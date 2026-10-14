@@ -4,8 +4,10 @@ import { render } from "../render.testutil.js";
 
 const path = "./components/FieldHgroupSnippet.test.svelte";
 
-const between = (html, tag) =>
-	html.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`))[1];
+const between = (html, tag) => {
+	const start = html.indexOf(">", html.indexOf(`<${tag}`)) + 1;
+	return html.slice(start, html.indexOf(`</${tag}>`, start));
+};
 
 describe("FieldHgroupSnippet", () => {
 	it("renders only phrasing content inside a label", async () => {

@@ -201,8 +201,8 @@ sup {
 		--lightness-main-pseudo: var(--lightness-dark-a0); /* dark-a0 */
 		--lightness-main-bold: var(--lightness-light-b8); /* light-b8 */
 		--lightness-main-bold-pseudo: var(--lightness-dark-b8); /* dark-b8 */
-		--lightness-semantic: var(--lightness-light-b12); /* light-b12 */
-		--lightness-semantic-pseudo: var(--lightness-dark-b12); /* dark-b12 */
+		--lightness-semantic: var(--lightness-light-b16); /* light-b16 */
+		--lightness-semantic-pseudo: var(--lightness-dark-b16); /* dark-b16 */
 	}
 	@media (prefers-color-scheme: dark) {
 		--lightness-l0: var(--lightness-dark-l0); /* light-l0 */
@@ -218,8 +218,8 @@ sup {
 		--lightness-main-pseudo: var(--lightness-light-a0); /* dark-a0 */
 		--lightness-main-bold: var(--lightness-dark-b8); /* light-b8 */
 		--lightness-main-bold-pseudo: var(--lightness-light-b8); /* dark-b8 */
-		--lightness-semantic: var(--lightness-dark-b12); /* dark-b12 */
-		--lightness-semantic-pseudo: var(--lightness-light-b12); /* light-b12 */
+		--lightness-semantic: var(--lightness-dark-b16); /* dark-b16 */
+		--lightness-semantic-pseudo: var(--lightness-light-b16); /* light-b16 */
 	}
 
 	@media (prefers-contrast: more) and (prefers-color-scheme: light) {

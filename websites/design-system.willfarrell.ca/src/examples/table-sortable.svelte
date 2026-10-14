@@ -1,6 +1,5 @@
 <script>
 import TableSortable from "@willfarrell-ds/svelte/components/TableSortable.svelte";
-import Caption from "@willfarrell-ds/svelte/elements/caption.svelte";
 import Data from "@willfarrell-ds/svelte/elements/data.svelte";
 import Tbody from "@willfarrell-ds/svelte/elements/tbody.svelte";
 import Td from "@willfarrell-ds/svelte/elements/td.svelte";
@@ -10,8 +9,7 @@ import Thead from "@willfarrell-ds/svelte/elements/thead.svelte";
 import Tr from "@willfarrell-ds/svelte/elements/tr.svelte";
 </script>
 
-<TableSortable>
-	<Caption>Sortable table</Caption>
+<TableSortable caption="Sortable table">
 	<Thead>
 		<Tr>
 			<Th scope="col">Name</Th>

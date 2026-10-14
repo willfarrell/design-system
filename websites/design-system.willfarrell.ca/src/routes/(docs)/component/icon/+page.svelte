@@ -54,7 +54,7 @@ const page = {
 	{/snippet}
 	<Section>
 		<H2 id="description">Description</H2>
-		<P>The Icon component renders an SVG icon from a sprite sheet using the <Code>&lt;use&gt;</Code> element. Icons are decorative by default with <Code>aria-hidden="true"</Code> and <Code>focusable="false"</Code>.</P>
+		<P>The Icon component renders an SVG icon from a sprite sheet using the <Code>&lt;use&gt;</Code> element. Icons are decorative by default with <Code>aria-hidden="true"</Code>. Pass <Code>alt</Code> to make an icon meaningful: it then renders with <Code>role="img"</Code> and <Code>aria-label</Code> set to the <Code>alt</Code> text.</P>
 		<P>Use icons alongside text labels to provide visual context. Avoid using icons as the sole means of conveying meaning without an accessible text alternative.</P>
 	</Section>
 	<Section>
@@ -65,7 +65,7 @@ const page = {
 		<H2 id="accessibility">Accessibility</H2>
 		<Ul>
 			<Li>Icons are set to <Code>aria-hidden="true"</Code> by default, hiding them from screen readers.</Li>
-			<Li>Icons use <Code>focusable="false"</Code> to prevent focus in Internet Explorer and older Edge.</Li>
+			<Li>Icons with an <Code>alt</Code> prop get <Code>role="img"</Code> and an <Code>aria-label</Code> from the <Code>alt</Code> text, so screen readers announce them as images.</Li>
 			<Li>Always pair icons with visible text or provide an accessible label on the parent element.</Li>
 		</Ul>
 	</Section>

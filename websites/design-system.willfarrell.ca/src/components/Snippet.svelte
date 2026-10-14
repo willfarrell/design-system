@@ -7,6 +7,7 @@ import Footer from "@willfarrell-ds/svelte/elements/footer.svelte";
 import Header from "@willfarrell-ds/svelte/elements/header.svelte";
 import Iframe from "@willfarrell-ds/svelte/elements/iframe.svelte";
 import Summary from "@willfarrell-ds/svelte/elements/summary.svelte";
+import { sentenceCase } from "change-case";
 import formatHtml from "pretty";
 import { render } from "svelte/server";
 import Example from "#components/Example.svelte";
@@ -23,7 +24,7 @@ const html = $derived.by(() => {
 
 <Div class="snippet">
 	<Header><A href="/demo/{example}" target="_blank">Open in new tab</A></Header>
-	<Iframe title={example} src="/demo/{example}" sandbox="allow-scripts allow-same-origin allow-forms allow-downloads" />
+	<Iframe title="{sentenceCase(example)} example" src="/demo/{example}" sandbox="allow-scripts allow-same-origin allow-forms allow-downloads" />
 	<Footer>
 		<Details>
 			<Summary>View HTML markup</Summary>

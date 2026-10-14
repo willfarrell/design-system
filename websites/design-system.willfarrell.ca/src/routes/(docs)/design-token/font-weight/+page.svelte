@@ -40,7 +40,7 @@ import Strong from "@willfarrell-ds/svelte/elements/strong.svelte";
 import Sub from "@willfarrell-ds/svelte/elements/sub.svelte";
 import Summary from "@willfarrell-ds/svelte/elements/summary.svelte";
 import Sup from "@willfarrell-ds/svelte/elements/sup.svelte";
-import Table from "@willfarrell-ds/svelte/elements/table.svelte";
+import Table from "@willfarrell-ds/svelte/components/Table.svelte";
 import Tbody from "@willfarrell-ds/svelte/elements/tbody.svelte";
 import Td from "@willfarrell-ds/svelte/elements/td.svelte";
 import Th from "@willfarrell-ds/svelte/elements/th.svelte";
@@ -101,7 +101,7 @@ const page = {
 		>
 		<H2>Fluid Font size</H2>
 		<P>Optional: Can be applied using &lt;body class="fluid"&gt;.</P>
-		<Table>
+		<Table caption="Fluid font size by device width">
 			<Thead>
 				<Tr>
 					<Th scope="col">Device width</Th>

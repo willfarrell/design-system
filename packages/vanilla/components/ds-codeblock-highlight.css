@@ -18,7 +18,7 @@
 	--hex-daisy-bush: #693bc4;
 	--hex-violet-eggplant: #ae2dd2;
 
-	--lightness-code: var(--lightness-main-bold);
+	--lightness-code: var(--lightness-main);
 
 	--code-comment: light-dark(
 		oklch(from #000 0.4 c h),

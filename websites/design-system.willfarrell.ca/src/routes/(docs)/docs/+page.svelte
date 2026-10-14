@@ -257,6 +257,21 @@ const components = [
 		description: "Keyword label for categorization",
 	},
 	{
+		href: "/component/breadcrumb",
+		title: "Breadcrumb",
+		description: "Trail of links to the current page",
+	},
+	{
+		href: "/component/pagination",
+		title: "Pagination",
+		description: "Previous, next and numbered page links",
+	},
+	{
+		href: "/component/image",
+		title: "Image",
+		description: "Native image with styled alt text when it fails to load",
+	},
+	{
 		href: "/component/icon",
 		title: "Icon",
 		description: "SVG icon from sprite sheet",
