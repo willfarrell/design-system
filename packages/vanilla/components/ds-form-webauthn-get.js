@@ -42,6 +42,13 @@ customElements.define(
 
 		complete(value) {
 			if (this.$submitted) return;
+			// One assertion per post: a re-rendered form can replay the last one under
+			// the same name, and a server reading the first would only see that.
+			for (const field of this.querySelectorAll(
+				`[name="${CSS.escape(this.$input.name)}"]`,
+			)) {
+				if (field !== this.$input) field.remove();
+			}
 			this.$input.value = value;
 			this.$input.setAttribute("value", value);
 			this.$submitted = true;

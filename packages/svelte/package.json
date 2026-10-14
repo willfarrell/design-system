@@ -1,6 +1,6 @@
 {
 	"name": "@willfarrell-ds/svelte",
-	"version": "0.0.0-beta.0",
+	"version": "0.0.0-beta.1",
 	"type": "module",
 	"description": "Design system using Svelte",
 	"files": [
@@ -32,7 +32,7 @@
 	},
 	"homepage": "https://github.com/willfarrell/design-system#readme",
 	"dependencies": {
-		"@willfarrell-ds/vanilla": "0.0.0-beta.0",
+		"@willfarrell-ds/vanilla": "0.0.0-beta.1",
 		"html-minifier-terser": "7.2.0",
 		"pretty": "2.0.0"
 	},
