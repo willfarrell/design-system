@@ -31,4 +31,11 @@ describe("InputWebAuthnGet", () => {
 			/<link rel="modulepreload" href="[^"]*ds-input-webauthn-get\.js"/,
 		);
 	});
+	it("omits autocomplete when the form reports an error", async () => {
+		const { body } = await render("./components/InputWebAuthnGet.svelte", {
+			name: "credential",
+			error: [{ message: "Try again" }],
+		});
+		assert.doesNotMatch(body, /autocomplete=/);
+	});
 });

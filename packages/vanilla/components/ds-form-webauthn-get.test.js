@@ -7,10 +7,11 @@ const options = JSON.stringify({
 	allowCredentials: [],
 });
 
-const setup = async (autocomplete, outcome) => {
+const setup = async (autocomplete, outcome, { inside = "" } = {}) => {
 	const page = await open(`
 		<iframe name="sink"></iframe>
 		<form is="ds-form-webauthn-get" method="post" action="/login" target="sink">
+			${inside}
 			<input type="hidden" name="credential" ${autocomplete ? `autocomplete="${autocomplete}"` : ""} data-options='${options}'>
 			<button>Sign in</button>
 		</form>`);
@@ -98,4 +99,13 @@ test("a failed authentication is posted for the server to report", async () => {
 	const page = await setup(undefined, "InvalidStateError");
 	await page.click("button");
 	assert.deepEqual(await posted(page), ["InvalidStateError"]);
+});
+
+test("a replayed assertion under the same name is dropped before posting", async () => {
+	const page = await setup(undefined, "ok", {
+		inside: '<input type="hidden" name="credential" value="stale">',
+	});
+	await page.click("button");
+	const [body] = await posted(page);
+	assert.equal(JSON.parse(body).id, "AQID");
 });

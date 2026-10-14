@@ -1,6 +1,6 @@
 {
 	"name": "@willfarrell-ds/svelte",
-	"version": "0.0.0-beta.0",
+	"version": "0.0.0-beta.1",
 	"type": "module",
 	"description": "Design system using Svelte",
 	"files": [
@@ -9,6 +9,7 @@
 		"hooks/",
 		"utils/",
 		"!**/*.test.js",
+		"!**/*.test.svelte",
 		"!**/.DS_Store"
 	],
 	"exports": {
@@ -18,7 +19,7 @@
 		"./utils/*": "./utils/*"
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "node --test --experimental-test-module-mocks '**/*.test.js'"
 	},
 	"repository": {
 		"type": "git",
@@ -31,10 +32,13 @@
 	},
 	"homepage": "https://github.com/willfarrell/design-system#readme",
 	"dependencies": {
-		"@willfarrell-ds/vanilla": "0.0.0-beta.0",
+		"@willfarrell-ds/vanilla": "0.0.0-beta.1",
+		"html-minifier-terser": "7.2.0",
 		"pretty": "2.0.0"
 	},
 	"peerDependencies": {
-		"svelte": "^5.57.0"
+		"@sveltejs/kit": "^3.0.0",
+		"svelte": "^5.57.1",
+		"vite": "^8.3.2"
 	}
 }
