@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { render } from "../../../../../../../packages/svelte/test-render.js";
+import { render } from "../../../../../../../packages/svelte/render.testutil.js";
 
 describe("layout/form page", () => {
 	it("keeps headings out of labels", async () => {

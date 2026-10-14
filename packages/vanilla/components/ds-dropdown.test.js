@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { open, vanilla } from "../test-browser.js";
+import { open, vanilla } from "../browser.testutil.js";
 
 const dropdown = (id) => `
 	<li>

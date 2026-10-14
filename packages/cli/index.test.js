@@ -20,9 +20,6 @@ let dir;
 const ds = (...args) =>
 	spawnSync(process.execPath, [cli, ...args], { cwd: dir, encoding: "utf8" });
 
-const sri = (content) =>
-	`sha256-${createHash("sha256").update(content).digest("base64")}`;
-
 beforeEach(() => {
 	dir = mkdtempSync(pathJoin(tmpdir(), "ds-cli-"));
 });
@@ -46,7 +43,7 @@ describe("ds inline", () => {
 		assert.strictEqual(result.status, 0, result.stderr);
 		assert.strictEqual(
 			readFileSync(pathJoin(dir, "build/index.html"), "utf8"),
-			`<head><style integrity="${sri(css)}">${css}</style></head>`,
+			`<head><style>${css}</style></head>`,
 		);
 	});
 
@@ -64,7 +61,7 @@ describe("ds inline", () => {
 		assert.strictEqual(result.status, 0, result.stderr);
 		assert.strictEqual(
 			readFileSync(pathJoin(dir, "build/index.html"), "utf8"),
-			`<body><script integrity="${sri(js)}">${js}</script></body>`,
+			`<body><script>${js}</script></body>`,
 		);
 	});
 
@@ -82,7 +79,7 @@ describe("ds inline", () => {
 		assert.strictEqual(result.status, 0, result.stderr);
 		assert.strictEqual(
 			readFileSync(pathJoin(dir, "build/index.html"), "utf8"),
-			`<style integrity="${sri(css)}">${css}</style>`,
+			`<style>${css}</style>`,
 		);
 	});
 
@@ -101,7 +98,81 @@ describe("ds inline", () => {
 		assert.strictEqual(result.status, 0, result.stderr);
 		assert.strictEqual(
 			readFileSync(pathJoin(dir, "build/index.html"), "utf8"),
-			`<script type="module" integrity="${sri(escaped)}">${escaped}</script>`,
+			`<script type="module">${escaped}</script>`,
+		);
+	});
+
+	it("does not inline into tags whose filename only ends with the input filename", () => {
+		const html =
+			'<link rel="stylesheet" href="/css/myapp.css"><script src="/js/myapp.js"></script>';
+		mkdirSync(pathJoin(dir, "build/css"), { recursive: true });
+		mkdirSync(pathJoin(dir, "build/js"), { recursive: true });
+		writeFileSync(pathJoin(dir, "build/css/app.css"), "body{color:red}");
+		writeFileSync(pathJoin(dir, "build/js/app.js"), "console.log(1)");
+		writeFileSync(pathJoin(dir, "build/index.html"), html);
+
+		const css = ds("inline", "build", "build/css/app.css");
+		const js = ds("inline", "build", "build/js/app.js");
+
+		assert.strictEqual(css.status, 0, css.stderr);
+		assert.strictEqual(js.status, 0, js.stderr);
+		assert.strictEqual(
+			readFileSync(pathJoin(dir, "build/index.html"), "utf8"),
+			html,
+		);
+	});
+
+	it("drops the integrity attribute of the replaced tag", () => {
+		const css = "body{color:red}";
+		mkdirSync(pathJoin(dir, "build/css"), { recursive: true });
+		writeFileSync(pathJoin(dir, "build/css/app.css"), css);
+		writeFileSync(
+			pathJoin(dir, "build/index.html"),
+			'<link rel="stylesheet" href="/css/app.css" integrity="sha384-x" media="print">',
+		);
+
+		const result = ds("inline", "build", "build/css/app.css");
+
+		assert.strictEqual(result.status, 0, result.stderr);
+		assert.strictEqual(
+			readFileSync(pathJoin(dir, "build/index.html"), "utf8"),
+			`<style media="print">${css}</style>`,
+		);
+	});
+
+	it("inlines single-quoted urls with a query string", () => {
+		const js = "console.log(1)";
+		mkdirSync(pathJoin(dir, "build/js"), { recursive: true });
+		writeFileSync(pathJoin(dir, "build/js/app.js"), js);
+		writeFileSync(
+			pathJoin(dir, "build/index.html"),
+			"<script src='/js/app.js?v=1' integrity='sha384-x' defer></script>",
+		);
+
+		const result = ds("inline", "build", "build/js/app.js");
+
+		assert.strictEqual(result.status, 0, result.stderr);
+		assert.strictEqual(
+			readFileSync(pathJoin(dir, "build/index.html"), "utf8"),
+			`<script defer>${js}</script>`,
+		);
+	});
+
+	it("logs the csp hash of the inlined content with --debug", () => {
+		const js = 'document.write("</p>")';
+		const escaped = 'document.write("<\\/p>")';
+		mkdirSync(pathJoin(dir, "build/js"), { recursive: true });
+		writeFileSync(pathJoin(dir, "build/js/app.js"), js);
+		writeFileSync(pathJoin(dir, "build/index.html"), "");
+
+		const result = ds("inline", "build", "build/js/app.js", "--debug");
+
+		assert.strictEqual(result.status, 0, result.stderr);
+		assert.ok(
+			result.stdout.includes(
+				`sha256-${createHash("sha256").update(escaped).digest("base64")}`,
+			),
+			result.stdout,
 		);
 	});
 
@@ -141,6 +212,22 @@ describe("ds optimize-styles", () => {
 
 		assert.strictEqual(result.status, 0, result.stderr);
 		assert.ok(existsSync(pathJoin(dir, "css/app.css")));
+	});
+
+	it("only inlines variables with the --prefix", () => {
+		mkdirSync(pathJoin(dir, "css"));
+		writeFileSync(
+			pathJoin(dir, "css/app.css"),
+			":root{--a:1px;--ds-b:2px}div{margin:var(--a) var(--ds-b)}",
+		);
+
+		const result = ds("optimize-styles", "css", "--prefix");
+
+		assert.strictEqual(result.status, 0, result.stderr);
+		assert.strictEqual(
+			readFileSync(pathJoin(dir, "css/app.css"), "utf8"),
+			":root{--a:1px;}div{margin:var(--a) 2px}",
+		);
 	});
 
 	it("rejects --iterations values that are not positive integers", () => {

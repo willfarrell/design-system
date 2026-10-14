@@ -6,6 +6,7 @@
 @import "@willfarrell-ds/vanilla/elements/dialog.css";
 @import "@willfarrell-ds/vanilla/elements/dt.css";
 @import "@willfarrell-ds/vanilla/elements/fieldset.css";
+@import "@willfarrell-ds/vanilla/elements/figure.css";
 @import "@willfarrell-ds/vanilla/elements/form.css";
 @import "@willfarrell-ds/vanilla/elements/h2.css";
 @import "@willfarrell-ds/vanilla/elements/h3.css";
@@ -34,6 +35,7 @@
 @import "@willfarrell-ds/vanilla/elements/sup.css";
 @import "@willfarrell-ds/vanilla/elements/table.css";
 @import "@willfarrell-ds/vanilla/elements/textarea.css";
+@import "@willfarrell-ds/vanilla/elements/video.css";
 @import "@willfarrell-ds/vanilla/classes/span.badge.css";
 @import "@willfarrell-ds/vanilla/classes/li.card.css";
 @import "@willfarrell-ds/vanilla/classes/button.chevron.css";
@@ -41,6 +43,8 @@
 @import "@willfarrell-ds/vanilla/classes/.grid.css";
 @import "@willfarrell-ds/vanilla/classes/.group.css";
 @import "@willfarrell-ds/vanilla/classes/.icon.css";
+@import "@willfarrell-ds/vanilla/classes/section[role=alert].css";
+@import "@willfarrell-ds/vanilla/classes/section[role=status].css";
 @import "@willfarrell-ds/vanilla/components/ds-card.css";
 @import "@willfarrell-ds/vanilla/components/ds-codeblock-actions.css";
 @import "@willfarrell-ds/vanilla/components/ds-codeblock-highlight.css";

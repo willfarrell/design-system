@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { load, open } from "../test-browser.js";
+import { load, open } from "../browser.testutil.js";
 
 const setup = async (body) => {
 	const page = await open(body, {
@@ -91,4 +91,56 @@ test("a hashed preload is used for its component", async () => {
 	await load(page, "bootstrap/webcomponents.js");
 	await page.waitForTimeout(100);
 	assert.deepEqual(await page.evaluate(() => window.loaded), ["hashed"]);
+});
+
+test("a visible component stops being observed once loaded", async () => {
+	const page = await open(`<span is="ds-ok" id="visible">x</span>`, {
+		files: { "/js/pewc/ds-ok.js": "window.loaded = true;" },
+	});
+	await page.evaluate(() => {
+		window.unobserved = [];
+		const unobserve = IntersectionObserver.prototype.unobserve;
+		IntersectionObserver.prototype.unobserve = function (target) {
+			window.unobserved.push(target.id);
+			return unobserve.call(this, target);
+		};
+	});
+	await load(page, "bootstrap/webcomponents.js");
+	await page.waitForTimeout(100);
+	assert.equal(await page.evaluate(() => window.loaded), true);
+	assert.deepEqual(await page.evaluate(() => window.unobserved), ["visible"]);
+});
+
+for (const [label, html] of [
+	["an element", `<span is="ds-ok">x</span>`],
+	["a descendant", `<div><p><span is="ds-ok">x</span></p></div>`],
+	["a hidden element", `<span is="ds-ok" hidden></span>`],
+]) {
+	test(`${label} added after startup loads its component`, async () => {
+		const page = await setup("");
+		await page.evaluate((markup) => {
+			document.body.insertAdjacentHTML("beforeend", markup);
+		}, html);
+		await page.waitForTimeout(100);
+		assert.equal(await page.evaluate(() => window.loaded), true);
+		assert.deepEqual(page.errors, []);
+	});
+}
+
+test("an invalid is attribute added after startup is ignored", async () => {
+	const page = await setup("");
+	await page.evaluate(() => {
+		document.body.insertAdjacentHTML(
+			"beforeend",
+			`<span is="../../evil">x</span><span is="ds-ok">x</span>`,
+		);
+	});
+	await page.waitForTimeout(100);
+	assert.equal(await page.evaluate(() => window.loaded), true);
+	assert.deepEqual(
+		page.requested.filter(
+			(url) => url.includes("/js/pewc/") && !url.endsWith("/ds-ok.js"),
+		),
+		[],
+	);
 });

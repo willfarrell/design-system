@@ -2,6 +2,13 @@
 
 const d = document;
 
+const named = (el) =>
+	el.hasAttribute("aria-label") ||
+	el.hasAttribute("aria-labelledby") ||
+	el.labels?.length ||
+	el.getAttribute("alt") ||
+	el.textContent.trim();
+
 // Anchor positioning and popover are the whole mechanism. Where either is
 // missing the browser keeps rendering its own `title` tooltip, so nothing is lost.
 if (CSS.supports("anchor-name: --a") && HTMLElement.prototype.showPopover) {
@@ -33,6 +40,12 @@ if (CSS.supports("anchor-name: --a") && HTMLElement.prototype.showPopover) {
 
 		if (el.matches(":dir(rtl)")) tip.dir = arrow.dir = "rtl";
 		d.body.append(tip, arrow);
+
+		if (!named(el)) el.setAttribute("aria-label", title);
+		else {
+			const ids = el.getAttribute("aria-describedby")?.trim();
+			el.setAttribute("aria-describedby", ids ? `${ids} ${key}` : key);
+		}
 
 		if (el.localName === "abbr") el.tabIndex = 0;
 		el.dataset.dsAnchor = key;

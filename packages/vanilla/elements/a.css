@@ -19,6 +19,7 @@ a:focus-visible {
 /* target-current for scrollspy; aria-current=true marks ancestor sections */
 a:active,
 a[aria-current="page"],
+a[aria-current="location"],
 a[aria-current="true"],
 a:target-current {
 	color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));

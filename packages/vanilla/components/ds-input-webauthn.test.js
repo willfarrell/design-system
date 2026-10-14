@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { load, open } from "../test-browser.js";
+import { load, open } from "../browser.testutil.js";
 
 const options = JSON.stringify({
 	challenge: "Y2hhbGxlbmdl",
@@ -115,3 +115,35 @@ test("ds-input-webauthn-create submitting posts the credential", async () => {
 	assert.equal(JSON.parse(body).id, "AQID");
 	assert.deepEqual(page.errors, []);
 });
+
+for (const is of ["ds-input-webauthn-get", "ds-input-webauthn-create"]) {
+	test(`${is} reloads when restored from the back/forward cache`, async () => {
+		const page = await setup(is);
+		await page.click("button");
+		await posted(page);
+		await page.evaluate(() => {
+			window.restored = true;
+		});
+		await Promise.all([
+			page.waitForEvent("load"),
+			page.evaluate(() =>
+				window.dispatchEvent(
+					new PageTransitionEvent("pageshow", { persisted: true }),
+				),
+			),
+		]);
+		assert.equal(await page.evaluate(() => window.restored), undefined);
+	});
+
+	test(`${is} does not reload on a fresh pageshow`, async () => {
+		const page = await setup(is);
+		await page.evaluate(() => {
+			window.restored = true;
+			window.dispatchEvent(
+				new PageTransitionEvent("pageshow", { persisted: false }),
+			);
+		});
+		await page.waitForTimeout(100);
+		assert.equal(await page.evaluate(() => window.restored), true);
+	});
+}

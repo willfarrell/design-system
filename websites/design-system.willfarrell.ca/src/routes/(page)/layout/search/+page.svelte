@@ -63,6 +63,7 @@ const results = new Array(24).fill("x").map((x, i) => {
 		button: "Read more",
 		img: {
 			src: "/img/placeholder/16_9.320x179.png",
+			alt: "",
 		},
 	};
 });

@@ -5,43 +5,44 @@ const is = "ds-task";
 // during text selection (holding >200ms). The internal <a> handles keyboard
 // access (Tab + Enter). Do not replace with a click listener. (a11y audit C3)
 const delayInMiliSeconds = 200;
-customElements.define(
-	is,
-	class extends HTMLLIElement {
-		handleMouseDown() {
-			this.down = +Date.now();
-		}
-
-		handleMouseUp(event) {
-			if (
-				event.button !== 0 ||
-				event.ctrlKey ||
-				event.metaKey ||
-				event.shiftKey ||
-				event.altKey ||
-				event.target.closest("a,button,input,select,textarea,label,summary")
-			) {
-				return;
+if (!customElements.get(is)) {
+	customElements.define(
+		is,
+		class extends HTMLLIElement {
+			handleMouseDown() {
+				this.down = +Date.now();
 			}
-			const link = this.querySelector("a:first-of-type");
-			if (!link) {
-				return;
-			}
-			this.up = +Date.now();
-			if (this.up - this.down < delayInMiliSeconds) {
-				link.click();
-			}
-		}
 
-		connectedCallback() {
-			this.addEventListener("mousedown", this.handleMouseDown);
-			this.addEventListener("mouseup", this.handleMouseUp);
-		}
+			handleMouseUp(event) {
+				if (
+					event.button !== 0 ||
+					event.ctrlKey ||
+					event.metaKey ||
+					event.shiftKey ||
+					event.altKey
+				) {
+					return;
+				}
+				const link = this.querySelector("a:first-of-type");
+				if (!link || link.contains(event.target)) {
+					return;
+				}
+				this.up = +Date.now();
+				if (this.up - this.down < delayInMiliSeconds) {
+					link.click();
+				}
+			}
 
-		disconnectedCallback() {
-			this.removeEventListener("mousedown", this.handleMouseDown);
-			this.removeEventListener("mouseup", this.handleMouseUp);
-		}
-	},
-	{ extends: "li" },
-);
+			connectedCallback() {
+				this.addEventListener("mousedown", this.handleMouseDown);
+				this.addEventListener("mouseup", this.handleMouseUp);
+			}
+
+			disconnectedCallback() {
+				this.removeEventListener("mousedown", this.handleMouseDown);
+				this.removeEventListener("mouseup", this.handleMouseUp);
+			}
+		},
+		{ extends: "li" },
+	);
+}

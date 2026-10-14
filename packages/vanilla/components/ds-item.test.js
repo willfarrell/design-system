@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { load, open, vanilla } from "../test-browser.js";
+import { load, open, vanilla } from "../browser.testutil.js";
 
 const row = (attrs) => `
 	<ul><li ${attrs}>

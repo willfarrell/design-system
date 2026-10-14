@@ -2,6 +2,8 @@ name: Tests (bench)
 
 on:
   pull_request:
+  push:
+    branches: [develop, main]
 
 env:
   NODE_VERSION: 26.x

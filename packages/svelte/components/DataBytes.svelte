@@ -25,7 +25,7 @@ const getLocalizedBytes = (value, locale, decimals = 2) => {
 
 const locale = $derived.by(() => {
 	try {
-		return page.locale;
+		return page.data?.locale;
 	} catch {
 		return undefined;
 	}

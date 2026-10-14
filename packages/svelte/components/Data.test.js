@@ -1,6 +1,10 @@
 import assert from "node:assert";
-import { describe, it } from "node:test";
-import { render } from "../test-render.js";
+import { afterEach, describe, it } from "node:test";
+import { page, render } from "../render.testutil.js";
+
+afterEach(() => {
+	delete page.data;
+});
 
 describe("DataBytes", () => {
 	const path = "./components/DataBytes.svelte";
@@ -12,6 +16,20 @@ describe("DataBytes", () => {
 		const { body } = await render(path, { value: 0.5 });
 		assert.match(body, />0.5 Bytes</);
 	});
+	it("formats with the locale from page data", async () => {
+		page.data = { locale: "de-DE" };
+		const { body } = await render(path, { value: 1536 });
+		assert.match(body, />1,5 KB</);
+	});
+});
+
+describe("DataNumber", () => {
+	const path = "./components/DataNumber.svelte";
+	it("formats with the locale from page data", async () => {
+		page.data = { locale: "de-DE" };
+		const { body } = await render(path, { value: 1234.5 });
+		assert.match(body, />1\.234,5</);
+	});
 });
 
 describe("DataTime", () => {
@@ -19,6 +37,18 @@ describe("DataTime", () => {
 	it("formats date-only values on the given day", async () => {
 		const { body } = await render(path, { datetime: "2024-01-02" });
 		assert.match(body, />January 2, 2024</);
+	});
+	it("formats with the locale from page data", async () => {
+		page.data = { locale: "de-DE" };
+		const { body } = await render(path, { datetime: "2024-01-02" });
+		assert.match(body, />2. Januar 2024</);
+	});
+	it("accepts Intl component options", async () => {
+		const { body } = await render(path, {
+			datetime: "2024-01-02",
+			month: "long",
+		});
+		assert.match(body, />January</);
 	});
 });
 

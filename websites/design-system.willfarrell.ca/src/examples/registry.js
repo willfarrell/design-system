@@ -19,7 +19,6 @@ import ExampleDataTime from "./data-time.svelte";
 import ExampleDetails from "./details.svelte";
 import ExampleDetailsChevron from "./details-chevron.svelte";
 import ExampleDialog from "./dialog.svelte";
-import ExampleDialogFallback from "./dialog-fallback.svelte";
 import ExampleDropdownItemList from "./dropdown-item-list.svelte";
 import ExampleDropdownNav from "./dropdown-nav.svelte";
 import ExampleFootnotes from "./footnotes.svelte";
@@ -82,6 +81,7 @@ import ExampleTag from "./tag.svelte";
 import ExampleTaskList from "./task-list.svelte";
 import ExampleTaskListSortable from "./task-list-sortable.svelte";
 import ExampleTooltip from "./tooltip.svelte";
+import ExampleVideo from "./video.svelte";
 
 export default {
 	ExampleAddress,
@@ -148,6 +148,7 @@ export default {
 	ExamplePopover,
 	ExamplePopoverHint,
 	ExampleTooltip,
+	ExampleVideo,
 	ExampleCard,
 	ExampleCardMetric,
 	ExampleCodeblock,
@@ -160,7 +161,6 @@ export default {
 	ExampleAccordion,
 	ExampleAccordionChevron,
 	ExampleDialog,
-	ExampleDialogFallback,
 	ExampleDropdownNav,
 	ExampleDropdownItemList,
 	ExampleTaskList,

@@ -26,4 +26,7 @@ test("tardisec security headers are served", async ({ request }) => {
 	expect(headers["content-security-policy-report-only"]).toContain(
 		"'report-sha256'",
 	);
+	expect(headers["content-security-policy-report-only"]).toContain(
+		"frame-ancestors 'self'",
+	);
 });

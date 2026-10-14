@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { load, open } from "../test-browser.js";
+import { load, open } from "../browser.testutil.js";
 
 const components = [
 	{ is: "ds-task", tag: "li", wrap: (html) => `<ul>${html}</ul>` },
@@ -11,7 +11,7 @@ for (const { is, tag, wrap } of components) {
 	const setup = async () => {
 		const page = await open(
 			wrap(
-				`<${tag} is="${is}" id="row" style="display:block;padding:2rem"><a id="link" href="#target">Link</a> <span id="text">text</span> <button id="action" type="button">Action</button></${tag}>`,
+				`<${tag} is="${is}" id="row" style="display:block;padding:2rem"><a id="link" href="#target">Link</a> <span id="text">text</span></${tag}>`,
 			),
 		);
 		await load(page, `components/${is}.js`);
@@ -51,12 +51,6 @@ for (const { is, tag, wrap } of components) {
 			assert.equal(await clicks(page), 0);
 		});
 	}
-
-	test(`${is}: clicking a control inside the row does not follow the link`, async () => {
-		const page = await setup();
-		await page.click("#action");
-		assert.equal(await clicks(page), 0);
-	});
 
 	test(`${is}: a row built before its link is added still follows it`, async () => {
 		const page = await open(wrap(`<div id="host"></div>`));

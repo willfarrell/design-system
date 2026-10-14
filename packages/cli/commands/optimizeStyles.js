@@ -31,6 +31,8 @@ const rgbToHex = (r, g, b, a) => {
 
 const clampRgb = (v) => Math.max(0, Math.min(255, Math.round(v)));
 
+const inGamut = (rgb) => rgb.every((v) => v >= -0.5 && v < 255.5);
+
 const colorReplace = (content, regex, convertFn) => {
 	return content.replace(regex, (rawMatch, c1, c2, c3, a) => {
 		const af = a !== undefined ? Number.parseFloat(a) : undefined;
@@ -40,10 +42,9 @@ const colorReplace = (content, regex, convertFn) => {
 			Number.parseFloat(c2),
 			Number.parseFloat(c3),
 		);
+		if (!inGamut(rgb)) return rawMatch;
 		const [r, g, b] = rgb.map(clampRgb);
-		const hex = rgbToHex(r, g, b, af);
-		// console.log(`replace \`${rawMatch}\` with \`${hex}\``);
-		return hex;
+		return rgbToHex(r, g, b, af);
 	});
 };
 
@@ -64,6 +65,8 @@ const oklabToLinearRgb = (L, a, b) => {
 
 const srgbGamma = (c) =>
 	c <= 0.0031308 ? 12.92 * c : 1.055 * c ** (1 / 2.4) - 0.055;
+const srgbLinear = (c) =>
+	c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
 
 const oklabToRgb = (L, a, b) => {
 	const linear = oklabToLinearRgb(L, a, b);
@@ -179,11 +182,9 @@ const parse = (content, { prefix = "" } = {}) => {
 		}
 		match = varAssignementRegExp.exec(content);
 	}
-	// console.log(assignments);
 };
 
 const fctUsageRegExp = /(calc|min|max|clamp)\(([a-zA-Z0-9. /*+,%-]+)\)/g;
-// const calcUnitEncodeRegExp = /([0-9\.]+)([a-z]+)/g;
 const calcUnitDecodeRegExp = /([0-9.]+) ([a-z]+)/g;
 const percentEncodeRegExp = /(\d)%/g;
 const percentDecodeRegExp = /pct/g;
@@ -216,30 +217,51 @@ const colorFnRegExp =
 
 const hslToRgb = (h, s, l) => convert.hsl.rgb(h, s, l);
 const hwbToRgb = (h, w, b) => convert.hwb.rgb(h, w, b);
-const labToRgb = (l, a, b) => convert.lab.rgb(l, a, b);
-const lchToRgb = (l, c, h) => convert.lch.rgb(l, c, h);
+const multiply = (matrix, vector) =>
+	matrix.map((row) => row.reduce((sum, m, i) => sum + m * vector[i], 0));
+const labD50White = [0.3457 / 0.3585, 1, (1 - 0.3457 - 0.3585) / 0.3585];
+const labKappa = 24389 / 27;
+const labEpsilon = 216 / 24389;
+const labToXyzD50 = (l, a, b) => {
+	const f1 = (l + 16) / 116;
+	const f0 = a / 500 + f1;
+	const f2 = f1 - b / 200;
+	return [
+		f0 ** 3 > labEpsilon ? f0 ** 3 : (116 * f0 - 16) / labKappa,
+		l > labKappa * labEpsilon ? f1 ** 3 : l / labKappa,
+		f2 ** 3 > labEpsilon ? f2 ** 3 : (116 * f2 - 16) / labKappa,
+	].map((v, i) => v * labD50White[i]);
+};
+const d50ToD65 = [
+	[0.955473421488075, -0.02309845494876471, 0.06325924320057072],
+	[-0.0283697093338637, 1.0099953980813041, 0.021041441191917323],
+	[0.012314014864481998, -0.020507649298898964, 1.330365926242124],
+];
+const xyzD65ToLinearRgb = [
+	[3.2409699419045226, -1.537383177570094, -0.4986107602930034],
+	[-0.9692436362808796, 1.8759675015077202, 0.04155505740717559],
+	[0.05563007969699366, -0.20397695888897652, 1.0569715142428786],
+];
+const labToRgb = (l, a, b) =>
+	multiply(xyzD65ToLinearRgb, multiply(d50ToD65, labToXyzD50(l, a, b))).map(
+		(c) => srgbGamma(c) * 255,
+	);
+const lchToRgb = (l, c, h) => {
+	const hRad = (h * Math.PI) / 180;
+	return labToRgb(l, c * Math.cos(hRad), c * Math.sin(hRad));
+};
 
 const colorFnReplace = (content) => {
 	return content.replace(colorFnRegExp, (rawMatch, space, c1, c2, c3, a) => {
 		const af = a !== undefined ? Number.parseFloat(a) : undefined;
 		if (af !== undefined && (af < 0 || af > 1)) return rawMatch;
-		let r, g, b;
-		const v1 = Number.parseFloat(c1);
-		const v2 = Number.parseFloat(c2);
-		const v3 = Number.parseFloat(c3);
-		if (space === "srgb") {
-			r = clampRgb(v1 * 255);
-			g = clampRgb(v2 * 255);
-			b = clampRgb(v3 * 255);
-		} else {
-			// srgb-linear
-			r = clampRgb(srgbGamma(v1) * 255);
-			g = clampRgb(srgbGamma(v2) * 255);
-			b = clampRgb(srgbGamma(v3) * 255);
-		}
-		const hex = rgbToHex(r, g, b, af);
-		// console.log(`replace \`${rawMatch}\` with \`${hex}\``);
-		return hex;
+		const rgb = [c1, c2, c3].map((c) => {
+			const v = Number.parseFloat(c);
+			return (space === "srgb" ? v : srgbGamma(v)) * 255;
+		});
+		if (!inGamut(rgb)) return rawMatch;
+		const [r, g, b] = rgb.map(clampRgb);
+		return rgbToHex(r, g, b, af);
 	});
 };
 
@@ -283,7 +305,8 @@ const colorMixReplace = (content) => {
 			continue;
 		}
 		const spacePart = inner.slice(0, commaIdx1).trim();
-		if (!spacePart.startsWith("in ") || !spacePart.includes("srgb")) {
+		const linear = spacePart === "in srgb-linear";
+		if (!linear && spacePart !== "in srgb") {
 			result += fullMatch;
 			idx = i;
 			continue;
@@ -308,10 +331,16 @@ const colorMixReplace = (content) => {
 				pct = undefined;
 			}
 			let rgb;
+			let alpha = 1;
 			if (colorStr.startsWith("#")) {
-				try {
-					rgb = convert.hex.rgb(colorStr.replace("#", ""));
-				} catch {
+				const hex = colorStr.slice(1);
+				if (/^(?:[0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(hex)) {
+					const channels = (
+						hex.length <= 4 ? hex.replace(/./g, "$&$&") : hex
+					).match(/../g);
+					rgb = channels.slice(0, 3).map((c) => Number.parseInt(c, 16));
+					alpha = channels[3] ? Number.parseInt(channels[3], 16) / 255 : 1;
+				} else {
 					rgb = null;
 				}
 			} else {
@@ -321,7 +350,7 @@ const colorMixReplace = (content) => {
 					rgb = null;
 				}
 			}
-			return { rgb, pct };
+			return { rgb, alpha, pct };
 		};
 		const c1 = parseColorArg(arg1);
 		const c2 = parseColorArg(arg2);
@@ -341,11 +370,31 @@ const colorMixReplace = (content) => {
 		} else if (p1 === undefined && p2 !== undefined) {
 			p1 = 1 - p2;
 		}
-		const r = clampRgb(c1.rgb[0] * p1 + c2.rgb[0] * p2);
-		const g = clampRgb(c1.rgb[1] * p1 + c2.rgb[1] * p2);
-		const b = clampRgb(c1.rgb[2] * p1 + c2.rgb[2] * p2);
-		const hex = rgbToHex(r, g, b);
-		//console.log(`replace \`${fullMatch}\` with \`${hex}\``);
+		const sum = p1 + p2;
+		if (!(sum > 0) || [p1, p2].some((p) => p < 0 || p > 1)) {
+			result += fullMatch;
+			idx = i;
+			continue;
+		}
+		if (sum > 1) {
+			p1 /= sum;
+			p2 /= sum;
+		}
+		const toSpace = (c) => (linear ? srgbLinear(c / 255) : c);
+		const fromSpace = (c) => (linear ? srgbGamma(c) * 255 : c);
+		const w1 = c1.alpha * p1;
+		const w2 = c2.alpha * p2;
+		const alpha = w1 + w2;
+		const [r, g, b] = [0, 1, 2].map((k) =>
+			alpha
+				? clampRgb(
+						fromSpace(
+							(toSpace(c1.rgb[k]) * w1 + toSpace(c2.rgb[k]) * w2) / alpha,
+						),
+					)
+				: 0,
+		);
+		const hex = rgbToHex(r, g, b, alpha);
 		result += hex;
 		idx = i;
 	}
@@ -532,7 +581,6 @@ const simplifyCalcWithVar = (content) => {
 
 		const simplified = simplifyCalcExpression(inner);
 		if (simplified !== null) {
-			// console.log(`replace \`${fullMatch}\` with \`${simplified}\``);
 			result += simplified;
 		} else {
 			result += fullMatch;
@@ -555,7 +603,6 @@ const optimize = (content) => {
 	for (let i = 0, l = singleUseVars.length; i < l; i++) {
 		const variable = singleUseVars[i];
 		const value = assignments[variable].value;
-		// console.log(`replace \`var(${variable})\` with \`${value}\``);
 		const usageRegex = new RegExp(
 			`var\\([\\s]*${variable}[\\s]*\\)`, // TODO add in support for
 			"g",
@@ -563,7 +610,6 @@ const optimize = (content) => {
 		const startContent = optimizedContent;
 		let endContent = startContent.replace(usageRegex, value);
 
-		// console.log(`replace \`var(${variable}, ...)\` with \`${value}\``);
 		// Use paren-aware replacement to handle nested var() fallbacks
 		const marker = `var(`;
 		let rebuilt = "";
@@ -642,13 +688,11 @@ const optimize = (content) => {
 					value = format(rawValue, { precision: 14 }).toString();
 					value = value.replace(calcUnitDecodeRegExp, "$1$2");
 					value = value.replace(percentDecodeRegExp, "%");
-					// console.log(`replace \`${rawMatch}\` with \`${value}\``);
 					return value;
 				} catch (e) {
 					// Try partial simplification for mixed-unit expressions
 					const simplified = simplifyCalcExpression(equation);
 					if (simplified !== null) {
-						// console.log(`replace \`${rawMatch}\` with \`${simplified}\``);
 						return simplified;
 					}
 					if (!["Units do not match"].includes(e.message)) {
@@ -667,7 +711,6 @@ const optimize = (content) => {
 					let value = format(rawValue, { precision: 14 }).toString();
 					value = value.replace(calcUnitDecodeRegExp, "$1$2");
 					value = value.replace(percentDecodeRegExp, "%");
-					// console.log(`replace \`${rawMatch}\` with \`${value}\``);
 					return value;
 				} catch (e) {
 					if (
@@ -695,7 +738,6 @@ const optimize = (content) => {
 					let value = format(rawValue, { precision: 14 }).toString();
 					value = value.replace(calcUnitDecodeRegExp, "$1$2");
 					value = value.replace(percentDecodeRegExp, "%");
-					// console.log(`replace \`${rawMatch}\` with \`${value}\``);
 					return value;
 				} catch (e) {
 					if (
@@ -724,7 +766,6 @@ const optimize = (content) => {
 			const af = a !== undefined ? Number.parseFloat(a) : undefined;
 			if (af !== undefined && (af < 0 || af > 1)) return rawMatch;
 			const hex = rgbToHex(ri, gi, bi, af);
-			// console.log(`replace \`${rawMatch}\` with \`${hex}\``);
 			return hex;
 		},
 	);
@@ -757,7 +798,6 @@ const optimize = (content) => {
 				const h = hex8.toLowerCase();
 				if (h[0] === h[1] && h[2] === h[3] && h[4] === h[5] && h[6] === h[7]) {
 					const short = `#${h[0]}${h[2]}${h[4]}${h[6]}`;
-					// console.log(`replace \`${rawMatch}\` with \`${short}\``);
 					return short;
 				}
 				return rawMatch;
@@ -766,7 +806,6 @@ const optimize = (content) => {
 				const h = hex6.toLowerCase();
 				if (h[0] === h[1] && h[2] === h[3] && h[4] === h[5]) {
 					const short = `#${h[0]}${h[2]}${h[4]}`;
-					// console.log(`replace \`${rawMatch}\` with \`${short}\``);
 					return short;
 				}
 				return rawMatch;
@@ -779,7 +818,6 @@ const optimize = (content) => {
 	optimizedContent = optimizedContent.replace(
 		/\b0(px|em|rem|ch|ex|vw|vh|svh|lvh|dvh|vmin|vmax|cqw|cqh|cqi|cqb|cm|mm|in|pc|pt|Q|cap|ic|lh|rlh)\b/g,
 		(rawMatch) => {
-			// console.log(`replace \`${rawMatch}\` with \`0\``);
 			return "0";
 		},
 	);
@@ -801,7 +839,6 @@ const clean = (content, options = {}) => {
 			);
 			continue;
 		}
-		// console.log(`replace \`${assignments[variable].rawMatch}\` with \`\``);
 		optimizedContent = optimizedContent.replace(
 			assignments[variable].rawMatch,
 			"",
@@ -813,9 +850,6 @@ const clean = (content, options = {}) => {
 			/url\([^)]*\)|\/\*[\s\S]*?\*\//g,
 			(match) => {
 				if (match.startsWith("url(")) return match;
-				// console.log(
-				// 	`replace \`${match.length > 40 ? `${match.slice(0, 37)}...` : match}\` with \`\``,
-				// );
 				return "";
 			},
 		);
@@ -823,9 +857,6 @@ const clean = (content, options = {}) => {
 
 	// Remove empty rules (top-level only)
 	optimizedContent = optimizedContent.replace(/[^\n{}]*\{\s*\}/g, (match) => {
-		// console.log(
-		// 	`replace \`${match.trim()}\` with \`\``,
-		// );
 		return "";
 	});
 
@@ -835,11 +866,19 @@ const clean = (content, options = {}) => {
 };
 
 const parseBodyDeclarations = (content) => {
-	const bodyBlockRegExp = /body\s*\{([^}]*)\}/g;
+	const bodyBlockRegExp = /([^{}]*)\{([^{}]*)\}/g;
 	let match = bodyBlockRegExp.exec(content);
 	while (match !== null) {
-		const block = match[1];
-		const declRegExp = /[\t ]*([a-z-]+)\s*:\s*([^;]+);/g;
+		const [, selector, block] = match;
+		const preceding = content.slice(0, match.index);
+		const isNested =
+			(preceding.match(/\{/g) || []).length >
+			(preceding.match(/\}/g) || []).length;
+		if (isNested || !selector.split(",").some((s) => s.trim() === "body")) {
+			match = bodyBlockRegExp.exec(content);
+			continue;
+		}
+		const declRegExp = /([a-z-]+)\s*:\s*([^;]+)(?:;|$)/g;
 		let declMatch = declRegExp.exec(block);
 		while (declMatch !== null) {
 			const prop = declMatch[1].trim();
@@ -881,7 +920,7 @@ const removeInherited = (content) => {
 			let newBlock = blockContent;
 			for (const [prop, val] of Object.entries(bodyInheritedDeclarations)) {
 				const declPattern = new RegExp(
-					`[\\t ]*${escapeRegExp(prop)}\\s*:\\s*${escapeRegExp(val)}\\s*;?`,
+					`(?<=^|[;\\s])[\\t ]*${escapeRegExp(prop)}\\s*:\\s*${escapeRegExp(val)}\\s*(?:;|$)`,
 					"g",
 				);
 				newBlock = newBlock.replace(declPattern, "");
@@ -905,20 +944,16 @@ const removeInherited = (content) => {
 const optimizeStyles = (input, options = {}) => {
 	init();
 	const sourceDir = resolve(input);
-	//console.log(sourceDir, options)
 
-	const contentLength = {};
-	let changes = 0;
-	// max 10 iterations
 	for (let i = options.iterations; i--; ) {
 		assignments = {};
+		let changes = 0;
 
 		for (const filePath of walkDirSync(sourceDir, ".css")) {
 			if (options.debug) {
 				console.log("Parse variables", filePath);
 			}
 			const content = readFileSync(filePath).toString();
-			contentLength[filePath] = content.length;
 			parse(content, options);
 		}
 

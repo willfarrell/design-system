@@ -26,6 +26,19 @@ describe("applyCacheControlMiddleware", () => {
 		const response = await run([{ name: "session", value: "x" }], {
 			"Cache-Control": "public, max-age=600",
 		});
-		assert.strictEqual(response.headers.get("Cache-Control"), "no-cache");
+		assert.strictEqual(
+			response.headers.get("Cache-Control"),
+			"private, no-cache",
+		);
+	});
+
+	it("disables shared caching when the response sets a cookie", async () => {
+		const response = await run([], {
+			"Set-Cookie": "session=; Max-Age=0; Path=/",
+		});
+		assert.strictEqual(
+			response.headers.get("Cache-Control"),
+			"private, no-cache",
+		);
 	});
 });

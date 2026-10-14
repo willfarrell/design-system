@@ -262,6 +262,11 @@ const components = [
 		description: "SVG icon from sprite sheet",
 	},
 	{
+		href: "/component/video",
+		title: "Video",
+		description: "Native video player with required captions and transcript",
+	},
+	{
 		href: "/component/popover",
 		title: "Popover",
 		description: "Non-modal overlay using HTML popover attribute",

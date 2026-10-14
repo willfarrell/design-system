@@ -24,51 +24,76 @@ const sortKey = (cell) => {
 	);
 };
 
-customElements.define(
-	is,
-	class extends HTMLTableElement {
-		#buttons = [];
+const cellAt = (row, column) => {
+	let start = 0;
+	for (const cell of row.cells) {
+		start += cell.colSpan;
+		if (column < start) return cell;
+	}
+};
 
-		handleClick = (event) => {
-			const th = event.currentTarget.parentElement;
-			const direction =
-				th.getAttribute("aria-sort") === "ascending"
-					? "descending"
-					: "ascending";
-			for (const header of this.querySelectorAll("thead th")) {
-				header.removeAttribute("aria-sort");
-			}
-			th.setAttribute("aria-sort", direction);
-			const index = th.cellIndex;
-			const order = direction === "ascending" ? 1 : -1;
-			for (const tbody of this.tBodies) {
-				const rows = [...tbody.rows].sort(
-					(a, b) =>
-						order *
-						collator.compare(sortKey(a.cells[index]), sortKey(b.cells[index])),
-				);
-				tbody.append(...rows);
-			}
-		};
+const columnOf = (th) => {
+	let column = 0;
+	for (
+		let cell = th.previousElementSibling;
+		cell;
+		cell = cell.previousElementSibling
+	) {
+		column += cell.colSpan;
+	}
+	return column;
+};
 
-		connectedCallback() {
-			for (const th of this.querySelectorAll("thead th")) {
-				const button = d.createElement("button");
-				button.type = "button";
-				button.append(...th.childNodes);
-				button.addEventListener("click", this.handleClick);
-				th.append(button);
-				this.#buttons.push(button);
-			}
-		}
+if (!customElements.get(is)) {
+	customElements.define(
+		is,
+		class extends HTMLTableElement {
+			#buttons = [];
 
-		disconnectedCallback() {
-			for (const button of this.#buttons) {
-				button.removeEventListener("click", this.handleClick);
-				button.replaceWith(...button.childNodes);
+			handleClick = (event) => {
+				const th = event.currentTarget.parentElement;
+				const direction =
+					th.getAttribute("aria-sort") === "ascending"
+						? "descending"
+						: "ascending";
+				for (const header of this.querySelectorAll("thead th")) {
+					header.removeAttribute("aria-sort");
+				}
+				th.setAttribute("aria-sort", direction);
+				const index = columnOf(th);
+				const order = direction === "ascending" ? 1 : -1;
+				for (const tbody of this.tBodies) {
+					const rows = [...tbody.rows].sort(
+						(a, b) =>
+							order *
+							collator.compare(
+								sortKey(cellAt(a, index)),
+								sortKey(cellAt(b, index)),
+							),
+					);
+					tbody.append(...rows);
+				}
+			};
+
+			connectedCallback() {
+				for (const th of this.querySelectorAll("thead th")) {
+					const button = d.createElement("button");
+					button.type = "button";
+					button.append(...th.childNodes);
+					button.addEventListener("click", this.handleClick);
+					th.append(button);
+					this.#buttons.push(button);
+				}
 			}
-			this.#buttons = [];
-		}
-	},
-	{ extends: "table" },
-);
+
+			disconnectedCallback() {
+				for (const button of this.#buttons) {
+					button.removeEventListener("click", this.handleClick);
+					button.replaceWith(...button.childNodes);
+				}
+				this.#buttons = [];
+			}
+		},
+		{ extends: "table" },
+	);
+}

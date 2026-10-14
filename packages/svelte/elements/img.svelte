@@ -2,7 +2,6 @@
 import allowedAttributes from "../utils/attributes.js";
 
 const elementAttributes = new Set([
-	"alt",
 	"crossorigin",
 	"decoding",
 	"elementtiming",
@@ -18,15 +17,13 @@ const elementAttributes = new Set([
 	"usemap",
 ]);
 
-const { ...props } = $props();
+const { alt, ...props } = $props();
 </script>
 
 <img
-  alt=""
+  {alt}
   decoding="async"
   fetchpriority="low"
   loading="lazy"
-  height="1"
-  width="1"
   {...allowedAttributes(props, elementAttributes)}
 />

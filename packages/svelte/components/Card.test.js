@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
 import { createRawSnippet } from "svelte";
-import { render } from "../test-render.js";
+import { render } from "../render.testutil.js";
 
 const path = "./components/Card.svelte";
 const children = createRawSnippet((args) => ({

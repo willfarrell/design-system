@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { render } from "../test-render.js";
+import { render } from "../render.testutil.js";
 
 describe("FieldInput", () => {
 	it("keeps a consumer aria-describedby alongside the hint", async () => {

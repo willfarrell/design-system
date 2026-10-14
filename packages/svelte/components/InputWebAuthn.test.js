@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { render } from "../test-render.js";
+import { render } from "../render.testutil.js";
 
 describe("InputWebAuthnCreate", () => {
 	it("upgrades to ds-input-webauthn-create", async () => {

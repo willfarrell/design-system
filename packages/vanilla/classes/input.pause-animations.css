@@ -1,0 +1,9 @@
+/* biome-ignore-all lint/complexity/noImportantStyles: the user's pause must override component animations */
+html:has(input.pause-animations:checked) {
+	&,
+	& *,
+	& ::after,
+	& ::before {
+		animation-play-state: paused !important;
+	}
+}

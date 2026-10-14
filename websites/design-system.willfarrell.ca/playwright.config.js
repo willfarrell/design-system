@@ -1,5 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
+const baseURL = process.env.PLAYWRIGHT_BASE_URL ?? "https://localhost:4173";
+
 export default defineConfig({
 	testDir: "./tests",
 	fullyParallel: true,
@@ -7,8 +9,11 @@ export default defineConfig({
 	retries: process.env.CI ? 2 : 0,
 	workers: process.env.CI ? 1 : undefined,
 	reporter: "list",
+	snapshotPathTemplate:
+		"{testDir}/{testFileDir}/{testFileName}-snapshots/{arg}-{projectName}{ext}",
+	ignoreSnapshots: process.platform !== "linux",
 	use: {
-		baseURL: "https://localhost:4173",
+		baseURL,
 		ignoreHTTPSErrors: true,
 		trace: "on-first-retry",
 	},
@@ -26,11 +31,13 @@ export default defineConfig({
 			use: { ...devices["Desktop Safari"] },
 		},
 	],
-	webServer: {
-		command: "npm run build && npx vite preview --strictPort",
-		url: "https://localhost:4173",
-		ignoreHTTPSErrors: true,
-		reuseExistingServer: !process.env.CI,
-		timeout: 300_000,
-	},
+	webServer: process.env.PLAYWRIGHT_BASE_URL
+		? undefined
+		: {
+				command: "npm run build && npx vite preview --strictPort",
+				url: baseURL,
+				ignoreHTTPSErrors: true,
+				reuseExistingServer: !process.env.CI,
+				timeout: 300_000,
+			},
 });

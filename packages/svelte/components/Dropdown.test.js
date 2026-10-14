@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { render } from "../test-render.js";
+import { render } from "../render.testutil.js";
 
 describe("Dropdown", () => {
 	it("wraps the button and popover in their own element", async () => {

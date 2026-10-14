@@ -8,21 +8,21 @@ const algo = "sha256";
 const methods = {
 	css: {
 		regexp: (filename) =>
-			new RegExp(`<link[^>]*?href="?[^>"]*?${escapeRegExp(filename)}[^>]*>`),
+			new RegExp(
+				`<link[^>]*?href=["']?(?:[^>"']*?/)?${escapeRegExp(filename)}(?=[?#"'\\s>])[^>]*>`,
+			),
 		keep: (name) => ["blocking", "media", "nonce", "title"].includes(name),
 		escape: (content) => content.replace(/<\/(style)/gi, "<\\/$1"),
-		replace: (attrs, integrity, content) =>
-			`<style${attrs} integrity="${algo}-${integrity}">${content}</style>`,
+		replace: (attrs, content) => `<style${attrs}>${content}</style>`,
 	},
 	js: {
 		regexp: (filename) =>
 			new RegExp(
-				`<script[^>]*?src="?[^>"]*?${escapeRegExp(filename)}[^>]*>(?:\\s*</script>)?`,
+				`<script[^>]*?src=["']?(?:[^>"']*?/)?${escapeRegExp(filename)}(?=[?#"'\\s>])[^>]*>(?:\\s*</script>)?`,
 			),
 		keep: (name) => !["integrity", "src"].includes(name),
 		escape: (content) => content.replaceAll("</", "<\\/"),
-		replace: (attrs, integrity, content) =>
-			`<script${attrs} integrity="${algo}-${integrity}">${content}</script>`,
+		replace: (attrs, content) => `<script${attrs}>${content}</script>`,
 	},
 };
 
@@ -46,9 +46,8 @@ const command = (dir, input, options = {}) => {
 	}
 
 	const content = method.escape(readFileSync(input).toString());
-	const integrity = createHash(algo).update(content).digest("base64");
-
 	if (options.debug) {
+		const integrity = createHash(algo).update(content).digest("base64");
 		console.log(input, `${algo}-${integrity}`);
 	}
 
@@ -62,7 +61,7 @@ const command = (dir, input, options = {}) => {
 		writeFileSync(
 			filePath,
 			html.replace(regexp, (tag) =>
-				method.replace(attributes(tag, method.keep), integrity, content),
+				method.replace(attributes(tag, method.keep), content),
 			),
 		);
 	}

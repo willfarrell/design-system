@@ -81,7 +81,6 @@ const page = {
 	<Section>
 		<H2 id="related">Related</H2>
 		<Ul>
-			<Li><A href="/component/dialog-fallback">Dialog (JS fallback)</A> — for browsers without <Code>command</Code>/<Code>commandfor</Code> support</Li>
 			<Li><A href="/component/popover">Popover</A> — for non-modal overlays</Li>
 			<Li><A href="/text/details">Disclosure</A> — for inline show/hide</Li>
 		</Ul>

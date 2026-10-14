@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { load, open } from "../test-browser.js";
+import { load, open } from "../browser.testutil.js";
 
 const setup = async () => {
 	const page = await open(

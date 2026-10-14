@@ -2,6 +2,8 @@ name: Tests (sast)
 
 on:
   pull_request:
+  push:
+    branches: [develop, main]
   schedule:
     - cron: "43 3 * * 5"
   workflow_dispatch:

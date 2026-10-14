@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { open, vanilla } from "../test-browser.js";
+import { open, vanilla } from "../browser.testutil.js";
 
 const settle = (page) =>
 	page.evaluate(
@@ -12,13 +12,13 @@ const settle = (page) =>
 			),
 	);
 
-const setup = async (links) => {
+const setup = async (links, height = "200vh") => {
 	const page = await open(`
 		<nav is="ds-scrollspy" id="spy"><ol>${links
 			.map((id) => `<li><a id="link-${id}" href="#${id}">${id}</a></li>`)
 			.join("")}</ol></nav>
-		<section style="height:200vh"><h2 id="one">One</h2></section>
-		<section style="height:200vh"><h2 id="two">Two</h2></section>`);
+		<section style="height:${height}"><h2 id="one">One</h2></section>
+		<section style="height:${height}"><h2 id="two">Two</h2></section>`);
 	await page.evaluate(async (url) => {
 		CSS.supports = () => false;
 		await import(url);
@@ -39,7 +39,13 @@ const current = (page, id) =>
 test("a link to a missing target is skipped", async () => {
 	const page = await setup(["missing", "one", "two"]);
 	assert.deepEqual(page.errors, []);
-	assert.equal(await current(page, "one"), "true");
+	assert.equal(await current(page, "one"), "location");
+});
+
+test("only the first section in view is marked current", async () => {
+	const page = await setup(["one", "two"], "5vh");
+	assert.equal(await current(page, "one"), "location");
+	assert.equal(await current(page, "two"), null);
 });
 
 test("after removal, hash changes no longer update the links", async () => {

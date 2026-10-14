@@ -18,8 +18,18 @@ permissions:
   contents: read
 
 jobs:
+  lint:
+    uses: ./.github/workflows/test-lint.yml # zizmor: ignore[self-repository]
+  unit:
+    uses: ./.github/workflows/test-unit.yml # zizmor: ignore[self-repository]
+  types:
+    uses: ./.github/workflows/test-types.yml # zizmor: ignore[self-repository]
+  e2e:
+    uses: ./.github/workflows/test-e2e.yml # zizmor: ignore[self-repository]
+
   website:
     name: Publish website
+    needs: [lint, unit, types, e2e]
     runs-on: ubuntu-latest
     timeout-minutes: 15
 

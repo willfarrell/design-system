@@ -33,7 +33,6 @@
 	"homepage": "https://github.com/willfarrell/design-system#readme",
 	"dependencies": {
 		"@willfarrell-ds/vanilla": "0.0.0-beta.1",
-		"html-minifier-terser": "7.2.0",
 		"pretty": "2.0.0"
 	},
 	"peerDependencies": {

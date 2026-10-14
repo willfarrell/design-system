@@ -11,7 +11,7 @@ const isScrollTargetGroupSupported = window.CSS?.supports(
 	"auto",
 );
 
-if (!isScrollTargetGroupSupported) {
+if (!isScrollTargetGroupSupported && !customElements.get("ds-scrollspy")) {
 	customElements.define(
 		"ds-scrollspy",
 		class extends HTMLElement {
@@ -42,13 +42,14 @@ if (!isScrollTargetGroupSupported) {
 			}
 
 			updateActive() {
-				this.links.forEach((elem) => {
-					if (this.active[elem.hash]) {
-						elem.setAttribute("aria-current", "true");
+				const current = [...this.links].find((elem) => this.active[elem.hash]);
+				for (const elem of this.links) {
+					if (elem === current) {
+						elem.setAttribute("aria-current", "location");
 					} else {
 						elem.removeAttribute("aria-current");
 					}
-				});
+				}
 			}
 
 			setActiveHash() {

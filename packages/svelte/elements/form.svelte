@@ -21,8 +21,8 @@ const { errors, children, ...rawProps } = $props();
 const props = $derived.by(() => {
 	const p = { ...rawProps };
 	// TODO really needed? test
-	if (p?.action && p.action?.substring(0, 1) !== "/") {
-		p.action = `?/${p.action ?? ""}`;
+	if (/^[\w-]+$/.test(p.action ?? "")) {
+		p.action = `?/${p.action}`;
 	}
 	return p;
 });

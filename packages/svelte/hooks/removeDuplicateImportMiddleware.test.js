@@ -59,4 +59,13 @@ describe("removeDuplicateImportMiddleware", () => {
 			1,
 		);
 	});
+
+	it("removes the whole duplicate script element and keeps the first", async () => {
+		assert.strictEqual(
+			await run(
+				`<script type="module" src="/a.js"></script><p>x</p><script type="module" src="/a.js"></script><p>y</p>`,
+			),
+			`<script type="module" src="/a.js"></script><p>x</p><p>y</p>`,
+		);
+	});
 });

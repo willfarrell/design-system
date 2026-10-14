@@ -118,7 +118,6 @@ import Var from "@willfarrell-ds/svelte/elements/var.svelte";
 				<Summary><strong>Components</strong></Summary>
 				<Ul>
 					<Li><A href="/component/dialog">Dialog</A></Li>
-					<Li><A href="/component/dialog-fallback">Dialog (JS fallback)</A></Li>
 					<Li><A href="/component/task-list">Task list</A></Li>
 					<Li><A href="/component/task-list-sortable">Task list (sortable)</A></Li>
 					<Li><A href="/component/item-list">Item list</A></Li>
@@ -127,6 +126,7 @@ import Var from "@willfarrell-ds/svelte/elements/var.svelte";
 					<Li><A href="/component/badge">Badge</A></Li>
 					<Li><A href="/component/tag">Tag</A></Li>
 					<Li><A href="/component/icon">Icon</A></Li>
+					<Li><A href="/component/video">Video</A></Li>
 					<Li><A href="/component/codeblock">Codeblock</A></Li>
 					<Li><A href="/component/copy-download">Copy and download</A></Li>
 					<Li><A href="/component/codeblock-actions">Codeblock actions</A></Li>

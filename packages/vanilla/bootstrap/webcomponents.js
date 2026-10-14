@@ -31,11 +31,27 @@ const load = (target) => {
 
 const lazyLoad = new IntersectionObserver((entries) => {
 	for (const { target, isIntersecting } of entries) {
-		if (isIntersecting) load(target);
+		if (!isIntersecting) continue;
+		lazyLoad.unobserve(target);
+		load(target);
 	}
 });
-for (const el of d.querySelectorAll("[is]")) {
-	if (!valid.test(el.getAttribute("is"))) continue;
+const upgrade = (el) => {
+	if (!valid.test(el.getAttribute("is"))) return;
 	if (!el.getClientRects().length) load(el);
 	else lazyLoad.observe(el);
-}
+};
+
+const scan = (root) => {
+	if (root.matches("[is]")) upgrade(root);
+	for (const el of root.querySelectorAll("[is]")) upgrade(el);
+};
+
+scan(d.documentElement);
+new MutationObserver((records) => {
+	for (const { addedNodes } of records) {
+		for (const node of addedNodes) {
+			if (node.nodeType === Node.ELEMENT_NODE) scan(node);
+		}
+	}
+}).observe(d.documentElement, { childList: true, subtree: true });

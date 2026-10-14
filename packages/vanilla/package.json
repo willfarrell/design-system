@@ -23,7 +23,6 @@
 		"./print.css": "./print.css",
 		"./index.tokens.json": "./index.tokens.json",
 		"./bootstrap/*.js": "./bootstrap/*.js",
-		"./bootstrap/pewc/*.js": "./bootstrap/pewc/*.js",
 		"./classes/*.css": "./classes/*.css",
 		"./components/*": "./components/*",
 		"./elements/*.css": "./elements/*.css",
@@ -31,7 +30,7 @@
 		"./media/*.css": "./media/*.css"
 	},
 	"scripts": {
-		"test": "node --test '**/*.test.js'"
+		"test": "node --test --experimental-test-module-mocks '**/*.test.js'"
 	},
 	"repository": {
 		"type": "git",

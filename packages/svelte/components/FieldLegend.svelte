@@ -6,6 +6,6 @@ const { children, legend, ...props } = $props();
 
 {#if legend}
   <Legend {...props}>
-    {#if children}{@render children(legend)}{:else}{@html legend}{/if}
+    {#if children}{@render children(legend)}{:else}{legend}{/if}
   </Legend>
 {/if}

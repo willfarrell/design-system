@@ -25,7 +25,7 @@
 				"base-uri": ["none"],
 				"default-src": ["report-sample", "'report-sha256'"],
 				"form-action": ["none"],
-				"frame-ancestors": ["none"],
+				"frame-ancestors": ["self"],
 				"frame-src": ["self"],
 				"report-to": ["default"],
 				"report-uri": [

@@ -2,6 +2,9 @@ name: Tests (e2e)
 
 on:
   pull_request:
+  push:
+    branches: [develop, main]
+  workflow_call:
 
 env:
   NODE_VERSION: 26.x
@@ -10,7 +13,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-e2e-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -19,30 +22,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
+    container:
+      image: mcr.microsoft.com/playwright@sha256:eff16c30e6f3f4af0a03fa4b706120d5e9b0891c344a27d64559aff5900a4a27 # v1.63.0-noble
+      options: --user 1001
+
     steps:
-      - name: Harden runner
-        uses: step-security/harden-runner@e14015d583714f6e62063499dc959a02595150a1 # v2.21.1
-        with:
-          egress-policy: block
-          disable-sudo: false # playwright install --with-deps uses apt-get
-          disable-telemetry: true
-          allowed-endpoints: >
-            api.github.com:443
-            archive.ubuntu.com:80
-            azure.archive.ubuntu.com:80
-            cdn.playwright.dev:443
-            esm.ubuntu.com:443
-            github.com:443
-            motd.ubuntu.com:443
-            nodejs.org:443
-            objects.githubusercontent.com:443
-            packages.microsoft.com:443
-            playwright.azureedge.net:443
-            playwright.download.prss.microsoft.com:443
-            ppa.launchpadcontent.net:443
-            registry.npmjs.org:443
-            release-assets.githubusercontent.com:443
-            security.ubuntu.com:80
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -56,9 +40,6 @@ jobs:
       - name: Install dependencies
         run: |
           npm ci --ignore-scripts
-      - name: Install browsers
-        run: |
-          npx playwright install --with-deps
       - name: E2E tests
         run: |
-          npm run test:e2e --workspaces --if-present -- --ignore-snapshots
+          npm run test:e2e --workspaces --if-present

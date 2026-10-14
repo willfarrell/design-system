@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { load, open, vanilla } from "../test-browser.js";
+import { load, open, vanilla } from "../browser.testutil.js";
 
 const setup = async (body) => {
 	const page = await open(
@@ -81,4 +81,57 @@ test("the tooltip leaves its anchor's siblings alone", async () => {
 	const state = await tip(page);
 	assert.equal(state.open, true);
 	assert.equal(state.arrowOpen, true);
+});
+
+const ax = async (page, selector) => {
+	const session = await page.context().newCDPSession(page);
+	const { root } = await session.send("DOM.getDocument");
+	const { nodeId } = await session.send("DOM.querySelector", {
+		nodeId: root.nodeId,
+		selector,
+	});
+	const { nodes } = await session.send("Accessibility.getPartialAXTree", {
+		nodeId,
+		fetchRelatives: false,
+	});
+	return {
+		name: nodes[0].name?.value,
+		description: nodes[0].description?.value,
+	};
+};
+
+test("an element named only by its title keeps that name while hovered", async () => {
+	const page = await setup(
+		`<button id="b" title="Close"><svg aria-hidden="true" width="20" height="20"></svg></button>`,
+	);
+	await page.hover("#b");
+	assert.equal(await page.getAttribute("#b", "title"), "");
+	assert.deepEqual(await ax(page, "#b"), {
+		name: "Close",
+		description: undefined,
+	});
+});
+
+test("a labelled element keeps the title as its description while hovered", async () => {
+	const page = await setup(
+		`<button id="b" title="Saves a draft">Save</button>`,
+	);
+	await page.hover("#b");
+	assert.deepEqual(await ax(page, "#b"), {
+		name: "Save",
+		description: "Saves a draft",
+	});
+});
+
+test("a password field keeps its title description next to the caps lock status", async () => {
+	const page = await open(
+		`<link rel="stylesheet" href="${vanilla}/all.css"><label for="pw">Password</label><input id="pw" type="password" is="ds-input-password" title="At least 12 characters">`,
+	);
+	await load(page, "components/ds-input-password.js");
+	await load(page, "bootstrap/tooltip.js");
+	await page.hover("#pw");
+	assert.deepEqual(await ax(page, "#pw"), {
+		name: "Password",
+		description: "At least 12 characters",
+	});
 });

@@ -22,25 +22,8 @@ w.addEventListener("load", async () => {
 			});
 			scriptURL = swPolicy.createScriptURL(scriptURL);
 		}
-		const reg = await sw.register(scriptURL, {
+		await sw.register(scriptURL, {
 			scope: "/",
-		});
-
-		const swResponseEvents = {};
-		const defaultResponseEvent = (event) => {
-			console.warn("Unhandled ServiceWorker.message", event);
-		};
-
-		sw.addEventListener("message", async (event) => {
-			if (!reg.active) {
-				return;
-			}
-			if (event.origin !== location.origin) {
-				return;
-			}
-			const eventHandler =
-				swResponseEvents[event.data?.type] ?? defaultResponseEvent;
-			await eventHandler(event);
 		});
 	}
 });

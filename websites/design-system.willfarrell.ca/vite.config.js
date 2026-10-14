@@ -21,7 +21,6 @@ export default defineConfig({
 				relative: false,
 				base: process.argv.includes("dev") ? "" : process.env.BASE_PATH,
 			},
-			//inlineStyleThreshold: 25 * 1024,
 			serviceWorker: { register: false },
 			prerender: {
 				concurrency: 5,
@@ -32,17 +31,8 @@ export default defineConfig({
 				handleEntryGeneratorMismatch: "warn", // 'fail'
 				handleUnseenRoutes: "warn",
 			},
-			preprocess: [
-				//markdown(),
-				// preprocess({
-				//   postcss: true,
-				//   preserve: ["ld+json"],
-				// }),
-			],
+			preprocess: [],
 			extensions: [".svelte"],
-			// compilerOptions: {
-			//   cssHash: ({ hash, css }) => `s-${hash(css)}`,
-			// },
 			onwarn(warning, defaultHandler) {
 				// polyfill for `is` included, allow
 				if (warning.code === "attribute_avoid_is") return;
@@ -54,7 +44,7 @@ export default defineConfig({
 				defaultHandler(warning);
 			},
 		}),
-		mkcert({ mkcertPath: "/opt/homebrew/bin/mkcert" }),
+		mkcert({ mkcertPath: process.env.MKCERT_PATH }),
 		sriPrerendered(),
 	],
 	build: {

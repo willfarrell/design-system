@@ -99,7 +99,7 @@ import { paragraph } from "#examples/index.js";
 			<P>{paragraph}</P>
 			<H3 id="h3-paragraph">Sub section</H3>
 			<P>{paragraph}</P>
-			<Image src="/img/placeholder/16_9.640x359.png" width="640" height="359" />
+			<Image src="/img/placeholder/16_9.640x359.png" alt="Placeholder image, 16:9, 640 by 359 pixels" width="640" height="359" />
 			<P>{paragraph}</P>
 			<P>{paragraph}</P>
 			<Example component="table" />

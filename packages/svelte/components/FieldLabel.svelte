@@ -8,6 +8,6 @@ setContext("label", true);
 
 {#if label}
   <Label for={id} {...props}>
-    {#if children}{@render children(label.toString())}{:else}{@html label}{/if}
+    {#if children}{@render children(label.toString())}{:else}{label}{/if}
   </Label>
 {/if}

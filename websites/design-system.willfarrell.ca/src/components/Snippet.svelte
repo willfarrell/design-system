@@ -23,8 +23,7 @@ const html = $derived.by(() => {
 
 <Div class="snippet">
 	<Header><A href="/demo/{example}" target="_blank">Open in new tab</A></Header>
-	<!-- <Example component={example} /> -->
-	<Iframe title={example} src="/demo/{example}" />
+	<Iframe title={example} src="/demo/{example}" sandbox="allow-scripts allow-same-origin allow-forms allow-downloads" />
 	<Footer>
 		<Details>
 			<Summary>View HTML markup</Summary>

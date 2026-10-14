@@ -2,18 +2,10 @@
 import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-card.js?worker&url";
 import Article from "../elements/article.svelte";
 import Div from "../elements/div.svelte";
+import slugify from "../utils/slugify.js";
 
 const { children, img, is = "ds-card", id, ...props } = $props();
 const uid = $props.id();
-
-const slugify = (id) =>
-	id
-		.toLocaleLowerCase()
-		.replace(/\s+/g, "-")
-		.replace(/[^\w-]+/g, "")
-		.replace(/--+/g, "-")
-		.replace(/^-+/, "")
-		.replace(/-+$/, "");
 
 const labelledby = $derived(`card-${id ? slugify(id) : uid}`);
 </script>

@@ -5,18 +5,8 @@ import { getModuleDir, saveFileSync, walkDirSync } from "../lib/fs.js";
 let indexes = {};
 const elementRegExp = /<([a-z][a-z0-9]*)[^>]*>/g;
 const attrsRegExp =
-	/(class|is|type|role|aria-[\w-]+)=["']?((?:.(?!["']?\s+(?:\S+)=|\s*\/?[>"']))+.)["']?/g;
+	/\s([^\s"'=<>/]+)(?:\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'=<>`]+)))?/g;
 
-// "build:styles": "npm run build:styles:ds && npm run build:styles:postcss",
-// 		"build:styles:ds": "npx ds extract build --css-path src/styles/app.css --theme ./theme.css --debug",
-// 		"build:styles:postcss": "postcss src/styles/*.css -d static/css/ --no-map",
-// 		"build:styles:copy": "cp static/css/* build/css/",
-// 		"build:styles:inline": "npx ds inline build/css/app.css build --debug",
-
-// TODO when other attr are present, fails to parse ...
-const _htmlRegExp =
-	/(?:(?=(\s+(?:type="?([^"]*)"?|class="?([^"]*)"?|is="?([^"]*)"?)|[^\s>]+|\s+))\1)*/;
-const _elemSplitRegExp = /[/> ]/;
 const parse = (content) => {
 	let matchElement = elementRegExp.exec(content);
 	while (matchElement) {
@@ -24,20 +14,9 @@ const parse = (content) => {
 
 		indexes.tags[tag] ??= 0;
 		indexes.tags[tag] += 1;
-		const matchAttrs = elem.match(attrsRegExp);
-		if (!matchAttrs) {
-			matchElement = elementRegExp.exec(content);
-			continue;
-		}
 		const attrs = {};
-		for (const attr of matchAttrs) {
-			const eq = attr.indexOf("=");
-			const key = attr.substring(0, eq);
-			const value =
-				attr.charAt(eq + 1) === '"'
-					? attr.substring(eq + 2, attr.length - 1)
-					: attr.substring(eq + 1);
-			attrs[key] = value;
+		for (const [, key, dq, sq, uq] of elem.matchAll(attrsRegExp)) {
+			attrs[key.toLowerCase()] = dq ?? sq ?? uq ?? "";
 		}
 
 		if (tag === "input" && attrs.type) {
@@ -83,12 +62,13 @@ const parse = (content) => {
 };
 
 // Svelte 5 SSR outputs JS objects like { class: "container-slices", is: "ds-card" }
-const jsAttrRegExp = /(?:class|is|type|role|aria-[\w-]+)\s*:\s*"([^"]*)"/g;
-const jsAttrKeyRegExp = /(class|is|type|role|aria-[\w-]+)\s*:\s*"([^"]*)"/;
+const jsAttrRegExp = /(is|type|role|aria-[\w-]+)["']?\s*:\s*"([^"]*)"/g;
+const jsClassRegExp =
+	/(?<![\w$-])(?:["']?class["']?\s*:|attr_class[\w$]*\(|clsx[\w$]*\()/g;
+const classTokenRegExp = /^-?[_a-zA-Z][\w-]*$/;
 
 // Svelte 5 SSR destructuring defaults like: is = "ds-card", class = "container"
-const jsDestructureDefaultRegExp = /(?:class|is|type|role)\s*=\s*"([^"]*)"/g;
-const jsDestructureDefaultKeyRegExp = /(class|is|type|role)\s*=\s*"([^"]*)"/;
+const jsDestructureDefaultRegExp = /(class|is|type|role)\s*=\s*"([^"]*)"/g;
 
 const addJSAttr = (key, value) => {
 	if (key === "class") {
@@ -117,23 +97,110 @@ const addJSAttr = (key, value) => {
 	}
 };
 
-const parseJS = (content) => {
-	let match = jsAttrRegExp.exec(content);
-	while (match) {
-		const keyMatch = match[0].match(jsAttrKeyRegExp);
-		if (keyMatch) {
-			addJSAttr(keyMatch[1], keyMatch[2]);
-		}
-		match = jsAttrRegExp.exec(content);
+const scanString = (content, start) => {
+	let i = start + 1;
+	let value = "";
+	while (i < content.length && content[i] !== content[start]) {
+		if (content[i] === "\\") i++;
+		value += content[i];
+		i++;
 	}
+	return { value, end: i + 1 };
+};
 
-	let defaultMatch = jsDestructureDefaultRegExp.exec(content);
-	while (defaultMatch) {
-		const keyMatch = defaultMatch[0].match(jsDestructureDefaultKeyRegExp);
-		if (keyMatch) {
-			addJSAttr(keyMatch[1], keyMatch[2]);
+const scanTemplate = (content, start, tokens) => {
+	let i = start + 1;
+	let chunk = "";
+	let afterExpression = false;
+	const flush = (beforeExpression) => {
+		const parts = chunk.split(/\s+/);
+		if (afterExpression) parts.shift();
+		if (beforeExpression) parts.pop();
+		tokens.push(...parts);
+		chunk = "";
+	};
+	while (i < content.length) {
+		if (content[i] === "\\") {
+			chunk += content[i + 1];
+			i += 2;
+		} else if (content[i] === "`") {
+			flush(false);
+			return i + 1;
+		} else if (content[i] === "$" && content[i + 1] === "{") {
+			flush(true);
+			i = scanClassExpression(content, i + 2, tokens, true) + 1;
+			afterExpression = true;
+		} else {
+			chunk += content[i];
+			i++;
 		}
-		defaultMatch = jsDestructureDefaultRegExp.exec(content);
+	}
+	return i;
+};
+
+const scanClassExpression = (content, start, tokens, untilClose) => {
+	const stack = [];
+	let previous = "{";
+	let i = start;
+	while (i < content.length) {
+		const ch = content[i];
+		const inCall = stack.includes(true);
+		if (ch === '"' || ch === "'") {
+			const { value, end } = scanString(content, i);
+			if (!inCall) tokens.push(...value.split(/\s+/));
+			i = end;
+			previous = ch;
+			continue;
+		}
+		if (ch === "`") {
+			i = scanTemplate(content, i, inCall ? [] : tokens);
+			previous = ch;
+			continue;
+		}
+		const identifier = /^[A-Za-z_$][\w$]*/.exec(content.slice(i, i + 256))?.[0];
+		if (identifier) {
+			if (
+				!inCall &&
+				(previous === "{" || previous === ",") &&
+				/^\s*:/.test(content.slice(i + identifier.length))
+			) {
+				tokens.push(identifier);
+			}
+			i += identifier.length;
+			previous = "a";
+			continue;
+		}
+		if ("([{".includes(ch)) {
+			stack.push(ch === "(" && /[a)\]]/.test(previous));
+		} else if (")]}".includes(ch)) {
+			if (!stack.length) break;
+			stack.pop();
+		} else if (!stack.length && !untilClose && (ch === "," || ch === ";")) {
+			break;
+		}
+		if (!/\s/.test(ch)) previous = ch;
+		i++;
+	}
+	return i;
+};
+
+const parseJS = (content) => {
+	for (const regExp of [jsAttrRegExp, jsDestructureDefaultRegExp]) {
+		for (const [, key, value] of content.matchAll(regExp)) {
+			addJSAttr(key, value);
+		}
+	}
+	for (const match of content.matchAll(jsClassRegExp)) {
+		const tokens = [];
+		scanClassExpression(
+			content,
+			match.index + match[0].length,
+			tokens,
+			match[0].endsWith("("),
+		);
+		for (const token of tokens) {
+			if (classTokenRegExp.test(token)) addJSAttr("class", token);
+		}
 	}
 };
 
@@ -185,56 +252,27 @@ const buildCSS = (
 			});
 		}
 	}
-	list = Object.keys(classes);
-	list.sort();
 	const addedClasses = new Set();
-	for (const key of list) {
-		if (existsSync(`${vanillaPath}/classes/${key}.css`)) {
-			if (!addedClasses.has(`classes/${key}.css`)) {
-				addedClasses.add(`classes/${key}.css`);
-				imports.push({
-					key: `classes/${key}.css`,
-					line: `@import "@${namespace}/vanilla/classes/${key}.css";\n`,
-				});
-			}
+	const addClass = (key) => {
+		const cssKey = `classes/${key}.css`;
+		if (!addedClasses.has(cssKey) && existsSync(`${vanillaPath}/${cssKey}`)) {
+			addedClasses.add(cssKey);
+			imports.push({
+				key: cssKey,
+				line: `@import "@${namespace}/vanilla/${cssKey}";\n`,
+			});
 		}
-		// For dotted class keys (.className), also check tag-qualified files (tag.className.css)
-		if (key.startsWith(".")) {
-			const className = key.substring(1);
-			for (const tag of Object.keys(tags)) {
-				const tagKey = `${tag}.${className}`;
-				const cssKey = `classes/${tagKey}.css`;
-				if (
-					!addedClasses.has(cssKey) &&
-					existsSync(`${vanillaPath}/classes/${tagKey}.css`)
-				) {
-					addedClasses.add(cssKey);
-					imports.push({
-						key: cssKey,
-						line: `@import "@${namespace}/vanilla/classes/${tagKey}.css";\n`,
-					});
+	};
+	for (const selectors of [classes, roles, arias]) {
+		list = Object.keys(selectors);
+		list.sort();
+		for (const key of list) {
+			addClass(key);
+			if (key.startsWith(".") || key.startsWith("[")) {
+				for (const tag of Object.keys(tags)) {
+					addClass(`${tag}${key}`);
 				}
 			}
-		}
-	}
-	list = Object.keys(roles);
-	list.sort();
-	for (const key of list) {
-		if (existsSync(`${vanillaPath}/classes/${key}.css`)) {
-			imports.push({
-				key: `classes/${key}.css`,
-				line: `@import "@${namespace}/vanilla/classes/${key}.css";\n`,
-			});
-		}
-	}
-	list = Object.keys(arias);
-	list.sort();
-	for (const key of list) {
-		if (existsSync(`${vanillaPath}/classes/${key}.css`)) {
-			imports.push({
-				key: `classes/${key}.css`,
-				line: `@import "@${namespace}/vanilla/classes/${key}.css";\n`,
-			});
 		}
 	}
 	list = Object.keys(pewc);
@@ -282,22 +320,6 @@ const splitCSS = (imports, header) => {
 		below: below.join(""),
 	};
 };
-
-// const buildJS = ({ pewc } = {}) => {
-//   const list = Object.keys(options.pewc.bootstrap)
-//   list.sort()
-//   let bootstrap = `/* generated by @design-system/cli */\n`
-//   for (const key of list) {
-//     if (existsSync(`${corePath}/${key}.js`)) {
-//       bootstrap += `import '@design-system/core/${key}.js'\n`
-//     }
-//   }
-//   return bootstrap
-// }
-
-// const copyPEWC = ({ pewc }) => {
-//
-// }
 
 const extract = (options = {}) => {
 	const inputDirs = [options.inputDir ?? []].flat();
