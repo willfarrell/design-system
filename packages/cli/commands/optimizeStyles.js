@@ -960,7 +960,7 @@ const optimizeStyles = (input, options = {}) => {
 				console.log("Optimize variables", filePath);
 			}
 			const content = readFileSync(filePath).toString();
-			const optimizedContent = optimize(content, options);
+			const optimizedContent = optimize(content);
 			if (content !== optimizedContent) {
 				changes += 1;
 			}

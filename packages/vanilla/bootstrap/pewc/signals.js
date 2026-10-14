@@ -73,7 +73,7 @@ export const storeMemory = (id, value = {}) => {
 	};
 
 	try {
-		data = get(id);
+		data = get();
 	} catch (_e) {}
 	if (typeof data === "undefined") {
 		set(value);
@@ -103,7 +103,7 @@ export const storeSessionStorage = (id, value = {}) => {
 	};
 
 	try {
-		data = get(id);
+		data = get();
 	} catch (_e) {}
 	if (data === null) {
 		set(value);
@@ -132,7 +132,7 @@ export const storeLocalStorage = (id, value = {}) => {
 		}
 	};
 	try {
-		data = get(id);
+		data = get();
 	} catch (_e) {}
 	if (data === null) {
 		set(value);
@@ -217,7 +217,7 @@ export const storeSearchParams = (id, value = {}) => {
 	const _decode = () => {};
 
 	try {
-		data = get(id);
+		data = get();
 	} catch (_e) {}
 	if (typeof data === "undefined") {
 		set(value);

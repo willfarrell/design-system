@@ -19,7 +19,7 @@ if (!isScrollTargetGroupSupported && !customElements.get("ds-scrollspy")) {
 				super();
 
 				this.links = this.querySelectorAll('[href^="#"]');
-				this.active = {};
+				this.active = new Map();
 				this.observer = new IntersectionObserver(
 					(entries) => {
 						for (const entry of entries) {
@@ -29,7 +29,7 @@ if (!isScrollTargetGroupSupported && !customElements.get("ds-scrollspy")) {
 							}
 							if (id) {
 								const hash = `#${id}`;
-								this.active[hash] = entry.isIntersecting;
+								this.active.set(hash, entry.isIntersecting);
 							}
 						}
 						this.updateActive();
@@ -42,7 +42,9 @@ if (!isScrollTargetGroupSupported && !customElements.get("ds-scrollspy")) {
 			}
 
 			updateActive() {
-				const current = [...this.links].find((elem) => this.active[elem.hash]);
+				const current = [...this.links].find((elem) =>
+					this.active.get(elem.hash),
+				);
 				for (const elem of this.links) {
 					if (elem === current) {
 						elem.setAttribute("aria-current", "location");
@@ -55,7 +57,7 @@ if (!isScrollTargetGroupSupported && !customElements.get("ds-scrollspy")) {
 			setActiveHash() {
 				const id = window.location.hash;
 				if (id) {
-					this.active = { [id]: true };
+					this.active = new Map([[id, true]]);
 				}
 				this.updateActive();
 			}

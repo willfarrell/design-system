@@ -82,8 +82,9 @@ addEventListener("message", (event) => {
 			cause: { addEventListener: "message", event },
 		});
 	}
-	const handler = messageEvents[data?.type];
-	if (handler) event.waitUntil(handler(data));
+	if (Object.hasOwn(messageEvents, data?.type)) {
+		event.waitUntil(messageEvents[data.type](data));
+	}
 });
 
 const messageEvents = {

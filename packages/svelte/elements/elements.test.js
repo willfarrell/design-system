@@ -37,7 +37,7 @@ describe("a", () => {
 	]) {
 		it(`keeps ${href}`, async () => {
 			const { body } = await render(path, { href });
-			assert.match(body, new RegExp(`href="${href.replace(/[?+]/g, "\\$&")}"`));
+			assert.ok(body.includes(`href="${href}"`), body);
 		});
 	}
 });

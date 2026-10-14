@@ -10,7 +10,7 @@ describe("LayoutAsideNav", () => {
 		const { body } = await render(path, {
 			nav: { [key]: true, [`${key}link`]: "/a", [`${key}group`]: { B: "/b" } },
 		});
-		assert.doesNotMatch(body, /<script>/);
+		assert.doesNotMatch(body, /<script/i);
 		assert.strictEqual(
 			body.match(/&lt;script>alert\(1\)&lt;\/script>/g).length,
 			3,

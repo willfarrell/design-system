@@ -1,5 +1,9 @@
 import { expect, test } from "@playwright/test";
-import { expectNoAxeViolations, mediaModeTests, viewportTests } from "../a11y.js";
+import {
+	expectNoAxeViolations,
+	mediaModeTests,
+	viewportTests,
+} from "../a11y.js";
 
 test("WCAG 2.2 Level AAA — automated axe audit (nav)", async ({ page }) => {
 	await page.goto("/demo/dropdown-nav");

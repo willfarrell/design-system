@@ -15,167 +15,99 @@
 </p>
 </div>
 
-- Styles
-  - reset
-  - default (:root number vars)
-  - a11y
-  - media
-- Themes
-  - default (:root number values)
-  - Light
-  - Dark
-  - Contrast
-  - Forced Colours
-  - Print
-- Classes
-  - accordions (+/-), (arrow down/up)
-  - ol (Word default)
-  - Flex ramp
-  - pagination - https://coyleandrew.medium.com/design-better-pagination-a022a3b161e1
-- Progressive Enhancements (CustomElements)
-- Bootstrap.js
-  - Trusted Types
-  - CustomElements
-- Patterns
-  - <head>
-  - <header>
-    - Skip link
-    - Locales
-    - Nav button
-  - <main>
-    - Back to top w/ hotkey trigger
-    - Search form w/ hotkey focus
-    - Fluid Side padding
-    - Fluid top padding
-    - Fluid font-size
-  - <section>
-  - <footer>
-  - page (header, main, footer)
-  - page w/ aside (header, main, aside, footer )
-  - page w/ form (header, back, main, footer )
-    - Head
-    - Header
-    - Footer
-    -
-  - <address> w/ tel:, mailto:
-  - <svg> sprite maps
-  - popovers
-    - https://hidde.blog/popover-accessibility/
-    - https://hidde.blog/positioning-anchored-popovers/
-- selected text - https://alfy.blog/2024/10/19/linking-directly-to-web-page-content.html
-- hero
-  - desktop first
-    - side aligned hgroup with button
-    - shrinking text width (draw eyes to button) css shape-outside (https://css-challenges.com/custom-text-shape/)
-    - paired with img looking at text (when in mobile view, image looking up)
-  - mobile first
-    - centered hgroup & button
-    - multiple smaller snapshot like images below
-- set default `text-wrap: pretty` - https://www.joshwcomeau.com/css/browser-support/
-- header logo alt-text `{Name} logo, to the homepage` - https://htmhell.dev/adventcalendar/2024/1/
-- colour pallette - https://www.inclusivecolors.com/
-- override pre whitespace -> https://blog.dwac.dev/posts/html-whitespace/
-- lqip (blury img placeholders (https://leanrada.com/notes/css-only-lqip/)
-- critical css generator - https://github.com/pocketjoso/penthouse / https://github.com/indirap/critical-css-generator
-- save as design tokens file - https://tr.designtokens.org/format/
-  - https://namedesigntokens.guide/
+Semantic HTML, CSS, and progressive enhancement, published as three packages. Every component works without JavaScript. Scripts only add behaviour on top.
 
-- container query hack to know when overflowing (chrome only - only vertical), can be used to hide nav on small screens https://www.bram.us/2023/09/16/solved-by-css-scroll-driven-animations-detect-if-an-element-can-scroll-or-not/
-- captcha (PoW) - https://github.com/altcha-org/altcha
-- cards - https://inclusive-components.design/cards/
-- 
-## Nav
+Documentation and live examples: https://design-system.willfarrell.ca
 
-### Design Tokens
+## Packages
 
-#### Typography
-- font-family (heading/text/code) w/ pangrams [choose]
-- font-size (heading/text) [choose scale]
-- font-weight (heading/text)
-- line height
-- letter spacing
+| Package | Contents |
+| --- | --- |
+| `@willfarrell-ds/vanilla` | CSS for elements, classes, and themes, plus bootstrap scripts and `is="ds-*"` web components |
+| `@willfarrell-ds/svelte` | Svelte 5 components and SvelteKit server hooks built on the vanilla package |
+| `@willfarrell-ds/cli` | `ds` command that builds per-site CSS from your rendered output |
 
-#### Spacing & layout
-- gap
-- margin
-- padding (-fixed)
-- width
-- height
+## Install
 
-#### Border & radius
+```sh
+npm install @willfarrell-ds/vanilla
+npm install @willfarrell-ds/svelte
+npm install --save-dev @willfarrell-ds/cli
+```
 
-- width
-- style (solid)
-- radius (button vs card)
+The Svelte package needs `svelte` 5, `@sveltejs/kit` 3, and `vite` 8 as peers. The CLI needs Node.js 26 or later.
 
-#### Colour
-- primary
+## Usage
 
-- background
-- border
-- text/icon
-- link / inline elements
+### CSS
 
-#### Colour palettes
-- color palettes (primary, accent) [choose]
-- themes (light, dark, ...)
+Import everything:
 
-#### Elevation & effects
-- shadow
-- blur
-- opacity
+```css
+@import "@willfarrell-ds/vanilla/all.css";
+```
 
-#### interactive states
-- hover
-- active
-- focus
+Or import only what a page uses. Files live under `elements/`, `classes/`, `layers/`, and `media/`, with `theme.css` and `print.css` at the root. The CLI can write this import list for you (see below).
 
-### Patterns
+### Web components
 
-- [text]
-  - heading group
-  - headings
-  - paragraph
-  - horizontal rule
-  - inline text (abbr, ...)
-  - lists
-  - accordion
-  - alert (TODO)
-  - badge
-  - breadcrumb (TODO)
-  - card
-  - disclosure (details)
-  - address
-  - blockquote
-  - code block
-  - dialog w/ js
-  - dialog w/ popover (TODO)
-  - table
-  - footnotes
-- [media]
-  - image
-  - icon
-  - video (TODO)
-  - audio (TODO)
-- [forms]
-  - inputs (...)
-  - typeahead select (TODO)
-  - typeahead datalist (TODO)
-  - typeahead fetch (TODO) - 1
-  - typeahead aside filter
-  - errors
-- [navigation]
-  - links
-    - tag
-  - button
-  - dropdown w/ js
-  - dropdown w/ popover (TODO)
-  - body header (TODO) - 1
-    - skip link
-  - body footer
-  - hero (TODO)
-  - aside menu
-    - Add in typeahead filter using `/` (ex https://developers.cloudflare.com/pages/framework-guides/deploy-a-svelte-kit-site/)
-  - scroll spy
+Components are customized built-ins, written as `is` attributes on native elements, for example `<pre is="ds-codeblock-actions">` or `<input is="ds-fetch-typeahead">`. Load them with the bootstrap script:
 
-### Layouts
+```js
+import "@willfarrell-ds/vanilla/bootstrap/webcomponents.js";
+import "@willfarrell-ds/vanilla/bootstrap/tooltip.js";
+import "@willfarrell-ds/vanilla/bootstrap/keyshortcuts.js";
+import "@willfarrell-ds/vanilla/bootstrap/trustedtypes.js";
+```
+
+`webcomponents.js` includes the Safari polyfill for `is`. It imports each component when its element scrolls into view. It looks for a matching `<link rel="modulepreload">` first and falls back to `/js/pewc/<name>.js`. Import `trustedtypes.js` last, because it freezes the Trusted Types policy registry.
+
+### Svelte
+
+```svelte
+<script>
+import Codeblock from "@willfarrell-ds/svelte/components/Codeblock.svelte";
+</script>
+
+<Codeblock language="js" code={'console.log("hi")'} />
+```
+
+Components are under `components/`, thin element wrappers under `elements/`, and SvelteKit `handle` middleware (cache control, comment stripping, and similar) under `hooks/`.
+
+### CLI
+
+```sh
+# write above.css, below.css, and app.css from the selectors your built pages use
+ds extract --input-dir .svelte-kit --theme ./src/styles/theme.css --output-dir src/styles/
+
+# minify and simplify the CSS in a build directory
+ds optimize-styles .svelte-kit
+
+# inline a CSS or JS file into every HTML file in a directory
+ds inline build build/css/above.css
+```
+
+`extract` reads built HTML and JS, so run it after a build. The documentation site builds once, extracts, then builds again so the shipped CSS matches the pages (see `websites/design-system.willfarrell.ca/package.json`).
+
+## Development
+
+```sh
+npm install
+npm test                 # lint, unit, types, e2e, sast, bench, dast
+npm run test:unit
+npm start --workspace websites/design-system.willfarrell.ca
+```
+
+Visual regression baselines are Linux-only and come from the Playwright container. In the site workspace, run `npm run build && npm run preview`, then `npm run test:e2e:update` in a second terminal. Docker is required.
+
+## Backlog
+
+Not built yet:
+
+- Breadcrumb
+- Pagination ([pattern notes](https://coyleandrew.medium.com/design-better-pagination-a022a3b161e1))
+- Audio player
+- Typeahead backed by a native `<datalist>`, as its own component
+- Blurred image placeholders ([CSS-only LQIP](https://leanrada.com/notes/css-only-lqip/))
+- Type-to-filter in the aside navigation, focused with `/`
+- Proof-of-work captcha ([altcha](https://github.com/altcha-org/altcha))

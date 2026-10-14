@@ -7,9 +7,8 @@ const routesDir = new URL("../src/routes/", import.meta.url).pathname;
 const paths = globSync("**/+page.svelte", { cwd: routesDir })
 	.map(
 		(file) =>
-			`/${file}`
-				.replace(/\/\+page\.svelte$/, "")
-				.replace(/\/\([^/]+\)/g, "") || "/",
+			`/${file}`.replace(/\/\+page\.svelte$/, "").replace(/\/\([^/]+\)/g, "") ||
+			"/",
 	)
 	.filter((loc) => !loc.includes("["))
 	.sort();

@@ -33,7 +33,7 @@ describe("Breadcrumb", () => {
 				{ href: "javascript:alert(1)", text: "<script>alert(1)</script>" },
 			],
 		});
-		assert.doesNotMatch(body, /javascript:|<script>/);
+		assert.doesNotMatch(body, /javascript:|<script/i);
 	});
 
 	it("uses a styling class and accepts a localized label", async () => {

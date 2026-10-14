@@ -308,8 +308,7 @@ describe("extract", () => {
 			const { app } = runExtract(
 				{},
 				{
-					"section.js":
-						"$$renderer.push(`<section${$.attributes({ ...props })}>`);",
+					"section.js": `$$renderer.push(\`<section\${$.attributes({ ...props })}>\`);`,
 					"chunk.js":
 						'Section($$renderer, { class: ["pause-animations", className] });',
 				},
@@ -322,8 +321,7 @@ describe("extract", () => {
 			const { app } = runExtract(
 				{},
 				{
-					"chunk.js":
-						"Card($$renderer, { class: `metric ${$.stringify(className ?? '')}` });",
+					"chunk.js": `Card($$renderer, { class: \`metric \${$.stringify(className ?? '')}\` });`,
 				},
 				["classes/.metric.css"],
 			);
@@ -334,8 +332,7 @@ describe("extract", () => {
 			const { app } = runExtract(
 				{},
 				{
-					"chunk.js":
-						"$$renderer.push(`<span${$.attr_class(`badge ${$.stringify(a)}`)}></span><em${$.attr_class('chevron', void 0, { 'card': a })}></em>`);",
+					"chunk.js": `$$renderer.push(\`<span\${$.attr_class(\`badge \${$.stringify(a)}\`)}></span><em\${$.attr_class('chevron', void 0, { 'card': a })}></em>\`);`,
 				},
 				["classes/span.badge.css", "classes/.chevron.css", "classes/.card.css"],
 			);
@@ -367,8 +364,7 @@ describe("extract", () => {
 			const { app } = runExtract(
 				{},
 				{
-					"chunk.js":
-						"X($$renderer, { class: `palette palette-${stringify(p)}` });Y($$renderer, { class: [a ? b : c, `level-${l}`] });",
+					"chunk.js": `X($$renderer, { class: \`palette palette-\${stringify(p)}\` });Y($$renderer, { class: [a ? b : c, \`level-\${l}\`] });`,
 				},
 				[
 					"classes/.palette.css",
@@ -387,8 +383,7 @@ describe("extract", () => {
 			const { app } = runExtract(
 				{},
 				{
-					"chunk.js":
-						'X($$renderer, { class: `shade-${stringify(shade)}${shade.includes("-b") ? " bold" : ""}` });',
+					"chunk.js": `X($$renderer, { class: \`shade-\${stringify(shade)}\${shade.includes("-b") ? " bold" : ""}\` });`,
 				},
 				["classes/.bold.css", "classes/.-b.css"],
 			);
