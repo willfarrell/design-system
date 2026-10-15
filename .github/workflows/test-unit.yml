@@ -43,6 +43,9 @@ jobs:
       - name: Build
         run: |
           npm run build --if-present
+      - name: Install Playwright browser
+        run: |
+          npx playwright install --with-deps --only-shell chromium
       - name: Unit tests
         run: |
           npm run test:unit

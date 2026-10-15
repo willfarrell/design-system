@@ -41,5 +41,7 @@ jobs:
         run: |
           npm ci --ignore-scripts
       - name: E2E tests
+        env:
+          TRUST_STORES: none
         run: |
           npm run test:e2e --workspaces --if-present
