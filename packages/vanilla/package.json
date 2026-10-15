@@ -15,7 +15,8 @@
 		"elements/",
 		"layers/",
 		"media/",
-		"!**/*.test.js"
+		"!**/*.test.js",
+		"!**/*.e2e.js"
 	],
 	"exports": {
 		"./all.css": "./all.css",
@@ -30,7 +31,8 @@
 		"./media/*.css": "./media/*.css"
 	},
 	"scripts": {
-		"test": "node --test --experimental-test-module-mocks '**/*.test.js'"
+		"test": "node --test --experimental-test-module-mocks '**/*.test.js'",
+		"test:e2e": "node --test '**/*.e2e.js'"
 	},
 	"repository": {
 		"type": "git",

@@ -7,7 +7,8 @@ const modules = (await readdir(new URL(".", import.meta.url))).filter(
 	(file) =>
 		file.startsWith("ds-") &&
 		file.endsWith(".js") &&
-		!file.endsWith(".test.js"),
+		!file.endsWith(".test.js") &&
+		!file.endsWith(".e2e.js"),
 );
 
 test("every component survives being evaluated twice", async () => {
