@@ -222,7 +222,7 @@ const url = $derived.by(() => {
             }
 
             :is(a, button):focus-visible {
-              outline: 2px solid currentColor;
+              outline: 2px solid var(--color-focus);
               outline-offset: 2px;
             }
 

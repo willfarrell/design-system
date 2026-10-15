@@ -52,10 +52,12 @@ test("copy writes the value and announces the confirmation", async ({
 	await context.grantPermissions(["clipboard-read", "clipboard-write"]);
 	await page.goto(path);
 	await page.waitForLoadState("domcontentloaded");
-	const button = page.getByRole("button", { name: "Copy record" });
+	const button = page.locator('button[is="ds-copy"][data-value]');
 	await button.click();
-	await expect(button.locator("span")).toHaveText("Record copied");
-	await expect(button.locator("span")).toHaveAttribute("aria-live", "polite");
+	await expect(button).toHaveAccessibleName("Record copied");
+	await expect(
+		button.locator("xpath=following-sibling::*[1][@role='status']"),
+	).toHaveText("Record copied");
 	expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
 		"tardisec-verification=abc123def456",
 	);

@@ -44,4 +44,15 @@ describe("Image", () => {
 		const { body } = await render(path, { src: "/a.png" });
 		assert.doesNotMatch(body, /alt=/);
 	});
+	it("sets lqip as data-lqip on the img", async () => {
+		const { body } = await render(path, { src: "/a.png", lqip: -40000 });
+		assert.match(body, /<img [^>]*data-lqip="-40000"/);
+		assert.doesNotMatch(body, /style=/);
+	});
+	for (const lqip of ["1; background: url(//evil)", 1.5, null, ""]) {
+		it(`ignores an lqip of ${JSON.stringify(lqip)}`, async () => {
+			const { body } = await render(path, { src: "/a.png", lqip });
+			assert.doesNotMatch(body, /lqip/);
+		});
+	}
 });

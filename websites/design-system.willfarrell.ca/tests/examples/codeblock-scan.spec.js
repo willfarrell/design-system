@@ -39,7 +39,7 @@ test("blocks hold the bare value, no record prefix or header name", async ({
 	await expect(code.first()).toHaveText("tardisec-verification=abc123def456");
 	const hsts = page
 		.getByRole("heading", { name: "Strict-Transport-Security" })
-		.locator("xpath=following-sibling::pre[1]");
+		.locator("xpath=following-sibling::pre[1]/code");
 	await expect(hsts).toHaveText(/^max-age=31536000/);
 });
 

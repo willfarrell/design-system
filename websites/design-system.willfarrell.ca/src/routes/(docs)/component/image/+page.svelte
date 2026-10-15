@@ -15,7 +15,9 @@ import Ol from "@willfarrell-ds/svelte/elements/ol.svelte";
 import P from "@willfarrell-ds/svelte/elements/p.svelte";
 import Section from "@willfarrell-ds/svelte/elements/section.svelte";
 import Small from "@willfarrell-ds/svelte/elements/small.svelte";
+import Sup from "@willfarrell-ds/svelte/elements/sup.svelte";
 import Ul from "@willfarrell-ds/svelte/elements/ul.svelte";
+import Snippet from "#components/Snippet.svelte";
 
 const page = {
 	group: "Component",
@@ -45,6 +47,7 @@ const brokenCode = `<Img src="/img/missing.jpg" alt="A red fox curled up asleep 
 				<Ol>
 					<Li><A href="#description">Description</A></Li>
 					<Li><A href="#broken">Broken image</A></Li>
+					<Li><A href="#placeholder">Placeholder</A></Li>
 					<Li><A href="#accessibility">Accessibility</A></Li>
 					<Li><A href="#references">References</A></Li>
 					<Li><A href="#variables">Variables</A></Li>
@@ -63,6 +66,13 @@ const brokenCode = `<Img src="/img/missing.jpg" alt="A red fox curled up asleep 
 		<Codeblock language="html" code={brokenCode} />
 	</Section>
 	<Section>
+		<H2 id="placeholder">Placeholder</H2>
+		<P>Pass <Code>lqip</Code> to <Code>Image</Code> to paint a blurred colour preview behind the image while it loads. The value is one integer, which CSS decodes into a base colour and a 3×2 grid of lighter and darker patches. The loaded image covers it. No JavaScript runs.</P>
+		<P>The prop renders as a <Code>data-lqip</Code> attribute, which CSS reads with <Code>attr()</Code>, so it works under a CSP that blocks inline styles. Browsers without typed <Code>attr()</Code> show no placeholder.</P>
+		<P>The integer is a 20-bit value minus 2<Sup>19</Sup>. Bits 18–8 hold six 2-bit cell lightness values, bits 7–6 the base lightness, bits 5–3 the oklab <Code>a</Code> and bits 2–0 the oklab <Code>b</Code>.</P>
+		<Snippet example="image-lqip" />
+	</Section>
+	<Section>
 		<H2 id="accessibility">Accessibility</H2>
 		<Ul>
 			<Li>Every image needs an <Code>alt</Code>. Describe what the image shows, or use <Code>alt=""</Code> when it is decorative (WCAG 1.1.1)</Li>
@@ -72,11 +82,14 @@ const brokenCode = `<Img src="/img/missing.jpg" alt="A red fox curled up asleep 
 	<Section>
 		<H2 id="references">References</H2>
 		<Ul>
+			<Li><A href="https://leanrada.com/notes/css-only-lqip/">Minimal CSS-only blurry image placeholders</A> — Lean Rada</Li>
 			<Li><A href="https://piccalil.li/blog/you-can-style-alt-text-like-any-other-text/">You can style alt text like any other text</A> — Piccalilli</Li>
 		</Ul>
 	</Section>
 	<Section>
 		<H2 id="variables">Variables</H2>
-		<P>None</P>
+		<Ul>
+			<Li><Code>--lqip</Code> — the encoded placeholder integer, read from <Code>data-lqip</Code></Li>
+		</Ul>
 	</Section>
 </LayoutTableOfContents>

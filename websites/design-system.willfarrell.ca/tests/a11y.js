@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 export const wcagTags = [
 	"wcag2a",
@@ -19,6 +19,16 @@ export async function expectNoAxeViolations(page, disabledRules = []) {
 	expect(results.violations).toEqual([]);
 }
 
+export function forcedColorsDisabledRules(browserName) {
+	if (browserName !== "webkit") return [];
+	test.info().annotations.push({
+		type: "skip",
+		description:
+			"contrast checks: WebKit has no real forced-colours mode, Playwright only emulates the media query",
+	});
+	return ["color-contrast", "color-contrast-enhanced"];
+}
+
 /**
  * Creates color-scheme × contrast-mode permutation tests for a given demo path.
  * Tests all 6 combinations: (light|dark) × (default|forced-colors|prefers-contrast).
@@ -36,11 +46,15 @@ export function mediaModeTests(test, path, disabledRules = []) {
 
 		test(`axe audit — ${colorScheme} + forced-colors: active`, async ({
 			page,
+			browserName,
 		}) => {
 			await page.goto(path);
 			await page.waitForLoadState("domcontentloaded");
 			await page.emulateMedia({ colorScheme, forcedColors: "active" });
-			await expectNoAxeViolations(page, disabledRules);
+			await expectNoAxeViolations(page, [
+				...disabledRules,
+				...forcedColorsDisabledRules(browserName),
+			]);
 		});
 
 		test(`axe audit — ${colorScheme} + prefers-contrast: more`, async ({

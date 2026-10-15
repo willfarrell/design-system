@@ -59,6 +59,7 @@ import ExampleHeadingGroup from "./heading-group.svelte";
 import ExampleHeadings from "./headings.svelte";
 import ExampleHorizontalRule from "./horizontal-rule.svelte";
 import ExampleIcon from "./icon.svelte";
+import ExampleImageLqip from "./image-lqip.svelte";
 import ExampleInlineFormatElements from "./inline-format-elements.svelte";
 import ExampleInlineStyleElements from "./inline-style-elements.svelte";
 import ExampleLink from "./link.svelte";
@@ -148,6 +149,7 @@ export default {
 	ExampleLinkBackToTop,
 	ExampleLinkTag,
 	ExampleIcon,
+	ExampleImageLqip,
 	ExamplePopover,
 	ExamplePopoverHint,
 	ExampleTooltip,

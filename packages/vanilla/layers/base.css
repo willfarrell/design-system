@@ -43,7 +43,7 @@ hgroup {
 
 /* *** Focus *** */
 
-:focus:not(:focus-visible),
+:focus:not(:focus-visible, audio, video),
 :focus:not(:focus-visible)::after,
 :focus:not(:focus-visible)::before {
 	outline: none;
@@ -55,8 +55,14 @@ hgroup {
 	z-index: 1;
 }
 
+:is(audio, video):focus-within {
+	outline: 0.25rem solid var(--color-focus);
+	outline-offset: 0.25rem;
+}
+
 @media (forced-colors: active) {
-	:focus-visible {
+	:focus-visible,
+	:is(audio, video):focus-within {
 		outline-color: Highlight;
 	}
 }
