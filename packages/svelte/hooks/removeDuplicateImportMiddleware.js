@@ -3,12 +3,17 @@ const importRegExp =
 const removeDuplicateImportMiddleware = async ({ event, resolve }) => {
 	const response = await resolve(event, {
 		transformPageChunk: ({ html }) => {
-			const seen = new Set();
-			return html.replace(importRegExp, (match) => {
-				if (seen.has(match)) return "";
-				seen.add(match);
-				return match;
-			});
+			let prev;
+			do {
+				prev = html;
+				const seen = new Set();
+				html = html.replace(importRegExp, (match) => {
+					if (seen.has(match)) return "";
+					seen.add(match);
+					return match;
+				});
+			} while (html !== prev);
+			return html;
 		},
 	});
 	return response;

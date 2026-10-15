@@ -55,7 +55,14 @@ registerHooks({
 	},
 });
 
-const stripMarkers = (html) => html.replaceAll(/<!--[\s\S]*?-->/g, "");
+const stripMarkers = (html) => {
+	let prev;
+	do {
+		prev = html;
+		html = html.replaceAll(/<!--[\s\S]*?-->/g, "");
+	} while (html !== prev);
+	return html;
+};
 
 export const render = async (path, props = {}, context) => {
 	const { default: Component } = await import(new URL(path, import.meta.url));
