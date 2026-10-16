@@ -41,6 +41,11 @@ test("server order is kept until a sort is chosen", async ({ page }) => {
 test("choosing a sort reorders the rows by data-sort-*", async ({ page }) => {
 	await page.goto(path);
 	await page.waitForLoadState("domcontentloaded");
+	await expect
+		.poll(() =>
+			page.evaluate(() => customElements.get("ds-task-sortable") !== undefined),
+		)
+		.toBe(true);
 	const select = page.getByRole("combobox", { name: "Sort by" });
 	await select.selectOption("-name");
 	await expect(page.locator('[is="ds-task-sortable"] li a')).toHaveText([

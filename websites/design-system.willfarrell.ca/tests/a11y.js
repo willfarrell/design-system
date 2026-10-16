@@ -322,7 +322,7 @@ export function interactiveTests(test, path) {
 			});
 			if (info.skip) continue;
 			// WebKit on macOS doesn't Tab to <a> or <div> (contenteditable/tabindex) by default
-			if (browserName === "webkit") {
+			if (browserName === "webkit" && process.platform === "darwin") {
 				const tag = await el.evaluate((e) => e.tagName.toLowerCase());
 				if (tag === "a" || tag === "div") continue;
 			}
