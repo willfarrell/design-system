@@ -1,21 +1,21 @@
 <script>
-import Snippet from "@components/Snippet.svelte";
-import Variable from "@components/Variable.svelte";
-import DataTime from "@design-system/components/DataTime.svelte";
-import H1 from "@design-system/components/Heading1.svelte";
-import H2 from "@design-system/components/Heading2.svelte";
-import HSub from "@design-system/components/HeadingSub.svelte";
-import LayoutTableOfContents from "@design-system/components/LayoutTableOfContents.svelte";
-import NavScrollspy from "@design-system/components/NavScrollspy.svelte";
-import A from "@design-system/elements/a.svelte";
-import Code from "@design-system/elements/code.svelte";
-import Hgroup from "@design-system/elements/hgroup.svelte";
-import Li from "@design-system/elements/li.svelte";
-import Ol from "@design-system/elements/ol.svelte";
-import P from "@design-system/elements/p.svelte";
-import Section from "@design-system/elements/section.svelte";
-import Small from "@design-system/elements/small.svelte";
-import Ul from "@design-system/elements/ul.svelte";
+import DataTime from "@willfarrell-ds/svelte/components/DataTime.svelte";
+import H1 from "@willfarrell-ds/svelte/components/Heading1.svelte";
+import H2 from "@willfarrell-ds/svelte/components/Heading2.svelte";
+import HSub from "@willfarrell-ds/svelte/components/HeadingSub.svelte";
+import LayoutTableOfContents from "@willfarrell-ds/svelte/components/LayoutTableOfContents.svelte";
+import NavScrollspy from "@willfarrell-ds/svelte/components/NavScrollspy.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Code from "@willfarrell-ds/svelte/elements/code.svelte";
+import Hgroup from "@willfarrell-ds/svelte/elements/hgroup.svelte";
+import Li from "@willfarrell-ds/svelte/elements/li.svelte";
+import Ol from "@willfarrell-ds/svelte/elements/ol.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
+import Section from "@willfarrell-ds/svelte/elements/section.svelte";
+import Small from "@willfarrell-ds/svelte/elements/small.svelte";
+import Ul from "@willfarrell-ds/svelte/elements/ul.svelte";
+import Snippet from "#components/Snippet.svelte";
+import Variable from "#components/Variable.svelte";
 
 const page = {
 	group: "Component",
@@ -81,7 +81,6 @@ const page = {
 	<Section>
 		<H2 id="related">Related</H2>
 		<Ul>
-			<Li><A href="/component/dialog-fallback">Dialog (JS fallback)</A> — for browsers without <Code>command</Code>/<Code>commandfor</Code> support</Li>
 			<Li><A href="/component/popover">Popover</A> — for non-modal overlays</Li>
 			<Li><A href="/text/details">Disclosure</A> — for inline show/hide</Li>
 		</Ul>

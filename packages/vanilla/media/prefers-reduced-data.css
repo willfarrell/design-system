@@ -1,10 +1,13 @@
+/* biome-ignore-all lint/complexity/noImportantStyles: user preference must override component styles */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-data */
 @media (prefers-reduced-data) {
-	* {
-		background-image: none;
+	*,
+	::after,
+	::before {
+		background-image: none !important;
 	}
 
-	[role="presentation"],
+	img[role="presentation"],
 	img[alt=""] {
 		display: none;
 	}

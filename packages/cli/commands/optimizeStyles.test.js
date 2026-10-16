@@ -511,6 +511,25 @@ describe("optimizeStyles", () => {
 			assert.ok(files[`${cwd}/src/style.css`].includes("#fff"));
 		});
 
+		it("converts lab using the CSS D50 white point", () => {
+			files[`${cwd}/src/style.css`] =
+				"a{color:lab(54.29% 80.82 69.88)}b{color:lab(46.28% -47.55 48.59)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(
+				files[`${cwd}/src/style.css`],
+				"a{color:#f00}b{color:#008000}",
+			);
+		});
+
+		it("preserves lab colours outside the sRGB gamut", () => {
+			files[`${cwd}/src/style.css`] = "div{color:lab(50% 100 -100)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(
+				files[`${cwd}/src/style.css`],
+				"div{color:lab(50% 100 -100)}",
+			);
+		});
+
 		it("converts lab(50% 0 0 / 0.5) with alpha", () => {
 			files[`${cwd}/src/style.css`] = "div { color: lab(50% 0 0 / 0.5); }";
 			optimizeStyles("src", { iterations: 1 });
@@ -534,6 +553,20 @@ describe("optimizeStyles", () => {
 			files[`${cwd}/src/style.css`] = "div { color: lch(100% 0 0); }";
 			optimizeStyles("src", { iterations: 1 });
 			assert.ok(files[`${cwd}/src/style.css`].includes("#fff"));
+		});
+		it("converts lch using the CSS D50 white point", () => {
+			files[`${cwd}/src/style.css`] = "a{color:lch(54.29% 106.84 40.85)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(files[`${cwd}/src/style.css`], "a{color:#f00}");
+		});
+
+		it("preserves lch colours outside the sRGB gamut", () => {
+			files[`${cwd}/src/style.css`] = "div{color:lch(70% 130 150)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(
+				files[`${cwd}/src/style.css`],
+				"div{color:lch(70% 130 150)}",
+			);
 		});
 	});
 
@@ -564,6 +597,15 @@ describe("optimizeStyles", () => {
 			assert.ok(files[`${cwd}/src/style.css`].includes("#fff"));
 		});
 
+		it("preserves oklch colours outside the sRGB gamut", () => {
+			files[`${cwd}/src/style.css`] = "div{color:oklch(0.7 0.3 150)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(
+				files[`${cwd}/src/style.css`],
+				"div{color:oklch(0.7 0.3 150)}",
+			);
+		});
+
 		it("preserves oklch with from keyword", () => {
 			files[`${cwd}/src/style.css`] =
 				"div { color: oklch(from var(--c) l c h); }";
@@ -589,6 +631,15 @@ describe("optimizeStyles", () => {
 			files[`${cwd}/src/style.css`] = "div { color: color(srgb 1 0 0 / 0.5); }";
 			optimizeStyles("src", { iterations: 1 });
 			assert.ok(files[`${cwd}/src/style.css`].includes("#ff000080"));
+		});
+
+		it("preserves color(srgb) values outside the sRGB gamut", () => {
+			files[`${cwd}/src/style.css`] = "div{color:color(srgb 1.2 0 0)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(
+				files[`${cwd}/src/style.css`],
+				"div{color:color(srgb 1.2 0 0)}",
+			);
 		});
 
 		it("converts color(srgb-linear 1 0 0) to #f00", () => {
@@ -628,6 +679,49 @@ describe("optimizeStyles", () => {
 				files[`${cwd}/src/style.css`].includes("#bfbfbf"),
 				`Expected #bfbfbf, got: ${files[`${cwd}/src/style.css`]}`,
 			);
+		});
+
+		it("mixes in linear light for srgb-linear", () => {
+			files[`${cwd}/src/style.css`] =
+				"div{color:color-mix(in srgb-linear, #f00, #00f)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(files[`${cwd}/src/style.css`], "div{color:#bc00bc}");
+		});
+
+		it("mixes hex alpha with premultiplied channels", () => {
+			files[`${cwd}/src/style.css`] =
+				"div{color:color-mix(in srgb, #ff000000, #0000ff)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(files[`${cwd}/src/style.css`], "div{color:#0000ff80}");
+		});
+
+		it("reduces alpha when percentages sum below 100%", () => {
+			files[`${cwd}/src/style.css`] =
+				"div{color:color-mix(in srgb, #f00 25%, #00f 25%)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(files[`${cwd}/src/style.css`], "div{color:#80008080}");
+		});
+
+		it("normalises percentages that sum above 100%", () => {
+			files[`${cwd}/src/style.css`] =
+				"div{color:color-mix(in srgb, #f00 75%, #00f 75%)}";
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(files[`${cwd}/src/style.css`], "div{color:#800080}");
+		});
+
+		it("preserves color-mix with a percentage above 100%", () => {
+			const css =
+				"a{color:color-mix(in srgb, #f00 150%, #00f)}b{color:color-mix(in srgb, #f00 50%, #00f 150%)}";
+			files[`${cwd}/src/style.css`] = css;
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(files[`${cwd}/src/style.css`], css);
+		});
+
+		it("preserves color-mix with a negative percentage", () => {
+			const css = "a{color:color-mix(in srgb, #f00 -10%, #00f)}";
+			files[`${cwd}/src/style.css`] = css;
+			optimizeStyles("src", { iterations: 1 });
+			assert.strictEqual(files[`${cwd}/src/style.css`], css);
 		});
 
 		it("preserves color-mix with var()", () => {
@@ -988,6 +1082,77 @@ describe("optimizeStyles", () => {
 			);
 		});
 
+		it("preserves declarations whose property ends with an inherited property name", () => {
+			files[`${cwd}/src/base.css`] = "body{color:#123456;}";
+			files[`${cwd}/src/elements.css`] =
+				"table{background-color:#123456;border-color:#123456;outline-color:#123456;padding:1px}";
+
+			optimizeStyles("src", { iterations: 1 });
+
+			assert.strictEqual(
+				files[`${cwd}/src/elements.css`],
+				"table{background-color:#123456;border-color:#123456;outline-color:#123456;padding:1px}",
+			);
+		});
+
+		it("preserves declarations whose value starts with the body value", () => {
+			files[`${cwd}/src/base.css`] = "body{line-height:1;}";
+			files[`${cwd}/src/elements.css`] = "p{line-height:1.5}";
+
+			optimizeStyles("src", { iterations: 1 });
+
+			assert.strictEqual(
+				files[`${cwd}/src/elements.css`],
+				"p{line-height:1.5}",
+			);
+		});
+
+		it("ignores declarations from selectors ending in body", () => {
+			files[`${cwd}/src/base.css`] = "tbody{color:#123456;}";
+			files[`${cwd}/src/elements.css`] = "p{color:#123456}";
+
+			optimizeStyles("src", { iterations: 1 });
+
+			assert.strictEqual(files[`${cwd}/src/elements.css`], "p{color:#123456}");
+		});
+
+		it("ignores declarations from compound body selectors", () => {
+			files[`${cwd}/src/base.css`] = "body.dark{color:#123456;}";
+			files[`${cwd}/src/elements.css`] = "p{color:#123456}";
+
+			optimizeStyles("src", { iterations: 1 });
+
+			assert.strictEqual(files[`${cwd}/src/elements.css`], "p{color:#123456}");
+		});
+
+		it("uses declarations from selector lists containing body", () => {
+			files[`${cwd}/src/base.css`] = "html, body{color:#123456;}";
+			files[`${cwd}/src/elements.css`] = "p{color:#123456}";
+
+			optimizeStyles("src", { iterations: 1 });
+
+			assert.strictEqual(files[`${cwd}/src/elements.css`], "");
+		});
+
+		it("ignores body declarations nested in at-rules", () => {
+			files[`${cwd}/src/base.css`] =
+				"@media (prefers-color-scheme:dark){body{color:#123456;}}";
+			files[`${cwd}/src/elements.css`] = "p{color:#123456}";
+
+			optimizeStyles("src", { iterations: 1 });
+
+			assert.strictEqual(files[`${cwd}/src/elements.css`], "p{color:#123456}");
+		});
+
+		it("uses the last body declaration without a trailing semicolon", () => {
+			files[`${cwd}/src/base.css`] = "body{margin:0;color:#123456}";
+			files[`${cwd}/src/elements.css`] = "p{color:#123456}";
+
+			optimizeStyles("src", { iterations: 1 });
+
+			assert.strictEqual(files[`${cwd}/src/elements.css`], "");
+		});
+
 		it("works with var() values (exact string match)", () => {
 			files[`${cwd}/src/base.css`] =
 				"body { line-height: var(--line-height); }";
@@ -1070,6 +1235,18 @@ describe("optimizeStyles", () => {
 	});
 
 	describe("iteration behavior", () => {
+		it("stops iterating once a pass makes no changes", (t) => {
+			files[`${cwd}/src/style.css`] = "div{width:calc(1px + 1px)}";
+			const log = t.mock.method(console, "log", () => {});
+
+			optimizeStyles("src", { iterations: 10, debug: true });
+
+			const passes = log.mock.calls.filter(
+				({ arguments: [message] }) => message === "Optimize variables",
+			).length;
+			assert.strictEqual(passes, 2);
+		});
+
 		it("resolves chained vars across iterations", () => {
 			files[`${cwd}/src/style.css`] = [
 				":root { --a: var(--b); --b: 42px; }",

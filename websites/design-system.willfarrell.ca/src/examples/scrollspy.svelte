@@ -1,11 +1,11 @@
 <script>
-import NavScrollspy from "@design-system/components/NavScrollspy.svelte";
-import A from "@design-system/elements/a.svelte";
-import H2 from "@design-system/elements/h2.svelte";
-import Li from "@design-system/elements/li.svelte";
-import Ol from "@design-system/elements/ol.svelte";
-import P from "@design-system/elements/p.svelte";
-import Section from "@design-system/elements/section.svelte";
+import NavScrollspy from "@willfarrell-ds/svelte/components/NavScrollspy.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import H2 from "@willfarrell-ds/svelte/elements/h2.svelte";
+import Li from "@willfarrell-ds/svelte/elements/li.svelte";
+import Ol from "@willfarrell-ds/svelte/elements/ol.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
+import Section from "@willfarrell-ds/svelte/elements/section.svelte";
 </script>
 
 <NavScrollspy>

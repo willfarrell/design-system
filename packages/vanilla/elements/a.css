@@ -1,13 +1,17 @@
 a {
+	--color-link-hover: color-mix(
+		in srgb,
+		var(--color-main-pseudo) 8%,
+		var(--color-main)
+	);
 	color: var(--color-main);
 	text-underline-position: under;
 }
 
 a:hover,
 a:focus-visible {
-	color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
-	text-decoration: underline solid 0.4em
-		color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+	color: var(--color-link-hover);
+	text-decoration: underline solid 0.4em var(--color-link-hover);
 	text-decoration-thickness: 0.4em;
 	text-underline-position: under;
 }
@@ -15,6 +19,7 @@ a:focus-visible {
 /* target-current for scrollspy; aria-current=true marks ancestor sections */
 a:active,
 a[aria-current="page"],
+a[aria-current="location"],
 a[aria-current="true"],
 a:target-current {
 	color: color-mix(in srgb, var(--color-main-pseudo) 12%, var(--color-main));
@@ -55,6 +60,11 @@ a:visited {
 	display: inline-flex;
 	min-block-size: 24px;
 	min-inline-size: 24px;
+}
+
+/* inline, as text-box trim on the heading cuts a wrapped atomic box (inline-flex or inline-block) to one line; the heading line height still meets the 24px target */
+:is(h1, h2, h3, h4, h5, h6) > a:not([href^="#"]) {
+	display: inline;
 }
 
 [href^="https://"]:not(:has(img), .button)::after {

@@ -1,0 +1,21 @@
+nav.breadcrumb {
+	& > ol {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+	}
+	& li {
+		display: flex;
+		align-items: center;
+	}
+	& li + li::before {
+		content: "\203A" / "";
+		padding-inline: 0.5em;
+	}
+	& a {
+		display: inline-flex;
+		align-items: center;
+		min-block-size: 44px;
+		min-inline-size: 44px;
+	}
+}

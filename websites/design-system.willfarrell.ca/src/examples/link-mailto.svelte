@@ -1,5 +1,5 @@
 <script>
-import A from "@design-system/elements/a.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
 </script>
 
 <A href="mailto:">name@example.org</A>

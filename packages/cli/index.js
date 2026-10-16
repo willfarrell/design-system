@@ -1,14 +1,11 @@
 #!/usr/bin/env node
-// #!/usr/bin/env -S node --experimental-json-modules --no-warnings
-
-import { Command, Option } from "commander";
+import { Command, InvalidArgumentError, Option } from "commander";
 import extract from "./commands/extract.js";
 import inline from "./commands/inline.js";
 import optimizeStyles from "./commands/optimizeStyles.js";
 
 const program = new Command()
 	.name("ds")
-	//.version(metadata.version)
 	.description("CI tooling for your design system");
 
 program
@@ -27,8 +24,6 @@ program
 	.addOption(
 		new Option("--output-dir <path>", "Directory where css files are saved"),
 	)
-	//.addOption(new Option('--js-path <path>', 'Where bootstrap should be saved'))
-	//.addOption(new Option('--pewc-dir <path>', 'Where pewc files should be copied'))
 	.addOption(new Option("--debug", "log debug information").preset(true))
 	.action(extract);
 
@@ -49,8 +44,8 @@ Optimizations:
   - Simplify calc(), min(), max(), clamp() with static values
   - Partially simplify calc() by combining like-unit terms
   - Simplify calc() expressions containing var()
-  - Convert color functions to hex (rgb, hsl, hwb, lab, lch, oklab, oklch)
-  - Convert color(srgb ...) and color(srgb-linear ...) to hex
+  - Convert sRGB-gamut color functions to hex (rgb, hsl, hwb, lab, lch, oklab, oklch)
+  - Convert sRGB-gamut color(srgb ...) and color(srgb-linear ...) to hex
   - Resolve color-mix(in srgb, ...) to hex
   - Shorten hex colors (#aabbcc -> #abc, #aabbccdd -> #abcd)
   - Strip units from zero values (0px -> 0, 0rem -> 0)
@@ -60,9 +55,17 @@ Optimizations:
 	)
 	.argument("<dir>", "Directory to apply changes to")
 	.addOption(
-		new Option("--iterations", "number of passes to do").default(10).preset(10),
+		new Option("--iterations <n>", "number of passes to do")
+			.default(10)
+			.argParser((value) => {
+				const n = Number.parseInt(value, 10);
+				if (!(n >= 1)) {
+					throw new InvalidArgumentError("Must be an integer >= 1.");
+				}
+				return n;
+			}),
 	)
-	//.addOption(new Option("--prefix", "variable prefix").preset("ds-")) // TODO use
+	.addOption(new Option("--prefix", "variable prefix").preset("ds-"))
 	.addOption(new Option("--debug", "log debug information").preset(true))
 	.action(optimizeStyles);
 

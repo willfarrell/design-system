@@ -1,5 +1,3 @@
-@import "./input.css";
-
 div:has(input[type="checkbox"]) {
 	min-block-size: calc(
 		var(--border-width) *

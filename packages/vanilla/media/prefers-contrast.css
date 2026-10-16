@@ -1,11 +1,14 @@
+/* biome-ignore-all lint/complexity/noImportantStyles: user preference must override component styles */
 @media (prefers-contrast: more) {
 	:root {
 		--border-width: 0.1875rem;
 	}
-	* {
-		border-color: currentColor;
-		box-shadow: none;
-		text-shadow: none;
+	*,
+	::after,
+	::before {
+		border-color: currentColor !important;
+		box-shadow: none !important;
+		text-shadow: none !important;
 	}
 	button,
 	input,
@@ -22,10 +25,12 @@
 }
 
 @media (prefers-contrast: custom), (forced-colors: active) {
-	* {
-		box-shadow: none;
-		text-shadow: none;
-		background-image: none;
+	*,
+	::after,
+	::before {
+		box-shadow: none !important;
+		text-shadow: none !important;
+		background-image: none !important;
 	}
 
 	a {
@@ -57,9 +62,11 @@
 	}
 
 	/* match forced-colors */
-	* {
-		box-shadow: none;
-		text-shadow: none;
-		background-image: none;
+	*,
+	::after,
+	::before {
+		box-shadow: none !important;
+		text-shadow: none !important;
+		background-image: none !important;
 	}
 }

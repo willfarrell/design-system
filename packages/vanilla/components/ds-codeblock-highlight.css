@@ -1,0 +1,115 @@
+[is="ds-codeblock-highlight"] {
+	--hex-neutral: #000000;
+	--hex-red: #da3425;
+	--hex-cerise-red: #e31c65;
+	--hex-cinnabar: #e2201d;
+	--hex-pomegranate: #f3420c;
+	--hex-pizazz: #ff8c00;
+	--hex-selective-yellow: #ffb300;
+	--hex-bright-yellow: #fdcf02;
+	--hex-key-lime-pie: #c1cc33;
+	--hex-sushi: #81ba45;
+	--hex-apple: #4bb450;
+	--hex-elf-green: #00ffe6;
+	--hex-pelorous: #00e1ff;
+	--hex-curious-blue: #03a9fc;
+	--hex-cornflower-blue: #1a86e5;
+	--hex-cobalt: #4051bf;
+	--hex-daisy-bush: #693bc4;
+	--hex-violet-eggplant: #ae2dd2;
+
+	--lightness-code: var(--lightness-main);
+
+	--code-comment: light-dark(
+		oklch(from #000 0.4 c h),
+		oklch(from #000 0.7 c h)
+	);
+	--code-punctuation: oklch(from var(--hex-neutral) var(--lightness-code) c h);
+	--code-deleted: oklch(from var(--hex-red) var(--lightness-code) c h);
+	--code-inserted: oklch(
+		from var(--hex-key-lime-pie) var(--lightness-code) c h
+	);
+	--code-number: oklch(
+		from var(--hex-violet-eggplant) var(--lightness-code) c h
+	);
+	--code-operator: oklch(from var(--hex-cobalt) var(--lightness-code) c h);
+	--code-keyword: oklch(from var(--hex-pelorous) var(--lightness-code) c h);
+	--code-function: oklch(from var(--hex-cinnabar) var(--lightness-code) c h);
+	--code-variable: oklch(from var(--hex-pizazz) var(--lightness-code) c h);
+}
+
+[is="ds-codeblock-highlight"] .comment,
+[is="ds-codeblock-highlight"] .prolog,
+[is="ds-codeblock-highlight"] .doctype,
+[is="ds-codeblock-highlight"] .cdata {
+	color: var(--code-comment, var(--color-text));
+}
+[is="ds-codeblock-highlight"] .punctuation,
+[is="ds-codeblock-highlight"] .scheme-delimiter,
+[is="ds-codeblock-highlight"] .authority-delimiter,
+[is="ds-codeblock-highlight"] .path-separator,
+[is="ds-codeblock-highlight"] .query-delimiter,
+[is="ds-codeblock-highlight"] .fragment-delimiter {
+	color: var(--code-punctuation, var(--color-text));
+}
+[is="ds-codeblock-highlight"] .namespace {
+	opacity: 0.7;
+}
+[is="ds-codeblock-highlight"] .property,
+[is="ds-codeblock-highlight"] .tag,
+[is="ds-codeblock-highlight"] .symbol,
+[is="ds-codeblock-highlight"] .host,
+[is="ds-codeblock-highlight"] .key,
+[is="ds-codeblock-highlight"] .deleted {
+	color: var(--code-deleted, var(--color-del, var(--color-text)));
+}
+[is="ds-codeblock-highlight"] .number,
+[is="ds-codeblock-highlight"] .boolean,
+[is="ds-codeblock-highlight"] .constant {
+	color: var(--code-number, var(--color-text));
+}
+[is="ds-codeblock-highlight"] .selector,
+[is="ds-codeblock-highlight"] .attr-name,
+[is="ds-codeblock-highlight"] .string,
+[is="ds-codeblock-highlight"] .char,
+[is="ds-codeblock-highlight"] .builtin,
+[is="ds-codeblock-highlight"] .path,
+[is="ds-codeblock-highlight"] .value,
+[is="ds-codeblock-highlight"] .char-class,
+[is="ds-codeblock-highlight"] .inserted {
+	color: var(--code-inserted, var(--color-ins, var(--color-text)));
+}
+[is="ds-codeblock-highlight"] .operator,
+[is="ds-codeblock-highlight"] .entity,
+[is="ds-codeblock-highlight"] .url,
+[is="ds-codeblock-highlight"] .query,
+[is="ds-codeblock-highlight"] .fragment,
+[is="ds-codeblock-highlight"] .range,
+[is="ds-codeblock-highlight"] .style .string {
+	color: var(--code-operator, var(--color-text));
+}
+[is="ds-codeblock-highlight"] .atrule,
+[is="ds-codeblock-highlight"] .attr-value,
+[is="ds-codeblock-highlight"] .instruction,
+[is="ds-codeblock-highlight"] .scheme,
+[is="ds-codeblock-highlight"] .keyword {
+	color: var(--code-keyword, var(--color-text));
+}
+[is="ds-codeblock-highlight"] .function {
+	color: var(--code-function, var(--color-text));
+}
+[is="ds-codeblock-highlight"] .regex,
+[is="ds-codeblock-highlight"] .important,
+[is="ds-codeblock-highlight"] .variable {
+	color: var(--code-variable, var(--color-text));
+}
+[is="ds-codeblock-highlight"] .important,
+[is="ds-codeblock-highlight"] .bold {
+	font-weight: bold;
+}
+[is="ds-codeblock-highlight"] .italic {
+	font-style: italic;
+}
+[is="ds-codeblock-highlight"] .entity {
+	cursor: help;
+}

@@ -1,64 +1,51 @@
 /* eslint-env browser */
 
-customElements.define(
-	"ds-input-file",
-	class extends HTMLInputElement {
-		handleClick() {
-			this.value = "";
-			this.click();
-		}
-		// handleBubble(event) {
-		//   event.preventDefault()
-		//   event.stopPropagation()
-		// }
-		// handleAdd() {
-		//   this.classList.add('focus')
-		// }
-		// handleRemove() {
-		//   this.classList.remove('focus')
-		// }
-		handleChange(event) {
-			this.files = event.dataTransfer.files;
-			this.dispatchEvent(new Event("change"));
-		}
-		handlePaste(event) {
-			this.files = event.clipboardData.files;
-			this.dispatchEvent(new Event("change"));
-		}
-
-		constructor() {
-			super();
-			this._handlePaste = this.handlePaste.bind(this);
-		}
-		connectedCallback() {
-			document.addEventListener("paste", this._handlePaste);
-			const events = {
-				// dragenter: [handleBubble, handleAdd],
-				// dragover: [handleBubble, handleAdd],
-				// dragleave: [handleBubble, handleRemove],
-				// drop: [handleBubble, handleRemove, handleChange],
-				drop: [this.handleChange],
-				click: [this.handleClick],
+if (!customElements.get("ds-input-file")) {
+	customElements.define(
+		"ds-input-file",
+		class extends HTMLInputElement {
+			handleClick = () => {
+				this.previous = [...(this.files ?? [])];
+				this.value = "";
 			};
 
-			for (const eventName in events) {
-				this.addEventListener(
-					eventName,
-					(event) => {
-						events[eventName].forEach((fct) => {
-							fct(event);
-						});
-					},
-					false,
-				);
+			handleCancel = () => {
+				if (!this.previous?.length) return;
+				const data = new DataTransfer();
+				for (const file of this.previous) data.items.add(file);
+				this.files = data.files;
+			};
+
+			handleDrop = (event) => {
+				if (!event.dataTransfer?.files?.length) return;
+				event.preventDefault();
+				this.assign(event.dataTransfer.files);
+			};
+
+			handlePaste = (event) => {
+				this.assign(event.clipboardData?.files);
+			};
+
+			assign(files) {
+				if (!files?.length) return;
+				this.files = files;
+				this.dispatchEvent(new Event("change", { bubbles: true }));
 			}
-		}
-		disconnectedCallback() {
-			document.removeEventListener("paste", this._handlePaste);
-			for (const eventName in events) {
-				this.removeEventListener(eventName);
+
+			connectedCallback() {
+				this.addEventListener("click", this.handleClick);
+				this.addEventListener("cancel", this.handleCancel);
+				this.addEventListener("drop", this.handleDrop);
+				this.addEventListener("paste", this.handlePaste);
 			}
-		}
-	},
-	{ extends: "input" },
-);
+
+			disconnectedCallback() {
+				this.removeEventListener("click", this.handleClick);
+				this.removeEventListener("cancel", this.handleCancel);
+				this.removeEventListener("drop", this.handleDrop);
+				this.removeEventListener("paste", this.handlePaste);
+			}
+		},
+		{ extends: "input" },
+	);
+}

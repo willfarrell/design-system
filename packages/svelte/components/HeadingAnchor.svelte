@@ -7,7 +7,7 @@ const { id } = $props();
 
 {#if id}
   <A href="#{id}" class="noprint"
-    ><Span aria-hidden="true">#</Span><Span class="visually-hidden">anchor</Span
+    ><Span aria-hidden="true">#</Span><Span class="visually-hidden">Link to section {id}</Span
     ></A
   >
 {/if}

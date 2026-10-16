@@ -8,7 +8,6 @@ const { children, ...props } = $props();
 <svelte:head>
   <link rel="modulepreload" href={webComponentUrl} />
 </svelte:head>
-<!-- TODO caps lock indicator - use password component -->
 <FieldInput
   autocapitalize="off"
   autocorrect="off"

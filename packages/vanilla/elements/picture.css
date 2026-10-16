@@ -6,7 +6,54 @@ picture {
 	block-size: auto;
 }
 
+img {
+	font-style: italic;
+	text-wrap: balance;
+}
+
 picture img {
 	max-block-size: 100%;
 	inline-size: 100%;
+}
+
+img[data-lqip] {
+	--lqip: attr(data-lqip type(<integer>), 0);
+	--lqip-bits: calc(var(--lqip) + pow(2, 19));
+	--lqip-a: calc(mod(round(down, var(--lqip-bits) / 8), 8) / 8 * 0.7 - 0.35);
+	--lqip-b: calc((mod(var(--lqip-bits), 8) + 1) / 8 * 0.7 - 0.35);
+	--lqip-ca: oklab(
+		calc(mod(round(down, var(--lqip-bits) / pow(2, 18)), 4) / 3 * 0.6 + 0.2)
+			var(--lqip-a) var(--lqip-b)
+	);
+	--lqip-cb: oklab(
+		calc(mod(round(down, var(--lqip-bits) / pow(2, 16)), 4) / 3 * 0.6 + 0.2)
+			var(--lqip-a) var(--lqip-b)
+	);
+	--lqip-cc: oklab(
+		calc(mod(round(down, var(--lqip-bits) / pow(2, 14)), 4) / 3 * 0.6 + 0.2)
+			var(--lqip-a) var(--lqip-b)
+	);
+	--lqip-cd: oklab(
+		calc(mod(round(down, var(--lqip-bits) / pow(2, 12)), 4) / 3 * 0.6 + 0.2)
+			var(--lqip-a) var(--lqip-b)
+	);
+	--lqip-ce: oklab(
+		calc(mod(round(down, var(--lqip-bits) / pow(2, 10)), 4) / 3 * 0.6 + 0.2)
+			var(--lqip-a) var(--lqip-b)
+	);
+	--lqip-cf: oklab(
+		calc(mod(round(down, var(--lqip-bits) / pow(2, 8)), 4) / 3 * 0.6 + 0.2)
+			var(--lqip-a) var(--lqip-b)
+	);
+	background-color: oklab(
+		calc(mod(round(down, var(--lqip-bits) / pow(2, 6)), 4) / 3 * 0.6 + 0.2)
+			var(--lqip-a) var(--lqip-b)
+	);
+	background-image:
+		radial-gradient(50% 75% at 16.67% 25%, var(--lqip-ca), transparent),
+		radial-gradient(50% 75% at 50% 25%, var(--lqip-cb), transparent),
+		radial-gradient(50% 75% at 83.33% 25%, var(--lqip-cc), transparent),
+		radial-gradient(50% 75% at 16.67% 75%, var(--lqip-cd), transparent),
+		radial-gradient(50% 75% at 50% 75%, var(--lqip-ce), transparent),
+		radial-gradient(50% 75% at 83.33% 75%, var(--lqip-cf), transparent);
 }

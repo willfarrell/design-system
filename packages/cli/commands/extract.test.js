@@ -115,6 +115,27 @@ describe("extract", () => {
 		});
 	});
 
+	describe("attribute parsing", () => {
+		it("reads unquoted values followed by other attributes", () => {
+			const { app } = runExtract(
+				{ "index.html": "<input name=q type=checkbox required>" },
+				{},
+				["elements/input.css", "elements/input[type=checkbox].css"],
+			);
+			assert.ok(app.includes("elements/input[type=checkbox].css"), app);
+		});
+
+		it("ignores attributes whose name ends with a tracked attribute", () => {
+			const { app } = runExtract(
+				{ "index.html": '<div data-class="x" class="real"></div>' },
+				{},
+				["classes/.x.css", "classes/.real.css"],
+			);
+			assert.ok(!app.includes("classes/.x.css"), app);
+			assert.ok(app.includes("classes/.real.css"), app);
+		});
+	});
+
 	describe("class extraction", () => {
 		it("extracts classes as .className and tag.className", () => {
 			const { app } = runExtract(
@@ -262,6 +283,114 @@ describe("extract", () => {
 			);
 		});
 
+		it("resolves tag-qualified role files from JS object syntax", () => {
+			const { app } = runExtract(
+				{ "index.html": "<section></section>" },
+				{ "chunk.js": '{ role: "alert" }' },
+				["elements/section.css", "classes/section[role=alert].css"],
+			);
+			assert.ok(app.includes("classes/section[role=alert].css"), app);
+		});
+
+		it("resolves tag-qualified aria files from JS object syntax", () => {
+			const { app } = runExtract(
+				{ "index.html": "<aside></aside>" },
+				{ "chunk.js": '{ "aria-labelledby": "callout-info" }' },
+				["elements/aside.css", "classes/aside[aria-labelledby^=callout-].css"],
+			);
+			assert.ok(
+				app.includes("classes/aside[aria-labelledby^=callout-].css"),
+				app,
+			);
+		});
+
+		it("extracts string literals from compiled class arrays", () => {
+			const { app } = runExtract(
+				{},
+				{
+					"section.js": `$$renderer.push(\`<section\${$.attributes({ ...props })}>\`);`,
+					"chunk.js":
+						'Section($$renderer, { class: ["pause-animations", className] });',
+				},
+				["classes/section.pause-animations.css"],
+			);
+			assert.ok(app.includes("classes/section.pause-animations.css"), app);
+		});
+
+		it("extracts static parts of compiled class template literals", () => {
+			const { app } = runExtract(
+				{},
+				{
+					"chunk.js": `Card($$renderer, { class: \`metric \${$.stringify(className ?? '')}\` });`,
+				},
+				["classes/.metric.css"],
+			);
+			assert.ok(app.includes("classes/.metric.css"), app);
+		});
+
+		it("extracts static classes from attr_class calls", () => {
+			const { app } = runExtract(
+				{},
+				{
+					"chunk.js": `$$renderer.push(\`<span\${$.attr_class(\`badge \${$.stringify(a)}\`)}></span><em\${$.attr_class('chevron', void 0, { 'card': a })}></em>\`);`,
+				},
+				["classes/span.badge.css", "classes/.chevron.css", "classes/.card.css"],
+			);
+			assert.ok(app.includes("classes/span.badge.css"), app);
+			assert.ok(app.includes("classes/.chevron.css"), app);
+			assert.ok(app.includes("classes/.card.css"), app);
+		});
+
+		it("extracts array literals and object keys from clsx calls", () => {
+			const { app } = runExtract(
+				{},
+				{
+					"chunk.js":
+						'$.attr_class($.clsx(["back", a && "skip"]));$.attr_class($.clsx({ button: a, "visually-hidden": b }));',
+				},
+				[
+					"classes/.back.css",
+					"classes/.skip.css",
+					"classes/.button.css",
+					"classes/.visually-hidden.css",
+				],
+			);
+			for (const file of [".back", ".skip", ".button", ".visually-hidden"]) {
+				assert.ok(app.includes(`classes/${file}.css`), app);
+			}
+		});
+
+		it("does not derive classes from dynamic parts of class expressions", () => {
+			const { app } = runExtract(
+				{},
+				{
+					"chunk.js": `X($$renderer, { class: \`palette palette-\${stringify(p)}\` });Y($$renderer, { class: [a ? b : c, \`level-\${l}\`] });`,
+				},
+				[
+					"classes/.palette.css",
+					"classes/.palette-.css",
+					"classes/.b.css",
+					"classes/.level-.css",
+				],
+			);
+			assert.ok(app.includes("classes/.palette.css"), app);
+			assert.ok(!app.includes("classes/.palette-.css"), app);
+			assert.ok(!app.includes("classes/.b.css"), app);
+			assert.ok(!app.includes("classes/.level-.css"), app);
+		});
+
+		it("ignores string arguments of calls inside class expressions", () => {
+			const { app } = runExtract(
+				{},
+				{
+					"chunk.js": `X($$renderer, { class: \`shade-\${stringify(shade)}\${shade.includes("-b") ? " bold" : ""}\` });`,
+				},
+				["classes/.bold.css", "classes/.-b.css"],
+			);
+			assert.ok(app.includes("classes/.bold.css"), app);
+			assert.ok(!app.includes("classes/.-b.css"), app);
+		});
+
 		it("extracts is attribute from Svelte 5 SSR JS object syntax", () => {
 			const { app } = runExtract(
 				{},
@@ -284,6 +413,23 @@ describe("extract", () => {
 			assert.ok(app.includes("layers/media.css"));
 		});
 
+		it("imports layers/media.css after the themes", () => {
+			const { app, above } = runExtract({ "index.html": "<nav></nav>" }, {}, [
+				"elements/nav.css",
+			]);
+			for (const css of [app, above]) {
+				const lines = css.trim().split("\n");
+				assert.ok(
+					lines.findIndex((line) => line.endsWith('vanilla/theme.css";')) <
+						lines.findIndex((line) => /"\.[^"]*\/theme\.css";$/.test(line)),
+				);
+				assert.equal(
+					lines.at(-1),
+					'@import "@willfarrell-ds/vanilla/layers/media.css";',
+				);
+			}
+		});
+
 		it("includes vanilla theme and custom theme imports", () => {
 			const { app } = runExtract({ "index.html": "<div></div>" }, {}, []);
 			assert.ok(
@@ -291,6 +437,35 @@ describe("extract", () => {
 				"should include vanilla theme",
 			);
 			assert.ok(app.includes("./theme.css"), "should include custom theme");
+		});
+
+		it("imports the default package theme once", () => {
+			const outputDir = `${cwd}/build/css`;
+			files[`${cwd}/build/index.html`] = "<div></div>";
+			extract({
+				inputDir: "build",
+				outputDir,
+				theme: "@willfarrell-ds/vanilla/theme.css",
+			});
+			const app = files[`${outputDir}/app.css`];
+			assert.strictEqual(app.split("theme.css").length - 1, 1);
+			assert.ok(app.includes('@import "@willfarrell-ds/vanilla/theme.css";'));
+		});
+
+		it("imports a package specifier theme as-is", () => {
+			const outputDir = `${cwd}/build/css`;
+			files[`${cwd}/build/index.html`] = "<div></div>";
+			extract({ inputDir: "build", outputDir, theme: "@acme/brand/theme.css" });
+			const app = files[`${outputDir}/app.css`];
+			assert.ok(app.includes('@import "@acme/brand/theme.css";'));
+		});
+
+		it("imports a relative theme path relative to outputDir", () => {
+			const outputDir = `${cwd}/build/css`;
+			files[`${cwd}/build/index.html`] = "<div></div>";
+			extract({ inputDir: "build", outputDir, theme: "./src/theme.css" });
+			const app = files[`${outputDir}/app.css`];
+			assert.ok(app.includes('@import "./../../src/theme.css";'));
 		});
 
 		it("skips imports when CSS file doesn't exist", () => {

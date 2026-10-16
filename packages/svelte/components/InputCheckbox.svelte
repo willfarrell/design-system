@@ -16,12 +16,5 @@ const fieldsetValue = $derived(fieldsetContext.value);
   {hint}
   type="checkbox"
   {value}
-  checked={checked === true || fieldsetValue?.includes(value)}
-  aria-describedby={hint ? `${id}-hint` : null}
->
-  <!--{#if children}
-    <Div>
-      {@render children()}
-    </Div>
-  {/if}-->
-</FieldsetInput>
+  checked={checked === true || [fieldsetValue ?? []].flat().includes(value)}
+/>

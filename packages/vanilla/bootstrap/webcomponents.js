@@ -7,22 +7,57 @@ import "@ungap/custom-elements"; // For Safari polyfill, ~2kb
 
 const d = document;
 
+const valid = /^[a-z0-9-]+$/;
+
+const basename = (link) => new URL(link.href).pathname.split("/").pop();
+
+const hashed = /^(?=[\w-]*[A-Z0-9_])[\w-]{8}\.js$/;
+
+const preload = (name) => {
+	const links = [
+		...d.querySelectorAll('link[rel="modulepreload"]:not([data-lang])'),
+	];
+	return (
+		links.find((link) => basename(link) === `${name}.js`) ??
+		links.find((link) => {
+			const file = basename(link);
+			return (
+				file.startsWith(`${name}-`) && hashed.test(file.slice(name.length + 1))
+			);
+		})
+	);
+};
+
 // don't `await` to ensure non-blocking
 const load = (target) => {
 	const name = target.getAttribute("is");
-	const link = d.querySelector(
-		`link[rel="modulepreload"][href*="/${name}"][href*=".js"]`,
-	);
-	const scriptURL = link?.href ?? `/js/pewc/${name}.js`;
+	const scriptURL = preload(name)?.href ?? `/js/pewc/${name}.js`;
 	import(scriptURL);
 };
 
 const lazyLoad = new IntersectionObserver((entries) => {
 	for (const { target, isIntersecting } of entries) {
-		if (isIntersecting) load(target);
+		if (!isIntersecting) continue;
+		lazyLoad.unobserve(target);
+		load(target);
 	}
 });
-for (const el of d.querySelectorAll("[is]")) {
+const upgrade = (el) => {
+	if (!valid.test(el.getAttribute("is"))) return;
 	if (!el.getClientRects().length) load(el);
 	else lazyLoad.observe(el);
-}
+};
+
+const scan = (root) => {
+	if (root.matches("[is]")) upgrade(root);
+	for (const el of root.querySelectorAll("[is]")) upgrade(el);
+};
+
+scan(d.documentElement);
+new MutationObserver((records) => {
+	for (const { addedNodes } of records) {
+		for (const node of addedNodes) {
+			if (node.nodeType === Node.ELEMENT_NODE) scan(node);
+		}
+	}
+}).observe(d.documentElement, { childList: true, subtree: true });

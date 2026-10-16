@@ -1,0 +1,16 @@
+@supports (anchor-name: --a) {
+	:has(> :is(input, select, textarea) + .ds-keyshortcut) {
+		anchor-scope: --ds-keyshortcut;
+	}
+	:is(input, select, textarea):has(+ .ds-keyshortcut) {
+		anchor-name: --ds-keyshortcut;
+		padding-inline-end: 3.5em;
+	}
+	:is(input, select, textarea) + .ds-keyshortcut {
+		position: absolute;
+		position-anchor: --ds-keyshortcut;
+		inset-inline-end: calc(anchor(end) + 0.25em);
+		align-self: anchor-center;
+		pointer-events: none;
+	}
+}

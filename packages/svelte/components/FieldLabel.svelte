@@ -1,16 +1,13 @@
 <script>
-import { createRawSnippet } from "svelte";
+import { setContext } from "svelte";
 import Label from "../elements/label.svelte";
 
-const defaultSnippet = createRawSnippet((label) => ({
-	render: () => label(),
-}));
-
-const { children = defaultSnippet, id, label, ...props } = $props();
+const { children, id, label, ...props } = $props();
+setContext("label", true);
 </script>
 
 {#if label}
   <Label for={id} {...props}>
-    {@render children(label.toString())}
+    {#if children}{@render children(label.toString())}{:else}{label}{/if}
   </Label>
 {/if}

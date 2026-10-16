@@ -1,6 +1,6 @@
 <script>
-import Li from "@design-system/elements/li.svelte";
-import Ol from "@design-system/elements/ol.svelte";
+import Li from "@willfarrell-ds/svelte/elements/li.svelte";
+import Ol from "@willfarrell-ds/svelte/elements/ol.svelte";
 </script>
 
 <Ol>

@@ -1,0 +1,23 @@
+button.chevron {
+	&::after {
+		content: "";
+		display: inline-block;
+		inline-size: 1em;
+		block-size: 1em;
+		margin-inline-start: 0.5em;
+		background-color: var(--border-color, currentColor);
+		/* chevron down */
+		clip-path: polygon(10% 20%, 50% 60%, 90% 20%, 100% 30%, 50% 80%, 0 30%);
+		vertical-align: baseline;
+	}
+
+	&:has(+ :popover-open)::after {
+		transform: rotate(180deg);
+	}
+}
+
+@media (forced-colors: active) {
+	button.chevron::after {
+		background-color: ButtonText;
+	}
+}

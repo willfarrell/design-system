@@ -3,8 +3,8 @@ const applyCacheControlMiddleware = async ({ event, resolve }) => {
 
 	const response = await resolve(event);
 
-	if (cookies.getAll().length) {
-		response.headers.set("Cache-Control", "no-cache");
+	if (cookies.getAll().length || response.headers.has("Set-Cookie")) {
+		response.headers.set("Cache-Control", "private, no-cache");
 	} else if (!response.headers.has("Cache-Control")) {
 		response.headers.set(
 			"Cache-Control",

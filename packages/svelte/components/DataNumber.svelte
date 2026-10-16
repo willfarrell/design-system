@@ -11,7 +11,7 @@ const getLocalizedNumber = (value, locale, options = {}) => {
 
 const locale = $derived.by(() => {
 	try {
-		return page.locale;
+		return page.data?.locale;
 	} catch {
 		return undefined;
 	}

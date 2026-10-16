@@ -1,15 +1,16 @@
 <script>
-import Example from "@components/Example.svelte";
-import Codeblock from "@design-system/components/Codeblock.svelte";
-import A from "@design-system/elements/a.svelte";
-import Details from "@design-system/elements/details.svelte";
-import Div from "@design-system/elements/div.svelte";
-import Footer from "@design-system/elements/footer.svelte";
-import Header from "@design-system/elements/header.svelte";
-import Iframe from "@design-system/elements/iframe.svelte";
-import Summary from "@design-system/elements/summary.svelte";
+import Codeblock from "@willfarrell-ds/svelte/components/Codeblock.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Details from "@willfarrell-ds/svelte/elements/details.svelte";
+import Div from "@willfarrell-ds/svelte/elements/div.svelte";
+import Footer from "@willfarrell-ds/svelte/elements/footer.svelte";
+import Header from "@willfarrell-ds/svelte/elements/header.svelte";
+import Iframe from "@willfarrell-ds/svelte/elements/iframe.svelte";
+import Summary from "@willfarrell-ds/svelte/elements/summary.svelte";
+import { sentenceCase } from "change-case";
 import formatHtml from "pretty";
 import { render } from "svelte/server";
+import Example from "#components/Example.svelte";
 
 let { example } = $props();
 
@@ -23,8 +24,7 @@ const html = $derived.by(() => {
 
 <Div class="snippet">
 	<Header><A href="/demo/{example}" target="_blank">Open in new tab</A></Header>
-	<!-- <Example component={example} /> -->
-	<Iframe title={example} src="/demo/{example}" />
+	<Iframe title="{sentenceCase(example)} example" src="/demo/{example}" sandbox="allow-scripts allow-same-origin allow-forms allow-downloads" />
 	<Footer>
 		<Details>
 			<Summary>View HTML markup</Summary>

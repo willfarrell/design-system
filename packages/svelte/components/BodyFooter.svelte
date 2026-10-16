@@ -19,25 +19,6 @@ const url = $derived.by(() => {
 		return { pathname: "", hash: "" };
 	}
 });
-const params = $derived.by(() => {
-	try {
-		return page.params;
-	} catch {
-		return {};
-	}
-});
-const data = $derived.by(() => {
-	try {
-		return page.data;
-	} catch {
-		return {};
-	}
-});
-const locale = $derived(params?.locale);
-const entity = $derived(params?.entity);
-const modify = $derived(params?.modify);
-const changes = $derived(data?.changes);
-const records = $derived(data?.records);
 </script>
 
 {#snippet links(nav)}

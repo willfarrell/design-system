@@ -1,12 +1,12 @@
 <script>
-import Card from "@design-system/components/Card.svelte";
-import Image from "@design-system/components/Image.svelte"; // TODO update to picture
-import A from "@design-system/elements/a.svelte";
-import H3 from "@design-system/elements/h3.svelte";
-import Li from "@design-system/elements/li.svelte";
-import P from "@design-system/elements/p.svelte";
-import Span from "@design-system/elements/span.svelte";
-import Ul from "@design-system/elements/ul.svelte";
+import Card from "@willfarrell-ds/svelte/components/Card.svelte";
+import Image from "@willfarrell-ds/svelte/components/Image.svelte"; // TODO update to picture
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import H3 from "@willfarrell-ds/svelte/elements/h3.svelte";
+import Li from "@willfarrell-ds/svelte/elements/li.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
+import Span from "@willfarrell-ds/svelte/elements/span.svelte";
+import Ul from "@willfarrell-ds/svelte/elements/ul.svelte";
 
 let {
 	card = {

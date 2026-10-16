@@ -1,16 +1,16 @@
 <script>
-import FieldHgroupSnippet from "@design-system/components/FieldHgroupSnippet.svelte";
-import FieldOption from "@design-system/components/FieldOption.svelte";
-import Fieldset from "@design-system/components/Fieldset.svelte";
-import InputAddressCity from "@design-system/components/InputAddressCity.svelte";
-import InputAddressCountry from "@design-system/components/InputAddressCountry.svelte";
-import InputAddressPostalCode from "@design-system/components/InputAddressPostalCode.svelte";
-import InputAddressStreet from "@design-system/components/InputAddressStreet.svelte";
-import InputOrganization from "@design-system/components/InputOrganization.svelte";
-import A from "@design-system/elements/a.svelte";
-import Button from "@design-system/elements/button.svelte";
-import Form from "@design-system/elements/form.svelte";
-import P from "@design-system/elements/p.svelte";
+import FieldHgroupSnippet from "@willfarrell-ds/svelte/components/FieldHgroupSnippet.svelte";
+import FieldOption from "@willfarrell-ds/svelte/components/FieldOption.svelte";
+import Fieldset from "@willfarrell-ds/svelte/components/Fieldset.svelte";
+import InputAddressCity from "@willfarrell-ds/svelte/components/InputAddressCity.svelte";
+import InputAddressCountry from "@willfarrell-ds/svelte/components/InputAddressCountry.svelte";
+import InputAddressPostalCode from "@willfarrell-ds/svelte/components/InputAddressPostalCode.svelte";
+import InputAddressStreet from "@willfarrell-ds/svelte/components/InputAddressStreet.svelte";
+import InputOrganization from "@willfarrell-ds/svelte/components/InputOrganization.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Button from "@willfarrell-ds/svelte/elements/button.svelte";
+import Form from "@willfarrell-ds/svelte/elements/form.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 </script>
 
 {#snippet legendSnippet(label)}

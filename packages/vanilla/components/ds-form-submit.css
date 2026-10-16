@@ -1,7 +1,7 @@
-[data-loader="false"] {
+form[is^="ds-form-"] [data-loader="false"] {
 	display: none;
 }
-[data-loader="true"] {
+form[is^="ds-form-"] [data-loader="true"] {
 	margin-inline-start: 0.5rem;
 	margin-block: auto;
 	display: inline-block;

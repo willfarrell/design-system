@@ -122,4 +122,32 @@ describe("removeCommentsMiddleware", () => {
 
 		assert.ok(result);
 	});
+
+	const run = (html) =>
+		removeCommentsMiddleware({
+			event: {},
+			resolve: (_event, { transformPageChunk }) =>
+				Promise.resolve(transformPageChunk({ html })),
+		});
+
+	it("removes Svelte SSR markers", async () => {
+		assert.strictEqual(
+			await run(
+				"<!--129yewl--><!----><!--[--><!--$s1--><p><!--[0-->a<!--]--><!--[!-->b<!--]--></p><!--]--><!>",
+			),
+			"<p>ab</p>",
+		);
+	});
+
+	it("removes failed boundary markers", async () => {
+		assert.strictEqual(
+			await run('<!--[?{"error":"x"}--><p>x</p><!--]-->'),
+			"<p>x</p>",
+		);
+	});
+
+	it("keeps authored comments", async () => {
+		const html = "<!-- keep me --><p>x</p>";
+		assert.strictEqual(await run(html), html);
+	});
 });

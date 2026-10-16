@@ -9,12 +9,12 @@ nav {
 		list-style-type: "";
 	}
 	a {
-		display: flex;
+		display: block;
 		text-decoration: none;
 	}
 
 	/* scrollspy */
-	:has(ol) {
+	&:has(ol) {
 		scroll-target-group: auto;
 	}
 	ol {

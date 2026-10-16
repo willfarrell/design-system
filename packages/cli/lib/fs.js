@@ -31,7 +31,7 @@ export const walkDirSync = walkDirSyncGenerator;
 export const saveFileSync = (path, data) => {
 	const dir = dirname(path);
 	if (!existsSync(dir)) {
-		mkdirSync(dir);
+		mkdirSync(dir, { recursive: true });
 	}
 	writeFileSync(path, data);
 };

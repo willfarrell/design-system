@@ -1,5 +1,5 @@
 import AxeBuilder from "@axe-core/playwright";
-import { expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 export const wcagTags = [
 	"wcag2a",
@@ -19,6 +19,16 @@ export async function expectNoAxeViolations(page, disabledRules = []) {
 	expect(results.violations).toEqual([]);
 }
 
+export function forcedColorsDisabledRules(browserName) {
+	if (browserName !== "webkit") return [];
+	test.info().annotations.push({
+		type: "skip",
+		description:
+			"contrast checks: WebKit has no real forced-colours mode, Playwright only emulates the media query",
+	});
+	return ["color-contrast", "color-contrast-enhanced"];
+}
+
 /**
  * Creates color-scheme × contrast-mode permutation tests for a given demo path.
  * Tests all 6 combinations: (light|dark) × (default|forced-colors|prefers-contrast).
@@ -36,11 +46,15 @@ export function mediaModeTests(test, path, disabledRules = []) {
 
 		test(`axe audit — ${colorScheme} + forced-colors: active`, async ({
 			page,
+			browserName,
 		}) => {
 			await page.goto(path);
 			await page.waitForLoadState("domcontentloaded");
 			await page.emulateMedia({ colorScheme, forcedColors: "active" });
-			await expectNoAxeViolations(page, disabledRules);
+			await expectNoAxeViolations(page, [
+				...disabledRules,
+				...forcedColorsDisabledRules(browserName),
+			]);
 		});
 
 		test(`axe audit — ${colorScheme} + prefers-contrast: more`, async ({
@@ -175,7 +189,7 @@ function colorStr(c) {
 `;
 
 const interactiveSelector =
-	'a[href], button, input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"]), summary';
+	'a[href], button, input:not([type="hidden"]), select, textarea, [tabindex]:not([tabindex="-1"]), summary, audio[controls], video[controls]';
 
 async function hasNoHorizontalOverflow(page) {
 	return page.evaluate(() => {
@@ -308,7 +322,7 @@ export function interactiveTests(test, path) {
 			});
 			if (info.skip) continue;
 			// WebKit on macOS doesn't Tab to <a> or <div> (contenteditable/tabindex) by default
-			if (browserName === "webkit") {
+			if (browserName === "webkit" && process.platform === "darwin") {
 				const tag = await el.evaluate((e) => e.tagName.toLowerCase());
 				if (tag === "a" || tag === "div") continue;
 			}
@@ -675,8 +689,8 @@ export function hoverFocusContentTests(test, path) {
 			await trigger.click();
 			await expect(popover).toBeVisible();
 
-			// Content should persist — wait briefly and verify still visible
-			await page.waitForTimeout(500);
+			await page.mouse.move(0, 0);
+			await trigger.evaluate((e) => e.blur());
 			await expect(popover).toBeVisible();
 
 			await page.keyboard.press("Escape");

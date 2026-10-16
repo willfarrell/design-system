@@ -1,6 +1,6 @@
 <script>
-import A from "@design-system/elements/a.svelte";
-import P from "@design-system/elements/p.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
 import { page } from "$app/state";
 
 const pathname = $derived.by(() => {

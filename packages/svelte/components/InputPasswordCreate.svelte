@@ -5,8 +5,8 @@ const { children, ...props } = $props();
 </script>
 
 <InputPassword
-  {...props}
   autocomplete="new-password"
+  {...props}
 >
   {@render children?.()}
 </InputPassword>

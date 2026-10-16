@@ -67,7 +67,7 @@
 		"$value": {
 			"fontFamily": "{fontFamily}",
 			"fontSize": "{fontSize}",
-			"fontWeight": 300,
+			"fontWeight": 400,
 			"letterSpacing": "{letterSpacing}",
 			"lineHeight": "{lineHeight}"
 		}
@@ -76,7 +76,7 @@
 		"$type": "typography",
 		"$value": {
 			"fontFamily": "{fontFamily}",
-			"fontWeight": 600,
+			"fontWeight": 700,
 			"letterSpacing": "{letterSpacing}",
 			"lineHeight": "{lineHeight}"
 		}

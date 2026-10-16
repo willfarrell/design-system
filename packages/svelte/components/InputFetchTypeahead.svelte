@@ -1,4 +1,5 @@
 <script>
+import webComponentUrl from "@willfarrell-ds/vanilla/components/ds-fetch-typeahead.js?worker&url";
 import Datalist from "../elements/datalist.svelte";
 import FieldInput from "./FieldInput.svelte";
 
@@ -23,6 +24,10 @@ const criteriaAttributes = $derived(
 	),
 );
 </script>
+
+<svelte:head>
+  <link rel="modulepreload" href={webComponentUrl} />
+</svelte:head>
 
 <FieldInput
   autocapitalize="off"

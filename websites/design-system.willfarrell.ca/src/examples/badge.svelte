@@ -1,5 +1,5 @@
 <script>
-import Badge from "@design-system/components/Badge.svelte";
+import Badge from "@willfarrell-ds/svelte/components/Badge.svelte";
 </script>
 
 <Badge>3</Badge>

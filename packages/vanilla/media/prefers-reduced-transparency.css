@@ -1,5 +1,13 @@
+/* biome-ignore-all lint/complexity/noImportantStyles: user preference must override component styles */
 @media (prefers-reduced-transparency) {
-	* {
-		opacity: 1;
+	*,
+	::after,
+	::before,
+	::backdrop {
+		backdrop-filter: none !important;
+	}
+
+	::backdrop {
+		background-color: rgb(0 0 0) !important;
 	}
 }

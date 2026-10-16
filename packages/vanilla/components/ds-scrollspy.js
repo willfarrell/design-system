@@ -11,7 +11,7 @@ const isScrollTargetGroupSupported = window.CSS?.supports(
 	"auto",
 );
 
-if (!isScrollTargetGroupSupported) {
+if (!isScrollTargetGroupSupported && !customElements.get("ds-scrollspy")) {
 	customElements.define(
 		"ds-scrollspy",
 		class extends HTMLElement {
@@ -19,7 +19,7 @@ if (!isScrollTargetGroupSupported) {
 				super();
 
 				this.links = this.querySelectorAll('[href^="#"]');
-				this.active = {};
+				this.active = new Map();
 				this.observer = new IntersectionObserver(
 					(entries) => {
 						for (const entry of entries) {
@@ -29,7 +29,7 @@ if (!isScrollTargetGroupSupported) {
 							}
 							if (id) {
 								const hash = `#${id}`;
-								this.active[hash] = entry.isIntersecting;
+								this.active.set(hash, entry.isIntersecting);
 							}
 						}
 						this.updateActive();
@@ -42,44 +42,47 @@ if (!isScrollTargetGroupSupported) {
 			}
 
 			updateActive() {
-				this.links.forEach((elem) => {
-					if (this.active[elem.hash]) {
-						elem.setAttribute("aria-current", "true");
+				const current = [...this.links].find((elem) =>
+					this.active.get(elem.hash),
+				);
+				for (const elem of this.links) {
+					if (elem === current) {
+						elem.setAttribute("aria-current", "location");
 					} else {
 						elem.removeAttribute("aria-current");
 					}
-				});
+				}
 			}
 
 			setActiveHash() {
 				const id = window.location.hash;
 				if (id) {
-					this.active = { [id]: true };
+					this.active = new Map([[id, true]]);
 				}
 				this.updateActive();
 			}
 
+			handleHashChange = () => {
+				this.setActiveHash();
+			};
+
 			connectedCallback() {
 				this.setActiveHash();
-				window.addEventListener("hashchange", () => {
-					this.setActiveHash();
-				});
+				window.addEventListener("hashchange", this.handleHashChange);
 				this.links.forEach((elem) => {
-					const id = elem.hash.substring(1);
-					let observable = d.querySelector(`section:has(h2[id="${id}"])`);
-					if (!observable) {
-						observable = d.querySelector(`[id="${id}"]`);
+					const id = CSS.escape(elem.hash.substring(1));
+					const observable =
+						d.querySelector(`section:has(h2#${id})`) ??
+						d.querySelector(`#${id}`);
+					if (observable) {
+						this.observer.observe(observable);
 					}
-					this.observer.observe(observable);
 				});
 			}
 
 			disconnectedCallback() {
-				this.links.forEach((elem) => {
-					const id = elem.hash.substring(1);
-					const anchor = d.querySelector(`[id="${id}"]`);
-					this.observer.unobserve(anchor);
-				});
+				window.removeEventListener("hashchange", this.handleHashChange);
+				this.observer.disconnect();
 			}
 		},
 		{ extends: "nav" },

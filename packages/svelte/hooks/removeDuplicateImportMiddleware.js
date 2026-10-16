@@ -1,19 +1,18 @@
 const importRegExp =
-	/<(script|link)([^>]+)(src|href)=["']([^"']+)["']([^>]*)>/gi;
+	/<script\b[^>]*\bsrc=["'][^"']+["'][^>]*>\s*<\/script>|<link\b[^>]*\bhref=["'][^"']+["'][^>]*>/gi;
 const removeDuplicateImportMiddleware = async ({ event, resolve }) => {
 	const response = await resolve(event, {
 		transformPageChunk: ({ html }) => {
-			const matches = html.match(importRegExp).sort();
-
-			let previous = "";
-			for (let i = matches.length; i--; ) {
-				const match = matches[i];
-				if (match === previous) {
-					html = html.replace(previous, "");
-				}
-				previous = match;
-			}
-
+			let prev;
+			do {
+				prev = html;
+				const seen = new Set();
+				html = html.replace(importRegExp, (match) => {
+					if (seen.has(match)) return "";
+					seen.add(match);
+					return match;
+				});
+			} while (html !== prev);
 			return html;
 		},
 	});

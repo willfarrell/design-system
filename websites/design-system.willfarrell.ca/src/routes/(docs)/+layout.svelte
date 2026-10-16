@@ -1,8 +1,8 @@
 <script>
-import BodyFooter from "@components/BodyFooter.svelte";
-import BodyHeader from "@components/BodyHeader.svelte";
-import NavDocumentation from "@components/NavDocumentation.svelte";
-import LayoutAside from "@design-system/components/LayoutAside.svelte";
+import LayoutAside from "@willfarrell-ds/svelte/components/LayoutAside.svelte";
+import BodyFooter from "#components/BodyFooter.svelte";
+import BodyHeader from "#components/BodyHeader.svelte";
+import NavDocumentation from "#components/NavDocumentation.svelte";
 
 const { children, ...props } = $props();
 </script>

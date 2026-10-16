@@ -5,6 +5,7 @@ import Aside from "../elements/aside.svelte";
 import Button from "../elements/button.svelte";
 import Details from "../elements/details.svelte";
 import Div from "../elements/div.svelte";
+import Form from "../elements/form.svelte";
 import Header from "../elements/header.svelte";
 import Li from "../elements/li.svelte";
 import Nav from "../elements/nav.svelte";
@@ -32,7 +33,6 @@ const url = $derived.by(() => {
 		return { pathname: "", hash: "" };
 	}
 });
-
 </script>
 
 {#snippet links(nav)}
@@ -43,13 +43,16 @@ const url = $derived.by(() => {
           {#if nav[key] === true}
             <Strong>{key}</Strong>
           {:else if typeof nav[key] === "string"}
-            <!-- exact match → a.svelte sets aria-current="page"; subpath → section -->
             <A
               href={nav[key]}
               aria-current={url.pathname.startsWith(`${nav[key]}/`)
                 ? "true"
                 : undefined}>{key}</A
             >
+          {:else if nav[key]._action}
+            <Form action={nav[key]._action}>
+              <Button type="submit">{key}</Button>
+            </Form>
           {:else}
             <!-- TODO replace with popover -->
             <Details
@@ -99,19 +102,12 @@ const url = $derived.by(() => {
 
 <style>
   :global {
-    /* Hidey-bar pattern: relative ot sticky header */
     html {
         container-type: scroll-state;
-        /* WCAG 2.4.12 Focus Not Obscured (Enhanced): keep tabbed-to
-           targets clear of the sticky header */
-        /* exact, not measured: the nav rows enforce these block-sizes
-           below; each row = content + 0.5em padding ×2 + 1px border */
-        --header-font-size: 1rem; /* root font-size = resolved --font-size, base.css */
+        --header-font-size: 1rem;
         --header-aside-block-size: calc(
             (var(--line-height, 1.5) + 1) * var(--header-font-size) + 1px
         );
-        /* content row fits its tallest widget, a text input:
-           1 line + 1.08 × padding-fixed + 2 borders (input.css) */
         --header-nav-block-size: calc(
             (var(--line-height, 1.5) + 1) * var(--header-font-size) +
             1.08 * var(--padding-fixed) + 2 * var(--border-width) + 1px
@@ -129,8 +125,6 @@ const url = $derived.by(() => {
             inset-block-start: 0;
         }
     }
-    /* Ref: https://www.joshwcomeau.com/css/backdrop-filter/ */
-    /* registered so the gradient stops can transition */
     @property --header-fade {
         syntax: "<percentage>";
         inherits: false;
@@ -138,8 +132,6 @@ const url = $derived.by(() => {
     }
     body > header {
         backdrop-filter: blur(16px);
-        /* menu open: header + popover render as one sheet — the 50%-wide
-           fade band slides down and off the header, onto the popover */
         --header-fade: 50%;
         background: linear-gradient(
             to bottom,
@@ -153,15 +145,11 @@ const url = $derived.by(() => {
         }
     }
     body > header {
-        /* above sticky thead (z-index 1 in table.css) */
         z-index: 2;
-        /* hamburger breakpoint container */
         container-type: inline-size;
         inline-size: 100%;
-        /* popover menu attaches to header bottom */
         anchor-name: --header;
 
-          /* fixed row heights — keeps html's scroll-padding calc exact */
           aside nav {
             block-size: var(--header-aside-block-size);
           }
@@ -172,9 +160,7 @@ const url = $derived.by(() => {
           nav {
             display: flex;
             gap: 1em;
-            /* content must fit the fixed block-size, don't stretch it */
             align-items: center;
-            /* aside + main + scrollspy */
             padding: 0.5em var(--padding-page-inline);
             border-block-end: solid #555 1px;
 
@@ -211,8 +197,32 @@ const url = $derived.by(() => {
                 align-self: anchor-center;
             }
 
+            li > form {
+              display: inline;
+              max-inline-size: none;
+            }
+            li > form button {
+              all: unset;
+              display: inline-flex;
+              align-items: center;
+              min-block-size: 24px;
+              min-inline-size: 24px;
+              cursor: pointer;
+              color: var(--color-main);
+            }
+            li > form button:is(:hover, :active, :focus-visible) {
+              background: none;
+              scale: none;
+            }
+            li > form button:hover {
+              color: color-mix(in srgb, var(--color-main-pseudo) 8%, var(--color-main));
+              text-decoration: underline solid 0.4em currentColor;
+              text-decoration-thickness: 0.4em;
+              text-underline-position: under;
+            }
+
             :is(a, button):focus-visible {
-              outline: 2px solid currentColor;
+              outline: 2px solid var(--color-focus);
               outline-offset: 2px;
             }
 
@@ -225,7 +235,6 @@ const url = $derived.by(() => {
               inline-size: 1.25em;
               block-size: 1em;
               background-color: currentColor;
-              /* bars */
               clip-path: polygon(0 0, 100% 0, 100% 20%, 0 20%, 0 40%, 100% 40%, 100% 60%, 0 60%, 0 80%, 100% 80%, 100% 100%, 0 100%);
               @media (forced-colors: active) {
                 background-color: ButtonText;
@@ -260,30 +269,21 @@ const url = $derived.by(() => {
                 align-items: center;
                 justify-content: center;
               }
-              /* panel styles on the base state so they persist while
-                 closing; display/overlay flip at transition end */
               [popover] {
                 display: none;
                 position: fixed;
                 position-anchor: --header;
                 inset: auto;
                 inset-block-start: anchor(end);
-                /* full width, flush with header bottom */
                 inset-inline: 0;
-                /* closed target for the slide — padding collapses too,
-                   else it holds the box open a sliver at the end */
                 block-size: 0;
                 padding-block: 0;
                 max-block-size: 80dvh;
                 overflow: auto;
                 border-block-end: solid #555 1px;
                 padding-inline: var(--padding-page-inline);
-                /* continues the closed-header look over header + menu:
-                   solid at the (now solid) header, fading out below */
                 backdrop-filter: blur(16px);
                 background: linear-gradient(to bottom, var(--color-l0), transparent);
-                /* slide open/closed; the gradient repaints over the
-                   moving box, so the fade rides the edge */
                 interpolate-size: allow-keywords;
                 transition:
                   block-size 0.3s,
@@ -301,7 +301,7 @@ const url = $derived.by(() => {
                 li {
                   align-self: stretch;
                 }
-                a {
+                :is(a, form button) {
                   min-block-size: 44px;
                   align-items: center;
                 }

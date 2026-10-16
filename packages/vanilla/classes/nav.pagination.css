@@ -1,0 +1,23 @@
+nav.pagination {
+	margin-block: var(--padding-fluid);
+
+	& ul {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: calc(var(--gap) * 0.5);
+	}
+
+	& a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-block-size: 44px;
+		min-inline-size: 44px;
+		padding-inline: calc(var(--padding-fixed) * 0.5);
+	}
+
+	& a[aria-current="page"] {
+		font-weight: 700;
+	}
+}

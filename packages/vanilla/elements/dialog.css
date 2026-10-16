@@ -2,29 +2,18 @@ dialog {
 	display: none;
 	border: none;
 	padding: 0;
+	inline-size: clamp(16rem, 50vw, 40rem);
+	background: var(--color-l0);
 
 	&[open] {
 		display: flex;
-		position: fixed;
-		inset-block-start: 0;
-		inline-size: 100vw;
-		block-size: 100svh;
-		background: transparent;
-		overflow-block: scroll;
+		flex-direction: column;
+		overflow-block: auto;
 	}
 
 	&::backdrop {
-		/* position: fixed;
-    inset-block-start: 0; */
 		background: rgba(0, 0, 0, 0.8);
 		backdrop-filter: blur(5px);
-	}
-
-	& form {
-		inline-size: clamp(16rem, 50vw, 40rem);
-		block-size: auto;
-		margin: auto;
-		background: var(--color-l0);
 	}
 
 	& header {
@@ -34,7 +23,15 @@ dialog {
 	& main {
 		padding: var(--padding-fixed);
 	}
+	& form > :not(header, main, footer) {
+		margin-inline: var(--padding-fixed);
+	}
 	& footer {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: var(--padding-fixed);
 		padding: var(--padding-fixed);
 	}
 }
@@ -44,13 +41,12 @@ dialog {
 		background: CanvasText;
 		opacity: 0.8;
 	}
-	dialog form {
+	dialog {
 		border: 0.25rem solid CanvasText;
 	}
 }
 
 /* prevent scroll when dialog open */
 body:has(dialog[open]) {
-	/*position: fixed;*/ /* for iOS, but causes jump to top */
 	overflow: hidden;
 }

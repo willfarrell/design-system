@@ -8,9 +8,9 @@ const { children, ...props } = $props();
   autocapitalize="off"
   autocorrect="off"
   spellcheck="false"
+  autocomplete="email"
   {...props}
   type="email"
-  autocomplete="email"
 >
   {@render children?.()}
 </FieldInput>

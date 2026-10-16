@@ -1,55 +1,55 @@
 <script>
-import Example from "@components/Example.svelte";
-import NavDocumentation from "@components/NavDocumentation.svelte";
-import DataTime from "@design-system/components/DataTime.svelte";
-import H1 from "@design-system/components/Heading1.svelte";
-import H2 from "@design-system/components/Heading2.svelte";
-import H3 from "@design-system/components/Heading3.svelte";
-import H4 from "@design-system/components/Heading4.svelte";
-import H5 from "@design-system/components/Heading5.svelte";
-import H6 from "@design-system/components/Heading6.svelte";
-import HSub from "@design-system/components/HeadingSub.svelte";
-import Image from "@design-system/components/Image.svelte";
-import LayoutAside from "@design-system/components/LayoutAside.svelte";
-import LayoutTableOfContents from "@design-system/components/LayoutTableOfContents.svelte";
-import NavScrollspy from "@design-system/components/NavScrollspy.svelte";
-import A from "@design-system/elements/a.svelte";
-import Abbr from "@design-system/elements/abbr.svelte";
-import Address from "@design-system/elements/address.svelte";
-import Article from "@design-system/elements/article.svelte";
-import Aside from "@design-system/elements/aside.svelte";
-import B from "@design-system/elements/b.svelte";
-import Blockquote from "@design-system/elements/blockquote.svelte";
-import Button from "@design-system/elements/button.svelte";
-import Cite from "@design-system/elements/cite.svelte";
-import Code from "@design-system/elements/code.svelte";
-import Del from "@design-system/elements/del.svelte";
-import Details from "@design-system/elements/details.svelte";
-import Div from "@design-system/elements/div.svelte";
-import Em from "@design-system/elements/em.svelte";
-import Footer from "@design-system/elements/footer.svelte";
-import Hgroup from "@design-system/elements/hgroup.svelte";
-import I from "@design-system/elements/i.svelte";
-import Img from "@design-system/elements/img.svelte";
-import Ins from "@design-system/elements/ins.svelte";
-import Kbd from "@design-system/elements/kbd.svelte";
-import Li from "@design-system/elements/li.svelte";
-import Main from "@design-system/elements/main.svelte";
-import Mark from "@design-system/elements/mark.svelte";
-import Nav from "@design-system/elements/nav.svelte";
-import Ol from "@design-system/elements/ol.svelte";
-import P from "@design-system/elements/p.svelte";
-import S from "@design-system/elements/s.svelte";
-import Section from "@design-system/elements/section.svelte";
-import Small from "@design-system/elements/small.svelte";
-import Strong from "@design-system/elements/strong.svelte";
-import Sub from "@design-system/elements/sub.svelte";
-import Summary from "@design-system/elements/summary.svelte";
-import Sup from "@design-system/elements/sup.svelte";
-import U from "@design-system/elements/u.svelte";
-import Ul from "@design-system/elements/ul.svelte";
-import Var from "@design-system/elements/var.svelte";
-import { paragraph } from "@examples/index.js";
+import DataTime from "@willfarrell-ds/svelte/components/DataTime.svelte";
+import H1 from "@willfarrell-ds/svelte/components/Heading1.svelte";
+import H2 from "@willfarrell-ds/svelte/components/Heading2.svelte";
+import H3 from "@willfarrell-ds/svelte/components/Heading3.svelte";
+import H4 from "@willfarrell-ds/svelte/components/Heading4.svelte";
+import H5 from "@willfarrell-ds/svelte/components/Heading5.svelte";
+import H6 from "@willfarrell-ds/svelte/components/Heading6.svelte";
+import HSub from "@willfarrell-ds/svelte/components/HeadingSub.svelte";
+import Image from "@willfarrell-ds/svelte/components/Image.svelte";
+import LayoutAside from "@willfarrell-ds/svelte/components/LayoutAside.svelte";
+import LayoutTableOfContents from "@willfarrell-ds/svelte/components/LayoutTableOfContents.svelte";
+import NavScrollspy from "@willfarrell-ds/svelte/components/NavScrollspy.svelte";
+import A from "@willfarrell-ds/svelte/elements/a.svelte";
+import Abbr from "@willfarrell-ds/svelte/elements/abbr.svelte";
+import Address from "@willfarrell-ds/svelte/elements/address.svelte";
+import Article from "@willfarrell-ds/svelte/elements/article.svelte";
+import Aside from "@willfarrell-ds/svelte/elements/aside.svelte";
+import B from "@willfarrell-ds/svelte/elements/b.svelte";
+import Blockquote from "@willfarrell-ds/svelte/elements/blockquote.svelte";
+import Button from "@willfarrell-ds/svelte/elements/button.svelte";
+import Cite from "@willfarrell-ds/svelte/elements/cite.svelte";
+import Code from "@willfarrell-ds/svelte/elements/code.svelte";
+import Del from "@willfarrell-ds/svelte/elements/del.svelte";
+import Details from "@willfarrell-ds/svelte/elements/details.svelte";
+import Div from "@willfarrell-ds/svelte/elements/div.svelte";
+import Em from "@willfarrell-ds/svelte/elements/em.svelte";
+import Footer from "@willfarrell-ds/svelte/elements/footer.svelte";
+import Hgroup from "@willfarrell-ds/svelte/elements/hgroup.svelte";
+import I from "@willfarrell-ds/svelte/elements/i.svelte";
+import Img from "@willfarrell-ds/svelte/elements/img.svelte";
+import Ins from "@willfarrell-ds/svelte/elements/ins.svelte";
+import Kbd from "@willfarrell-ds/svelte/elements/kbd.svelte";
+import Li from "@willfarrell-ds/svelte/elements/li.svelte";
+import Main from "@willfarrell-ds/svelte/elements/main.svelte";
+import Mark from "@willfarrell-ds/svelte/elements/mark.svelte";
+import Nav from "@willfarrell-ds/svelte/elements/nav.svelte";
+import Ol from "@willfarrell-ds/svelte/elements/ol.svelte";
+import P from "@willfarrell-ds/svelte/elements/p.svelte";
+import S from "@willfarrell-ds/svelte/elements/s.svelte";
+import Section from "@willfarrell-ds/svelte/elements/section.svelte";
+import Small from "@willfarrell-ds/svelte/elements/small.svelte";
+import Strong from "@willfarrell-ds/svelte/elements/strong.svelte";
+import Sub from "@willfarrell-ds/svelte/elements/sub.svelte";
+import Summary from "@willfarrell-ds/svelte/elements/summary.svelte";
+import Sup from "@willfarrell-ds/svelte/elements/sup.svelte";
+import U from "@willfarrell-ds/svelte/elements/u.svelte";
+import Ul from "@willfarrell-ds/svelte/elements/ul.svelte";
+import Var from "@willfarrell-ds/svelte/elements/var.svelte";
+import Example from "#components/Example.svelte";
+import NavDocumentation from "#components/NavDocumentation.svelte";
+import { paragraph } from "#examples/index.js";
 </script>
 
 <svelte:head>
@@ -99,7 +99,7 @@ import { paragraph } from "@examples/index.js";
 			<P>{paragraph}</P>
 			<H3 id="h3-paragraph">Sub section</H3>
 			<P>{paragraph}</P>
-			<Image src="/img/placeholder/16_9.640x359.png" width="640" height="359" />
+			<Image src="/img/placeholder/16_9.640x359.png" alt="Placeholder image, 16:9, 640 by 359 pixels" width="640" height="359" />
 			<P>{paragraph}</P>
 			<P>{paragraph}</P>
 			<Example component="table" />

@@ -1,6 +1,7 @@
 <script>
 import { page } from "$app/state";
 import allowedAttributes from "../utils/attributes.js";
+import safeHref from "../utils/safeHref.js";
 
 const elementAttributes = new Set([
 	"download",
@@ -24,7 +25,7 @@ const path = $derived.by(() => {
 });
 
 const props = $derived.by(() => {
-	const p = { ...rawProps };
+	const p = { ...rawProps, href: safeHref(rawProps.href) };
 	if (p.href?.substring(0, 8) === "https://") {
 		// noreferrer excluded because `Referrer-Policy: noreferrer` should be in place
 		p.rel ??= "noopener";

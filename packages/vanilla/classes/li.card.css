@@ -1,6 +1,7 @@
 li.card {
 	border: var(--border-width) solid var(--border-color, currentColor);
 	border-radius: var(--border-radius);
+	corner-shape: var(--corner-shape);
 	padding: var(--padding-fixed);
 	background-color: var(--color-l1);
 }

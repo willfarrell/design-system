@@ -53,15 +53,15 @@ thead {
 	}
 }
 
-tbody {
-	& tr + tr :where(th, td) {
-		border-block-start: calc(var(--border-width) * 0.5) solid var(--color-text);
-	}
-}
-
 tfoot {
 	border-block-end: 0;
 	& :where(th, td) {
 		border-block-start: var(--border-width) solid var(--color-text);
+	}
+}
+
+tbody {
+	& tr + tr :where(th, td) {
+		border-block-start: calc(var(--border-width) * 0.5) solid var(--color-text);
 	}
 }

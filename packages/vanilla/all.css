@@ -1,5 +1,4 @@
 @import "./layers/base.css";
-@import "./layers/media.css";
 
 /* elements */
 @import "./layers/elements.css";
@@ -9,14 +8,14 @@
 
 /* components */
 @import "./components/ds-card.css";
-@import "./components/ds-codeblock.css";
-@import "./components/ds-copy-pre.css";
+@import "./components/ds-codeblock-actions.css";
+@import "./components/ds-codeblock-highlight.css";
+@import "./components/ds-dropdown.css";
 @import "./components/ds-fetch-typeahead.css";
 @import "./components/ds-form-submit.css";
 @import "./components/ds-input-file.css";
-@import "./components/ds-input-focus.css";
+@import "./components/ds-keyshortcut.css";
 @import "./components/ds-input-password.css";
-@import "./components/ds-select-typeahead.css";
 @import "./components/ds-table-sortable.css";
 @import "./components/ds-task-sortable.css";
 @import "./components/ds-task.css";
@@ -24,3 +23,6 @@
 
 /* theme */
 @import "./theme.css";
+
+/* user preferences */
+@import "./layers/media.css";

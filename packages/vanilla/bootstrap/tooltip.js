@@ -2,6 +2,13 @@
 
 const d = document;
 
+const named = (el) =>
+	el.hasAttribute("aria-label") ||
+	el.hasAttribute("aria-labelledby") ||
+	el.labels?.length ||
+	el.getAttribute("alt") ||
+	el.textContent.trim();
+
 // Anchor positioning and popover are the whole mechanism. Where either is
 // missing the browser keeps rendering its own `title` tooltip, so nothing is lost.
 if (CSS.supports("anchor-name: --a") && HTMLElement.prototype.showPopover) {
@@ -24,40 +31,57 @@ if (CSS.supports("anchor-name: --a") && HTMLElement.prototype.showPopover) {
 		tip.popover = "manual";
 		tip.ariaHidden = "true";
 		tip.textContent = title;
-		el.after(tip);
 
 		const arrow = d.createElement("span");
 		arrow.id = `${key}-arrow`;
 		arrow.className = "ds-tooltip-arrow";
 		arrow.popover = "manual";
 		arrow.ariaHidden = "true";
-		tip.after(arrow);
+
+		if (el.matches(":dir(rtl)")) tip.dir = arrow.dir = "rtl";
+		d.body.append(tip, arrow);
+
+		if (!named(el)) el.setAttribute("aria-label", title);
+		else {
+			const ids = el.getAttribute("aria-describedby")?.trim();
+			el.setAttribute("aria-describedby", ids ? `${ids} ${key}` : key);
+		}
 
 		if (el.localName === "abbr") el.tabIndex = 0;
 		el.dataset.dsAnchor = key;
 	}
 
+	const parts = (el) => {
+		const key = el?.dataset.dsAnchor;
+		if (!key) return [];
+		return [d.getElementById(key), d.getElementById(`${key}-arrow`)];
+	};
+
 	// the arrow enters the top layer last so it paints over the tooltip border
 	const toggle = (el, force) => {
-		const tip = el.nextElementSibling;
+		const [tip, arrow] = parts(el);
 		if (!tip?.isConnected) return;
 		tip.togglePopover(force);
-		tip.nextElementSibling?.togglePopover(force);
+		arrow?.togglePopover(force);
 	};
 
 	let anchor;
 
 	// CSS cannot expose which position-try fallback won, so the arrow is told
 	const side = () => {
-		const tip = anchor?.nextElementSibling?.getBoundingClientRect();
+		const [tip, arrow] = parts(anchor);
 		if (!tip) return;
-		anchor.dataset.dsSide =
-			tip.top < anchor.getBoundingClientRect().top ? "above" : "below";
+		const value =
+			tip.getBoundingClientRect().top < anchor.getBoundingClientRect().top
+				? "above"
+				: "below";
+		tip.dataset.dsSide = value;
+		if (arrow) arrow.dataset.dsSide = value;
 	};
 
 	const hide = () => {
 		if (!anchor) return;
-		const title = anchor.nextElementSibling?.textContent;
+		const title = parts(anchor)[0]?.textContent;
 		if (title && !anchor.getAttribute("title")) {
 			anchor.setAttribute("title", title);
 		}

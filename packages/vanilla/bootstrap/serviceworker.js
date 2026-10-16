@@ -9,7 +9,7 @@ w.addEventListener("load", async () => {
 	if ("serviceWorker" in n) {
 		const sw = n.serviceWorker;
 		const link = d.querySelector(`link[href*="/sw-"][href$=".js"]`);
-		let scriptURL = link?.href ?? `/sw.js`;
+		let scriptURL = link?.href ?? `/service-worker.js`;
 		if (w.trustedTypes) {
 			const swPolicy = trustedTypes.createPolicy("sw", {
 				createScriptURL: (scriptURL) => {
@@ -22,31 +22,8 @@ w.addEventListener("load", async () => {
 			});
 			scriptURL = swPolicy.createScriptURL(scriptURL);
 		}
-		const reg = await sw.register(scriptURL, {
+		await sw.register(scriptURL, {
 			scope: "/",
 		});
-
-		const swResponseEvents = {};
-		const defaultResponseEvent = (event) => {
-			console.warn("Unhandled ServiceWorker.message", event);
-		};
-
-		sw.addEventListener("message", async (event) => {
-			if (!reg.active) {
-				return;
-			}
-			if (event.origin !== location.origin) {
-				return;
-			}
-			const eventHandler = swResponseEvents[event.type] ?? defaultResponseEvent;
-			await eventHandler(event);
-		});
 	}
-});
-
-// move to @work-bee/offline - {client}
-document.addEventListener("ononline", () => {
-	navigator?.serviceWorker.controller?.postMessage?.({
-		type: "online",
-	});
 });
