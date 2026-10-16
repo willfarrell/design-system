@@ -1,5 +1,6 @@
 import adapter from "@sveltejs/adapter-cloudflare";
 import { sveltekit } from "@sveltejs/kit/vite";
+import basicSsl from "@vitejs/plugin-basic-ssl";
 import { defineConfig } from "vite";
 import mkcert from "vite-plugin-mkcert";
 import sriPrerendered from "vite-plugin-sri";
@@ -44,7 +45,9 @@ export default defineConfig({
 				defaultHandler(warning);
 			},
 		}),
-		mkcert({ mkcertPath: process.env.MKCERT_PATH }),
+		process.env.CI
+			? basicSsl()
+			: mkcert({ mkcertPath: process.env.MKCERT_PATH }),
 		sriPrerendered(),
 	],
 	build: {

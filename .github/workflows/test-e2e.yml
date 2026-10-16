@@ -50,7 +50,6 @@ jobs:
           npm run test:e2e -w packages/vanilla
       - name: E2E tests (website)
         env:
-          TRUST_STORES: none
           SHARD: ${{ matrix.shard }}
         run: |
           npm run test:e2e -w websites/design-system.willfarrell.ca -- --shard="${SHARD}/6"
