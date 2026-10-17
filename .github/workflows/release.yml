@@ -220,7 +220,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          find . -name '*.tgz' -print -exec gh attestation verify {} --repo ${{ github.repository }} \;
+          find . -name '*.tgz' -print0 | xargs -0 -I{} gh attestation verify {} --repo ${{ github.repository }}
       # allowed-endpoints: >
       #   api.github.com:443
       #   fulcio.sigstore.dev:443
@@ -230,7 +230,7 @@ jobs:
       - name: npm stage publish (next)
         if: ${{ needs.release.outputs.prerelease == 'true' }}
         run: |
-          find . -name '*.tgz' -exec npm stage publish --tag next --provenance --access public --ignore-scripts {} \;
+          find . -name '*.tgz' -print0 | xargs -0 -n1 npm stage publish --tag next --provenance --access public --ignore-scripts
       # allowed-endpoints: >
       #   api.github.com:443
       #   fulcio.sigstore.dev:443
@@ -240,4 +240,4 @@ jobs:
       - name: npm stage publish (latest)
         if: ${{ needs.release.outputs.prerelease == 'false' }}
         run: |
-          find . -name '*.tgz' -exec npm stage publish --tag latest --provenance --access public --ignore-scripts {} \;
+          find . -name '*.tgz' -print0 | xargs -0 -n1 npm stage publish --tag latest --provenance --access public --ignore-scripts

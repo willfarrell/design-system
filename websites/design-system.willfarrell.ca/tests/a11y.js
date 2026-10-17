@@ -372,6 +372,11 @@ export function interactiveTests(test, path) {
 			});
 			if (id === null) break;
 			if (id === "skip") continue;
+			const known = await page.evaluate(
+				([e, list]) => list.includes(e),
+				[el, tabbable],
+			);
+			if (!known) continue;
 			focusedIds.push(id);
 			i++;
 		}
