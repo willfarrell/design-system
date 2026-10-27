@@ -178,3 +178,12 @@ import Ul from "@willfarrell-ds/svelte/elements/ul.svelte";
         </Div>
     </Section>
 </LayoutSlices>
+
+<style>
+	:global {
+		.slice > .inline-center > [is="ds-codeblock-actions"] {
+			inline-size: min(100%, 40rem);
+			text-align: start;
+		}
+	}
+</style>

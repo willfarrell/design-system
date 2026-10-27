@@ -3,7 +3,7 @@
 }
 
 [is="ds-codeblock-actions"] > code {
-	display: flow-root;
+	display: block;
 	max-inline-size: none;
 }
 
