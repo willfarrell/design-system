@@ -134,8 +134,9 @@ jobs:
           scanners: license
           scan-type: fs
           scan-ref: .
+          trivy-config: .github/trivy.yml # license policy, shared with `npm run test:sast:trivy`
           hide-progress: true
-          exit-code: 0
+          exit-code: 1
           format: table
 
   # https://github.com/oss-review-toolkit/ort-ci-github-action

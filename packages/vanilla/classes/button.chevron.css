@@ -8,7 +8,7 @@ button.chevron {
 		background-color: var(--border-color, currentColor);
 		/* chevron down */
 		clip-path: polygon(10% 20%, 50% 60%, 90% 20%, 100% 30%, 50% 80%, 0 30%);
-		vertical-align: baseline;
+		vertical-align: calc(0.5cap - 0.5em);
 	}
 
 	&:has(+ :popover-open)::after {

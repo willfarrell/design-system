@@ -13,7 +13,7 @@ const label = (shortcut) =>
 	shortcut
 		.split("+")
 		.map((key) => symbols[key] ?? (key.length === 1 ? key.toUpperCase() : key))
-		.join(apple ? "" : "+");
+		.join(apple ? "\u2009" : "+");
 
 const ignore = (event) =>
 	event.repeat ||
@@ -33,7 +33,6 @@ for (const el of d.querySelectorAll("[aria-keyshortcuts]")) {
 	}
 
 	const kbd = d.createElement("kbd");
-	kbd.className = "ds-keyshortcut";
 	kbd.ariaHidden = "true";
 	kbd.textContent = label(
 		shortcuts.find((shortcut) => shortcut.includes("Meta+") === apple) ??

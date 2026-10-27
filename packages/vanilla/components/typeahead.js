@@ -83,25 +83,43 @@ export const createCombobox = ({
 		open = false;
 	};
 
+	const appendGroup = (label, index) => {
+		const group = d.createElement("li");
+		const heading = d.createElement("div");
+		const list = d.createElement("ul");
+		heading.id = `${listboxId}-group-${index}`;
+		heading.textContent = label;
+		setAttributes(group, { role: "group", "aria-labelledby": heading.id });
+		list.setAttribute("role", "none");
+		group.append(heading, list);
+		menu.append(group);
+		return list;
+	};
+
 	const render = (nextItems) => {
 		items = nextItems;
 		activeIndex = -1;
 		input.removeAttribute("aria-activedescendant");
 		if (items.length) {
-			menu.replaceChildren(
-				...items.map((item, index) => {
-					const option = d.createElement("li");
-					option.id = `${listboxId}-${index}`;
-					option.className = `autocomplete__option${index % 2 ? " autocomplete__option--odd" : ""}`;
-					setAttributes(option, {
-						role: "option",
-						"aria-selected": "false",
-						"data-index": index,
-					});
-					option.textContent = item.label;
-					return option;
-				}),
-			);
+			menu.replaceChildren();
+			let group;
+			let list = menu;
+			items.forEach((item, index) => {
+				if (item.group !== group) {
+					group = item.group;
+					list = group ? appendGroup(group, index) : menu;
+				}
+				const option = d.createElement("li");
+				option.id = `${listboxId}-${index}`;
+				option.className = `autocomplete__option${index % 2 ? " autocomplete__option--odd" : ""}`;
+				setAttributes(option, {
+					role: "option",
+					"aria-selected": "false",
+					"data-index": index,
+				});
+				option.textContent = item.label;
+				list.append(option);
+			});
 		} else {
 			const option = d.createElement("li");
 			option.className =

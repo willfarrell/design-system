@@ -140,6 +140,69 @@ test("an empty optional typeahead is valid", async () => {
 	assert.equal(await input(page).evaluate((el) => el.checkValidity()), true);
 });
 
+const setupGroups = async () => {
+	const page = await open(`
+		<label for="city">City</label>
+		<select is="ds-select-typeahead" id="city" name="city">
+			<option value=""></option>
+			<option value="any">Anywhere</option>
+			<optgroup label="Canada">
+				<option value="yyc">Calgary</option>
+				<option value="yvr">Vancouver</option>
+			</optgroup>
+			<optgroup label="France">
+				<option value="cdg">Paris</option>
+			</optgroup>
+		</select>`);
+	await load(page, "components/ds-select-typeahead.js");
+	return page;
+};
+
+const city = (page) => page.getByRole("combobox", { name: "City" });
+
+const groupOptions = (page, name) =>
+	page.getByRole("group", { name }).getByRole("option").allTextContents();
+
+test("optgroups render as labelled groups of options", async () => {
+	const page = await setupGroups();
+	await city(page).click();
+	assert.deepEqual(await page.getByRole("option").allTextContents(), [
+		"Anywhere",
+		"Calgary",
+		"Vancouver",
+		"Paris",
+	]);
+	assert.deepEqual(await groupOptions(page, "Canada"), [
+		"Calgary",
+		"Vancouver",
+	]);
+	assert.deepEqual(await groupOptions(page, "France"), ["Paris"]);
+});
+
+test("filtering hides groups without matching options", async () => {
+	const page = await setupGroups();
+	await city(page).fill("pa");
+	assert.equal(await page.getByRole("group").count(), 1);
+	assert.deepEqual(await groupOptions(page, "France"), ["Paris"]);
+});
+
+test("arrow keys move across groups and choosing sets the select", async () => {
+	const page = await setupGroups();
+	await city(page).click();
+	for (let i = 0; i < 4; i++) await page.keyboard.press("ArrowDown");
+	await page.keyboard.press("Enter");
+	assert.equal(await page.$eval("select", (el) => el.value), "cdg");
+	assert.equal(await city(page).inputValue(), "Paris");
+});
+
+test("clicking a group label does not choose an option", async () => {
+	const page = await setupGroups();
+	await city(page).click();
+	await page.getByText("Canada", { exact: true }).click();
+	assert.equal(await page.$eval("select", (el) => el.value), "");
+	assert.equal(await city(page).getAttribute("aria-expanded"), "true");
+});
+
 test("choosing an option after partial text clears the invalid state", async () => {
 	const page = await setup("required");
 	await input(page).fill("deutsch");

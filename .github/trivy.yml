@@ -1,0 +1,27 @@
+# Trivy license allowlist. Licenses not listed are UNKNOWN and fail.
+# Loaded by license scans via `--config` or trivy-action `trivy-config`.
+# https://trivy.dev/latest/docs/scanner/license/
+scan:
+  scanners:
+    - license
+severity:
+  - UNKNOWN
+exit-code: 1
+license:
+  forbidden: []
+  restricted: []
+  reciprocal: []
+  permissive: []
+  unencumbered: []
+  notice:
+    - 0BSD
+    - Apache-2.0
+    - BlueOak-1.0.0
+    - BSD-2-Clause
+    - BSD-3-Clause
+    - CC0-1.0
+    - ISC
+    - LGPL-3.0
+    - MIT
+    - MPL-2.0
+    - Python-2.0

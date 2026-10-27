@@ -1,4 +1,60 @@
 /* biome-ignore-all lint/complexity/noImportantStyles: the user's pause must override component animations */
+section.pause-animations {
+	& > div:has(> input[name="pause-animations"]) {
+		inline-size: fit-content;
+		margin-block-start: auto;
+		margin-inline-start: auto;
+		min-block-size: auto;
+	}
+
+	& > div > input[name="pause-animations"] {
+		position: relative;
+		display: block;
+		border-color: transparent;
+
+		&::after {
+			inset: 0;
+			inline-size: auto;
+			block-size: auto;
+			transform: none;
+			border: 0;
+			background-color: currentColor;
+			/* pause */
+			clip-path: polygon(
+				30% 25%,
+				43% 25%,
+				43% 75%,
+				30% 75%,
+				30% 25%,
+				57% 25%,
+				70% 25%,
+				70% 75%,
+				57% 75%,
+				57% 25%
+			);
+			visibility: visible;
+		}
+
+		&:checked::after {
+			/* play */
+			clip-path: polygon(32% 22%, 75% 50%, 32% 78%);
+		}
+
+		& + label {
+			position: absolute;
+			white-space: nowrap;
+			inline-size: 1px;
+			block-size: 1px;
+			overflow: hidden;
+			border: 0;
+			padding: 0;
+			clip: rect(0 0 0 0);
+			clip-path: inset(50%);
+			margin: -1px;
+		}
+	}
+}
+
 section.pause-animations:has(input[name="pause-animations"]:checked) {
 	&,
 	&::before,
@@ -7,5 +63,22 @@ section.pause-animations:has(input[name="pause-animations"]:checked) {
 	& ::before,
 	& ::after {
 		animation-play-state: paused !important;
+	}
+}
+
+@media (prefers-reduced-motion) {
+	section.pause-animations > div:has(> input[name="pause-animations"]) {
+		display: none;
+	}
+}
+
+@media (forced-colors: active) {
+	section.pause-animations > div > input[name="pause-animations"] {
+		appearance: none;
+		border-color: ButtonText;
+
+		&::after {
+			background-color: ButtonText;
+		}
 	}
 }

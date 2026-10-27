@@ -143,6 +143,10 @@ const url = $derived.by(() => {
         &:has(:popover-open) {
             --header-fade: 150%;
         }
+
+        @media (prefers-reduced-transparency) {
+            background: var(--color-l0);
+        }
     }
     body > header {
         z-index: 2;
@@ -290,6 +294,10 @@ const url = $derived.by(() => {
                   padding-block 0.3s,
                   display 0.3s allow-discrete,
                   overlay 0.3s allow-discrete;
+
+                @media (prefers-reduced-transparency) {
+                  background: var(--color-l0);
+                }
 
                 > div {
                   display: block;

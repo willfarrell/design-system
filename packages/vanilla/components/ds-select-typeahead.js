@@ -22,6 +22,7 @@ if (!customElements.get(is)) {
 					options.push({
 						value: option.value,
 						label: option.label,
+						group: option.closest("optgroup")?.label,
 						search: `${option.label} ${alt}`.toLowerCase(),
 					});
 				}
