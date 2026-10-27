@@ -1,6 +1,6 @@
 {
 	"name": "@willfarrell-ds/svelte",
-	"version": "0.0.0-beta.1",
+	"version": "0.0.0-beta.2",
 	"type": "module",
 	"description": "Design system using Svelte",
 	"files": [
@@ -32,7 +32,7 @@
 	},
 	"homepage": "https://github.com/willfarrell/design-system#readme",
 	"dependencies": {
-		"@willfarrell-ds/vanilla": "0.0.0-beta.1",
+		"@willfarrell-ds/vanilla": "0.0.0-beta.2",
 		"pretty": "2.0.0"
 	},
 	"peerDependencies": {
