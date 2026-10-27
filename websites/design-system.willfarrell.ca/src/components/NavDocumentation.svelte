@@ -120,6 +120,7 @@ import Var from "@willfarrell-ds/svelte/elements/var.svelte";
 					<Li><A href="/component/dialog">Dialog</A></Li>
 					<Li><A href="/component/task-list">Task list</A></Li>
 					<Li><A href="/component/task-list-sortable">Task list (sortable)</A></Li>
+					<Li><A href="/component/table-sortable">Table (sortable)</A></Li>
 					<Li><A href="/component/item-list">Item list</A></Li>
 					<Li><A href="/component/card">Card</A></Li>
 					<Li><A href="/component/card-metric">Card metric</A></Li>
