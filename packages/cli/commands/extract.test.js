@@ -181,6 +181,24 @@ describe("extract", () => {
 			);
 			assert.ok(app.includes("classes/aside[aria-labelledby^=callout-].css"));
 		});
+
+		it("extracts [aria-keyshortcuts] by presence", () => {
+			const { app } = runExtract(
+				{ "index.html": '<input aria-keyshortcuts="Meta+K Control+K">' },
+				{},
+				["elements/input.css", "classes/[aria-keyshortcuts].css"],
+			);
+			assert.ok(app.includes("classes/[aria-keyshortcuts].css"));
+		});
+
+		it("extracts [aria-keyshortcuts] from JS object syntax", () => {
+			const { app } = runExtract(
+				{},
+				{ "chunk.js": '{ "aria-keyshortcuts": "Meta+K Control+K" }' },
+				["classes/[aria-keyshortcuts].css"],
+			);
+			assert.ok(app.includes("classes/[aria-keyshortcuts].css"), app);
+		});
 	});
 
 	describe("PEWC extraction", () => {
@@ -528,6 +546,23 @@ describe("extract", () => {
 				["elements/form.css", "components/ds-task.css"],
 			);
 			assert.ok(app.includes("components/ds-task.css"));
+		});
+
+		it("includes component CSS imports for found component classes", () => {
+			const { app } = runExtract(
+				{
+					"index.html":
+						'<div class="ds-dropdown" popover></div><span class="ds-tooltip-arrow"></span>',
+				},
+				{ "chunk.js": '{ class: "ds-tooltip" }' },
+				[
+					"elements/div.css",
+					"components/ds-dropdown.css",
+					"components/ds-tooltip.css",
+				],
+			);
+			assert.ok(app.includes("components/ds-dropdown.css"), app);
+			assert.ok(app.includes("components/ds-tooltip.css"), app);
 		});
 	});
 

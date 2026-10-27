@@ -1,6 +1,6 @@
 {
 	"name": "@willfarrell-ds/vanilla",
-	"version": "0.0.0-beta.1",
+	"version": "0.0.0-beta.2",
 	"type": "module",
 	"description": "Design system using vanilla html, css, js",
 	"files": [
@@ -51,6 +51,6 @@
 		"tinykeys": "4.0.1"
 	},
 	"devDependencies": {
-		"playwright": "1.63.0"
+		"playwright": "1.64.0"
 	}
 }

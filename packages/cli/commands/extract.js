@@ -44,6 +44,10 @@ const parse = (content) => {
 
 		for (const [key, value] of Object.entries(attrs)) {
 			if (key.startsWith("aria-") && value) {
+				for (const ariaKey of [`[${key}]`, `${tag}[${key}]`]) {
+					indexes.arias[ariaKey] ??= 0;
+					indexes.arias[ariaKey] += 1;
+				}
 				const prefix = value.split("-")[0];
 				if (prefix) {
 					const ariaKey = `${tag}[${key}^=${prefix}-]`;
@@ -88,6 +92,8 @@ const addJSAttr = (key, value) => {
 		indexes.roles[`[role=${value}]`] ??= 0;
 		indexes.roles[`[role=${value}]`] += 1;
 	} else if (key.startsWith("aria-") && value) {
+		indexes.arias[`[${key}]`] ??= 0;
+		indexes.arias[`[${key}]`] += 1;
 		const prefix = value.split("-")[0];
 		if (prefix) {
 			const ariaKey = `[${key}^=${prefix}-]`;
@@ -275,7 +281,11 @@ const buildCSS = (
 			}
 		}
 	}
-	list = Object.keys(pewc);
+	const components = new Set(Object.keys(pewc));
+	for (const key of Object.keys(classes)) {
+		if (key.startsWith(".")) components.add(key.slice(1));
+	}
+	list = [...components];
 	list.sort();
 	for (const key of list) {
 		if (existsSync(`${vanillaPath}/components/${key}.css`)) {

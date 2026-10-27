@@ -39,7 +39,7 @@ test("a shortcut without Control, Meta or Alt is ignored while typing", async ()
 test("the shortcut is shown once loaded and hidden from assistive tech", async () => {
 	const page = await setup();
 	const hints = await page.evaluate(() =>
-		[...document.querySelectorAll("kbd.ds-keyshortcut")].map((kbd) => [
+		[...document.querySelectorAll("kbd")].map((kbd) => [
 			kbd.previousElementSibling?.id ?? kbd.parentElement.id,
 			kbd.textContent,
 			kbd.getAttribute("aria-hidden"),
@@ -49,7 +49,7 @@ test("the shortcut is shown once loaded and hidden from assistive tech", async (
 		/Mac|iPod|iPhone|iPad/.test(navigator.platform),
 	);
 	assert.deepEqual(hints, [
-		["search", apple ? "⌘K" : "Ctrl+K", "true"],
+		["search", apple ? "⌘\u2009K" : "Ctrl+K", "true"],
 		["top", apple ? "⇧T" : "Shift+T", "true"],
 	]);
 });

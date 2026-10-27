@@ -112,6 +112,7 @@ const page = {
 	<Section>
 		<H2 id="related">Related</H2>
 		<Ul>
+			<Li><A href="/component/table-sortable">Table (sortable)</A> — when readers need to reorder rows by column</Li>
 			<Li><A href="/text/list-dl">Description list</A> — for key-value data</Li>
 		</Ul>
 	</Section>

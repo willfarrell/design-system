@@ -1,0 +1,16 @@
+@supports (anchor-name: --a) {
+	:has(> :is(input, select, textarea)[aria-keyshortcuts] + kbd) {
+		anchor-scope: --aria-keyshortcuts;
+	}
+	:is(input, select, textarea)[aria-keyshortcuts]:has(+ kbd) {
+		anchor-name: --aria-keyshortcuts;
+		padding-inline-end: 3.5em;
+	}
+	:is(input, select, textarea)[aria-keyshortcuts] + kbd {
+		position: absolute;
+		position-anchor: --aria-keyshortcuts;
+		inset-inline-end: calc(anchor(end) + 0.25em);
+		align-self: anchor-center;
+		pointer-events: none;
+	}
+}

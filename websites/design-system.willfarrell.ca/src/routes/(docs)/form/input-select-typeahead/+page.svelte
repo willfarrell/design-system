@@ -67,6 +67,7 @@ const page = {
 		<Ul>
 			<Li>The enhanced control exposes a <Code>combobox</Code> with an attached <Code>listbox</Code>, following the WAI-ARIA authoring practices for autocomplete.</Li>
 			<Li>Keyboard: type to filter, <Code>ArrowDown</Code> / <Code>ArrowUp</Code> to move through results, <Code>Enter</Code> to confirm, and <Code>Escape</Code> to dismiss the menu.</Li>
+			<Li>Each <Code>&lt;optgroup&gt;</Code> becomes a <Code>group</Code> in the listbox, named by its label, so matching options stay under their heading.</Li>
 			<Li>A polite live region announces the number of available results and the highlighted option to screen reader users.</Li>
 			<Li>The native <Code>&lt;label for&gt;</Code> stays associated with the enhanced input, so the field keeps its accessible name.</Li>
 			<Li>Because the base control is a real <Code>&lt;select&gt;</Code>, keyboard and assistive technology support is guaranteed even if the enhancement fails to load.</Li>
