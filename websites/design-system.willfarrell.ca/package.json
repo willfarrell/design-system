@@ -14,7 +14,7 @@
 		"preview": "vite preview",
 		"test": "npm run test:e2e",
 		"test:e2e": "playwright test",
-		"test:e2e:update": "docker run --rm --platform linux/amd64 --ipc=host --add-host host.docker.internal:host-gateway -v \"$PWD/../..\":/work -w /work/websites/design-system.willfarrell.ca -e PLAYWRIGHT_BASE_URL=https://host.docker.internal:4173 mcr.microsoft.com/playwright:v1.63.0-noble npx playwright test --update-snapshots --grep screenshots",
+		"test:e2e:update": "docker run --rm --platform linux/amd64 --ipc=host --add-host host.docker.internal:host-gateway -v \"$PWD/../..\":/work -w /work/websites/design-system.willfarrell.ca -e PLAYWRIGHT_BASE_URL=https://host.docker.internal:4173 mcr.microsoft.com/playwright:v1.64.1-noble npx playwright test --update-snapshots --grep screenshots",
 		"test:e2e:dev": "playwright test --ui",
 		"test:e2e:new": "playwright codegen https://localhost:5173",
 		"release:login": "wrangler login --browser false",
@@ -31,7 +31,7 @@
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.13.0",
-		"@playwright/test": "^1.63.0",
+		"@playwright/test": "^1.64.1",
 		"@sveltejs/adapter-cloudflare": "^8.0.0",
 		"@sveltejs/kit": "^3.1.0",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
