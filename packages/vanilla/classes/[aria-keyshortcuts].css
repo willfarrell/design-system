@@ -4,12 +4,17 @@
 	}
 	:is(input, select, textarea)[aria-keyshortcuts]:has(+ kbd) {
 		anchor-name: --aria-keyshortcuts;
-		padding-inline-end: 3.5em;
+		padding-inline-end: calc(var(--padding-fixed) + 4ch);
 	}
 	:is(input, select, textarea)[aria-keyshortcuts] + kbd {
 		position: absolute;
 		position-anchor: --aria-keyshortcuts;
-		inset-inline-end: calc(anchor(end) + 0.25em);
+		inset-inline-end: calc(
+			anchor(end) +
+			var(--border-width) +
+			var(--padding-fixed) -
+			0.5rem
+		);
 		align-self: anchor-center;
 		pointer-events: none;
 	}

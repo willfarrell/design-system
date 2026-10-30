@@ -21,11 +21,11 @@ Documentation and live examples: https://design-system.willfarrell.ca
 
 ## Packages
 
-| Package | Contents |
-| --- | --- |
+| Package                   | Contents                                                                                     |
+| ------------------------- | -------------------------------------------------------------------------------------------- |
 | `@willfarrell-ds/vanilla` | CSS for elements, classes, and themes, plus bootstrap scripts and `is="ds-*"` web components |
-| `@willfarrell-ds/svelte` | Svelte 5 components and SvelteKit server hooks built on the vanilla package |
-| `@willfarrell-ds/cli` | `ds` command that builds per-site CSS from your rendered output |
+| `@willfarrell-ds/svelte`  | Svelte 5 components and SvelteKit server hooks built on the vanilla package                  |
+| `@willfarrell-ds/cli`     | `ds` command that builds per-site CSS from your rendered output                              |
 
 ## Install
 
@@ -103,7 +103,6 @@ Visual regression baselines are Linux-only and come from the Playwright containe
 ## Backlog
 
 Not built yet:
-
 - Breadcrumb
 - Pagination ([pattern notes](https://coyleandrew.medium.com/design-better-pagination-a022a3b161e1))
 - Audio player

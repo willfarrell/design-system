@@ -31,7 +31,6 @@
 ### Labeling Priority
 
 Use this priority order when labeling controls ([my-priority-of-methods-for-labeling-a-control](https://adrianroselli.com/2020/01/my-priority-of-methods-for-labeling-a-control.html)):
-
 1. **`<label for="id">`**: Native HTML. Provides click-to-focus, voice control support, 20+ years of browser support.
 2. **`aria-labelledby`** pointing to visible text: Works with voice control. All users see the label.
 3. **Visually-hidden content** (`.visually-hidden` class): Only assistive technology users perceive it. No increased hit area.
@@ -134,13 +133,13 @@ Always use explicit `<label for="id">` association over wrapping inputs in `<lab
 
 Choose based on dialog type ([where-to-put-focus-when-opening-a-modal-dialog](https://adrianroselli.com/2025/06/where-to-put-focus-when-opening-a-modal-dialog.html)):
 
-| Dialog Type | Focus Target |
-|---|---|
-| Short informational message | Close button (with `aria-describedby` for message) |
-| Longer / interactive content | Dialog wrapper or primary heading |
-| Action-required (destructive) | Least destructive option (cancel/close) |
-| Brief login form | First input field |
-| Longer / unexpected form | Dialog heading |
+| Dialog Type                   | Focus Target                                       |
+| ----------------------------- | -------------------------------------------------- |
+| Short informational message   | Close button (with `aria-describedby` for message) |
+| Longer / interactive content  | Dialog wrapper or primary heading                  |
+| Action-required (destructive) | Least destructive option (cancel/close)            |
+| Brief login form              | First input field                                  |
+| Longer / unexpected form      | Dialog heading                                     |
 
 ### Focus Return on Close
 
@@ -194,6 +193,7 @@ Choose based on dialog type ([where-to-put-focus-when-opening-a-modal-dialog](ht
 - Remove `:focus:not(:focus-visible)` outline to avoid showing rings on mouse click.
 - Focus indicators need minimum 3:1 contrast against adjacent colors (WCAG 2.4.11).
 - Recommended pattern:
+
   ```css
   :focus-visible {
     outline: 0.25rem solid var(--color-focus);
@@ -310,6 +310,7 @@ Choose based on dialog type ([where-to-put-focus-when-opening-a-modal-dialog](ht
 
 - Don't wrap entire cards in `<a>`, as this creates verbose screen reader output. ([block-links-cards-clickable-regions](https://adrianroselli.com/2020/02/block-links-cards-clickable-regions-etc.html))
 - Use pseudo-element technique on the primary link only:
+
   ```css
   .card a[href]::after { content: ""; position: absolute; inset: 0; }
   ```
@@ -355,16 +356,16 @@ Choose based on dialog type ([where-to-put-focus-when-opening-a-modal-dialog](ht
 
 ### Required Support
 
-| Media Query | Purpose | Status |
-|---|---|---|
-| `prefers-color-scheme` | Dark/light mode | Required |
-| `prefers-reduced-motion` | Disable animations | Required |
-| `prefers-contrast` | Increase contrast, borders, font size | Required |
-| `forced-colors` | Windows High Contrast Mode | Required |
-| `prefers-reduced-transparency` | Remove transparency | Recommended |
-| `prefers-reduced-data` | Hide decorative images | Recommended |
-| `inverted-colors` | Re-invert images | Recommended |
-| `print` | Print-friendly layout | Required |
+| Media Query                    | Purpose                               | Status      |
+| ------------------------------ | ------------------------------------- | ----------- |
+| `prefers-color-scheme`         | Dark/light mode                       | Required    |
+| `prefers-reduced-motion`       | Disable animations                    | Required    |
+| `prefers-contrast`             | Increase contrast, borders, font size | Required    |
+| `forced-colors`                | Windows High Contrast Mode            | Required    |
+| `prefers-reduced-transparency` | Remove transparency                   | Recommended |
+| `prefers-reduced-data`         | Hide decorative images                | Recommended |
+| `inverted-colors`              | Re-invert images                      | Recommended |
+| `print`                        | Print-friendly layout                 | Required    |
 
 ### Reduced Motion
 
@@ -379,13 +380,13 @@ Use the standard pattern for content that should be accessible to screen readers
 
 ```css
 .visually-hidden:not(:focus):not(:active) {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
 }
 ```
 
@@ -401,6 +402,7 @@ Key points:
 This design system targets **WCAG 2.2 Level AA** with select Level AAA criteria:
 
 ### Level A (Must)
+
 - 1.3.1 Info and Relationships
 - 2.1.1 Keyboard
 - 2.4.1 Bypass Blocks (skip links)
@@ -408,6 +410,7 @@ This design system targets **WCAG 2.2 Level AA** with select Level AAA criteria:
 - 4.1.2 Name, Role, Value
 
 ### Level AA (Must)
+
 - 1.4.3 Contrast (Minimum): 4.5:1 text, 3:1 large text
 - 1.4.4 Resize Text: 200% zoom
 - 1.4.11 Non-text Contrast: 3:1 for UI components
@@ -417,6 +420,7 @@ This design system targets **WCAG 2.2 Level AA** with select Level AAA criteria:
 - 2.5.8 Target Size (Minimum) (2.2)
 
 ### Level AAA (Should)
+
 - 2.4.13 Focus Appearance (Enhanced)
 - 1.4.6 Contrast (Enhanced): 7:1 text, 4.5:1 large text
 
@@ -425,7 +429,6 @@ This design system targets **WCAG 2.2 Level AA** with select Level AAA criteria:
 ## References
 
 All guidelines in this spec are grounded in Adrian Roselli's accessibility research, cached locally at `docs/adrianroselli.com/`. Each section links to the relevant source post(s). Additional references:
-
 - [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
 - [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)
 - [HTML Specification](https://html.spec.whatwg.org/)

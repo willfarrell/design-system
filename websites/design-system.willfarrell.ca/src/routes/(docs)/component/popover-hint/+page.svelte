@@ -19,7 +19,7 @@ import Snippet from "#components/Snippet.svelte";
 const page = {
 	group: "Component",
 	title: "Popover hint",
-	update: "2026-10-10",
+	update: "2026-10-29",
 };
 </script>
 
@@ -54,6 +54,7 @@ const page = {
 	<Section>
 		<H2 id="description">Description</H2>
 		<P>A popover hint is a <A href="/component/popover">Popover</A> with <Code>popover="hint"</Code>. Opening a hint closes other hints but leaves open <Code>auto</Code> popovers alone, so a hint can explain a control inside a menu without dismissing the menu.</P>
+		<P>Placement matches the Popover: above its trigger with a connector, moving below or along the inline edge when the viewport has no room.</P>
 		<P>Browsers without <Code>hint</Code> support treat it as <Code>manual</Code>, so the content still opens and closes with its trigger.</P>
 	</Section>
 	<Section>

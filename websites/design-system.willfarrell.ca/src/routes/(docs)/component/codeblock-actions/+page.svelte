@@ -57,7 +57,7 @@ const page = {
 		<P>Use it for anything a reader is expected to paste elsewhere: install commands, configuration snippets, tokens, identifiers. It pairs with the <A href="/component/codeblock">Codeblock</A> component, which wraps its highlighted code in this same element.</P>
 		<P>Add a bare <Code>data-filename</Code> for the download variant. A second control joins the copy button in the corner and saves the block as a file. Use it when the block is long enough that pasting is the wrong verb: a config file, a certificate, a manifest.</P>
 		<P>The contents come from the markup already there, the text of the nested <Code>&lt;code&gt;</Code>, saved as <Code>code.txt</Code>. Give <Code>data-filename</Code> a value to name the file something else.</P>
-		<P>Neither control implements its own behaviour: the component builds a <A href="/component/copy-download">ds-copy and ds-download</A> button and points each at the nested <Code>&lt;code&gt;</Code> with <Code>data-elem="code"</Code>, which resolves within the block itself, so the clipboard and file handling live in one place and a block that changes after load still copies what it shows.</P>
+		<P>Neither control implements its own behaviour: the component builds a <A href="/component/copy">ds-copy</A> and <A href="/component/download">ds-download</A> button and points each at the nested <Code>&lt;code&gt;</Code> with <Code>data-elem="code"</Code>, which resolves within the block itself, so the clipboard and file handling live in one place and a block that changes after load still copies what it shows.</P>
 	</Section>
 	<Section>
 		<H2 id="example">Example</H2>

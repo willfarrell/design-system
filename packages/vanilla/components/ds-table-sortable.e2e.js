@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { load, open } from "../browser.testutil.js";
+import { load, open, vanilla } from "../browser.testutil.js";
 
 const setup = async (html) => {
 	const page = await open(html);
@@ -66,6 +66,17 @@ test("a header after a colspan sorts its own column", async () => {
 	</table>`);
 	await page.getByRole("button", { name: "Age" }).click();
 	assert.deepEqual(await column(page, 2), ["1", "2", "3"]);
+});
+
+test("clicking the header cell padding sorts the column", async () => {
+	const page = await setup(
+		`<link rel="stylesheet" href="${vanilla}/all.css">${table}`,
+	);
+	await page
+		.locator("thead th")
+		.first()
+		.click({ position: { x: 2, y: 2 } });
+	assert.deepEqual(await sorts(page), ["ascending", null, null]);
 });
 
 test("removing the table restores the header text", async () => {

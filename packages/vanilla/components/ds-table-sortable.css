@@ -21,6 +21,27 @@
 	scale: none;
 }
 
+[is="ds-table-sortable"] thead th > button::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+}
+
+[is="ds-table-sortable"] thead th > button:focus-visible {
+	outline: none;
+}
+
+[is="ds-table-sortable"] thead th:has(> button:focus-visible) {
+	outline: 0.25rem solid var(--color-focus);
+	outline-offset: -0.25rem;
+}
+
+@media (forced-colors: active) {
+	[is="ds-table-sortable"] thead th:has(> button:focus-visible) {
+		outline-color: Highlight;
+	}
+}
+
 /* chevron centered on the thead bottom border */
 [is="ds-table-sortable"] thead th[aria-sort]::after {
 	content: "";
@@ -34,6 +55,7 @@
 	border-block-start: var(--border-width) solid var(--color-text);
 	border-inline-start: var(--border-width) solid var(--color-text);
 	background: var(--color-l3);
+	pointer-events: none;
 }
 
 [is="ds-table-sortable"] thead th[aria-sort="descending"]::after {
