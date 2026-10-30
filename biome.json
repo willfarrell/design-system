@@ -21,6 +21,7 @@
 				"noBannedTypes": "off"
 			},
 			"correctness": {
+				"noInvalidGridAreas": "off",
 				"noUnusedFunctionParameters": "off"
 			},
 			"suspicious": {

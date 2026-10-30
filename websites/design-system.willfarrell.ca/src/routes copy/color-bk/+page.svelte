@@ -140,8 +140,7 @@ const processPalette = (palette) => {
 		const lightOnColorLc = Math.abs(
 			wcag3Contrast(paletteNeutral["light-l1"].color, color),
 		);
-		const textColorLc =
-			darkOnColorLc < lightOnColorLc ? lightOnColorLc : darkOnColorLc;
+		const textColorLc = Math.max(darkOnColorLc, lightOnColorLc);
 		const textColor =
 			darkOnColorLc < lightOnColorLc
 				? paletteNeutral["light-l1"].color
