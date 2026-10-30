@@ -20,9 +20,26 @@ select,
 	appearance: base-select;
 }
 
+::picker(select) {
+	background-color: var(--color-l0);
+	color: var(--color-text);
+}
+
+@supports not (appearance: base-select) {
+	select:not([multiple], [size]) :is(option, optgroup) {
+		background-color: var(--color-l0);
+		color: var(--color-text);
+	}
+}
+
 @media (prefers-contrast: custom), (forced-colors: active) {
 	select {
 		background: none;
 		appearance: auto;
+	}
+
+	select:not([multiple], [size]) :is(option, optgroup) {
+		background-color: Field;
+		color: FieldText;
 	}
 }

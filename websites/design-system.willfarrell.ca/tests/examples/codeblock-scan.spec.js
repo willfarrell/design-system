@@ -36,7 +36,9 @@ test("blocks hold the bare value, no record prefix or header name", async ({
 	await page.goto(path);
 	await page.waitForLoadState("domcontentloaded");
 	const code = page.locator('code[is="ds-codeblock-highlight"]');
-	await expect(code.first()).toHaveText("tardisec-verification=abc123def456");
+	await expect(code.first()).toHaveText(
+		"v=spf1 include:_spf.example.com ip4:192.0.2.0/24 -all",
+	);
 	const hsts = page
 		.getByRole("heading", { name: "Strict-Transport-Security" })
 		.locator("xpath=following-sibling::pre[1]/code");

@@ -6,7 +6,6 @@ import H3 from "@willfarrell-ds/svelte/components/Heading3.svelte";
 // Every value a scan reports on, in the form a provider's field takes: the
 // value on its own, no record prefix and no header name.
 const dns = [
-	["Verification TXT", "dns", "tardisec-verification=abc123def456"],
 	["SPF", "dns-spf", "v=spf1 include:_spf.example.com ip4:192.0.2.0/24 -all"],
 	[
 		"DMARC",

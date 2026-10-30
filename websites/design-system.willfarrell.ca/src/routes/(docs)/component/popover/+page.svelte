@@ -20,7 +20,7 @@ import Snippet from "#components/Snippet.svelte";
 const page = {
 	group: "Component",
 	title: "Popover",
-	update: "2025-05-01",
+	update: "2026-10-29",
 };
 </script>
 
@@ -55,6 +55,7 @@ const page = {
 	<Section>
 		<H2 id="description">Description</H2>
 		<P>The Popover component displays content in an overlay that appears on demand. It uses the native HTML <Code>popover</Code> attribute, which provides built-in light-dismiss behavior and top-layer rendering. A PopoverHint variant uses <Code>popover="hint"</Code> for tooltip-style overlays.</P>
+		<P>A popover opened by a <Code>popovertarget</Code> or <Code>commandfor</Code> button sits above that button with a connector pointing at it. CSS anchor positioning moves it below the button, or along the inline edge, when the viewport has no room. A popover opened from script without a source element opens at the top of the viewport without a connector.</P>
 		<P>Use popovers for supplemental content such as tooltips, menus, or additional details. For content that requires user acknowledgment, use a Dialog instead.</P>
 	</Section>
 	<Section>

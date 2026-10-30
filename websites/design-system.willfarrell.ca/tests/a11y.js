@@ -88,11 +88,13 @@ function parseColor(str) {
 	if (!str || str === 'transparent' || str === 'rgba(0, 0, 0, 0)') return null;
 	const m = str.match(/rgba?\\((\\d+),\\s*(\\d+),\\s*(\\d+)(?:,\\s*([\\d.]+))?\\)/);
 	if (m) return { r: +m[1], g: +m[2], b: +m[3], a: m[4] !== undefined ? +m[4] : 1 };
-	const cm = str.match(/color\\(srgb\\s+([\\d.]+)\\s+([\\d.]+)\\s+([\\d.]+)(?:\\s*\\/\\s*([\\d.]+))?\\)/);
-	if (cm) return { r: Math.round(+cm[1]*255), g: Math.round(+cm[2]*255), b: Math.round(+cm[3]*255), a: cm[4] !== undefined ? +cm[4] : 1 };
-	const om = str.match(/oklch\\(([\\d.]+)\\s+([\\d.]+)\\s+([\\d.e+-]+)(?:\\s*\\/\\s*([\\d.]+))?\\)/);
+	const num = v => (v === 'none' ? 0 : +v);
+	const unit = v => Math.round(Math.min(1, Math.max(0, num(v))) * 255);
+	const cm = str.match(/color\\(srgb\\s+([\\d.e+-]+|none)\\s+([\\d.e+-]+|none)\\s+([\\d.e+-]+|none)(?:\\s*\\/\\s*([\\d.]+|none))?\\)/);
+	if (cm) return { r: unit(cm[1]), g: unit(cm[2]), b: unit(cm[3]), a: cm[4] !== undefined ? num(cm[4]) : 1 };
+	const om = str.match(/oklch\\(([\\d.e+-]+|none)\\s+([\\d.e+-]+|none)\\s+([\\d.e+-]+|none)(?:\\s*\\/\\s*([\\d.]+|none))?\\)/);
 	if (om) {
-		const L = +om[1], C = +om[2], h = +om[3], alpha = om[4] !== undefined ? +om[4] : 1;
+		const L = num(om[1]), C = num(om[2]), h = num(om[3]), alpha = om[4] !== undefined ? num(om[4]) : 1;
 		const hRad = h * Math.PI / 180;
 		const a_ = C * Math.cos(hRad), b_ = C * Math.sin(hRad);
 		const l_ = L + 0.3963377774 * a_ + 0.2158037573 * b_;

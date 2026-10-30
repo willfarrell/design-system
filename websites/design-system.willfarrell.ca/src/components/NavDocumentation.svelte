@@ -132,7 +132,8 @@ import Var from "@willfarrell-ds/svelte/elements/var.svelte";
 					<Li><A href="/component/icon">Icon</A></Li>
 					<Li><A href="/component/video">Video</A></Li>
 					<Li><A href="/component/codeblock">Codeblock</A></Li>
-					<Li><A href="/component/copy-download">Copy and download</A></Li>
+					<Li><A href="/component/copy">Copy</A></Li>
+					<Li><A href="/component/download">Download</A></Li>
 					<Li><A href="/component/codeblock-actions">Codeblock actions</A></Li>
 					<Li><A href="/component/popover">Popover</A></Li>
 					<Li><A href="/component/popover-hint">Popover hint</A></Li>

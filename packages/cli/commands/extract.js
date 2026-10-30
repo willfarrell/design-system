@@ -57,6 +57,11 @@ const parse = (content) => {
 			}
 		}
 
+		if ("popover" in attrs) {
+			indexes.arias["[popover]"] ??= 0;
+			indexes.arias["[popover]"] += 1;
+		}
+
 		if (attrs.is) {
 			indexes.pewc[attrs.is] ??= 0;
 			indexes.pewc[attrs.is] += 1;
@@ -66,7 +71,8 @@ const parse = (content) => {
 };
 
 // Svelte 5 SSR outputs JS objects like { class: "container-slices", is: "ds-card" }
-const jsAttrRegExp = /(is|type|role|aria-[\w-]+)["']?\s*:\s*"([^"]*)"/g;
+const jsAttrRegExp =
+	/(?<![\w-])(is|type|role|popover|aria-[\w-]+)["']?\s*:\s*"([^"]*)"/g;
 const jsClassRegExp =
 	/(?<![\w$-])(?:["']?class["']?\s*:|attr_class[\w$]*\(|clsx[\w$]*\()/g;
 const classTokenRegExp = /^-?[_a-zA-Z][\w-]*$/;
@@ -88,6 +94,9 @@ const addJSAttr = (key, value) => {
 		const k = `input[type=${value}]`;
 		indexes.tags[k] ??= 0;
 		indexes.tags[k] += 1;
+	} else if (key === "popover") {
+		indexes.arias["[popover]"] ??= 0;
+		indexes.arias["[popover]"] += 1;
 	} else if (key === "role") {
 		indexes.roles[`[role=${value}]`] ??= 0;
 		indexes.roles[`[role=${value}]`] += 1;

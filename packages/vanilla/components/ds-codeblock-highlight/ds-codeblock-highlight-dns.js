@@ -5,7 +5,7 @@
 // grammar on a Prism the component never reads.
 
 // Zone-file lines, the form every DNS provider accepts on paste:
-//   example.com.	IN	TXT	"tardisec-verification=..."
+//   example.com.	IN	TXT	"example-verification=..."
 // and the RDATA on its own, the form a provider's "value" field takes:
 //   v=DMARC1; p=reject; rua=mailto:dmarc@example.com
 // Prism ships no DNS grammar, so these rendered as one flat string.

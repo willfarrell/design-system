@@ -12,7 +12,7 @@ import ExampleCardMetric from "./card-metric.svelte";
 import ExampleCodeblock from "./codeblock.svelte";
 import ExampleCodeblockActions from "./codeblock-actions.svelte";
 import ExampleCodeblockScan from "./codeblock-scan.svelte";
-import ExampleCopyDownload from "./copy-download.svelte";
+import ExampleCopy from "./copy.svelte";
 import ExampleDataBytes from "./data-bytes.svelte";
 import ExampleDataEnum from "./data-enum.svelte";
 import ExampleDataNumber from "./data-number.svelte";
@@ -20,6 +20,7 @@ import ExampleDataTime from "./data-time.svelte";
 import ExampleDetails from "./details.svelte";
 import ExampleDetailsChevron from "./details-chevron.svelte";
 import ExampleDialog from "./dialog.svelte";
+import ExampleDownload from "./download.svelte";
 import ExampleDropdownItemList from "./dropdown-item-list.svelte";
 import ExampleDropdownNav from "./dropdown-nav.svelte";
 import ExampleFootnotes from "./footnotes.svelte";
@@ -159,7 +160,8 @@ export default {
 	ExampleCodeblock,
 	ExampleCodeblockScan,
 	ExampleCodeblockActions,
-	ExampleCopyDownload,
+	ExampleCopy,
+	ExampleDownload,
 	ExampleTag,
 	ExamplePagination,
 	ExampleDetails,

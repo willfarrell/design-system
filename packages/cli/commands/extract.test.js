@@ -201,6 +201,44 @@ describe("extract", () => {
 		});
 	});
 
+	describe("popover extraction", () => {
+		it("extracts [popover] by presence", () => {
+			const { app } = runExtract(
+				{ "index.html": '<div id="tip" popover="hint"></div>' },
+				{},
+				["classes/[popover].css"],
+			);
+			assert.ok(app.includes("classes/[popover].css"), app);
+		});
+
+		it("extracts a bare popover attribute", () => {
+			const { app } = runExtract(
+				{ "index.html": "<div id=menu popover>menu</div>" },
+				{},
+				["classes/[popover].css"],
+			);
+			assert.ok(app.includes("classes/[popover].css"), app);
+		});
+
+		it("extracts [popover] from JS object syntax", () => {
+			const { app } = runExtract(
+				{},
+				{ "chunk.js": 'Div($$renderer, { id, popover: "auto" })' },
+				["classes/[popover].css"],
+			);
+			assert.ok(app.includes("classes/[popover].css"), app);
+		});
+
+		it("ignores popovertarget on the invoker", () => {
+			const { app } = runExtract(
+				{ "index.html": '<button popovertarget="menu">Menu</button>' },
+				{ "chunk.js": '{ popovertarget: "menu" }' },
+				["classes/[popover].css"],
+			);
+			assert.ok(!app.includes("classes/[popover].css"), app);
+		});
+	});
+
 	describe("PEWC extraction", () => {
 		it('extracts is="ds-component" attributes', () => {
 			const { app } = runExtract(
