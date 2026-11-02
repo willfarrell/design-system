@@ -394,5 +394,11 @@ select,
 textarea,
 [type="file"]::file-selector-button {
 	border-radius: var(--border-radius);
+}
+
+span.badge,
+button,
+a.button,
+[type="file"]::file-selector-button {
 	corner-shape: var(--corner-shape);
 }

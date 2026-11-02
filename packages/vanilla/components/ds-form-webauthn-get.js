@@ -22,19 +22,14 @@ if (!customElements.get(is)) {
 				this.$loader = this.querySelector('[data-loader="false"]');
 			}
 
-			async authenticate(useBrowserAutofill) {
+			async authenticate() {
 				try {
 					const credential = await startAuthentication({
 						optionsJSON: this.$options,
-						useBrowserAutofill,
 					});
 					this.complete(JSON.stringify(credential));
 				} catch (e) {
-					if (
-						useBrowserAutofill ||
-						e.name === "NotAllowedError" ||
-						e.name === "AbortError"
-					) {
+					if (e.name === "NotAllowedError" || e.name === "AbortError") {
 						return;
 					}
 					this.complete(e.name);
@@ -62,7 +57,7 @@ if (!customElements.get(is)) {
 				if (this.$pending || this.$submitted) return;
 				this.$pending = true;
 				try {
-					await this.authenticate(false);
+					await this.authenticate();
 				} finally {
 					this.$pending = false;
 				}
@@ -72,13 +67,19 @@ if (!customElements.get(is)) {
 				this.addEventListener("submit", this.$handleSubmit);
 				window.addEventListener("pageshow", this.$handleRestore);
 
-				if (this.$input.getAttribute("autocomplete")?.includes("webauthn")) {
-					this.authenticate(true);
+				if (!this.$input.getAttribute("autocomplete")?.includes("webauthn")) {
+					return;
+				}
+				if (document.hasFocus()) {
+					this.$handleSubmit();
+				} else {
+					window.addEventListener("focus", this.$handleSubmit, { once: true });
 				}
 			}
 
 			disconnectedCallback() {
 				this.removeEventListener("submit", this.$handleSubmit);
+				window.removeEventListener("focus", this.$handleSubmit);
 				window.removeEventListener("pageshow", this.$handleRestore);
 			}
 		},

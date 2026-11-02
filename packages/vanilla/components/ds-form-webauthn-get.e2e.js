@@ -7,7 +7,11 @@ const options = JSON.stringify({
 	allowCredentials: [],
 });
 
-const setup = async (autocomplete, outcome, { inside = "" } = {}) => {
+const setup = async (
+	autocomplete,
+	outcome,
+	{ inside = "", focused = true } = {},
+) => {
 	const page = await open(`
 		<iframe name="sink"></iframe>
 		<form is="ds-form-webauthn-get" method="post" action="/login" target="sink">
@@ -20,43 +24,47 @@ const setup = async (autocomplete, outcome, { inside = "" } = {}) => {
 		page.posts.push(route.request().postData());
 		await route.fulfill({ body: "ok", contentType: "text/html" });
 	});
-	await page.evaluate((result) => {
-		window.calls = [];
-		window.PublicKeyCredential = function PublicKeyCredential() {};
-		window.PublicKeyCredential.isConditionalMediationAvailable = async () =>
-			true;
-		const bytes = () => new Uint8Array([1, 2, 3]).buffer;
-		Object.defineProperty(navigator, "credentials", {
-			value: {
-				get: (request) => {
-					window.calls.push(request.mediation ?? "modal");
-					if (request.mediation === "conditional") {
-						return new Promise((_, reject) => {
-							request.signal.addEventListener("abort", () =>
-								reject(new DOMException("aborted", "AbortError")),
-							);
+	await page.evaluate(
+		({ result, focused }) => {
+			window.calls = [];
+			window.PublicKeyCredential = function PublicKeyCredential() {};
+			window.PublicKeyCredential.isConditionalMediationAvailable = async () =>
+				true;
+			const bytes = () => new Uint8Array([1, 2, 3]).buffer;
+			Object.defineProperty(navigator, "credentials", {
+				value: {
+					get: (request) => {
+						window.calls.push(request.mediation ?? "modal");
+						if (request.mediation === "conditional") {
+							return new Promise((_, reject) => {
+								request.signal.addEventListener("abort", () =>
+									reject(new DOMException("aborted", "AbortError")),
+								);
+							});
+						}
+						if (result !== "ok") {
+							return Promise.reject(new DOMException("failed", result));
+						}
+						return Promise.resolve({
+							id: "AQID",
+							rawId: bytes(),
+							type: "public-key",
+							authenticatorAttachment: "platform",
+							getClientExtensionResults: () => ({}),
+							response: {
+								authenticatorData: bytes(),
+								clientDataJSON: bytes(),
+								signature: bytes(),
+								userHandle: bytes(),
+							},
 						});
-					}
-					if (result !== "ok") {
-						return Promise.reject(new DOMException("failed", result));
-					}
-					return Promise.resolve({
-						id: "AQID",
-						rawId: bytes(),
-						type: "public-key",
-						authenticatorAttachment: "platform",
-						getClientExtensionResults: () => ({}),
-						response: {
-							authenticatorData: bytes(),
-							clientDataJSON: bytes(),
-							signature: bytes(),
-							userHandle: bytes(),
-						},
-					});
+					},
 				},
-			},
-		});
-	}, outcome);
+			});
+			document.hasFocus = () => focused;
+		},
+		{ result: outcome, focused },
+	);
 	await load(page, "components/ds-form-webauthn-get.js");
 	return page;
 };
@@ -74,11 +82,21 @@ test("an input without autocomplete loads without throwing", async () => {
 	assert.deepEqual(await page.evaluate(() => window.calls), []);
 });
 
-test("autocomplete webauthn starts conditional mediation, not a modal", async () => {
+test("a hidden webauthn input opens the prompt on load and posts the credential", async () => {
 	const page = await setup("webauthn", "ok");
+	const [body] = await posted(page);
+	assert.deepEqual(await page.evaluate(() => window.calls), ["modal"]);
+	assert.equal(JSON.parse(body).id, "AQID");
+});
+
+test("a hidden webauthn input in a background tab waits for focus", async () => {
+	const page = await setup("webauthn", "ok", { focused: false });
 	await page.waitForTimeout(50);
-	assert.deepEqual(await page.evaluate(() => window.calls), ["conditional"]);
-	assert.deepEqual(await posted(page), []);
+	assert.deepEqual(await page.evaluate(() => window.calls), []);
+	await page.evaluate(() => window.dispatchEvent(new FocusEvent("focus")));
+	const [body] = await posted(page);
+	assert.deepEqual(await page.evaluate(() => window.calls), ["modal"]);
+	assert.equal(JSON.parse(body).id, "AQID");
 });
 
 test("submitting authenticates and posts the credential", async () => {

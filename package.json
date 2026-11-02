@@ -44,7 +44,7 @@
 		"audit:fix": "npm audit fix --workspaces",
 		"release:license:add": "node .github/license.mjs add",
 		"release:license:remove": "node .github/license.mjs remove",
-		"release:sync": "npm version $npm_package_version --workspaces; find ./packages ./websites -name \"package.json\" -not -path \"*/node_modules/*\" -exec sed -i.bak -E \"s#\\\"@willfarrell-ds/(.*)\\\": ([^,]*)#\\\"@willfarrell-ds/\\1\\\": \\\"$(npm pkg get version | tr -d '\\\"')\\\"#g\" {} \\; && find ./packages ./websites -name \"package.json.bak\" -not -path \"*/node_modules/*\" -delete && npm run rm && npm install && npm run lint",
+		"release:sync": "npm version $npm_package_version --workspaces --no-workspaces-update --allow-same-version && node .github/release-sync.mjs && npm install && npm run lint",
 		"release:deploy": "npm run release:deploy --workspaces --if-present",
 		"release:tag": "git tag -s -m $npm_package_version $npm_package_version",
 		"release:staged": "npm whoami >/dev/null && npm query '.workspace:not([private])' | jq -r '.[].name' | xargs -n1 -I{} npm stage list {} --json | jq -r '.[] | \"\\(.packageName)@\\(.version) \\(.actor) \\(.shasum)\"'",

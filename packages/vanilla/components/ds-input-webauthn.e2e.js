@@ -86,11 +86,13 @@ test("ds-input-webauthn-get without autocomplete upgrades without errors", async
 	assert.deepEqual(await page.evaluate(() => window.calls), []);
 });
 
-test("ds-input-webauthn-get with autocomplete webauthn upgrades into conditional mediation", async () => {
+test("ds-input-webauthn-get hidden with autocomplete webauthn opens the prompt on load", async () => {
 	const page = await setup("ds-input-webauthn-get", "webauthn");
+	const [body] = await posted(page);
 	assert.deepEqual(page.errors, []);
 	assert.deepEqual(page.consoleErrors, []);
-	assert.deepEqual(await page.evaluate(() => window.calls), ["conditional"]);
+	assert.deepEqual(await page.evaluate(() => window.calls), ["modal"]);
+	assert.equal(JSON.parse(body).id, "AQID");
 });
 
 test("ds-input-webauthn-get submitting posts the credential", async () => {
