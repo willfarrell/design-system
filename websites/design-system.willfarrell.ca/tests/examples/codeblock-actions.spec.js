@@ -24,6 +24,29 @@ test("download control is opt in", async ({ page }) => {
 	).toBeVisible();
 });
 
+test("copy writes the code block and announces the confirmation", async ({
+	page,
+	context,
+	browserName,
+}) => {
+	test.skip(
+		browserName !== "chromium",
+		"clipboard permissions are Chromium only",
+	);
+	await context.grantPermissions(["clipboard-read", "clipboard-write"]);
+	await page.goto(path);
+	await page.waitForLoadState("domcontentloaded");
+	const button = page
+		.locator('[is="ds-codeblock-actions"]')
+		.first()
+		.getByRole("button", { name: "Copy" });
+	await button.click();
+	await expect(button).toHaveAccessibleName("Copied");
+	expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(
+		"npm install @willfarrell-ds/vanilla",
+	);
+});
+
 test("codeblock offers both controls, copy in the corner", async ({ page }) => {
 	await page.goto("/demo/codeblock");
 	await page.waitForLoadState("domcontentloaded");

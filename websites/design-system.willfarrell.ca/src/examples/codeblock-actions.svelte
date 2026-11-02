@@ -2,6 +2,8 @@
 import Code from "@willfarrell-ds/svelte/elements/code.svelte";
 import Pre from "@willfarrell-ds/svelte/elements/pre.svelte";
 import actionsUrl from "@willfarrell-ds/vanilla/components/ds-codeblock-actions.js?worker&url";
+import copyUrl from "@willfarrell-ds/vanilla/components/ds-copy.js?worker&url";
+import downloadUrl from "@willfarrell-ds/vanilla/components/ds-download.js?worker&url";
 
 const command = "npm install @willfarrell-ds/vanilla";
 const token = btoa(JSON.stringify({ alg: "EdDSA", typ: "JWT" }));
@@ -9,6 +11,8 @@ const token = btoa(JSON.stringify({ alg: "EdDSA", typ: "JWT" }));
 
 <svelte:head>
 	<link rel="modulepreload" href={actionsUrl} />
+	<link rel="modulepreload" href={copyUrl} />
+	<link rel="modulepreload" href={downloadUrl} />
 </svelte:head>
 
 <Pre is="ds-codeblock-actions"><Code>{command}</Code></Pre>
